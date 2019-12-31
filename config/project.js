@@ -21,7 +21,9 @@ module.exports = {
   /** Whether to generate sourcemaps */
   sourcemaps: true,
   /** A hash map of keys that the compiler should treat as external to the project */
-  externals: {},
+  externals: {
+  },
+//  externals: {},
   /** A hash map of variables and their values to expose globally */
   globals: {},
   /** Whether to enable verbose logging */

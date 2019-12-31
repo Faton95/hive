@@ -1,10 +1,11 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import {ThemeProvider} from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
-import RoutesWithSubRoutes from './components/RouteWithSubRoutes'
 import NormalizedStyles from 'components/StyledElems/NormalizedStyles'
-const App = ({routes, store}) => {
+import RoutesWithSubRoutes from './components/RouteWithSubRoutes'
+
+const App = ({ routes, store }) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={{}}>
@@ -20,7 +21,6 @@ const App = ({routes, store}) => {
         </React.Fragment>
       </ThemeProvider>
     </Provider>
-
 
   )
 }

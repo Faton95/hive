@@ -34,7 +34,7 @@ const config = {
       inProject(project.srcDir),
       'node_modules',
     ],
-    extensions: ['*', '.js', '.jsx', '.json'],
+    extensions: ['*', '.tsx', '.ts', '.js', '.jsx', '.json'],
     alias: {
       '~': path.resolve(__dirname, '../src')
     }
@@ -78,6 +78,14 @@ config.module.rules.push({
     }
   }],
 })
+
+// TypeScript
+// ------------------------------------
+config.module.rules.push({
+  test: /\.tsx?$/,
+  use: 'ts-loader',
+  exclude: /node_modules/,
+},)
 
 // Styles
 // ------------------------------------
