@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
 
-export interface HelloProps { name: string }
+export type HelloProps = { name: string }
 
-const Hello: FunctionComponent<HelloProps> = props => {
+const Hello: FunctionComponent<HelloProps> = () => {
   return (
-    <div>{props.name}</div>
+    <div>Odsdsk</div>
   )
 }
 

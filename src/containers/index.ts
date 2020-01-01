@@ -1,16 +1,10 @@
-import React from 'react'
 import Hello from './Hello'
 
 const tester = store => [
   {
     exact: true,
     path: '/',
-    component: () => <Hello name={'sdasOO'} />
-  },
-  {
-    exact: true,
-    path: '/src',
-    component: () => <div>SRC COMPONENT</div>
+    component: Hello
   }
 ]
 const Routes = store => [
