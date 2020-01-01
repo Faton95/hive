@@ -1,4 +1,4 @@
-import { ReducersMapObject } from 'redux'
+import {ReducersMapObject, Store} from 'redux'
 
 export type ITodo = {
     text: string;
@@ -8,9 +8,16 @@ export type ITodoState = {
     list: ITodo[];
 };
 
-export type IState = {
+export type IStore = {
     todo: ITodoState;
 };
 
-export type IReducers = ReducersMapObject<IState>;
+export type InitStore = {
+
+}
+
+export interface AsyncStore extends Store {
+    asyncReducers?: AsyncReducers
+}
+export type IReducers = ReducersMapObject<IStore>;
 export type AsyncReducers = Partial<IReducers>;

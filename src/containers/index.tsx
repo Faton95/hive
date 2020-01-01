@@ -1,11 +1,11 @@
 import React from 'react'
-import Hello from './Hello.tsx'
+import Hello from './Hello'
 
 const tester = store => [
   {
     exact: true,
     path: '/',
-    component: () => <Hello name={'NasdasdasOO'} />
+    component: () => <Hello name={'sdasOO'} />
   },
   {
     exact: true,

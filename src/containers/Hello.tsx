@@ -1,7 +1,8 @@
-import * as React from 'react'
+import React, { FunctionComponent } from 'react'
 
 export interface HelloProps { name: string }
-const Hello = (props: HelloProps) => {
+
+const Hello: FunctionComponent<HelloProps> = props => {
   return (
     <div>{props.name}</div>
   )

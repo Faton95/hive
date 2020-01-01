@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { compose, forEach, toPairs } from 'ramda'
-import { AsyncReducers } from '../types/store'
+import { AsyncReducers, IStore } from '../types/store'
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({

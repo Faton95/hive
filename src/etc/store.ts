@@ -1,13 +1,10 @@
-import { applyMiddleware, createStore, Store } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
-import { AsyncReducers } from '../types/store'
+import { InitStore, AsyncStore } from '../types'
 import { makeRootReducer } from './reducers'
 
-interface AsyncStore extends Store {
-  asyncReducers?: AsyncReducers
-}
-export default (initialState = {}) => {
+export default (initialState: InitStore = {}): any => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
