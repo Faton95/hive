@@ -1,11 +1,13 @@
 import { equals } from 'ramda'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getDataFromState } from '../utils/get'
 import toSnakeCase from '../utils/toSnakeCase'
 import { mapResponseToFormError } from '../utils/form'
+import { useTypedSelector } from '../etc/reducers'
+import { TGetDataFromState, TUseCreateParams } from '../types'
 
-const useCreate = (params) => {
+const useCreate = (params: TUseCreateParams) => {
   const {
     action,
     stateName,
@@ -17,8 +19,8 @@ const useCreate = (params) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const data = useSelector(state => getDataFromState(stateName, state), equals)
-  const onSubmit = values => {
+  const data = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equals)
+  const onSubmit = (values: object) => {
     return dispatch(action(serializer(values)))
       .then(data => {
         if (onSuccess) {

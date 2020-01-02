@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
+import { useSelector, TypedUseSelectorHook } from 'react-redux'
 import { compose, forEach, toPairs } from 'ramda'
-import { AsyncReducers, IStore } from '../types/store'
+import { AsyncReducers, IStore, TGetDataFromState } from '../types'
 
+export type RootState = {
+  orderList: TGetDataFromState;
+}
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
     ...asyncReducers
@@ -19,3 +23,5 @@ export const injectReducers = (store, reducers) =>
     forEach(([key, reducer]) => injectReducer(store, { key, reducer })),
     toPairs
   )(reducers)
+
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector

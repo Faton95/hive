@@ -1,14 +1,20 @@
 import { pick, pipe, equals } from 'ramda'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { getDataFromState, getParamsFormHistory } from '../utils/get'
+
+import { getParamsFormHistory } from '../utils/get'
+import { getDataFromState } from '../utils/getTyped'
 import { DEFAULT_PICK_PARAMS } from '../utils/isEquals'
 import toSnakeCase from '../utils/toSnakeCase'
+import {
+  TUseFetchListParams,
+  TGetDataFromState,
+  THistory
+} from '../types'
+import { useTypedSelector } from '../etc/reducers'
 import useCompareEffect from './useCompareEffect'
-import {TUseFetchListParams} from '../types'
-import {History} from 'history'
 
-export const getListParams = (history: History, keys: Array<string>) =>
+export const getListParams = (history: THistory, keys: Array<string>) =>
   pipe(
     getParamsFormHistory,
     pick(keys),
@@ -19,7 +25,6 @@ const useFetchList = (params: TUseFetchListParams) => {
   const {
     stateName,
     action,
-    key = 'list',
     mapper = getListParams,
     pickParams = DEFAULT_PICK_PARAMS
   } = params
@@ -29,7 +34,7 @@ const useFetchList = (params: TUseFetchListParams) => {
 
   const searchParams = getListParams(history, pickParams)
 
-  const data = useSelector(state => getDataFromState(stateName, state), equals)
+  const data = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equals)
   useCompareEffect(() => { dispatch(action(mapper(history, pickParams))) }, [searchParams])
 
   return data

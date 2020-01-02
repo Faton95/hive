@@ -1,6 +1,10 @@
 import React from 'react'
 import { equals as deepEqual } from 'ramda'
 
+function isPrimitive (val): boolean {
+  return val == null || /^[sbn]/.test(typeof val)
+}
+
 function checkDeps (deps) {
   if (!deps || !deps.length) {
     throw new Error(
@@ -12,10 +16,6 @@ function checkDeps (deps) {
       'useDeepCompareEffect should not be used with dependencies that are all primitive values. Use React.useEffect instead.',
     )
   }
-}
-
-function isPrimitive (val) {
-  return val == null || /^[sbn]/.test(typeof val)
 }
 
 function useDeepCompareMemoize (value) {

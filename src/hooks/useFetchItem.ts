@@ -1,15 +1,18 @@
 import { prop } from 'ramda'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import equal from 'fast-deep-equal'
 import { getDataFromState } from '../utils/get'
+import { TGetDataFromState, TUseFetchItemParams } from '../types'
+import { useTypedSelector } from '../etc/reducers'
 
-const useFetchItem = params => {
+const useFetchItem = (params: TUseFetchItemParams) => {
   const { stateName, action, key = 'id' } = params
-  const paramsRoute = useParams()
+  const paramsRoute: object = useParams()
+
   const dispatch = useDispatch()
-  const state = useSelector(getDataFromState(stateName), equal)
+  const state = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equal)
   const id = prop(key, paramsRoute)
 
   useEffect(
