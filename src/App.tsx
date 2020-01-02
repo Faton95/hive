@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import { Provider } from 'react-redux'
 import { Store } from 'redux'
-import { ThemeProvider } from 'styled-components'
+import { CubeThemeProvider } from 'ui-cubic'
+import theme from './etc/themes'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NormalizedStyles from './components/StyledElems/NormalizedStyles'
+import GlobalStyles from './components/StyledElems/GlobalStyles'
 import { TRoutes } from './types'
-import themes from './etc/themes'
 
 type Props = {
   routes: TRoutes;
@@ -14,9 +15,10 @@ type Props = {
 const App: FunctionComponent<Props> = ({ routes, store }) => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={themes}>
+      <CubeThemeProvider theme={theme}>
         <React.Fragment>
           <NormalizedStyles />
+          <GlobalStyles />
           <BrowserRouter>
             <Switch>
               {routes.map((route) => (
@@ -28,7 +30,7 @@ const App: FunctionComponent<Props> = ({ routes, store }) => {
             </Switch>
           </BrowserRouter>
         </React.Fragment>
-      </ThemeProvider>
+      </CubeThemeProvider>
     </Provider>
 
   )

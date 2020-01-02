@@ -1,7 +1,14 @@
+import { DefaultTheme } from 'styled-components'
 
-const theme: object = {
-  primary: '#2196f3',
-  secondary: '#f50057'
+const theme: DefaultTheme = {
+  cube: {
+    border: '4px'
+  },
+  borderRadius: '8px',
+  colors: {
+    main: 'dsad',
+    secondary: 'dsa'
+  }
 }
 
 export default theme

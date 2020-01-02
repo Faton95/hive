@@ -12,7 +12,7 @@ const MOUNT_NODE = document.getElementById('app')
 
 const render = () => {
   const App = require('./App').default
-  const routes = require('./containers').default
+  const routes = require('./modules').default
   ReactDOM.render(
     <App store={store} routes={routes(store)} />,
     MOUNT_NODE

@@ -1,5 +1,7 @@
+import React from 'react'
+
 export type TRoute = {
-    component: JSX.Element;
+    component: React.FunctionComponent;
     path: string;
     exact: boolean;
 }
