@@ -38,7 +38,7 @@ export const getParamsFormHistory = compose(
   path(['location', 'search'])
 )
 
-export const getParamFormHistory = curry((key, history) =>
+export const getParamFromHistory = curry((key, history) =>
   compose(
     prop(key),
     parseParams,

@@ -9,7 +9,11 @@
     "esModuleInterop": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "rootDirs": [
+      "src/"
+    ],
+    "baseUrl": "."
   },
   "include": [
     "src/"

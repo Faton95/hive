@@ -22,14 +22,14 @@ const useCreate = (params: TUseCreateParams) => {
   const data = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equals)
   const onSubmit = (values: object) => {
     return dispatch(action(serializer(values)))
-      .then(data => {
+/*      .then(data => {
         if (onSuccess) {
           onSuccess(data, { values })
         } else if (redirectUrl) {
           history.push(redirectUrl)
         }
       })
-      .catch(mapResponseToFormError)
+      .catch(mapResponseToFormError)*/
   }
 
   return { onSubmit, ...data }

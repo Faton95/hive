@@ -2,35 +2,40 @@ import React, { FunctionComponent } from 'react'
 import { Provider } from 'react-redux'
 import { Store } from 'redux'
 import { CubeThemeProvider } from 'ui-cubic'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 import theme from './etc/themes'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NormalizedStyles from './components/StyledElems/NormalizedStyles'
 import GlobalStyles from './components/StyledElems/GlobalStyles'
 import { TRoutes } from './types'
+import { getCookie } from './utils/cookie'
 
 type Props = {
   routes: TRoutes;
   store: Store;
 }
 const App: FunctionComponent<Props> = ({ routes, store }) => {
+  const tokenExists = getCookie('token')
+
   return (
     <Provider store={store}>
-      <CubeThemeProvider theme={theme}>
-        <React.Fragment>
-          <NormalizedStyles />
-          <GlobalStyles />
-          <BrowserRouter>
-            <Switch>
+      <ThemeProvider theme={theme}>
+        <CubeThemeProvider >
+          <React.Fragment>
+            <NormalizedStyles />
+            <GlobalStyles />
+            <BrowserRouter>
+              {!tokenExists && <Redirect to={'/login'} />}
               {routes.map((route) => (
                 <Route
                   key={route.path}
                   {...route}
                 />
               ))}
-            </Switch>
-          </BrowserRouter>
-        </React.Fragment>
-      </CubeThemeProvider>
+            </BrowserRouter>
+          </React.Fragment>
+        </CubeThemeProvider>
+      </ThemeProvider>
     </Provider>
 
   )

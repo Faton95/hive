@@ -1,7 +1,13 @@
-export const DOMAIN_URL = 'http://dev.apicube.wienerdeming.com'
-export const API_URL = `${DOMAIN_URL}/api/v1`
+export const API_HOST = '94.250.255.250:8081/'
+export const API_ROOT = 'api'
+export const API_VERSION = 'v1'
+export const API_PROTOCOL = 'http'
+export const API_URL = `${API_PROTOCOL}://${API_HOST}`
 
-export const AUTH = 'auth'
-export const AUTH_ACCESS_TOKEN = `/${AUTH}/access-token/`
-export const AUTH_REFRESH_TOKEN = `/${AUTH}/refresh-token/`
-export const AUTH_ME = `/${AUTH}/me/`
+const MAIN = 'main'
+export const CHECK_TOKEN = '/main/client/check_token/'
+export const LOGIN = `${MAIN}/login/`
+export const LOGOUT = `${MAIN}/logout/`
+
+const ORDER = `${MAIN}/order`
+export const ORDER_LIST = `/${ORDER}/`

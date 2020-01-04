@@ -1,6 +1,7 @@
 import * as ROUTES from '../constants/routes'
 
 export const MENU_KEYS = {
+  ORDER: 'order',
   REVIEW: 'review',
   OPERATIONS: 'operations',
   MANUFACTURING: 'manufacturing',
@@ -10,18 +11,17 @@ export const MENU_KEYS = {
 
 export default [
   {
-    key: MENU_KEYS.REVIEW,
-    title: 'Обзор',
-    url: '',
+    key: MENU_KEYS.ORDER,
+    title: 'Закази',
+    url: ROUTES.ORDER_LIST_PATH,
     children: []
   },
   {
     key: MENU_KEYS.SETTINGS,
     title: 'Настройки',
-    url: ROUTES.WORK_TIME_LIST_PATH,
+    url: ROUTES.ORDER_LIST_PATH,
     children: [
       { title: 'Продуктивность', url: '' },
-      { title: 'Рабочее время', url: ROUTES.WORK_TIME_LIST_PATH },
       { title: 'Категории продуктов', url: '' },
       { title: 'Каталог цехов', url: '' },
     ]

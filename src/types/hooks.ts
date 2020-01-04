@@ -1,14 +1,14 @@
-import { THistory } from './index'
+import { THistory, ThunkResult } from './index'
 
 export type TUseFetchListParams = {
     stateName: string;
-    action: (params) => Promise<void>;
+    action: (params) => (dispatch, store) => Promise<void>;
     mapper?: (history: THistory, pickparams: Array<string>) => void;
     pickParams?: Array<string>;
 }
 export type TUseFetchItemParams = {
     stateName: string;
-    action: (params) => Promise<void>;
+    action: (params) => (dispatch, store) => Promise<void>;
     key?: string | any;
 }
 export type TUseModalParams = {
@@ -17,7 +17,7 @@ export type TUseModalParams = {
     onSubmit?: (event: Event, onClose?: () => void) => Promise<void>;
 }
 export type TUseCreateParams = {
-    action: (params) => Promise<void>;
+    action: (params) => (dispatch, store) => Promise<void>;
     stateName: string;
     redirectUrl?: string;
     onSuccess?: (data, values) => void;
@@ -25,7 +25,7 @@ export type TUseCreateParams = {
 }
 export type TUseUpdateParams = {
     stateName: string;
-    action: (id, params) => Promise<void>;
+    action: (id, params) => (dispatch, store) => Promise<void>;
     redirectUrl?: string;
     initialValues: object;
     key?: string | any;

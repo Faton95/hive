@@ -15,7 +15,7 @@ import MainMenu from './MainMenu'
 import SubMenu from './SubMenu'
 
 const Menu = props => {
-  const { module, active, title, location } = props
+  const { module, active, title } = props
   const history = useHistory()
   const goToMainMenu = () => history.push(ROOT_PATH)
 
@@ -29,7 +29,7 @@ const Menu = props => {
           <Title>{title}</Title>
         </DisplayFlex>
 
-        <MainMenu module={module} active={active} location={location} />
+        <MainMenu module={module} active={active} />
 
         <DisplayFlex alignItems={'center'}>
           Not
@@ -37,14 +37,12 @@ const Menu = props => {
         </DisplayFlex>
       </NavBar>
 
-      <SubMenu module={module} active={active} location={location} />
+      <SubMenu module={module} active={active} />
     </>
   )
 }
 
 Menu.propTypes = {
-  location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
   module: PropTypes.string.isRequired,
   active: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired

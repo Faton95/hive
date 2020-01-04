@@ -1,14 +1,14 @@
 import Hello from './Hello'
+import SignIn from './sign-in'
+import order from './order'
 
-const tester = store => [
+const Routes = store => [
   {
     exact: true,
-    path: '/',
-    component: Hello
-  }
-]
-const Routes = store => [
-  ...tester(store)
+    path: '/login',
+    component: SignIn
+  },
+  ...order(store)
 ]
 
 export default Routes

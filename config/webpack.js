@@ -33,6 +33,7 @@ const config = {
     modules: [
       inProject(project.srcDir),
       'node_modules',
+      'src'
     ],
     extensions: ['*', '.tsx', '.ts', '.js', '.jsx', '.json'],
     alias: {

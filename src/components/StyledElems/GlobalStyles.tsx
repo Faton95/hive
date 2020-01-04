@@ -14,7 +14,7 @@ export default createGlobalStyle`
     }
     ::-webkit-scrollbar-track {
       background: #f9f9f9;
-      border: ${props => props.theme.cube.border};
+      border: ${props => props.theme.border};
     }
     ::-webkit-scrollbar-thumb {
       background-color: #b7bfcb;

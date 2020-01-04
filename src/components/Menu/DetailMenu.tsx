@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
+
 import { useHistory } from 'react-router-dom'
 import ArrowLeft from '../../icons/ArrowLeft'
 import DisplayFlex from '../StyledElems/DisplayFlex'
@@ -11,7 +11,10 @@ import {
 //  UserInfo
 } from './components'
 
-const Menu = ({ title }) => {
+type Prop = {
+  title: string;
+}
+const Menu: FunctionComponent<Prop> = ({ title }) => {
   const history = useHistory()
   const goBack = () => history.goBack()
   return (
@@ -30,10 +33,6 @@ const Menu = ({ title }) => {
       </NavBar>
     </>
   )
-}
-
-Menu.propTypes = {
-  title: PropTypes.string.isRequired
 }
 
 export default Menu

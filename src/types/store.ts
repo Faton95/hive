@@ -1,4 +1,6 @@
-import {ReducersMapObject, Store} from 'redux'
+import { ReducersMapObject, Store } from 'redux'
+import { ThunkAction, ThunkDispatch } from 'redux-thunk'
+import { RootState } from '../etc/reducers'
 
 export type ITodo = {
     text: string;
@@ -17,7 +19,10 @@ export type InitStore = {
 }
 
 export interface AsyncStore extends Store {
-    asyncReducers?: AsyncReducers
+    asyncReducers?: AsyncReducers;
 }
 export type IReducers = ReducersMapObject<IStore>;
 export type AsyncReducers = Partial<IReducers>;
+
+export type ThunkResult<R> = ThunkAction<R, RootState, undefined, any>
+export type ThunkDispatchR = ThunkDispatch<any, any, any>

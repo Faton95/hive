@@ -1,14 +1,14 @@
 import { DefaultTheme } from 'styled-components'
 
 const theme: DefaultTheme = {
-  cube: {
-    border: '4px'
-  },
-  borderRadius: '8px',
+  border: '1px solid #eaebee',
+  borderColor: '#eaebee',
   colors: {
-    main: 'dsad',
-    secondary: 'dsa'
-  }
+    text: '#36434E',
+    primary: {
+      default: '#6770E6'
+    }
+  },
 }
 
 export default theme

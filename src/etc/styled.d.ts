@@ -1,17 +1,39 @@
 // import original module declarations
 import 'styled-components'
 
+/*
+cube: {
+    border: string;
+    textColor: string;
+    primaryColor: string;
+    colorRed: string;
+    colorOrange: string;
+    colorYellow: string;
+    lightGreyColor: string;
+    hoverBackgroundColor: string;
+    selectBackgroundColor: string;
+    boxShadow: string;
+    transition: string;
+};
+input: {
+    backgroundColor: string;
+    backgroundColorHover: string;
+    borderRadius: string;
+    borderColor: string;
+    labelColor: string;
+    placeholderColor: string;
+};
+borderRadius: string; */
 // and extend them!
 declare module 'styled-components' {
     export interface DefaultTheme {
-        cube: {
-            border: string
-        },
-        borderRadius: string
-
+        border: string;
+        borderColor: string;
         colors: {
-            main: string
-            secondary: string
-        }
+            primary: {
+                default: string;
+            };
+            text: string;
+        };
     }
 }
