@@ -11,3 +11,4 @@ export const LOGOUT = `${MAIN}/logout/`
 
 const ORDER = `${MAIN}/order`
 export const ORDER_LIST = `/${ORDER}/`
+export const ORDER_ITEM = `/${ORDER}/%d/`

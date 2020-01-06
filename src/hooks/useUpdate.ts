@@ -23,7 +23,7 @@ const useUpdate = (params: TUseUpdateParams) => {
   const paramsRoute = useParams()
   const history = useHistory()
   const dispatch = usePromiseDispatch()
-  const state = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equal)
+  const state = useTypedSelector<TGetDataFromState<any>>(state => getDataFromState(stateName, state), equal)
 
   const onSubmit = (values: object) => {
     const id = prop(key, paramsRoute)

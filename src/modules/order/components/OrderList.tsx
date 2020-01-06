@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react'
-import { prop, map } from 'ramda'
+import { prop, map, pathOr } from 'ramda'
 import { sprintf } from 'sprintf-js'
 import { Menu } from '../../../components/Menu'
 import { MENU_KEYS } from '../../../constants/menus'
-import { TGetDataFromState } from '../../../types'
+import { TGetDataFromState, TData } from '../../../types'
+import { TOrderItem } from '../../../types/models'
 import numberFormat from '../../../utils/numberFormat'
 import dateFormat from '../../../utils/dateFormat'
-import { ORDER_ITEM_URL } from '../../../constants/routes'
+import { ORDER_ITEM_URL, ORDER_CREATE_PATH } from '../../../constants/routes'
 
 import {
   Table,
@@ -20,7 +21,7 @@ import {
 import { Box } from '../../../components/UI'
 
 type Props = {
-    data: TGetDataFromState;
+    data: TGetDataFromState<TData<TOrderItem>>;
 }
 type OrderItem = {
     id: number;
@@ -35,11 +36,13 @@ type OrderItem = {
     client: {id: number; fullName: string; phone: string};
 }
 const OrderList: FunctionComponent<Props> = props => {
+
   const { data } = props
-  const ids = map(prop('id'), data.results)
+    const list: TOrderItem[] = pathOr([], ['data', 'results'], data)
+  const ids = map(prop('id'), list)
   const actions = (
     <TableActions
-      createPath={'create/'}
+      createPath={ORDER_CREATE_PATH}
     />
   )
 
@@ -60,7 +63,7 @@ const OrderList: FunctionComponent<Props> = props => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.results.map((item: OrderItem) => {
+            {list.map((item: OrderItem) => {
               const id = prop('id', item)
               const paymentType = prop('paymentType', item)
               const status = prop('status', item)

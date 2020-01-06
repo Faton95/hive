@@ -5,17 +5,19 @@ import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
+import { TOrderItem } from '../types/models'
 
 const LOGIN = 'login'
 export type RootState = {
-  orderList: TGetDataFromState;
-  login: TGetDataFromState;
+  orderList: TGetDataFromState<TOrderItem>;
+  login: TGetDataFromState<any>;
 }
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
     [LOGIN]: createThunkReducer(actionTypes.LOGIN),
     [stateNames.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
+    [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
     ...asyncReducers
   })
 

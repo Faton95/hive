@@ -1,6 +1,5 @@
-export type TGetDataFromState = {
+export type TGetDataFromState<T> = {
     loading: boolean;
     failed: boolean;
-    data: object;
-    results: Array<object>;
+    data: T;
 }

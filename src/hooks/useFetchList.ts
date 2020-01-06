@@ -34,7 +34,7 @@ const useFetchList = (params: TUseFetchListParams) => {
 
   const searchParams = getListParams(history, pickParams)
 
-  const data = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equals)
+  const data = useTypedSelector<TGetDataFromState<any>>(state => getDataFromState(stateName, state), equals)
   useCompareEffect(() => { dispatch(action(mapper(history, pickParams))) }, [searchParams])
 
   return data

@@ -1,7 +1,11 @@
 import { ReducersMapObject, Store } from 'redux'
-import { ThunkAction, ThunkDispatch } from 'redux-thunk'
+import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../etc/reducers'
 
+export type TData<T extends object> = {
+    count: number;
+    results: T[];
+}
 export type ITodo = {
     text: string;
     isCompleted: boolean;
@@ -25,4 +29,3 @@ export type IReducers = ReducersMapObject<IStore>;
 export type AsyncReducers = Partial<IReducers>;
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, any>
-export type ThunkDispatchR = ThunkDispatch<any, any, any>

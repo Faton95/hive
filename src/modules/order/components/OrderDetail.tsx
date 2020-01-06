@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-import { path, prop, propOr } from 'ramda'
+import { path, prop, map } from 'ramda'
 import dateFormat from '../../../utils/dateFormat'
+import numberFormat from '../../../utils/numberFormat'
 import { DetailMenu } from '../../../components/Menu'
 import { DisplayFlex } from '../../../components/StyledElems'
 import {
-  DetailTitle,
   LabeledValue,
-  DetailDropdown,
-  LabelGrid
+  DetailDropdown
 } from '../../../components/DetailComponents'
-import { Box, DropdownItem } from '../../../components/UI'
+import { Box, DropdownItem, Row, Col } from '../../../components/UI'
 import {
   TableRow,
   Table,
@@ -18,14 +17,8 @@ import {
   TableBody,
   TableHeader
 } from '../../../components/Table'
-
-const StyledTitle = styled(DetailTitle)`
-  margin-bottom: 36px;
-`
-
-const StyledLabeledVal = styled(LabeledValue)`
-  margin-right: 70px;
-`
+import { TOrderItem, TOrderProduct } from '../../../types/models'
+import { TGetDataFromState } from '../../../types'
 
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
@@ -33,37 +26,33 @@ const Header = styled(DisplayFlex)`
   border-bottom: ${props => props.theme.border};
 `
 
-const MainInfo = styled('div')`
-//  border-bottom: ${props => props.theme.border};
-  margin-bottom: 25px;
-  padding-bottom: 25px;
-`
+const EMPTY_ARR = []
 
-const WorkStationDetail = props => {
+type Props = {
+  item: TGetDataFromState<TOrderItem>;
+  onDelete: (id) => void;
+  onEdit: (id) => void;
+}
+const WorkStationDetail: FunctionComponent<Props> = props => {
   const {
     item,
-    remove: { onDelete },
+    onDelete,
     onEdit
   } = props
 
   const details = prop('data', item)
-  const name = prop('name', details)
   const id = prop('id', details)
-  const code = prop('code', details)
-  const timeEfficiency = prop('timeEfficiency', details)
-  const capacity = prop('capacity', details)
-  const workTime = path(['workTime', 'name'], details)
   const status = prop('status', details)
-  const oee = prop('oee', details)
-  const beforeTime = prop('beforeTime', details)
-  const afterTime = prop('afterTime', details)
 
-  const manufactory = prop('manufactory', details)
-  const equipments: Array<any> = propOr([], 'equipments', details)
-  const description = prop('description', details)
+  const clientName = path(['client', 'fullName'], details)
+  const paymentType = prop('paymentType', details)
+  const createdDate = prop('createdDate', details)
+  const products = prop('orderProducts', details) || EMPTY_ARR
+  const productIds = map(prop('id'), products)
 
   return (
-    <DetailMenu title={'Рабочая станция'}>
+    <>
+      <DetailMenu title={'Заказ №' + id} />
       <Box padding={'25px'}>
         <Header alignItems={'center'} justifyContent={'flex-end'}>
           <DetailDropdown marginLeft={'50px'}>
@@ -72,37 +61,40 @@ const WorkStationDetail = props => {
           </DetailDropdown>
         </Header>
 
-        <span data-cy={'code'}>{code}</span>
-        <StyledTitle data-cy={'name'}>{name}</StyledTitle>
+        <Row gutter={10}>
+          <Col span={6}>
+            <LabeledValue labelMargin={5} label="Клиент">{clientName}</LabeledValue>
+          </Col>
+          <Col span={6}>
+            <LabeledValue labelMargin={5} label="ТИП ОПЛАТИ">{paymentType}</LabeledValue>
+          </Col>
+          <Col span={6}>
+            <LabeledValue labelMargin={5} label="СТАТУС">{status}</LabeledValue>
+          </Col>
+          <Col span={6}>
+            <LabeledValue labelMargin={5} label="Data zakaza">{dateFormat(createdDate)}</LabeledValue>
+          </Col>
+        </Row>
 
         <div>
-          <Table list={equipments}>
+          <Table list={productIds}>
             <TableHeader>
               <TableRow>
-                <TableCol span={9}>Наименование</TableCol>
-                <TableCol span={5}>Категория оборудования</TableCol>
-                <TableCol span={5}>Последнее обсл.</TableCol>
-                <TableCol span={5}>планируемое обсл.</TableCol>
+                <TableCol span={16}>Наименование</TableCol>
+                <TableCol span={3}>Цена</TableCol>
+                <TableCol span={2}>Кол-во</TableCol>
+                <TableCol span={3}>Сумма</TableCol>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {equipments.map((item, index) => {
-                const name = prop('name', item)
-                const category = path(['category', 'name'], item)
-                const lastInstrumentsMaintenanceDate = dateFormat(
-                  prop('lastInstrumentsMaintenanceDate', item)
-                )
-                const plannedInspectionDate = dateFormat(
-                  prop('plannedInspectionDate', item)
-                )
+              {products.map((product: TOrderProduct, index) => {
+                const name = product.product.name
                 return (
                   <TableRow key={index} align={'center'}>
-                    <TableCol span={9}>{name}</TableCol>
-                    <TableCol span={5}>{category}</TableCol>
-                    <TableCol span={5}>
-                      {lastInstrumentsMaintenanceDate}
-                    </TableCol>
-                    <TableCol span={5}>{plannedInspectionDate}</TableCol>
+                    <TableCol span={16}>{name}</TableCol>
+                    <TableCol span={3}>{numberFormat(product.price)}</TableCol>
+                    <TableCol span={2}>{product.amount}</TableCol>
+                    <TableCol span={3}>{numberFormat(product.amount * product.price)}</TableCol>
                   </TableRow>
                 )
               })}
@@ -110,7 +102,7 @@ const WorkStationDetail = props => {
           </Table>
         </div>
       </Box>
-    </DetailMenu>
+    </>
   )
 }
 

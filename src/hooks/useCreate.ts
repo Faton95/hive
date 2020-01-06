@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { getDataFromState } from '../utils/get'
 import toSnakeCase from '../utils/toSnakeCase'
 import { mapResponseToFormError } from '../utils/form'
-import { useTypedSelector } from '../etc/reducers'
+import { useTypedSelector, usePromiseDispatch } from '../etc/reducers'
 import { TGetDataFromState, TUseCreateParams } from '../types'
 
 const useCreate = (params: TUseCreateParams) => {
@@ -16,20 +16,20 @@ const useCreate = (params: TUseCreateParams) => {
     serializer = toSnakeCase
   } = params
 
-  const dispatch = useDispatch()
+  const dispatch = usePromiseDispatch()
   const history = useHistory()
 
-  const data = useTypedSelector<TGetDataFromState>(state => getDataFromState(stateName, state), equals)
+  const data = useTypedSelector<TGetDataFromState<any>>(state => getDataFromState(stateName, state), equals)
   const onSubmit = (values: object) => {
     return dispatch(action(serializer(values)))
-/*      .then(data => {
+      .then(data => {
         if (onSuccess) {
           onSuccess(data, { values })
         } else if (redirectUrl) {
           history.push(redirectUrl)
         }
       })
-      .catch(mapResponseToFormError)*/
+      .catch(mapResponseToFormError)
   }
 
   return { onSubmit, ...data }
