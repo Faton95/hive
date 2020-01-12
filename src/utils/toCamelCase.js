@@ -1,6 +1,6 @@
 import { is, compose, curry, keys, map, values, zipObj } from 'ramda'
 
-export let mapKeys = curry((fn, obj) => zipObj(map(fn, keys(obj)), values(obj)))
+export const mapKeys = curry((fn, obj) => zipObj(map(fn, keys(obj)), values(obj)))
 
 const camelize = str => {
   return str

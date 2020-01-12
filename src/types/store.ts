@@ -28,4 +28,8 @@ export interface AsyncStore extends Store {
 export type IReducers = ReducersMapObject<IStore>;
 export type AsyncReducers = Partial<IReducers>;
 
-export type ThunkResult<R> = ThunkAction<R, RootState, undefined, any>
+type ThunkResult<R> = {
+    type: string;
+    value: object;
+}
+export type PromiseThunksResult = (action: any) => Promise<ThunkResult<any>>

@@ -8,3 +8,6 @@ export const ORDER_LIST_PATH = `/${ORDER}`
 export const ORDER_CREATE_PATH = `/${ORDER}/create`
 export const ORDER_ITEM_PATH = `/${ORDER}/${ID}`
 export const ORDER_ITEM_URL = `/${ORDER}/%d`
+
+export const ORDER_UPDATE_PATH = `/${ORDER}/${ID}/update`
+export const ORDER_UPDATE_URL = `/${ORDER}/%d/update`

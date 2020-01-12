@@ -44,7 +44,8 @@ const MainMenu = ({ active }) => {
           <SubMenuItems
             key={index}
             to={url}
-            isActive={isActive}>
+            isActive={isActive}
+          >
             {title}
           </SubMenuItems>
         )

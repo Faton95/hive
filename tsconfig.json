@@ -10,10 +10,10 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "baseUrl": "src"
+    "baseUrl": "./src"
   },
   "include": [
-    "src/"
+    "./src/**/*"
   ],
   "exclude": [
     "node_modules"

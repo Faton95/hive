@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { LinkSecondaryButton } from './LinkButton'
 import { Button } from './index'
-import { ActionButtons } from '~/components/StyledElements'
+import { ActionButtons } from '~/components/StyledElems'
 
 const CreateCancelButtons = props => {
   const {
@@ -16,10 +16,10 @@ const CreateCancelButtons = props => {
 
   return (
     <ActionButtons mode={mode} marginTop={marginTop}>
-      <LinkSecondaryButton type={'button'} to={cancelPath} onClick={onCancel}>
+      <LinkSecondaryButton type="button" to={cancelPath} onClick={onCancel}>
         Отменить
       </LinkSecondaryButton>
-      <Button type={'submit'} loading={loading}>{submitText}</Button>
+      <Button type="submit" loading={loading}>{submitText}</Button>
     </ActionButtons>
   )
 }

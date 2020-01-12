@@ -1,4 +1,4 @@
-import { prop, equals as equal } from 'ramda'
+import {prop, equals as equal, path} from 'ramda'
 import { useHistory, useParams } from 'react-router-dom'
 
 import { getDataFromState } from '../utils/get'
@@ -6,16 +6,15 @@ import toSnakeCase from '../utils/toSnakeCase'
 import { mapResponseToFormError } from '../utils/form'
 
 import { useTypedSelector, usePromiseDispatch } from '../etc/reducers'
-import { TGetDataFromState, TUseUpdateParams } from '../types'
+import { TGetDataFromState, TUseUpdateParams, TUseUpdate } from '../types'
 
-const useUpdate = (params: TUseUpdateParams) => {
+const useUpdate = (params: TUseUpdateParams): TUseUpdate => {
   const {
     stateName,
     action,
     redirectUrl,
     initialValues,
     key = 'id',
-    props = {},
     onSuccess,
     serializer = toSnakeCase
   } = params
@@ -24,9 +23,9 @@ const useUpdate = (params: TUseUpdateParams) => {
   const history = useHistory()
   const dispatch = usePromiseDispatch()
   const state = useTypedSelector<TGetDataFromState<any>>(state => getDataFromState(stateName, state), equal)
+  const id: string = path([key], paramsRoute)
 
   const onSubmit = (values: object) => {
-    const id = prop(key, paramsRoute)
     const serializeValues = serializer(values)
 
     return dispatch(action(id, serializeValues))
@@ -40,7 +39,8 @@ const useUpdate = (params: TUseUpdateParams) => {
       .catch(mapResponseToFormError)
   }
 
-  return { ...state, onSubmit, initialValues, isUpdate: true }
+
+  return { ...state, id, onSubmit, initialValues, isUpdate: true }
 }
 
 export default useUpdate

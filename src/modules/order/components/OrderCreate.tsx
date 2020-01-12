@@ -1,55 +1,38 @@
 import React, { FunctionComponent } from 'react'
-import { prop, map, pathOr } from 'ramda'
-import { sprintf } from 'sprintf-js'
-import { DetailMenu } from '../../../components/Menu'
+import arrayMutators from 'final-form-arrays'
 import {
   Form,
-  Field,
-  InputField,
-  UniversalSearchField
-} from '../../../components/Form'
-import { MENU_KEYS } from '../../../constants/menus'
-import { TGetDataFromState, TData } from '../../../types'
-import { TOrderItem } from '../../../types/models'
-import numberFormat from '../../../utils/numberFormat'
-import dateFormat from '../../../utils/dateFormat'
-import { ORDER_ITEM_URL } from '../../../constants/routes'
-import * as API from '../../../constants/api'
-
-import {
-  Table,
-  TableActions,
-  TableRow,
-  TableRowLink,
-  TableHeader,
-  TableCol,
-  TableBody
-} from '../../../components/Table'
+} from 'react-final-form'
+import { DetailMenu } from '../../../components/Menu'
 import { Box } from '../../../components/UI'
 
+import { TGetDataFromState, TOnSubmit } from '../../../types'
+import { TOrderItem } from '../../../types/models'
+import { Merge } from '../../../types/utils'
+import OrderCreateForm from './OrderCreateForm'
+
 type Props = {
+    onSubmit: TOnSubmit;
 }
 
-const OrderCreate: FunctionComponent<Props> = props => {
+type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>
 
+export const fields = [
+  'client',
+  'deliveryType',
+  'paymentType',
+  'orderProducts',
+  'address'
+]
+const OrderCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
       <DetailMenu title="Закази" />
-      <Box>
+      <Box padding="25px">
         <Form
-          onSubmit={() => null}
-          render={({ handleSubmit }) => {
-            return (
-              <form onSubmit={handleSubmit}>
-                <Field
-                  label="dsds"
-                  name="s"
-                  component={UniversalSearchField}
-                  api={API.ORDER_LIST}
-                />
-              </form>
-            )
-          }}
+          onSubmit={props.onSubmit}
+          mutators={{ ...arrayMutators }}
+          component={OrderCreateForm}
         />
       </Box>
     </div>

@@ -33,7 +33,7 @@ type Props = {
   onDelete: (id) => void;
   onEdit: (id) => void;
 }
-const WorkStationDetail: FunctionComponent<Props> = props => {
+const OrderDetail: FunctionComponent<Props> = props => {
   const {
     item,
     onDelete,
@@ -53,9 +53,9 @@ const WorkStationDetail: FunctionComponent<Props> = props => {
   return (
     <>
       <DetailMenu title={'Заказ №' + id} />
-      <Box padding={'25px'}>
-        <Header alignItems={'center'} justifyContent={'flex-end'}>
-          <DetailDropdown marginLeft={'50px'}>
+      <Box padding="25px">
+        <Header alignItems="center" justifyContent="flex-end">
+          <DetailDropdown marginLeft="50px">
             <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Изменить</DropdownItem>
             <DropdownItem onClick={() => onDelete(id)} toggleMenu={() => null}>Удалить</DropdownItem>
           </DetailDropdown>
@@ -90,7 +90,7 @@ const WorkStationDetail: FunctionComponent<Props> = props => {
               {products.map((product: TOrderProduct, index) => {
                 const name = product.product.name
                 return (
-                  <TableRow key={index} align={'center'}>
+                  <TableRow key={index} align="center">
                     <TableCol span={16}>{name}</TableCol>
                     <TableCol span={3}>{numberFormat(product.price)}</TableCol>
                     <TableCol span={2}>{product.amount}</TableCol>
@@ -106,4 +106,4 @@ const WorkStationDetail: FunctionComponent<Props> = props => {
   )
 }
 
-export default WorkStationDetail
+export default OrderDetail

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Box } from '../UI'
 
-//export { Notifications } from './Notifications'
+// export { Notifications } from './Notifications'
 // export { UserInfo } from './UserInfo'
 
 export const NavBar = styled(Box)`

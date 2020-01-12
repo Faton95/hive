@@ -10,7 +10,7 @@ export const initialState = {
 
 const createThunkReducer = actionName => {
   return createReducer(initialState, {
-    [`${actionName}_PENDING`] (state, action) {
+    [`${actionName}_PENDING`] (state) {
       return {
         ...state,
         loading: true

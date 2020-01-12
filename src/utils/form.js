@@ -11,7 +11,7 @@ export const mapResponseToFormError = data => {
 
   return {
     ...fieldErrors,
-    [FORM_ERROR]: join(', ', commonErrors['nonFieldErrors'])
+    [FORM_ERROR]: join(', ', commonErrors.nonFieldErrors)
   }
 }
 

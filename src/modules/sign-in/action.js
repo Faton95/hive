@@ -5,7 +5,6 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../utils/a
 import { setCookie } from '../../utils/cookie'
 
 export const loginAction = data => {
-
   const remember = prop('remember', data)
   const params = {
     username: prop('username', data),

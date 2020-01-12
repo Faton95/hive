@@ -56,7 +56,7 @@ const DurationInput = props => {
 
   return (
     <Input
-      placeholder={'03:20:00'}
+      placeholder="03:20:00"
       onChange={onType(onChange)}
       value={value}
       {...input}

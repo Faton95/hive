@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
-import { useSelector, useDispatch,TypedUseSelectorHook } from 'react-redux'
+import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux'
 import { compose, forEach, toPairs } from 'ramda'
 import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
 import { TOrderItem } from '../types/models'
+import confirmDialogReducer from '../components/ConfirmDialog/reducer'
+
 
 const LOGIN = 'login'
 export type RootState = {
@@ -15,9 +17,13 @@ export type RootState = {
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
+    confirmDialog: confirmDialogReducer,
     [LOGIN]: createThunkReducer(actionTypes.LOGIN),
     [stateNames.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
+    [stateNames.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
     [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
+    [stateNames.ORDER_UPDATE]: createThunkReducer(actionTypes.ORDER_UPDATE),
+    [stateNames.ORDER_DELETE]: createThunkReducer(actionTypes.ORDER_DELETE),
     ...asyncReducers
   })
 
@@ -38,5 +44,6 @@ type ThunkResult<R> = {
     type: string;
     value: object;
 }
+export type PromiseThunksResult = (action: any) => Promise<ThunkResult<any>>
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 export const usePromiseDispatch: () => (action: any) => Promise<ThunkResult<any>> = useDispatch

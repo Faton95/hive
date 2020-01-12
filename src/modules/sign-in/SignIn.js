@@ -60,10 +60,10 @@ const SignIn = props => {
           Property management system
         </Intro>
         <Box>
-          <Input placeholder={'Введите логин'} name={'username'} onChange={onChange} />
-          <Input type="password" placeholder={'Введите пароль'} name={'password'} onChange={onChange} />
-          <DisplayFlex align={'center'} justify={'space-between'}>
-            <Button fullWidth={true} onClick={() => onLogin(state)} >войти</Button>
+          <Input placeholder="Введите логин" name="username" onChange={onChange} />
+          <Input type="password" placeholder="Введите пароль" name="password" onChange={onChange} />
+          <DisplayFlex align="center" justify="space-between">
+            <Button fullWidth={true} onClick={() => onLogin(state)}>войти</Button>
           </DisplayFlex>
         </Box>
       </Wrapper>

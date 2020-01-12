@@ -1,11 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import { Container } from '../StyledElems'
+import BaseLayout from './BaseLayout'
 
 const Layout: FunctionComponent = props => {
   return (
-    <Container>
-      {props.children}
-    </Container>
+    <BaseLayout>
+      <Container>
+        {props.children}
+      </Container>
+    </BaseLayout>
   )
 }
 

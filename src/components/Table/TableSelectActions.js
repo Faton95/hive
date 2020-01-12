@@ -27,7 +27,7 @@ const TableSelectActions = props => {
   }
 
   return (
-    <DisplayFlex alignItems={'center'}>
+    <DisplayFlex alignItems="center">
       <SelectedCount>{selectedCount} элемента выбрано</SelectedCount>
       {onDelete && (
         <Button onClick={() => onDelete(selectedList)}>Удалить</Button>

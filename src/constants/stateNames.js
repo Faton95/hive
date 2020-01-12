@@ -1,2 +1,5 @@
 export const ORDER_LIST = 'orderList'
 export const ORDER_ITEM = 'orderItem'
+export const ORDER_CREATE = 'orderCreate'
+export const ORDER_UPDATE = 'orderUpdate'
+export const ORDER_DELETE = 'orderDelete'

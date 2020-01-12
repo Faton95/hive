@@ -11,7 +11,7 @@ import {
   not,
   is
 } from 'ramda'
-/*import {
+/* import {
   compose,
   withReducer,
   mapPropsStream,
@@ -27,7 +27,7 @@ import {
   filter,
   distinctUntilChanged,
   debounceTime
-} from 'rxjs/operators'*/
+} from 'rxjs/operators' */
 import { Select } from 'ui-cubic'
 import { useCompareEffect } from '../../../hooks'
 import { getFieldError } from '~/utils/form'
@@ -37,7 +37,8 @@ const DEFAULT_STATE = {
   options: [],
   loading: false,
   text: '',
-  dirty: false
+  dirty: false,
+  first: true
 }
 
 const filterInitial = props => {
@@ -335,6 +336,7 @@ const actionReducer = (state, action) => ({ ...state, ...action })
 const SearchField = props => {
   const [state, dispatch] = useReducer(actionReducer, DEFAULT_STATE)
   const newProps = { ...props, state, dispatch }
+  const onFirst = () => dispatch({ first: true })
   useFirstFetch(newProps)
   useParentChangeFetch(newProps)
   useOnSearchFetch(newProps)
@@ -346,7 +348,7 @@ const SearchField = props => {
     input,
     meta,
     label,
-//    onFetchData,
+    //    onFetchData,
     disabled,
     isClearable,
     isStatic

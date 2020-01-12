@@ -47,22 +47,22 @@ const TableSkeleton = props => {
         </StyledRow>
         <StyledRow gutter={30}>
           <StyledCol span={9}>
-            <Loader width={'160px'} />
+            <Loader width="160px" />
           </StyledCol>
           <StyledCol span={3}>
-            <Loader width={'40px'} />
+            <Loader width="40px" />
           </StyledCol>
           <StyledCol span={3}>
-            <Loader width={'80px'} />
+            <Loader width="80px" />
           </StyledCol>
           <StyledCol span={3}>
-            <Loader width={'75px'} />
+            <Loader width="75px" />
           </StyledCol>
           <StyledCol span={3}>
-            <Loader width={'70px'} />
+            <Loader width="70px" />
           </StyledCol>
           <StyledCol span={3}>
-            <Loader width={'65px'} />
+            <Loader width="65px" />
           </StyledCol>
         </StyledRow>
       </StyledHeader>
@@ -70,22 +70,22 @@ const TableSkeleton = props => {
         return (
           <StyledRow key={item} gutter={30} isBody={true}>
             <StyledCol span={9}>
-              <Loader width={'215px'} />
+              <Loader width="215px" />
             </StyledCol>
             <StyledCol span={3}>
-              <Loader width={'75px'} />
+              <Loader width="75px" />
             </StyledCol>
             <StyledCol span={3}>
-              <Loader width={'120px'} />
+              <Loader width="120px" />
             </StyledCol>
             <StyledCol span={3}>
-              <Loader width={'85px'} />
+              <Loader width="85px" />
             </StyledCol>
             <StyledCol span={3}>
-              <Loader width={'70px'} />
+              <Loader width="70px" />
             </StyledCol>
             <StyledCol span={3}>
-              <Loader width={'90px'} />
+              <Loader width="90px" />
             </StyledCol>
           </StyledRow>
         )

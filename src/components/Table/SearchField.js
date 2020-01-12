@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 import Search from '../../icons/Search'
 import { IconInput } from '../UI'
 import { replaceParamsRoute } from '../../utils/route'
 import { getParamFromHistory } from '../../utils/get'
-import {useHistory} from 'react-router-dom'
 
 const Input = styled(IconInput)`
   align-self: center;
@@ -19,7 +19,6 @@ const Input = styled(IconInput)`
     font-size: 14px;
   }
 `
-
 
 const SearchField = props => {
   const { key } = props
@@ -39,12 +38,12 @@ const SearchField = props => {
   return (
     <Input
       {...props}
-      data-cy={'table-search'}
+      data-cy="table-search"
       value={decodedValue}
       onChange={onChange}
       onEnter={onEnter}
       icon={Search}
-      placeholder={'Поиск...'}
+      placeholder="Поиск..."
     />
   )
 }

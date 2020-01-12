@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import FilterIcon from '../../icons/Filter'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
+import FilterIcon from '../../icons/Filter'
 import { Button, SecondaryButton } from '../UI'
 import { BorderedButtonSmall } from '../UI/Buttons'
 
@@ -113,7 +113,8 @@ const Filter = props => {
           data-cy="filter-button"
           isActive={open}
           hasCount={Boolean(count)}
-          onClick={open ? onClose : onOpen}>
+          onClick={open ? onClose : onOpen}
+        >
           <FilterIcon />
           Фильтр
           {filterCount}
@@ -133,10 +134,10 @@ const Filter = props => {
                 <form onSubmit={handleSubmit}>
                   {React.cloneElement(children, formikProps)}
                   <Actions>
-                    <SecondaryButton type={'button'} onClick={onClose}>
+                    <SecondaryButton type="button" onClick={onClose}>
                       Отменить
                     </SecondaryButton>
-                    <Button type={'submit'}>Применить</Button>
+                    <Button type="submit">Применить</Button>
                   </Actions>
                 </form>
               )}

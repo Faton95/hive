@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { Button } from 'ui-cubic/dist/index.es'
-import {Menu} from '../components/Menu'
-import {MENU_KEYS} from '../constants/menus'
+import { Menu } from '../components/Menu'
+import { MENU_KEYS } from '../constants/menus'
 
 export type HelloProps = { name: string }
 

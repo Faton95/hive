@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { Calendar } from 'react-feather'
-import dateFormat from '~/utils/dateFormat'
 import { isExpired } from 'utils/date'
+import dateFormat from '~/utils/dateFormat'
 
 const Prefix = styled('span')`
   color: ${props => props.theme.input.labelColor};

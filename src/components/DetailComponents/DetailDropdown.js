@@ -7,9 +7,9 @@ const Dropdown = ({ children, marginLeft, ...props }) => (
   <DropdownCUI
     {...props}
     children={children}
-    mode={'horizontal'}
-    backgroundColor={'#f1f3f5'}
-    dotColor={'#435260'}
+    mode="horizontal"
+    backgroundColor="#f1f3f5"
+    dotColor="#435260"
   />
 )
 

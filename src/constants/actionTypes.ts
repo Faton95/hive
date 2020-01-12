@@ -19,7 +19,8 @@ export const COMMENT_ITEM = 'COMMENT_ITEM'
 export const LOGIN = 'LOGIN'
 export const USER_INFO = 'USER_INFO'
 
-
 export const ORDER_CREATE = 'ORDER_CREATE'
 export const ORDER_LIST = 'ORDER_LIST'
 export const ORDER_ITEM = 'ORDER_ITEM'
+export const ORDER_DELETE = 'ORDER_DELETE'
+export const ORDER_UPDATE = 'ORDER_UPDATE'

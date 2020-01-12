@@ -29,8 +29,12 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         border: string;
         borderColor: string;
+        borderRadius: string;
         colors: {
             primary: {
+                default: string;
+            };
+            secondary: {
                 default: string;
             };
             text: string;

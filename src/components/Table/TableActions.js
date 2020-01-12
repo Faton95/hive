@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'ramda'
 import styled from 'styled-components'
-import SearchField from './SearchField'
 import { LinkButton } from '../UI/Buttons'
 import Filter from '../Filter'
+import SearchField from './SearchField'
 
 const Container = styled('div')`
   display:flex;

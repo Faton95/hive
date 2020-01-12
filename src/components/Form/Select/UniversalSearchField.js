@@ -10,13 +10,13 @@ import {
 } from '~/utils/searchField'
 
 const UniversalSearchField = props => {
-  const { api, params, itemText, ...rest } = props
+  const { api, params, itemText, getText, ...rest } = props
 
   const store = useStore()
 
   return (
     <SearchField
-      getText={defaultGetText(itemText)}
+      getText={getText || defaultGetText(itemText)}
       getValue={defaultGetValue(['id'])}
       getOptions={search => getOptions(store, { api, params, search })}
       getOption={getOption(store, { api, params })}

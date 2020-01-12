@@ -22,7 +22,7 @@ export type TOrderProduct = {
     id: number;
     price: number;
     amount: number;
-    product: TProduct
+    product: TProduct;
 
 }
 export type TOrderItem = {
@@ -35,7 +35,7 @@ export type TOrderItem = {
     dealType: string;
     paymentType: string;
     balance: string;
-    client: {id: number; fullName: string; phone: string};
+    client: {id: number; fullName: string; phoneNumber: string};
 }
 
 export type TOrderList = Array<TOrderItem>

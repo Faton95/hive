@@ -9,7 +9,7 @@ type Props = {
   tableActions?: object;
   actions?: ReactElement;
   gutter?: number;
-  list: Array<any>;
+  list?: Array<any>;
   promptText?: string;
   selection?: boolean;
   loading?: boolean;

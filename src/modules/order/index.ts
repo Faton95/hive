@@ -1,5 +1,5 @@
 import * as ROUTES from '../../constants/routes'
-import { OrderListContainer, OrderDetailContainer, OrderCreateContainer } from './containers'
+import { OrderListContainer, OrderDetailContainer, OrderCreateContainer, OrderUpdateContainer } from './containers'
 
 export default (store) => [
   {
@@ -16,5 +16,10 @@ export default (store) => [
     exact: true,
     path: ROUTES.ORDER_CREATE_PATH,
     component: OrderCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ORDER_UPDATE_PATH,
+    component: OrderUpdateContainer
   },
 ]

@@ -1,6 +1,5 @@
 import { createGlobalStyle, keyframes } from 'styled-components'
 
-
 export const animateFlash: any = keyframes`
   from { opacity: 0.5; }
   to { opacity: 1; }

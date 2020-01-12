@@ -66,13 +66,15 @@ const UserInfo = props => {
           <Container
             ref={innerRef}
             onClick={onClick}
-            isOpen={isOpen}>
+            isOpen={isOpen}
+          >
             <UserName>{username}</UserName>
             <Photo />
             <ChevronDown size={15} />
           </Container>
         )
-      }}>
+      }}
+    >
       <DropdownItem onClick={onLogOut}>
         <LogOut size={18} />Выйти из системы
       </DropdownItem>

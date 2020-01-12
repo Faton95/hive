@@ -22,7 +22,7 @@ const Menu = props => {
   return (
     <>
       <NavBar>
-        <DisplayFlex alignItems={'center'}>
+        <DisplayFlex alignItems="center">
           <IconWrapper>
             <MenuIcon onClick={goToMainMenu} />
           </IconWrapper>
@@ -31,7 +31,7 @@ const Menu = props => {
 
         <MainMenu module={module} active={active} />
 
-        <DisplayFlex alignItems={'center'}>
+        <DisplayFlex alignItems="center">
           Not
           &nbsp;User
         </DisplayFlex>

@@ -14,7 +14,8 @@ const LabelGrid = props => {
   return (
     <Grid
       gridTemplateColumns={gridTemplateColumns}
-      {...defaultProps}>
+      {...defaultProps}
+    >
       {children}
     </Grid>
   )

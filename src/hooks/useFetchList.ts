@@ -11,7 +11,7 @@ import {
   TGetDataFromState,
   THistory
 } from '../types'
-import {usePromiseDispatch, useTypedSelector} from '../etc/reducers'
+import { usePromiseDispatch, useTypedSelector } from '../etc/reducers'
 import useCompareEffect from './useCompareEffect'
 
 export const getListParams = (history: THistory, keys: Array<string>) =>

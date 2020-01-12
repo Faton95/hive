@@ -12,9 +12,10 @@ export const MENU_KEYS = {
 export default [
   {
     key: MENU_KEYS.ORDER,
-    title: 'Закази',
+    title: 'Заказы',
     url: ROUTES.ORDER_LIST_PATH,
-    children: []
+    children: [
+    ]
   },
   {
     key: MENU_KEYS.SETTINGS,

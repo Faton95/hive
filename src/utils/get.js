@@ -187,7 +187,7 @@ export const getDateFromUrl = location => {
 }
 
 export const getItemFromTree = (arr, target) => {
-  for (let i in arr) {
+  for (const i in arr) {
     const a = arr[i]
     if (a.id === target) {
       return a
