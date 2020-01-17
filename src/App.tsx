@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Provider } from 'react-redux'
 import { Store } from 'redux'
 import { CubeThemeProvider } from 'ui-cubic'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import theme from './etc/themes'
 import NormalizedStyles from './components/StyledElems/NormalizedStyles'
@@ -20,12 +20,12 @@ const App: FunctionComponent<Props> = ({ routes, store }) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <CubeThemeProvider >
-          <React.Fragment>
+        <CubeThemeProvider>
+          <>
             <NormalizedStyles />
             <GlobalStyles />
             <BrowserRouter>
-              {!tokenExists && <Redirect to={'/login'} />}
+              {!tokenExists && <Redirect to="/login" />}
               {routes.map((route) => (
                 <Route
                   key={route.path}
@@ -33,7 +33,7 @@ const App: FunctionComponent<Props> = ({ routes, store }) => {
                 />
               ))}
             </BrowserRouter>
-          </React.Fragment>
+          </>
         </CubeThemeProvider>
       </ThemeProvider>
     </Provider>
