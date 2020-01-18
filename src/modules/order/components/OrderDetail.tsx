@@ -1,24 +1,24 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { path, prop, map } from 'ramda'
-import dateFormat from '../../../utils/dateFormat'
-import numberFormat from '../../../utils/numberFormat'
-import { DetailMenu } from '../../../components/Menu'
-import { DisplayFlex } from '../../../components/StyledElems'
+import dateFormat from 'utils/dateFormat'
+import numberFormat from 'utils/numberFormat'
+import { DetailMenu } from 'components/Menu'
+import { DisplayFlex } from 'components/StyledElems'
 import {
   LabeledValue,
   DetailDropdown
-} from '../../../components/DetailComponents'
-import { Box, DropdownItem, Row, Col } from '../../../components/UI'
+} from 'components/DetailComponents'
+import { Box, DropdownItem, Row, Col } from 'components/UI'
 import {
   TableRow,
   Table,
   TableCol,
   TableBody,
   TableHeader
-} from '../../../components/Table'
-import { TOrderItem, TOrderProduct } from '../../../types/models'
-import { TGetDataFromState } from '../../../types'
+} from 'components/Table'
+import { TOrderItem, TOrderProduct } from 'types/models'
+import { TGetDataFromState } from 'types'
 
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
