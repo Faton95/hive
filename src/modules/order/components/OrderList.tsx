@@ -1,15 +1,15 @@
+import { MENU_KEYS } from 'constants/menus'
+import { ORDER_ITEM_URL, ORDER_CREATE_PATH } from 'constants/routes'
 import React, { FunctionComponent } from 'react'
 import { prop, map, pathOr } from 'ramda'
 import { sprintf } from 'sprintf-js'
+import { TUseDelete } from 'types'
+import { TOrderItem, TOrderList } from 'types/models'
 import { Menu } from '../../../components/Menu'
 import Pagination from '../../../components/Pagination'
-import { MENU_KEYS } from '../../../constants/menus'
 import { TGetDataFromState, TData } from '../../../types'
-import { TUseDelete } from '../../../types/hooks'
-import { TOrderItem, TOrderList } from '../../../types/models'
 import numberFormat from '../../../utils/numberFormat'
 import dateFormat from '../../../utils/dateFormat'
-import { ORDER_ITEM_URL, ORDER_CREATE_PATH } from '../../../constants/routes'
 import {
   Table,
   TableActions,
@@ -20,7 +20,6 @@ import {
   TableBody
 } from '../../../components/Table'
 import { Box, Dropdown, DropdownItem } from '../../../components/UI'
-import Loader from '../../../icons/Loader'
 import OrderListFilterForm from './OrderListFilterForm'
 
 type Props = {

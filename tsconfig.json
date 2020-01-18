@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./dist",
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
@@ -10,12 +10,14 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "baseUrl": "./src"
+    "baseUrl": ".",
+
+    "paths": {
+      "*": ["./src/*"]
+    },
+    "typeRoots": ["./src/types", "node_modules/@types"]
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+
 }
