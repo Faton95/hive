@@ -22,7 +22,9 @@ export default [
     title: 'Настройки',
     url: ROUTES.TAGS_LIST_PATH,
     children: [
-      { title: 'Теги', url: ROUTES.TAGS_LIST_PATH }
+      { title: 'Теги', url: ROUTES.TAGS_LIST_PATH },
+      { title: 'Валюта', url: ROUTES.CURRENCY_LIST_PATH },
+      { title: 'Отделение', url: ROUTES.BRANCH_LIST_PATH }
     ]
   }
 ]

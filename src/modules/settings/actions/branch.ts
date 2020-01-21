@@ -3,70 +3,70 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../../util
 import * as API from '../../../constants/api'
 import * as actionTypes from '../../../constants/actionTypes'
 
-export const tagsListFetch = (data) => {
+export const branchListFetch = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .get(API.TAGS_LIST, { params: data })
+      .get(API.BRANCH_LIST, { params: data })
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.TAGS_LIST
+      type: actionTypes.BRANCH_LIST
     })
   }
 }
-export const tagsCreateAction = (data) => {
+export const branchCreateAction = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .post(API.TAGS_CREATE, data)
+      .post(API.BRANCH_CREATE, data)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.TAGS_CREATE
-    })
-  }
-}
-
-export const tagsUpdateAction = (id, data) => {
-  return (dispatch, getState) => {
-    const payload = axios({ dispatch, getState })
-      .put(sprintf(API.TAGS_UPDATE, id), data)
-      .then(getPayloadFromSuccess)
-      .catch(getPayloadFromError)
-
-    return dispatch({
-      payload,
-      type: actionTypes.TAGS_UPDATE
-    })
-  }
-}
-export const tagsItemFetch = (id) => {
-  return (dispatch, getState) => {
-    const payload = axios({ dispatch, getState })
-      .get(sprintf(API.TAGS_ITEM, id))
-      .then(getPayloadFromSuccess)
-      .catch(getPayloadFromError)
-
-    return dispatch({
-      payload,
-      type: actionTypes.TAGS_ITEM
+      type: actionTypes.BRANCH_CREATE
     })
   }
 }
 
-export const tagsDeleteAction = (id) => {
+export const branchUpdateAction = (id, data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .delete(sprintf(API.TAGS_DELETE, id))
+      .put(sprintf(API.BRANCH_UPDATE, id), data)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.TAGS_DELETE
+      type: actionTypes.BRANCH_UPDATE
+    })
+  }
+}
+export const branchItemFetch = (id) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(sprintf(API.BRANCH_ITEM, id))
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.BRANCH_ITEM
+    })
+  }
+}
+
+export const branchDeleteAction = (id) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .delete(sprintf(API.BRANCH_DELETE, id))
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.BRANCH_DELETE
     })
   }
 }
