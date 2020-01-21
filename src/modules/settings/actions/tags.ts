@@ -3,71 +3,71 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../../util
 import * as API from '../../../constants/api'
 import * as actionTypes from '../../../constants/actionTypes'
 
-export const orderListFetch = (data) => {
+export const tagsListFetch = (data) => {
 
     return (dispatch, getState) => {
         const payload = axios({ dispatch, getState })
-            .get(API.ORDER_LIST, { params: data })
+            .get(API.TAGS_LIST, { params: data })
             .then(getPayloadFromSuccess)
             .catch(getPayloadFromError)
 
         return dispatch({
             payload,
-            type: actionTypes.ORDER_LIST
+            type: actionTypes.TAGS_LIST
         })
     }
 }
-export const orderCreateAction = (data) => {
+export const tagsCreateAction = (data) => {
     return (dispatch, getState) => {
         const payload = axios({ dispatch, getState })
-            .post(API.ORDER_CREATE, data)
+            .post(API.TAGS_CREATE, data)
             .then(getPayloadFromSuccess)
             .catch(getPayloadFromError)
 
         return dispatch({
             payload,
-            type: actionTypes.ORDER_CREATE
-        })
-    }
-}
-
-export const orderUpdateAction = (id, data) => {
-    return (dispatch, getState) => {
-        const payload = axios({ dispatch, getState })
-            .put(sprintf(API.ORDER_UPDATE, id), data)
-            .then(getPayloadFromSuccess)
-            .catch(getPayloadFromError)
-
-        return dispatch({
-            payload,
-            type: actionTypes.ORDER_UPDATE
-        })
-    }
-}
-export const orderItemFetch = (id) => {
-    return (dispatch, getState) => {
-        const payload = axios({ dispatch, getState })
-            .get(sprintf(API.ORDER_ITEM, id))
-            .then(getPayloadFromSuccess)
-            .catch(getPayloadFromError)
-
-        return dispatch({
-            payload,
-            type: actionTypes.ORDER_ITEM
+            type: actionTypes.TAGS_CREATE
         })
     }
 }
 
-export const orderDeleteAction = (id) => {
+export const tagsUpdateAction = (id, data) => {
     return (dispatch, getState) => {
         const payload = axios({ dispatch, getState })
-            .delete(sprintf(API.ORDER_DELETE, id))
+            .put(sprintf(API.TAGS_UPDATE, id), data)
             .then(getPayloadFromSuccess)
             .catch(getPayloadFromError)
 
         return dispatch({
             payload,
-            type: actionTypes.ORDER_DELETE
+            type: actionTypes.TAGS_UPDATE
+        })
+    }
+}
+export const tagsItemFetch = (id) => {
+    return (dispatch, getState) => {
+        const payload = axios({ dispatch, getState })
+            .get(sprintf(API.TAGS_ITEM, id))
+            .then(getPayloadFromSuccess)
+            .catch(getPayloadFromError)
+
+        return dispatch({
+            payload,
+            type: actionTypes.TAGS_ITEM
+        })
+    }
+}
+
+export const tagsDeleteAction = (id) => {
+    return (dispatch, getState) => {
+        const payload = axios({ dispatch, getState })
+            .delete(sprintf(API.TAGS_DELETE, id))
+            .then(getPayloadFromSuccess)
+            .catch(getPayloadFromError)
+
+        return dispatch({
+            payload,
+            type: actionTypes.TAGS_DELETE
         })
     }
 }

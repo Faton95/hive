@@ -1,5 +1,6 @@
 import SignIn from './sign-in'
 import order from './order'
+import settings from './settings'
 import Main from './Main'
 
 const Routes = store => [
@@ -13,7 +14,8 @@ const Routes = store => [
     path: '/',
     component: Main
   },
-  ...order(store)
+  ...order(store),
+  ...settings(store)
 ]
 
 export default Routes

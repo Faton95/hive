@@ -1,4 +1,4 @@
-export const API_HOST = '94.250.255.250:8081/'
+export const API_HOST = '62.109.28.223/'
 export const API_ROOT = 'api'
 export const API_VERSION = 'v1'
 export const API_PROTOCOL = 'http'
@@ -19,6 +19,13 @@ export const ORDER_CREATE = `/${ORDER}/`
 export const ORDER_ITEM = `/${ORDER}/%d/`
 export const ORDER_DELETE = `/${ORDER}/%d/`
 export const ORDER_UPDATE = `/${ORDER}/%d/`
+
+const TAGS = `${MAIN}/tags`
+export const TAGS_LIST = `/${TAGS}/`
+export const TAGS_CREATE = `/${TAGS}/`
+export const TAGS_ITEM = `/${TAGS}/%d/`
+export const TAGS_DELETE = `/${TAGS}/%d/`
+export const TAGS_UPDATE = `/${TAGS}/%d/`
 
 const DELIVERY_TYPE = `${MAIN}/delivery-type`
 export const DELIVERY_TYPE_LIST = `/${DELIVERY_TYPE}/`

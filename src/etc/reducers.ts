@@ -5,7 +5,7 @@ import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
-import { TOrderItem } from '../types/models'
+import { TOrderItem } from 'types/models'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
 
 
@@ -24,6 +24,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
     [stateNames.ORDER_UPDATE]: createThunkReducer(actionTypes.ORDER_UPDATE),
     [stateNames.ORDER_DELETE]: createThunkReducer(actionTypes.ORDER_DELETE),
+
+    [stateNames.TAGS_LIST]: createThunkReducer(actionTypes.TAGS_LIST),
+    [stateNames.TAGS_CREATE]: createThunkReducer(actionTypes.TAGS_CREATE),
+    [stateNames.TAGS_ITEM]: createThunkReducer(actionTypes.TAGS_ITEM),
+    [stateNames.TAGS_UPDATE]: createThunkReducer(actionTypes.TAGS_UPDATE),
+    [stateNames.TAGS_DELETE]: createThunkReducer(actionTypes.TAGS_DELETE),
     ...asyncReducers
   })
 

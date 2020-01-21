@@ -20,11 +20,9 @@ export default [
   {
     key: MENU_KEYS.SETTINGS,
     title: 'Настройки',
-    url: ROUTES.ORDER_LIST_PATH,
+    url: ROUTES.TAGS_LIST_PATH,
     children: [
-      { title: 'Продуктивность', url: '' },
-      { title: 'Категории продуктов', url: '' },
-      { title: 'Каталог цехов', url: '' },
+      { title: 'Теги', url: ROUTES.TAGS_LIST_PATH }
     ]
   }
 ]
