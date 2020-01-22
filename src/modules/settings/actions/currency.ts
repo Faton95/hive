@@ -3,70 +3,70 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../../util
 import * as API from '../../../constants/api'
 import * as actionTypes from '../../../constants/actionTypes'
 
-export const tagsListFetch = (data) => {
+export const currencyListFetch = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .get(API.TAGS_LIST, { params: data })
+      .get(API.CURRENCY_LIST, { params: data })
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.TAGS_LIST
+      type: actionTypes.CURRENCY_LIST
     })
   }
 }
-export const tagsCreateAction = (data) => {
+export const currencyCreateAction = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .post(API.TAGS_CREATE, data)
+      .post(API.CURRENCY_CREATE, data)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.TAGS_CREATE
-    })
-  }
-}
-
-export const tagsUpdateAction = (id, data) => {
-  return (dispatch, getState) => {
-    const payload = axios({ dispatch, getState })
-      .put(sprintf(API.TAGS_UPDATE, id), data)
-      .then(getPayloadFromSuccess)
-      .catch(getPayloadFromError)
-
-    return dispatch({
-      payload,
-      type: actionTypes.TAGS_UPDATE
-    })
-  }
-}
-export const tagsItemFetch = (id) => {
-  return (dispatch, getState) => {
-    const payload = axios({ dispatch, getState })
-      .get(sprintf(API.TAGS_ITEM, id))
-      .then(getPayloadFromSuccess)
-      .catch(getPayloadFromError)
-
-    return dispatch({
-      payload,
-      type: actionTypes.TAGS_ITEM
+      type: actionTypes.CURRENCY_CREATE
     })
   }
 }
 
-export const tagsDeleteAction = (id) => {
+export const currencyUpdateAction = (id, data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .delete(sprintf(API.TAGS_DELETE, id))
+      .put(sprintf(API.CURRENCY_UPDATE, id), data)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.TAGS_DELETE
+      type: actionTypes.CURRENCY_UPDATE
+    })
+  }
+}
+export const currencyItemFetch = (id) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(sprintf(API.CURRENCY_ITEM, id))
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.CURRENCY_ITEM
+    })
+  }
+}
+
+export const currencyDeleteAction = (id) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .delete(sprintf(API.CURRENCY_DELETE, id))
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.CURRENCY_DELETE
     })
   }
 }

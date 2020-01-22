@@ -12,17 +12,19 @@ export const MENU_KEYS = {
 export default [
   {
     key: MENU_KEYS.ORDER,
-    title: 'Заказы',
+    title: 'Orders',
     url: ROUTES.ORDER_LIST_PATH,
     children: [
     ]
   },
   {
     key: MENU_KEYS.SETTINGS,
-    title: 'Настройки',
+    title: 'Settings',
     url: ROUTES.TAGS_LIST_PATH,
     children: [
-      { title: 'Теги', url: ROUTES.TAGS_LIST_PATH }
+      { title: 'Tags', url: ROUTES.TAGS_LIST_PATH },
+      { title: 'Currency', url: ROUTES.CURRENCY_LIST_PATH },
+      { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH }
     ]
   }
 ]

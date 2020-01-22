@@ -30,6 +30,18 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.TAGS_ITEM]: createThunkReducer(actionTypes.TAGS_ITEM),
     [stateNames.TAGS_UPDATE]: createThunkReducer(actionTypes.TAGS_UPDATE),
     [stateNames.TAGS_DELETE]: createThunkReducer(actionTypes.TAGS_DELETE),
+
+    [stateNames.CURRENCY_LIST]: createThunkReducer(actionTypes.CURRENCY_LIST),
+    [stateNames.CURRENCY_CREATE]: createThunkReducer(actionTypes.CURRENCY_CREATE),
+    [stateNames.CURRENCY_ITEM]: createThunkReducer(actionTypes.CURRENCY_ITEM),
+    [stateNames.CURRENCY_UPDATE]: createThunkReducer(actionTypes.CURRENCY_UPDATE),
+    [stateNames.CURRENCY_DELETE]: createThunkReducer(actionTypes.CURRENCY_DELETE),
+
+    [stateNames.BRANCH_LIST]: createThunkReducer(actionTypes.BRANCH_LIST),
+    [stateNames.BRANCH_CREATE]: createThunkReducer(actionTypes.BRANCH_CREATE),
+    [stateNames.BRANCH_ITEM]: createThunkReducer(actionTypes.BRANCH_ITEM),
+    [stateNames.BRANCH_UPDATE]: createThunkReducer(actionTypes.BRANCH_UPDATE),
+    [stateNames.BRANCH_DELETE]: createThunkReducer(actionTypes.BRANCH_DELETE),
     ...asyncReducers
   })
 

@@ -27,6 +27,20 @@ export const TAGS_ITEM = `/${TAGS}/%d/`
 export const TAGS_DELETE = `/${TAGS}/%d/`
 export const TAGS_UPDATE = `/${TAGS}/%d/`
 
+const CURRENCY = `${MAIN}/currency`
+export const CURRENCY_LIST = `/${CURRENCY}/`
+export const CURRENCY_CREATE = `/${CURRENCY}/`
+export const CURRENCY_ITEM = `/${CURRENCY}/%d/`
+export const CURRENCY_DELETE = `/${CURRENCY}/%d/`
+export const CURRENCY_UPDATE = `/${CURRENCY}/%d/`
+
+const BRANCH = `${MAIN}/branch`
+export const BRANCH_LIST = `/${BRANCH}/`
+export const BRANCH_CREATE = `/${BRANCH}/`
+export const BRANCH_ITEM = `/${BRANCH}/%d/`
+export const BRANCH_DELETE = `/${BRANCH}/%d/`
+export const BRANCH_UPDATE = `/${BRANCH}/%d/`
+
 const DELIVERY_TYPE = `${MAIN}/delivery-type`
 export const DELIVERY_TYPE_LIST = `/${DELIVERY_TYPE}/`
 export const DELIVERY_TYPE_CREATE = `/${DELIVERY_TYPE}/`

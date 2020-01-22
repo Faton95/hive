@@ -7,6 +7,11 @@ export type TProductType = {
     id: number;
     name: string;
 }
+export type TCurrencyItem = {
+    id: number;
+    name: string;
+    sign: string;
+}
 export type TProduct = {
     id: number;
     name: string;
@@ -39,3 +44,6 @@ export type TOrderItem = {
 }
 
 export type TOrderList = Array<TOrderItem>
+export type TBranchList = Array<TIdName>
+export type TCurrencyList = Array<TCurrencyItem>
+export type TTagsList = Array<TIdName>

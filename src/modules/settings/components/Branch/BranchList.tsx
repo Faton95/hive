@@ -1,9 +1,9 @@
 import { MENU_KEYS } from 'constants/menus'
-import { TAGS_CREATE_PATH } from 'constants/routes'
+import { BRANCH_CREATE_PATH } from 'constants/routes'
 import React, { FunctionComponent } from 'react'
 import { prop, map, pathOr } from 'ramda'
 import { TUseDelete } from 'types'
-import { TIdName, TTagsList } from 'types/models'
+import { TIdName, TBranchList } from 'types/models'
 import { Menu } from '../../../../components/Menu'
 import Pagination from '../../../../components/Pagination'
 import { TGetDataFromState, TData } from '../../../../types'
@@ -24,21 +24,21 @@ type Props = {
 }
 const EMPTY = []
 const ZERO = 0
-const TagsList: FunctionComponent<Props> = props => {
+const BranchList: FunctionComponent<Props> = props => {
   const { data, onEdit, deleteData } = props
 
   const count = pathOr(ZERO, ['data', 'count'], data)
-  const list = pathOr<TTagsList>(EMPTY, ['data', 'results'], data)
+  const list = pathOr<TBranchList>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
   const actions = (
     <TableActions
-      createPath={TAGS_CREATE_PATH}
+      createPath={BRANCH_CREATE_PATH}
     />
   )
 
   return (
     <div>
-      <Menu title="Tags" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title="Branches" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
@@ -77,4 +77,4 @@ const TagsList: FunctionComponent<Props> = props => {
   )
 }
 
-export default TagsList
+export default BranchList
