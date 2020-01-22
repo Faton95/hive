@@ -7,7 +7,7 @@ import { DetailMenu } from '../../../../components/Menu'
 import { Box } from '../../../../components/UI'
 
 import { TGetDataFromState, TOnSubmit } from '../../../../types'
-import { TOrderItem } from '../../../../types/models'
+import { TCurrencyItem } from '../../../../types/models'
 import { Merge } from '../../../../types/utils'
 import CurrencyCreateForm from './CurrencyCreateForm'
 
@@ -15,7 +15,7 @@ type Props = {
     onSubmit: TOnSubmit;
 }
 
-type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>
+type NewPropType = Merge<TGetDataFromState<TCurrencyItem | null>, Props>
 
 export const fields = [
   'name',
@@ -24,7 +24,7 @@ export const fields = [
 const CurrencyCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="Закази" />
+      <DetailMenu title="Currencies" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}

@@ -18,7 +18,7 @@ import {
 import { Box, Dropdown, DropdownItem } from '../../../../components/UI'
 
 type Props = {
-    data: TGetDataFromState<TData<TCurrencyItem>>;
+    data: TGetDataFromState<TData<TCurrencyList>>;
     onEdit: (id) => void;
     deleteData: TUseDelete;
 }
@@ -28,7 +28,7 @@ const CurrencyList: FunctionComponent<Props> = props => {
   const { data, onEdit, deleteData } = props
 
   const count = pathOr(ZERO, ['data', 'count'], data)
-  const list: TCurrencyList = pathOr(EMPTY, ['data', 'results'], data)
+  const list = pathOr<TCurrencyList>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
   const actions = (
     <TableActions
@@ -38,14 +38,14 @@ const CurrencyList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Менежеры" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title="Currencies" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>
               <TableCol span={1}>#</TableCol>
-              <TableCol span={6}>Имя</TableCol>
-              <TableCol span={10}>Знак</TableCol>
+              <TableCol span={6}>Name</TableCol>
+              <TableCol span={10}>Sign</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -62,10 +62,10 @@ const CurrencyList: FunctionComponent<Props> = props => {
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
+                        Edit
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
+                        Delete
                       </DropdownItem>
                     </Dropdown>
                   </TableCol>

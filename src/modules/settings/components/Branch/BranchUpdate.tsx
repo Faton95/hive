@@ -7,7 +7,7 @@ import { DetailMenu } from '../../../../components/Menu'
 import { Box } from '../../../../components/UI'
 
 import { TGetDataFromState, TOnSubmit } from '../../../../types'
-import { TOrderItem } from '../../../../types/models'
+import { TIdName } from '../../../../types/models'
 import { Merge } from '../../../../types/utils'
 import BranchCreateForm from './BranchCreateForm'
 
@@ -17,12 +17,12 @@ type Props = {
     id: string;
 }
 
-type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>
+type NewPropType = Merge<TGetDataFromState<TIdName | null>, Props>
 
 const BranchUpdate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title={`Изменить №${props.id} Заказ`} />
+      <DetailMenu title={`Update Branch №${props.id}`} />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}

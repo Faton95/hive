@@ -28,9 +28,8 @@ const TagsList: FunctionComponent<Props> = props => {
   const { data, onEdit, deleteData } = props
 
   const count = pathOr(ZERO, ['data', 'count'], data)
-  const list: TTagsList = pathOr(EMPTY, ['data', 'results'], data)
+  const list = pathOr<TTagsList>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
-  console.warn('tags', list)
   const actions = (
     <TableActions
       createPath={TAGS_CREATE_PATH}
@@ -45,7 +44,7 @@ const TagsList: FunctionComponent<Props> = props => {
           <TableHeader>
             <TableRow>
               <TableCol span={1}>#</TableCol>
-              <TableCol span={6}>Имя</TableCol>
+              <TableCol span={6}>Name</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -60,10 +59,10 @@ const TagsList: FunctionComponent<Props> = props => {
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
+                        Edit
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
+                        Delete
                       </DropdownItem>
                     </Dropdown>
                   </TableCol>

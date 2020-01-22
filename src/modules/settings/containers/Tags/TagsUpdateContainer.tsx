@@ -2,7 +2,6 @@ import React from 'react'
 import { prop } from 'ramda'
 import TagsUpdate from '../../components/Tags/TagsUpdate'
 import { tagsItemFetch, tagsUpdateAction } from '../../actions/tags'
-import { createSerializer } from '../../serializers/tagsSerializer'
 import { useFetchItem, useUpdate } from '../../../../hooks'
 import * as stateNames from '../../../../constants/stateNames'
 import Layout from '../../../../components/Layouts/Layout'
@@ -19,13 +18,12 @@ const TagsUpdateContainer = () => {
     action: tagsUpdateAction,
     stateName: stateNames.TAGS_UPDATE,
     redirectUrl: ROUTES.TAGS_LIST_PATH,
-    serializer: createSerializer
   })
 
   const data = prop('data', tagsItem)
   const initialValues = {
     ...data,
-    ...getIdForInitValues(data, ['paymentType'])
+    ...getIdForInitValues(data, ['id'])
   }
 
   return (

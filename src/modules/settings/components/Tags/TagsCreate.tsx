@@ -5,7 +5,7 @@ import { DetailMenu } from '../../../../components/Menu'
 import { Box } from '../../../../components/UI'
 
 import { TGetDataFromState, TOnSubmit } from '../../../../types'
-import { TOrderItem } from '../../../../types/models'
+import { TIdName } from '../../../../types/models'
 import { Merge } from '../../../../types/utils'
 import TagsCreateForm from './TagsCreateForm'
 
@@ -13,7 +13,7 @@ type Props = {
   onSubmit: TOnSubmit;
 };
 
-type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>;
+type NewPropType = Merge<TGetDataFromState<TIdName | null>, Props>;
 
 export const fields = ['name']
 const TagsCreate: FunctionComponent<NewPropType> = props => {

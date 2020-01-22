@@ -43,7 +43,7 @@ const SearchField = props => {
       onChange={onChange}
       onEnter={onEnter}
       icon={Search}
-      placeholder="Поиск..."
+      placeholder="Search..."
     />
   )
 }

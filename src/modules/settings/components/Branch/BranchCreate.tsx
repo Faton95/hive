@@ -23,7 +23,7 @@ export const fields = [
 const BranchCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="Закази" />
+      <DetailMenu title="Branch create" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}

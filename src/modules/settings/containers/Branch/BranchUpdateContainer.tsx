@@ -2,7 +2,6 @@ import React from 'react'
 import { prop } from 'ramda'
 import BranchUpdate from '../../components/Branch/BranchUpdate'
 import { branchItemFetch, branchUpdateAction } from '../../actions/branch'
-import { createSerializer } from '../../serializers/branchSerializer'
 import { useFetchItem, useUpdate } from '../../../../hooks'
 import * as stateNames from '../../../../constants/stateNames'
 import Layout from '../../../../components/Layouts/Layout'
@@ -18,14 +17,13 @@ const BranchUpdateContainer = () => {
   const update = useUpdate({
     action: branchUpdateAction,
     stateName: stateNames.BRANCH_UPDATE,
-    redirectUrl: ROUTES.BRANCH_LIST_PATH,
-    serializer: createSerializer
+    redirectUrl: ROUTES.BRANCH_LIST_PATH
   })
 
   const data = prop('data', branchItem)
   const initialValues = {
     ...data,
-    ...getIdForInitValues(data, ['paymentType'])
+    ...getIdForInitValues(data, ['id'])
   }
 
   return (

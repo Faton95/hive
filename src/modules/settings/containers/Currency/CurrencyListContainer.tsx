@@ -8,19 +8,12 @@ import { currencyListFetch, currencyDeleteAction } from '../../actions/currency'
 import * as stateNames from '../../../../constants/stateNames'
 import Layout from '../../../../components/Layouts/Layout'
 import CurrencyList from '../../components/Currency/CurrencyList'
-import { DEFAULT_PICK_PARAMS } from '../../../../utils/isEquals'
 import * as ROUTES from '../../../../constants/routes'
 
-const PICK_PARAMS = [
-  ...DEFAULT_PICK_PARAMS,
-  'status',
-  'client'
-]
 const CurrencyListContainer = props => {
   const data = useFetchList({
     action: currencyListFetch,
     stateName: stateNames.CURRENCY_LIST,
-    pickParams: PICK_PARAMS
   })
 
   const deleteData = useDelete({

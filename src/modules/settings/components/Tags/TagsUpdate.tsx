@@ -7,7 +7,7 @@ import { DetailMenu } from '../../../../components/Menu'
 import { Box } from '../../../../components/UI'
 
 import { TGetDataFromState, TOnSubmit } from '../../../../types'
-import { TOrderItem } from '../../../../types/models'
+import { TIdName } from '../../../../types/models'
 import { Merge } from '../../../../types/utils'
 import TagsCreateForm from './TagsCreateForm'
 
@@ -17,7 +17,7 @@ type Props = {
     id: string;
 }
 
-type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>
+type NewPropType = Merge<TGetDataFromState<TIdName | null>, Props>
 
 const TagsUpdate: FunctionComponent<NewPropType> = props => {
   return (
