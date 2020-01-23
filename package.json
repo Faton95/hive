@@ -1,6 +1,6 @@
 {
-  "name": "temp",
-  "version": "1.0.1",
+  "name": "hive-ui",
+  "version": "0.1.1",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./scripts/start.js",
     "build": "cross-env NODE_ENV=production  node ./scripts/build.js",

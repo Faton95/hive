@@ -48,7 +48,7 @@ const GroupList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Заказы" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title="Positions" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
