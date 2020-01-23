@@ -18,6 +18,13 @@ export default [
     ]
   },
   {
+    key: MENU_KEYS.ORDER,
+    title: 'Contracts',
+    url: ROUTES.CONTRACT_CREATE_PATH,
+    children: [
+    ]
+  },
+  {
     key: MENU_KEYS.SETTINGS,
     title: 'Settings',
     url: ROUTES.TAGS_LIST_PATH,

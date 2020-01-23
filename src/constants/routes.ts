@@ -44,3 +44,12 @@ export const GROUP_ITEM_URL = `/${GROUP}/%d`
 export const GROUP_UPDATE_PATH = `/${GROUP}/${ID}/update`
 export const GROUP_UPDATE_URL = `/${GROUP}/%d/update`
 
+
+export const CONTRACT = 'contract'
+export const CONTRACT_LIST_PATH = `/${CONTRACT}`
+export const CONTRACT_CREATE_PATH = `/${CONTRACT}/create`
+export const CONTRACT_ITEM_PATH = `/${CONTRACT}/${ID}`
+export const CONTRACT_ITEM_URL = `/${CONTRACT}/%d`
+export const CONTRACT_UPDATE_PATH = `/${CONTRACT}/${ID}/update`
+export const CONTRACT_UPDATE_URL = `/${CONTRACT}/%d/update`
+

@@ -1,10 +1,7 @@
-/* eslint-disable */
-import { RadioGroup, RadioButtonBordered } from '~/components/UI'
-import styled from 'styled-components'
+
 import React from 'react'
 import { path } from 'ramda'
 
-const RadioButton = styled(RadioButtonBordered)``
 const RadioGroupField = props => {
   const {
     children,

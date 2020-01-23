@@ -62,10 +62,24 @@ export const GROUP_ITEM = `/${GROUP}/%d/`
 export const GROUP_DELETE = `/${GROUP}/%d/`
 export const GROUP_UPDATE = `/${GROUP}/%d/`
 
+const CONTRACT = `${MAIN}/contract`
+export const CONTRACT_LIST = `/${CONTRACT}/`
+export const CONTRACT_CREATE = `/${CONTRACT}/`
+export const CONTRACT_ITEM = `/${CONTRACT}/%d/`
+export const CONTRACT_DELETE = `/${CONTRACT}/%d/`
+export const CONTRACT_UPDATE = `/${CONTRACT}/%d/`
+
 const PERMISSION = `${MAIN}/permission`
 export const PERMISSION_LIST = `/${PERMISSION}/`
 export const PERMISSION_CREATE = `/${PERMISSION}/`
 export const PERMISSION_ITEM = `/${PERMISSION}/%d/`
 export const PERMISSION_DELETE = `/${PERMISSION}/%d/`
 export const PERMISSION_UPDATE = `/${PERMISSION}/%d/`
+
+const BANK_ACCOUNT = `${MAIN}/bank_account`
+export const BANK_ACCOUNT_LIST = `/${BANK_ACCOUNT}/`
+export const BANK_ACCOUNT_CREATE = `/${BANK_ACCOUNT}/`
+export const BANK_ACCOUNT_ITEM = `/${BANK_ACCOUNT}/%d/`
+export const BANK_ACCOUNT_DELETE = `/${BANK_ACCOUNT}/%d/`
+export const BANK_ACCOUNT_UPDATE = `/${BANK_ACCOUNT}/%d/`
 

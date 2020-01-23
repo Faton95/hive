@@ -1,0 +1,5 @@
+export const DATE_FORMAT_ISO_8601 = 'YYYY-MM-DD'
+export const DATE_TIME_FORMAT_ISO_8601 = 'YYYY-MM-DDTHH:ss:mm'
+export const DATE_FORMAT = 'DD MMM YYYY'
+export const DATE_TIME_FORMAT = 'DD MMM YYYY, HH:mm'
+export const DATE_TIME_SECOND_FORMAT = 'DD MMM YYYY HH:mm:ss'

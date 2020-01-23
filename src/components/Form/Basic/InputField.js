@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input } from '~/components/UI'
-import { getFieldError } from '~/utils/form'
+import { Input } from 'components/UI'
+import { getFieldError } from 'utils/form'
 
 const InputField = ({ label, meta, input, rtl, ...rest }) => {
   const textAlign = rtl ? 'right' : 'left'

@@ -3,6 +3,7 @@ import {CheckboxGroup, Checkbox} from 'components/UI'
 import {TIdName, Merge} from 'types'
 import {FieldRenderProps} from 'react-final-form'
 import {prop} from "ramda";
+import styled from "styled-components";
 type Props = Merge<FieldRenderProps<Array<number>, HTMLInputElement>, {
   items?: TIdName[],
   label?: string,
@@ -13,6 +14,13 @@ interface SelectAdapterProps extends HTMLInputElement {
   label?: string;
   items: TIdName[];
 }
+
+const StyledCheckbox = styled(Checkbox)`
+  width: calc(33% - 25px);
+  vertical-align: top;
+  display: inline-block;
+`
+
 
 const CheckboxGroupField: FunctionComponent<Props> = props => {
   const {
@@ -30,7 +38,7 @@ const CheckboxGroupField: FunctionComponent<Props> = props => {
       value={value}
       onChange={input.onChange}>
       {items.map(checkbox => (
-        <Checkbox
+        <StyledCheckbox
           onChange={() => null}
           key={checkbox.id}
           value={checkbox.id}
