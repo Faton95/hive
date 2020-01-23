@@ -16,11 +16,11 @@ const BranchCreateForm: FunctionComponent<FormRenderProps> = props => {
   return (
     <form onSubmit={handleSubmit}>
       <FieldWrapper>
-        <Field label="Имя" name="name" component={InputField} />
+        <Field label="Name" name="name" component={InputField} />
       </FieldWrapper>
       <CreateCancelButtons
         cancelPath={ROUTES.BRANCH_LIST_PATH}
-        submitText="Сохранить"
+        submitText="Save"
       />
     </form>
   )

@@ -22,8 +22,7 @@ const CurrencyUpdateContainer = () => {
 
   const data = prop('data', currencyItem)
   const initialValues = {
-    ...data,
-    ...getIdForInitValues(data, ['id'])
+    ...data
   }
 
   return (

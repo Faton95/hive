@@ -22,8 +22,7 @@ const TagsUpdateContainer = () => {
 
   const data = prop('data', tagsItem)
   const initialValues = {
-    ...data,
-    ...getIdForInitValues(data, ['id'])
+    ...data
   }
 
   return (

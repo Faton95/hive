@@ -22,7 +22,7 @@ type NewPropType = Merge<TGetDataFromState<TIdName | null>, Props>
 const TagsUpdate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title={`Изменить №${props.id} Заказ`} />
+      <DetailMenu title={`Change tag №${props.id}`} />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}

@@ -30,11 +30,11 @@ const TagsCreateForm: FunctionComponent<FormRenderProps> = props => {
   return (
     <form onSubmit={handleSubmit}>
       <FieldWrapper>
-        <Field label="Имя" name="name" component={InputField} />
+        <Field label="Name" name="name" component={InputField} />
       </FieldWrapper>
       <CreateCancelButtons
         cancelPath={ROUTES.TAGS_LIST_PATH}
-        submitText="Сохранить"
+        submitText="Save"
       />
     </form>
   )
