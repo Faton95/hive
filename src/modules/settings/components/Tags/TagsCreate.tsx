@@ -19,7 +19,7 @@ export const fields = ['name']
 const TagsCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="tags" />
+      <DetailMenu title="Tags" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}
