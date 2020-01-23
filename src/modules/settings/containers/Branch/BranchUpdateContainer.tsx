@@ -22,8 +22,7 @@ const BranchUpdateContainer = () => {
 
   const data = prop('data', branchItem)
   const initialValues = {
-    ...data,
-    ...getIdForInitValues(data, ['id'])
+    ...data
   }
 
   return (

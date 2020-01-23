@@ -32,21 +32,21 @@ const CurrencyCreateForm: FunctionComponent<FormRenderProps> = props => {
     <form onSubmit={handleSubmit}>
       <FieldWrapper>
         <Field
-          label="Имя"
+          label="Name"
           name="name"
           component={InputField}
         />
       </FieldWrapper>
       <FieldWrapper>
         <Field
-          label="sign"
+          label="Sign"
           name="sign"
           component={InputField}
         />
       </FieldWrapper>
       <CreateCancelButtons
         cancelPath={ROUTES.CURRENCY_LIST_PATH}
-        submitText="Сохранить"
+        submitText="Save"
       />
     </form>
   )
