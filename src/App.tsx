@@ -7,8 +7,11 @@ import { ThemeProvider } from 'styled-components'
 import theme from './etc/themes'
 import NormalizedStyles from './components/StyledElems/NormalizedStyles'
 import GlobalStyles from './components/StyledElems/GlobalStyles'
-import { TRoutes } from './types'
-import { getCookie } from './utils/cookie'
+import { TRoutes } from 'types'
+import { getCookie } from 'utils/cookie'
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css'
+
 
 type Props = {
   routes: TRoutes;

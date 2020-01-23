@@ -49,6 +49,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.GROUP_UPDATE]: createThunkReducer(actionTypes.GROUP_UPDATE),
     [stateNames.GROUP_DELETE]: createThunkReducer(actionTypes.GROUP_DELETE),
 
+    [stateNames.CONTRACT_LIST]: createThunkReducer(actionTypes.CONTRACT_LIST),
+    [stateNames.CONTRACT_CREATE]: createThunkReducer(actionTypes.CONTRACT_CREATE),
+    [stateNames.CONTRACT_ITEM]: createThunkReducer(actionTypes.CONTRACT_ITEM),
+    [stateNames.CONTRACT_UPDATE]: createThunkReducer(actionTypes.CONTRACT_UPDATE),
+    [stateNames.CONTRACT_DELETE]: createThunkReducer(actionTypes.CONTRACT_DELETE),
+
     [stateNames.PERMISSION_LIST]: createThunkReducer(actionTypes.PERMISSION_LIST),
     [stateNames.PERMISSION_CREATE]: createThunkReducer(actionTypes.PERMISSION_CREATE),
     [stateNames.PERMISSION_ITEM]: createThunkReducer(actionTypes.PERMISSION_ITEM),
