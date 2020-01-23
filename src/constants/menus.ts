@@ -2,6 +2,8 @@ import * as ROUTES from '../constants/routes'
 
 export const MENU_KEYS = {
   ORDER: 'order',
+  ASSIGNMENT: 'assignment',
+  CONTRACT: 'contract',
   REVIEW: 'review',
   OPERATIONS: 'operations',
   MANUFACTURING: 'manufacturing',
@@ -11,14 +13,14 @@ export const MENU_KEYS = {
 
 export default [
   {
-    key: MENU_KEYS.ORDER,
-    title: 'Orders',
-    url: ROUTES.ORDER_LIST_PATH,
+    key: MENU_KEYS.ASSIGNMENT,
+    title: 'Assignments',
+    url: ROUTES.ASSIGNMENT_LIST_PATH,
     children: [
     ]
   },
   {
-    key: MENU_KEYS.ORDER,
+    key: MENU_KEYS.CONTRACT,
     title: 'Contracts',
     url: ROUTES.CONTRACT_CREATE_PATH,
     children: [

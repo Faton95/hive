@@ -1,25 +1,19 @@
 import React from 'react'
+import {useStore} from 'react-redux'
 import PropTypes from 'prop-types'
-import { compose, pure } from 'react-fc'
-import SearchField from '../Basic/MultiSearchField'
+import MultiSearchField from '../Basic/MultiSearchField'
 import {
   getOption,
   getOptions,
   defaultGetText,
   defaultGetValue
-} from '~/utils/searchField'
-import withStore from '~/components/HOCs/withStore'
-
-const enhance = compose(
-  withStore,
-  pure
-)
+} from 'utils/searchField'
 
 const UniversalMultiSearchField = props => {
-  const { store, api, params, itemText, ...rest } = props
-
+  const { api, params, itemText, ...rest } = props
+  const store = useStore()
   return (
-    <SearchField
+    <MultiSearchField
       getText={defaultGetText(itemText)}
       getValue={defaultGetValue(['id'])}
       getOptions={search => getOptions(store, { api, params, search })}
@@ -41,4 +35,4 @@ UniversalMultiSearchField.defaultProps = {
   itemText: ['name']
 }
 
-export default enhance(UniversalMultiSearchField)
+export default UniversalMultiSearchField

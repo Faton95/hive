@@ -34,14 +34,12 @@ const toBoolean = value =>
 const CheckboxBordered = props => {
   const { input, label, ...rest } = props
 
-  const inputValue = toBoolean(prop('value', input))
-  const [checked, setChecked] = useState(inputValue)
+  const checked = toBoolean(prop('checked', input))
 
   const fieldLabel = prop('field', label)
   const checkboxLabel = prop('checkbox', label)
 
   const onChange = () => {
-    setChecked(!checked)
     if (input && input.onChange) {
       input.onChange(!checked)
     }

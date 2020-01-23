@@ -2,6 +2,7 @@ import SignIn from './sign-in'
 import order from './order'
 import settings from './settings'
 import contract from './contract'
+import assignment from './assignment'
 import Main from './Main'
 
 const Routes = store => [
@@ -17,7 +18,8 @@ const Routes = store => [
   },
   ...order(store),
   ...settings(store),
-  ...contract(store)
+  ...contract(store),
+  ...assignment(store)
 ]
 
 export default Routes

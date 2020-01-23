@@ -20,6 +20,13 @@ export const ORDER_ITEM = `/${ORDER}/%d/`
 export const ORDER_DELETE = `/${ORDER}/%d/`
 export const ORDER_UPDATE = `/${ORDER}/%d/`
 
+const STAFF = `${MAIN}/staff`
+export const STAFF_LIST = `/${STAFF}/`
+export const STAFF_CREATE = `/${STAFF}/`
+export const STAFF_ITEM = `/${STAFF}/%d/`
+export const STAFF_DELETE = `/${STAFF}/%d/`
+export const STAFF_UPDATE = `/${STAFF}/%d/`
+
 const TAGS = `${MAIN}/tags`
 export const TAGS_LIST = `/${TAGS}/`
 export const TAGS_CREATE = `/${TAGS}/`
@@ -62,13 +69,6 @@ export const GROUP_ITEM = `/${GROUP}/%d/`
 export const GROUP_DELETE = `/${GROUP}/%d/`
 export const GROUP_UPDATE = `/${GROUP}/%d/`
 
-const CONTRACT = `${MAIN}/contract`
-export const CONTRACT_LIST = `/${CONTRACT}/`
-export const CONTRACT_CREATE = `/${CONTRACT}/`
-export const CONTRACT_ITEM = `/${CONTRACT}/%d/`
-export const CONTRACT_DELETE = `/${CONTRACT}/%d/`
-export const CONTRACT_UPDATE = `/${CONTRACT}/%d/`
-
 const PERMISSION = `${MAIN}/permission`
 export const PERMISSION_LIST = `/${PERMISSION}/`
 export const PERMISSION_CREATE = `/${PERMISSION}/`
@@ -83,3 +83,17 @@ export const BANK_ACCOUNT_ITEM = `/${BANK_ACCOUNT}/%d/`
 export const BANK_ACCOUNT_DELETE = `/${BANK_ACCOUNT}/%d/`
 export const BANK_ACCOUNT_UPDATE = `/${BANK_ACCOUNT}/%d/`
 
+const CONTRACT = `${MAIN}/contract`
+export const CONTRACT_LIST = `/${CONTRACT}/`
+export const CONTRACT_CREATE = `/${CONTRACT}/`
+export const CONTRACT_ITEM = `/${CONTRACT}/%d/`
+export const CONTRACT_DELETE = `/${CONTRACT}/%d/`
+export const CONTRACT_UPDATE = `/${CONTRACT}/%d/`
+
+
+const ASSIGMENT = `${MAIN}/assignment`
+export const ASSIGMENT_LIST = `/${ASSIGMENT}/`
+export const ASSIGMENT_CREATE = `/${ASSIGMENT}/`
+export const ASSIGMENT_ITEM = `/${ASSIGMENT}/%d/`
+export const ASSIGMENT_DELETE = `/${ASSIGMENT}/%d/`
+export const ASSIGMENT_UPDATE = `/${ASSIGMENT}/%d/`

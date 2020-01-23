@@ -53,3 +53,11 @@ export const CONTRACT_ITEM_URL = `/${CONTRACT}/%d`
 export const CONTRACT_UPDATE_PATH = `/${CONTRACT}/${ID}/update`
 export const CONTRACT_UPDATE_URL = `/${CONTRACT}/%d/update`
 
+export const ASSIGNMENT = 'assignment'
+export const ASSIGNMENT_LIST_PATH = `/${ASSIGNMENT}`
+export const ASSIGNMENT_CREATE_PATH = `/${ASSIGNMENT}/create`
+export const ASSIGNMENT_ITEM_PATH = `/${ASSIGNMENT}/${ID}`
+export const ASSIGNMENT_ITEM_URL = `/${ASSIGNMENT}/%d`
+export const ASSIGNMENT_UPDATE_PATH = `/${ASSIGNMENT}/${ID}/update`
+export const ASSIGNMENT_UPDATE_URL = `/${ASSIGNMENT}/%d/update`
+

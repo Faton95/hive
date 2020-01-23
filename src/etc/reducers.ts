@@ -25,6 +25,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.ORDER_UPDATE]: createThunkReducer(actionTypes.ORDER_UPDATE),
     [stateNames.ORDER_DELETE]: createThunkReducer(actionTypes.ORDER_DELETE),
 
+    [stateNames.STAFF_LIST]: createThunkReducer(actionTypes.STAFF_LIST),
+    [stateNames.STAFF_CREATE]: createThunkReducer(actionTypes.STAFF_CREATE),
+    [stateNames.STAFF_ITEM]: createThunkReducer(actionTypes.STAFF_ITEM),
+    [stateNames.STAFF_UPDATE]: createThunkReducer(actionTypes.STAFF_UPDATE),
+    [stateNames.STAFF_DELETE]: createThunkReducer(actionTypes.STAFF_DELETE),
+
     [stateNames.TAGS_LIST]: createThunkReducer(actionTypes.TAGS_LIST),
     [stateNames.TAGS_CREATE]: createThunkReducer(actionTypes.TAGS_CREATE),
     [stateNames.TAGS_ITEM]: createThunkReducer(actionTypes.TAGS_ITEM),

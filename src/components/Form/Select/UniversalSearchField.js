@@ -7,7 +7,7 @@ import {
   getOptions,
   defaultGetText,
   defaultGetValue
-} from '~/utils/searchField'
+} from 'utils/searchField'
 
 const UniversalSearchField = props => {
   const { api, params, itemText, getText, ...rest } = props

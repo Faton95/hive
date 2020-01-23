@@ -4,26 +4,25 @@ import styled from 'styled-components'
 import { RadioButton } from '~/components/UI'
 
 const Border = styled.div`
-  background-color: ${props => (props.checked ? '#F5F6FD' : '#FBFBFC')};
+  margin-right: 10px;
   border-radius: 8px;
-  padding: 18px 20px;
+  padding: 5px 5px;
 `
 
-const RadioButtonField = props => {
+const RadioButtonSimpleField = props => {
   const { label, input } = props
   const checked = input.checked || false
-  console.warn(input)
   return (
-    <Border checked={checked}>
+    <Border>
       <RadioButton label={label} {...input} />
     </Border>
   )
 }
 
-RadioButtonField.propTypes = {
+RadioButtonSimpleField.propTypes = {
   label: PropTypes.string,
   children: PropTypes.any,
   input: PropTypes.object
 }
 
-export default RadioButtonField
+export default RadioButtonSimpleField

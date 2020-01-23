@@ -76,7 +76,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
       <FieldWrapper>
         <Field
           label="Deadline"
-          name="dead_line"
+          name="deadLine"
           component={DateField} />
       </FieldWrapper>
       <FieldWrapper>
@@ -145,7 +145,6 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
                 component={InputField}/>
             </FieldWrapper>
           </Field>
-
         </FieldWrapper>
       </div>
       </DoubleField>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import PropTypes from 'prop-types'
 import {
   path,
@@ -11,7 +11,7 @@ import {
   not,
   is, isEmpty
 } from 'ramda'
-import {
+/*import {
   compose,
   withReducer,
   mapPropsStream,
@@ -27,9 +27,10 @@ import {
   filter,
   distinctUntilChanged,
   debounceTime
-} from 'rxjs/operators'
+} from 'rxjs/operators'*/
 import { Select } from 'ui-cubic'
-import { getFieldError } from '~/utils/form'
+import { getFieldError } from 'utils/form'
+import {useCompareEffect} from "hooks";
 
 const DEFAULT_STATE = {
   options: [],
@@ -74,8 +75,75 @@ const fetchSubscribe = props => {
     })
 }
 
+const getIdFromProps = path(['input', 'value', 'id'])
 const setLoading = props => props.dispatch({ loading: true })
 
+const setLoadingAndFetch = props => {
+  setLoading(props)
+  fetchSubscribe(props)
+}
+
+const useFirstFetch = props => {
+  const isFiltered = pipe(
+    path(['parent']),
+    not
+  )(props)
+
+  useCompareEffect(() => {
+    if (isFiltered) {
+      setLoadingAndFetch(props)
+    }
+  }, [])
+}
+
+
+const useParentChangeFetch = props => {
+  const parent = prop('parent', props)
+  useCompareEffect(() => {
+    if (parent) {
+      setLoadingAndFetch(props)
+    }
+  }, [parent])
+}
+
+
+const useInitialValues = props => {
+  const id = getIdFromProps(props)
+  const filterInit = filterInitial(props)
+  useCompareEffect(() => {
+    if (id && filterInit) {
+      const { getOption, getText, getValue, state, dispatch } = props
+      const id = getIdFromProps(props)
+      dispatch({ loading: true })
+      getOption(id).then(item => {
+        const option = {
+          id: getValue(item),
+          name: getText(item)
+        }
+        const options = unionWith(eqBy(prop('id')), state.options, [option])
+
+        dispatch({ options, loading: false })
+      })
+    }
+  }, [id])
+}
+
+const useStaticInitialsFetch = props => {
+  const value = path(['input', 'value'], props)
+  const notObject = pipe(
+    path(['input', 'value']),
+    is(Object),
+    not
+  )
+  const isStatic = props.isStatic
+  useCompareEffect(() => {
+    if (value && notObject && isStatic) {
+      fetchSubscribe(props)
+    }
+  }, [])
+}
+
+/*
 const enhance = compose(
   withReducer(
     'state',
@@ -183,11 +251,21 @@ const enhance = compose(
   }),
   pure
 )
+*/
 
-const SearchField = enhance(props => {
+const actionReducer = (state, action) => ({ ...state, ...action })
+
+const SearchField = props => {
+
+  const [state, dispatch] = useReducer(actionReducer, DEFAULT_STATE)
+  const newProps = { ...props, state, dispatch }
+  useFirstFetch(newProps)
+  useParentChangeFetch(newProps)
+  useInitialValues(newProps)
+  useStaticInitialsFetch(newProps)
   const {
-    state,
-    dispatch,
+//    state,
+//    dispatch,
     input,
     meta,
     label,
@@ -217,14 +295,14 @@ const SearchField = enhance(props => {
       isClearable={isClearable}
       options={state.options}
       isLoading={state.loading}
-      onMenuOpen={onFetchData}
+      onMenuOpen={console.warn}
       getOptionLabel={prop('name')}
       getOptionValue={prop('id')}
       onInputChange={onInputChange}
       error={getFieldError(meta)}
     />
   )
-})
+}
 
 SearchField.propTypes = {
   state: PropTypes.shape({
