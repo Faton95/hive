@@ -53,3 +53,19 @@ export const PRODUCT_ITEM = `/${PRODUCT}/%d/`
 const PRODUCT_TYPE = `${MAIN}/product_type`
 export const PRODUCT_TYPE_LIST = `/${PRODUCT_TYPE}/`
 export const PRODUCT_TYPE_ITEM = `/${PRODUCT_TYPE}/%d/`
+
+
+const GROUP = `${MAIN}/group`
+export const GROUP_LIST = `/${GROUP}/`
+export const GROUP_CREATE = `/${GROUP}/`
+export const GROUP_ITEM = `/${GROUP}/%d/`
+export const GROUP_DELETE = `/${GROUP}/%d/`
+export const GROUP_UPDATE = `/${GROUP}/%d/`
+
+const PERMISSION = `${MAIN}/permission`
+export const PERMISSION_LIST = `/${PERMISSION}/`
+export const PERMISSION_CREATE = `/${PERMISSION}/`
+export const PERMISSION_ITEM = `/${PERMISSION}/%d/`
+export const PERMISSION_DELETE = `/${PERMISSION}/%d/`
+export const PERMISSION_UPDATE = `/${PERMISSION}/%d/`
+

@@ -15,6 +15,11 @@ import {
   CurrencyUpdateContainer
 } from './containers/Currency'
 
+import {
+  GroupListContainer,
+  GroupCreateContainer
+} from './containers/GroupContainers'
+
 export default (store) => [
   {
     exact: true,
@@ -31,6 +36,7 @@ export default (store) => [
     path: ROUTES.TAGS_UPDATE_PATH,
     component: TagsUpdateContainer
   },
+
   {
     exact: true,
     path: ROUTES.BRANCH_LIST_PATH,
@@ -46,6 +52,7 @@ export default (store) => [
     path: ROUTES.BRANCH_UPDATE_PATH,
     component: BranchUpdateContainer
   },
+
   {
     exact: true,
     path: ROUTES.CURRENCY_LIST_PATH,
@@ -60,6 +67,17 @@ export default (store) => [
     exact: true,
     path: ROUTES.CURRENCY_UPDATE_PATH,
     component: CurrencyUpdateContainer
+  },
+
+  {
+    exact: true,
+    path: ROUTES.GROUP_LIST_PATH,
+    component: GroupListContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.GROUP_CREATE_PATH,
+    component: GroupCreateContainer
   },
 
 ]

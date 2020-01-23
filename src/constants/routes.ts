@@ -35,3 +35,12 @@ export const BRANCH_ITEM_PATH = `/${BRANCH}/${ID}`
 export const BRANCH_ITEM_URL = `/${BRANCH}/%d`
 export const BRANCH_UPDATE_PATH = `/${BRANCH}/${ID}/update`
 export const BRANCH_UPDATE_URL = `/${BRANCH}/%d/update`
+
+export const GROUP = 'group'
+export const GROUP_LIST_PATH = `/${GROUP}`
+export const GROUP_CREATE_PATH = `/${GROUP}/create`
+export const GROUP_ITEM_PATH = `/${GROUP}/${ID}`
+export const GROUP_ITEM_URL = `/${GROUP}/%d`
+export const GROUP_UPDATE_PATH = `/${GROUP}/${ID}/update`
+export const GROUP_UPDATE_URL = `/${GROUP}/%d/update`
+

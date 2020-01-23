@@ -24,7 +24,8 @@ export default [
     children: [
       { title: 'Tags', url: ROUTES.TAGS_LIST_PATH },
       { title: 'Currency', url: ROUTES.CURRENCY_LIST_PATH },
-      { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH }
+      { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH },
+      { title: 'Positions', url: ROUTES.GROUP_LIST_PATH },
     ]
   }
 ]

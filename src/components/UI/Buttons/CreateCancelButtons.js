@@ -17,7 +17,7 @@ const CreateCancelButtons = props => {
   return (
     <ActionButtons mode={mode} marginTop={marginTop}>
       <LinkSecondaryButton type="button" to={cancelPath} onClick={onCancel}>
-        Отменить
+        Cancel
       </LinkSecondaryButton>
       <Button type="submit" loading={loading}>{submitText}</Button>
     </ActionButtons>

@@ -56,7 +56,7 @@ const TableActions = props => {
         {extraButtons}
         {(onCreate || createPath) && (
           <Button data-cy="table-add" onClick={onCreate} to={createPath}>
-            + Add
+            + Create
           </Button>
         )}
         <SearchField key={searchKey} />

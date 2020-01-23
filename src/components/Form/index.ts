@@ -14,6 +14,7 @@ export { default as OrderProductListField } from './FieldArray/OrderProductListF
 export { default as YandexMap } from './Map/YandexMap'
 export { default as YandexMapField } from './Map/YandexMapField'
 export { default as Fields } from './Basic/Fields'
+export { default as CheckboxGroupField } from './Basic/CheckboxGroupField'
 export { default as ClientSearchField } from './ClientSearchField'
 
 export { Field, Form } from 'react-final-form'
