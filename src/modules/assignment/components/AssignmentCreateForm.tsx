@@ -7,7 +7,9 @@ import {
   RadioButtonBorderedField,
   UniversalMultiSelectField,
   CheckboxBordered,
-  RadioButtonSimpleField
+  RadioButtonSimpleField,
+  InputAddon,
+  InputAddonInlineLabel
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
@@ -39,6 +41,13 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
     <form onSubmit={handleSubmit}>
       <DoubleField >
         <div>
+          <FieldWrapper>
+            <Field
+              label="a"
+              name="a"
+              addon="per/hr"
+              component={InputAddon} />
+          </FieldWrapper>
           <FieldWrapper>
             <Field
               label="Contract"
@@ -164,7 +173,8 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
                     <Field
                       name={`rates[${group.id}]`}
                       label={group.name}
-                      component={InputField}/>
+                      addon="per/hr"
+                      component={InputAddonInlineLabel}/>
                   </FieldWrapper>
                 )
               })}
