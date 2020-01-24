@@ -1,4 +1,5 @@
 export * from './group'
+export * from './position'
 
 export type TIdName = {
   id: number;

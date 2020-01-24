@@ -67,7 +67,15 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.PERMISSION_UPDATE]: createThunkReducer(actionTypes.PERMISSION_UPDATE),
     [stateNames.PERMISSION_DELETE]: createThunkReducer(actionTypes.PERMISSION_DELETE),
 
-    ...asyncReducers
+
+    [stateNames.POSITION_LIST]: createThunkReducer(actionTypes.POSITION_LIST),
+    [stateNames.POSITION_CREATE]: createThunkReducer(actionTypes.POSITION_CREATE),
+    [stateNames.POSITION_ITEM]: createThunkReducer(actionTypes.POSITION_ITEM),
+    [stateNames.POSITION_UPDATE]: createThunkReducer(actionTypes.POSITION_UPDATE),
+    [stateNames.POSITION_DELETE]: createThunkReducer(actionTypes.POSITION_DELETE),
+
+
+      ...asyncReducers
   })
 
 export const injectReducer = (store, { key, reducer }) => {
