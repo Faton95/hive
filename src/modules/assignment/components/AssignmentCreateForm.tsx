@@ -9,13 +9,14 @@ import {
   CheckboxBordered,
   RadioButtonSimpleField,
   InputAddon,
-  InputAddonInlineLabel
+  InputAddonInlineLabel,
+  DateField,
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
 import * as ROUTES from 'constants/routes'
 import * as API from 'constants/api'
-import {Merge, TData, TGetDataFromState, TGroupItem} from 'types'
+import {Merge, TData, TGetDataFromState, TPositionItem} from 'types'
 import {path, pathOr} from "ramda";
 import {
   DoubleField,
@@ -27,13 +28,13 @@ const Label  =styled(InputLabel)`
   margin-bottom: 10px;
 `
 type Props = Merge<FormRenderProps, {
-  groupData: TGetDataFromState<TData<TGroupItem>>
+  positionData: TGetDataFromState<TData<TPositionItem>>
 }>
 const ContractCreateForm: FunctionComponent<Props> = props => {
-  const { handleSubmit, groupData, values } = props
+  const { handleSubmit, positionData, values } = props
 
 
-  const groupList = pathOr<TGroupItem[]>([], ['data', 'results'], groupData)
+  const positionList = pathOr<TPositionItem[]>([], ['data', 'results'], positionData)
 
   const bankAccount = path<number>(['bankAccount', 'id'], values)
   const billable = path<number>(['billable'], values)
@@ -42,32 +43,26 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
       <DoubleField >
         <div>
           <FieldWrapper>
-            <Field
-              label="a"
-              name="a"
-              addon="per/hr"
-              component={InputAddon} />
-          </FieldWrapper>
-          <FieldWrapper>
-            <Field
-              label="Contract"
-              name="contract"
-              itemText={['id']}
-              api={API.CONTRACT_LIST}
-              component={UniversalSearchField} />
+            <DoubleField>
+              <Field
+                label="Contract"
+                name="contract"
+                itemText={['id']}
+                api={API.CONTRACT_LIST}
+                component={UniversalSearchField} />
+              <Field
+                label="Client"
+                name="client"
+                api={API.CLIENT_LIST}
+                component={UniversalSearchField} />
+            </DoubleField>
+
           </FieldWrapper>
           <FieldWrapper>
             <Field
               label="Assignment"
               name="name"
               component={InputField} />
-          </FieldWrapper>
-          <FieldWrapper>
-            <Field
-              label="Client"
-              name="client"
-              api={API.CLIENT_LIST}
-              component={UniversalSearchField} />
           </FieldWrapper>
           <FieldWrapper>
             <Field
@@ -78,8 +73,16 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
+              label="Tags"
+              name="tags"
+              api={API.TAGS_LIST}
+              component={UniversalMultiSelectField} />
+          </FieldWrapper>
+          <FieldWrapper>
+            <Field
               label="Originated by"
               name="originatedBy"
+              itemText={['fullName']}
               api={API.STAFF_LIST}
               component={UniversalSearchField} />
           </FieldWrapper>
@@ -88,14 +91,30 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
               label="Team Leader"
               name="teamLeader"
               api={API.STAFF_LIST}
+              itemText={['fullName']}
               component={UniversalSearchField} />
           </FieldWrapper>
           <FieldWrapper>
             <Field
               label="Team members"
               name="workGroup"
-              api={API.GROUP_LIST}
+              itemText={['fullName']}
+              api={API.STAFF_LIST}
               component={UniversalMultiSelectField} />
+          </FieldWrapper>
+          <FieldWrapper>
+            <DoubleField>
+              <Field
+                label="Created on"
+                name="createdDate"
+                component={DateField} />
+              <Field
+                label="Deadline"
+                name="deadline"
+                appendToBody={true}
+                component={DateField} />
+            </DoubleField>
+
           </FieldWrapper>
         </div>
 
@@ -119,18 +138,19 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
               component={UniversalSearchField} />
           </FieldWrapper>
           <FieldWrapper>
-            <Field
-              label="Bank Account"
-              name="bankAccount"
-              api={API.BANK_ACCOUNT_LIST}
-              component={UniversalSearchField} />
-          </FieldWrapper>
-          <FieldWrapper>
-            <Field
-              label="Currency"
-              name="currency"
-              api={API.CURRENCY_LIST}
-              component={UniversalSearchField} />
+            <DoubleField>
+              <Field
+                label="Bank Account"
+                name="bankAccount"
+                api={API.BANK_ACCOUNT_LIST}
+                component={UniversalSearchField} />
+              <Field
+                label="Currency"
+                name="currency"
+                api={API.CURRENCY_LIST}
+                component={UniversalSearchField} />
+            </DoubleField>
+
           </FieldWrapper>
           <FieldWrapper>
             <Field
@@ -167,9 +187,9 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
                   component={InputField}/>
               </FieldWrapper>
 
-              {groupList.map(group => {
+              {positionList.map(group => {
                 return (
-                  <FieldWrapper>
+                  <FieldWrapper key={group.id}>
                     <Field
                       name={`rates[${group.id}]`}
                       label={group.name}

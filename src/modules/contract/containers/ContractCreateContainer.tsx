@@ -9,7 +9,8 @@ import * as stateNames from 'constants/stateNames'
 import * as ROUTES from 'constants/routes'
 import Layout from 'components/Layouts/Layout'
 import {groupListFetch} from "modules/settings/actions/groupActions";
-import {TData, TGroupItem} from "types";
+import {positionListFetch} from "modules/settings/actions/positionActions";
+import {TData, TGroupItem, TPositionItem} from "types";
 
 
 const ContractCreateContainer = props => {
@@ -20,15 +21,15 @@ const ContractCreateContainer = props => {
     redirectUrl: ROUTES.CONTRACT_LIST_PATH,
   })
 
-  const groupData = useFetchList<TData<TGroupItem>>({
-    stateName: stateNames.GROUP_LIST,
-    action: groupListFetch
+  const positionData = useFetchList<TData<TPositionItem>>({
+    stateName: stateNames.POSITION_LIST,
+    action: positionListFetch
   })
   return (
     <Layout>
       <ContractCreate
         {...data}
-        groupData={groupData}
+        positionData={positionData}
       />
     </Layout>
   )

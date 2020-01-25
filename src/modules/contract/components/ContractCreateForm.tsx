@@ -3,33 +3,35 @@ import { Field, FormRenderProps } from 'react-final-form'
 import { FieldWrapper } from 'components/StyledElems'
 import {
   InputField,
-  ClientSearchField,
   UniversalSearchField,
-  RadioButtonField,
   RadioButtonBorderedField,
-  DateField
+  DateField,
+  InputAddonInlineLabel
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
 import * as ROUTES from 'constants/routes'
 import * as API from 'constants/api'
-import {Merge, TData, TGetDataFromState, TGroupItem} from 'types'
+import {Merge, TData, TGetDataFromState,  TPositionItem} from 'types'
 import {path, pathOr} from "ramda";
 import {
   DoubleField,
   FlexFieldWrap,
-  DisplayFlex
+  DisplayFlex,
+
 } from "components/StyledElems";
 import styled from "styled-components";
 
 type Props = Merge<FormRenderProps, {
-  groupData: TGetDataFromState<TData<TGroupItem>>
+  positionData: TGetDataFromState<TData<TPositionItem>>
 }>
+
+const EMPTY_ARR = []
 const ContractCreateForm: FunctionComponent<Props> = props => {
-  const { handleSubmit, groupData, values } = props
+  const { handleSubmit, positionData, values } = props
 
 
-  const groupList = pathOr<TGroupItem[]>([], ['data', 'results'], groupData)
+  const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
 
   const bankAccount = path<number>(['bankAccount', 'id'], values)
   return (
@@ -51,21 +53,22 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           component={UniversalSearchField} />
       </FieldWrapper>
       <FieldWrapper>
-        <Field
-          label="Bank Account"
-          name="bankAccount"
-          api={API.BANK_ACCOUNT_LIST}
-          component={UniversalSearchField} />
-      </FieldWrapper>
-      <FieldWrapper>
-        <Field
-          label="Currency"
-          name="currency"
-          api={API.CURRENCY_LIST}
-          params={{bankAccount}}
-          parent={bankAccount}
-          disabled={!Boolean(bankAccount)}
-          component={UniversalSearchField} />
+        <DoubleField>
+          <Field
+            label="Bank Account"
+            name="bankAccount"
+            api={API.BANK_ACCOUNT_LIST}
+            component={UniversalSearchField} />
+          <Field
+            label="Currency"
+            name="currency"
+            api={API.CURRENCY_LIST}
+            params={{bankAccount}}
+            parent={bankAccount}
+            disabled={!Boolean(bankAccount)}
+            component={UniversalSearchField} />
+        </DoubleField>
+
       </FieldWrapper>
       <FieldWrapper>
         <Field
@@ -112,38 +115,15 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
             value="aa"
             component={RadioButtonBorderedField}
           >
-            {groupList.map(group => {
+            {positionList.map(position => {
               return (
                 <Field
-                  name={`rates[${group.id}]`}
-                  label={group.name}
-                  component={InputField}/>
+                  name={`rates[${position.id}]`}
+                  label={position.name}
+                  addon="/hr"
+                  component={InputAddonInlineLabel}/>
               )
             })}
-            <FieldWrapper>
-              <Field
-                name={`rates[2]`}
-                label={'group.name'}
-                component={InputField}/>
-            </FieldWrapper>
-            <FieldWrapper>
-              <Field
-                name={`rates[2]`}
-                label={'group.name'}
-                component={InputField}/>
-            </FieldWrapper>
-            <FieldWrapper>
-              <Field
-                name={`rates[2]`}
-                label={'group.name'}
-                component={InputField}/>
-            </FieldWrapper>
-            <FieldWrapper>
-              <Field
-                name={`rates[2]`}
-                label={'group.name'}
-                component={InputField}/>
-            </FieldWrapper>
           </Field>
         </FieldWrapper>
       </div>

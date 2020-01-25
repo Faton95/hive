@@ -25,7 +25,6 @@ const UniversalMultiSearchField = props => {
 }
 
 UniversalMultiSearchField.propTypes = {
-  store: PropTypes.object.isRequired,
   api: PropTypes.string.isRequired,
   params: PropTypes.object,
   itemText: PropTypes.array,

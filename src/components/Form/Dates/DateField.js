@@ -54,7 +54,8 @@ const DateField = props => {
     meta,
     label,
     height,
-    dateFormat
+    dateFormat,
+    ...rest
   } = props
 
   const [focusedInput, setFocusedInput] = useState(false)
