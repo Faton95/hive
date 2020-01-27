@@ -4,6 +4,12 @@ export const ORDER_CREATE = 'orderCreate'
 export const ORDER_UPDATE = 'orderUpdate'
 export const ORDER_DELETE = 'orderDelete'
 
+export const CLIENT_LIST = 'clientList'
+export const CLIENT_ITEM = 'clientItem'
+export const CLIENT_CREATE = 'clientCreate'
+export const CLIENT_UPDATE = 'clientUpdate'
+export const CLIENT_DELETE = 'clientDelete'
+
 export const STAFF_LIST = 'staffList'
 export const STAFF_ITEM = 'staffItem'
 export const STAFF_CREATE = 'staffCreate'

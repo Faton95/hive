@@ -4,6 +4,7 @@ import settings from './settings'
 import contract from './contract'
 import assignment from './assignment'
 import Main from './Main'
+import client from './client'
 
 const Routes = store => [
   {
@@ -19,7 +20,8 @@ const Routes = store => [
   ...order(store),
   ...settings(store),
   ...contract(store),
-  ...assignment(store)
+  ...assignment(store),
+  ...client(store)
 ]
 
 export default Routes
