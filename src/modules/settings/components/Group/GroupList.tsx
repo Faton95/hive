@@ -19,7 +19,6 @@ import {
   Dropdown,
   DropdownItem
 } from 'components/UI'
-import GroupListFilterForm from './GroupListFilterForm'
 
 type Props = {
   data: TGetDataFromState<TData<TGroupItem>>;
@@ -37,12 +36,9 @@ const GroupList: FunctionComponent<Props> = props => {
   const list = pathOr<TGroupItem[]>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
 
-  const filterForm = (<GroupListFilterForm />)
   const actions = (
     <TableActions
       createPath={GROUP_CREATE_PATH}
-      filterForm={filterForm}
-      filterActions={filterAction}
     />
   )
 
