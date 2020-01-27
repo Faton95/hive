@@ -106,7 +106,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Team members"
+              label="Work group"
               name="workGroup"
               itemText={['fullName']}
               api={API.STAFF_LIST}
