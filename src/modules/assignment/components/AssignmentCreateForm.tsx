@@ -10,7 +10,9 @@ import {
   RadioButtonSimpleField,
   InputAddon,
   InputAddonInlineLabel,
+  InputRateField,
   DateField,
+  CheckboxField
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
@@ -27,9 +29,16 @@ import styled from "styled-components";
 const Label  =styled(InputLabel)`
   margin-bottom: 10px;
 `
+
+const FeeCeiling = styled.div`
+  position: absolute;
+  top: -32px;
+  right: 0;
+`
 type Props = Merge<FormRenderProps, {
   positionData: TGetDataFromState<TData<TPositionItem>>
 }>
+
 const ContractCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values } = props
 
@@ -38,6 +47,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
 
   const bankAccount = path<number>(['bankAccount', 'id'], values)
   const billable = path<number>(['billable'], values)
+  const hourlyHasFeeCeiling = path<number>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
       <DoubleField >
@@ -167,9 +177,10 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
                 component={InputField}/>
               </FieldWrapper>
               <Field
-                name="extraExpenses"
-                label="Additional Expenses"
-                component={InputField}/>
+                name="expensesIncludedInFee"
+                label={{checkbox: "Expenses included in Fee"}}
+                type="checkbox"
+                component={CheckboxBordered}/>
             </Field>
           </FieldWrapper>
           <FieldWrapper>
@@ -180,12 +191,21 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
               value="aa"
               component={RadioButtonBorderedField}
             >
-              <FieldWrapper>
+              <FeeCeiling>
+                <Field
+                  name="hourlyHasFeeCeiling"
+                  label="Has Ceiling Fee"
+                  component={CheckboxField}
+                />
+              </FeeCeiling>
+              {hourlyHasFeeCeiling && (
+                <FieldWrapper>
                 <Field
                   name='feeCeiling'
                   label="Fee Ceiling"
                   component={InputField}/>
               </FieldWrapper>
+              )}
 
               {positionList.map(group => {
                 return (
@@ -194,7 +214,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
                       name={`rates[${group.id}]`}
                       label={group.name}
                       addon="per/hr"
-                      component={InputAddonInlineLabel}/>
+                      component={InputRateField}/>
                   </FieldWrapper>
                 )
               })}
@@ -223,10 +243,12 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Payment expected in X days after invoice delivery."
+              label="Payment expected in"
+              addon="days after invoice delivery"
               name="paymentDate"
-              placeholder="Enter number of days"
-              component={InputField} />
+              leftWidth="220px"
+              rightWidth="220px"
+              component={InputAddonInlineLabel} />
           </FieldWrapper>
             </>
           )}

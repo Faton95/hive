@@ -24,7 +24,7 @@ const Addon = styled('div')`
   top: 1px;
   right: 1px;
   bottom: 1px;
-  width: ${props => props.width} ;
+  width: 80px;
 `
 const AddonLeft = styled('div')`
   align-items: center;
@@ -43,45 +43,37 @@ const AddonLeft = styled('div')`
   top: 1px;
   left: 1px;
   bottom: 1px;
-  width: ${props => props.width};
+  width: 160px;
   z-index: 2;
 `
 
 const InputField = styled(Input)`
-  padding-left: calc(${props => props.paddingLeft} + 5px);
-  padding-right: calc(${props => props.paddingRight} + 5px);
+  padding: 0 85px 0 160px;
   text-align: right;
+  height: 40px;
 `
-const InputAddon = props => {
-  const { addon, label, meta, input, leftWidth, rightWidth, ...rest } = props
+const InputRateField = props => {
+  const { addon, label, meta, input, ...rest } = props
   return (
     <div>
       <InputContainer>
-        <AddonLeft width={leftWidth}>{label}</AddonLeft>
+        <AddonLeft>{label}</AddonLeft>
         <InputField
-          paddignLeft={leftWidth}
-          paddingRight={rightWidth}
           {...input}
           {...rest}
         />
-        <Addon width={rightWidth}>{addon}</Addon>
+        <Addon>{addon}</Addon>
       </InputContainer>
       <InputError>{getFieldError(meta)}</InputError>
     </div>
   )
 }
 
-InputAddon.propTypes = {
+InputRateField.propTypes = {
   addon: PropTypes.string,
   label: PropTypes.string,
   input: PropTypes.object,
-  meta: PropTypes.object,
-  leftWidth: PropTypes.string,
-  rightWidth: PropTypes.string
-}
-InputAddon.defaultProps = {
-  leftWidth: '145px',
-  rightWidth: '85px'
+  meta: PropTypes.object
 }
 
-export default InputAddon
+export default InputRateField

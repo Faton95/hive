@@ -19,6 +19,7 @@ export { default as Fields } from './Basic/Fields'
 export { default as CheckboxGroupField } from './Basic/CheckboxGroupField'
 export { default as CheckboxField } from './Basic/CheckboxField'
 export { default as ClientSearchField } from './ClientSearchField'
+export { default as InputRateField } from './Basic/InputRateField'
 export { default as DateField } from './Dates/DateField'
 export { default as UniversalMultiSelectField } from './Select/UniversalMultiSelectField'
 
