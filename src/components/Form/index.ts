@@ -21,6 +21,7 @@ export { default as CheckboxField } from './Basic/CheckboxField'
 export { default as ClientSearchField } from './ClientSearchField'
 export { default as InputRateField } from './Basic/InputRateField'
 export { default as DateField } from './Dates/DateField'
+export { default as BillingFields } from './BillingFields'
 export { default as UniversalMultiSelectField } from './Select/UniversalMultiSelectField'
 
 export { Field, Form } from 'react-final-form'

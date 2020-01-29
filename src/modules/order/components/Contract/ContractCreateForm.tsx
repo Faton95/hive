@@ -6,7 +6,11 @@ import {
   UniversalSearchField,
   RadioButtonBorderedField,
   DateField,
-  InputAddonInlineLabel
+  InputAddonInlineLabel,
+  InputRateField,
+  CheckboxField,
+  CheckboxBordered,
+  BillingFields
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
@@ -22,6 +26,13 @@ import {
 } from "components/StyledElems";
 import styled from "styled-components";
 
+
+const FeeCeiling = styled.div`
+  position: absolute;
+  top: -32px;
+  right: 0;
+`
+
 type Props = Merge<FormRenderProps, {
   positionData: TGetDataFromState<TData<TPositionItem>>
 }>
@@ -29,11 +40,9 @@ type Props = Merge<FormRenderProps, {
 const EMPTY_ARR = []
 const ContractCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values } = props
-
-
   const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
-
   const bankAccount = path<number>(['bankAccount', 'id'], values)
+  const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
       <DoubleField >
@@ -72,60 +81,27 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
       </FieldWrapper>
       <FieldWrapper>
         <Field
-          label="Success Fee"
-          name="successFee"
-          component={InputField} />
-      </FieldWrapper>
-      <FieldWrapper>
-        <Field
           label="Deadline"
           name="deadLine"
           component={DateField} />
       </FieldWrapper>
       <FieldWrapper>
         <Field
-          label="Payment expected in X days after invoice delivery."
+          label="Payment expected in"
+          addon="days after invoice delivery"
           name="paymentDate"
-          placeholder="Enter number of days"
-          component={InputField} />
+          leftWidth="220px"
+          rightWidth="220px"
+          component={InputAddonInlineLabel} />
       </FieldWrapper>
       </div>
 
       <div>
         <InputLabel>Billing Type</InputLabel>
-        <FieldWrapper>
-          <Field
-            name="das"
-            label="Fixed Fee"
-            type="radio"
-            value="dd"
-            component={RadioButtonBorderedField}
-          >
-            <Field
-              name="total"
-              label="Fee amount"
-              component={InputField}/>
-          </Field>
-        </FieldWrapper>
-        <FieldWrapper>
-          <Field
-            name="das"
-            label="Hourly Billing"
-            type="radio"
-            value="aa"
-            component={RadioButtonBorderedField}
-          >
-            {positionList.map(position => {
-              return (
-                <Field
-                  name={`rates[${position.id}]`}
-                  label={position.name}
-                  addon="/hr"
-                  component={InputAddonInlineLabel}/>
-              )
-            })}
-          </Field>
-        </FieldWrapper>
+        <BillingFields
+          hourlyHasFeeCeiling={hourlyHasFeeCeiling}
+          positionList={positionList}
+        />
       </div>
       </DoubleField>
       <CreateCancelButtons

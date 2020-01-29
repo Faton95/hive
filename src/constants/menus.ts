@@ -14,9 +14,11 @@ export const MENU_KEYS = {
 export default [
   {
     key: MENU_KEYS.ASSIGNMENT,
-    title: 'Assignments',
+    title: 'Orders',
     url: ROUTES.ASSIGNMENT_LIST_PATH,
     children: [
+      { title: 'Assignments', url: ROUTES.ASSIGNMENT_LIST_PATH },
+      { title: 'Contract', url: ROUTES.CONTRACT_LIST_PATH },
     ]
   },
   {

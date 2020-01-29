@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { Form } from 'react-final-form'
-import { DetailMenu } from 'components/Menu'
+import { DetailMenu } from 'components/Menu/index'
 import { Box } from 'components/UI'
 
 import {
@@ -21,7 +21,10 @@ type Props = {
 type NewPropType = Merge<TGetDataFromState<null>, Props>
 
 export const fields = [
-  'name'
+  'client',
+  'branch',
+  'bankAccount',
+  'currency'
 ]
 const ContractCreate: FunctionComponent<NewPropType> = props => {
   return (

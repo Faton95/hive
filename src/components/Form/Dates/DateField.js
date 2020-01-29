@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
 import { SingleDatePicker } from 'react-dates'
+import {OPEN_DOWN} from 'react-dates/constants'
 import commonProps from './commonProps'
 import DateContainer from './DateContainer'
 import { getFieldError } from '~/utils/form'
@@ -55,6 +56,7 @@ const DateField = props => {
     label,
     height,
     dateFormat,
+    openDirection,
     ...rest
   } = props
 
@@ -74,6 +76,7 @@ const DateField = props => {
       <DateContainer height={height}>
         <SingleDatePicker
           {...defaultOptions}
+          openDirection={openDirection}
           id={input.name}
           date={date}
           focused={focusedInput}
@@ -102,6 +105,7 @@ DateField.propTypes = {
 DateField.defaultProps = {
   dateFormat: DATE_FORMAT_ISO_8601,
   disableOutside: false,
+  openDirection: OPEN_DOWN,
   height: 52
 }
 

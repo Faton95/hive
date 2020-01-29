@@ -17,6 +17,8 @@ export const contractListFetch = (data) => {
   }
 }
 export const contractCreateAction = (data) => {
+  console.warn(data)
+  return null
 
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })

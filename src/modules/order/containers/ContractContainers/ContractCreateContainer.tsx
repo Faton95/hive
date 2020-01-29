@@ -1,16 +1,17 @@
 import React from 'react'
-import ContractCreate from '../components/ContractCreate'
+import ContractCreate from '../../components/Contract/ContractCreate'
 import {
   contractCreateAction
-} from '../actions/contractActions'
-
-import {useFetchItem, useCreate, useFetchList} from 'hooks'
+} from '../../action/contractActions'
+import {
+  createSerializer
+} from '../../serializers/contractSerializer'
+import {useCreate, useFetchList} from 'hooks'
 import * as stateNames from 'constants/stateNames'
 import * as ROUTES from 'constants/routes'
 import Layout from 'components/Layouts/Layout'
-import {groupListFetch} from "modules/settings/actions/groupActions";
 import {positionListFetch} from "modules/settings/actions/positionActions";
-import {TData, TGroupItem, TPositionItem} from "types";
+import {TData, TPositionItem} from "types";
 
 
 const ContractCreateContainer = props => {
@@ -19,6 +20,7 @@ const ContractCreateContainer = props => {
     stateName: stateNames.CONTRACT_CREATE,
     action: contractCreateAction,
     redirectUrl: ROUTES.CONTRACT_LIST_PATH,
+    serializer: createSerializer
   })
 
   const positionData = useFetchList<TData<TPositionItem>>({

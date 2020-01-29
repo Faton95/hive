@@ -12,7 +12,7 @@ import {
   InputAddonInlineLabel,
   InputRateField,
   DateField,
-  CheckboxField
+  BillingFields
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
@@ -39,7 +39,7 @@ type Props = Merge<FormRenderProps, {
   positionData: TGetDataFromState<TData<TPositionItem>>
 }>
 
-const ContractCreateForm: FunctionComponent<Props> = props => {
+const AssignmentCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values } = props
 
 
@@ -47,7 +47,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
 
   const bankAccount = path<number>(['bankAccount', 'id'], values)
   const billable = path<number>(['billable'], values)
-  const hourlyHasFeeCeiling = path<number>(['hourlyHasFeeCeiling'], values)
+  const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
       <DoubleField >
@@ -162,66 +162,10 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
             </DoubleField>
 
           </FieldWrapper>
-          <FieldWrapper>
-            <Field
-              name="das"
-              label="Fixed Fee"
-              type="radio"
-              value="dd"
-              component={RadioButtonBorderedField}
-            >
-              <FieldWrapper>
-              <Field
-                name="total"
-                label="Fee amount"
-                component={InputField}/>
-              </FieldWrapper>
-              <Field
-                name="expensesIncludedInFee"
-                label={{checkbox: "Expenses included in Fee"}}
-                type="checkbox"
-                component={CheckboxBordered}/>
-            </Field>
-          </FieldWrapper>
-          <FieldWrapper>
-            <Field
-              name="das"
-              label="Hourly Billing"
-              type="radio"
-              value="aa"
-              component={RadioButtonBorderedField}
-            >
-              <FeeCeiling>
-                <Field
-                  name="hourlyHasFeeCeiling"
-                  label="Has Ceiling Fee"
-                  component={CheckboxField}
-                />
-              </FeeCeiling>
-              {hourlyHasFeeCeiling && (
-                <FieldWrapper>
-                <Field
-                  name='feeCeiling'
-                  label="Fee Ceiling"
-                  component={InputField}/>
-              </FieldWrapper>
-              )}
-
-              {positionList.map(group => {
-                return (
-                  <FieldWrapper key={group.id}>
-                    <Field
-                      name={`rates[${group.id}]`}
-                      label={group.name}
-                      addon="per/hr"
-                      component={InputRateField}/>
-                  </FieldWrapper>
-                )
-              })}
-
-            </Field>
-
-          </FieldWrapper>
+              <BillingFields
+                positionList={positionList}
+                hourlyHasFeeCeiling={hourlyHasFeeCeiling}
+              />
           <FieldWrapper>
           <Label>Invoice Delivered By</Label>
           <DisplayFlex>
@@ -263,4 +207,4 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
   )
 }
 
-export default ContractCreateForm
+export default AssignmentCreateForm

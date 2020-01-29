@@ -1,7 +1,7 @@
 import { path, pipe, prop, map, propOr } from 'ramda'
-import { getSerializedData } from '../../../utils/get'
+import { getSerializedData } from 'utils/get'
 import { fields } from '../components/OrderCreate'
-import toSnakeCase from '../../../utils/toSnakeCase'
+import toSnakeCase from 'utils/toSnakeCase'
 
 const mapProducts = item => getSerializedData(['product', 'amount'], item)
 
@@ -17,10 +17,12 @@ export const createSerializer = data => {
   )(data)
 
   const fieldsData = getSerializedData(fields, data)
-    const client = path(['client'], fieldsData)
-  return {
+
+  const client = path(['client'], fieldsData)
+
+  return toSnakeCase({
     ...fieldsData,
-    order_products: orderProducts,
+    orderProducts,
     address: { ...address, client }
-  }
+  })
 }
