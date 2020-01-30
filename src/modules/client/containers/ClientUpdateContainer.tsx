@@ -33,17 +33,10 @@ const ClientUpdateContainer = (props: Props) => {
   })
 
   const data = prop('data', clientItem)
-  const tags = pathOr([], ['tags'], data)
-  const contactIds = map(prop('id'), tags)
   
-  
-  
-
   const initialValues = {
     ...data
   }
-
-//  console.warn(initialValues)
 
   return (
     <Layout>

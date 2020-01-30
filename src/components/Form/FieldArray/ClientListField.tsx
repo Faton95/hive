@@ -17,7 +17,6 @@ const TableColRight = styled(TableColUI)`
 const ClientListField = props => {
 
   const { fields, ...p } = props
-  console.warn(props)
   const onAdd = () => fields.push({})
   const onRemove = index => fields.remove(index)
 

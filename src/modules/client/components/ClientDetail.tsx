@@ -39,7 +39,6 @@ const ClientDetail: FunctionComponent<Props> = props => {
     onDelete,
     onEdit
   } = props
-  console.warn(item)
   const details = prop('data', item)
   
   const id = prop('id', details)
