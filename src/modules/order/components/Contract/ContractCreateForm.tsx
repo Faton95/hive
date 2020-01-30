@@ -89,7 +89,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
         <Field
           label="Payment expected in"
           addon="days after invoice delivery"
-          name="paymentDate"
+          name="paymentDuration"
           leftWidth="220px"
           rightWidth="220px"
           component={InputAddonInlineLabel} />

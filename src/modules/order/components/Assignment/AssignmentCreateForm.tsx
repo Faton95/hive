@@ -4,13 +4,11 @@ import { FieldWrapper } from 'components/StyledElems'
 import {
   InputField,
   UniversalSearchField,
-  RadioButtonBorderedField,
+
   UniversalMultiSelectField,
   CheckboxBordered,
   RadioButtonSimpleField,
-  InputAddon,
   InputAddonInlineLabel,
-  InputRateField,
   DateField,
   BillingFields
 } from 'components/Form'
@@ -26,7 +24,7 @@ import {
 } from "components/StyledElems";
 import styled from "styled-components";
 
-const Label  =styled(InputLabel)`
+const Label = styled(InputLabel)`
   margin-bottom: 10px;
 `
 
@@ -189,7 +187,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
             <Field
               label="Payment expected in"
               addon="days after invoice delivery"
-              name="paymentDate"
+              name="paymentDuration"
               leftWidth="220px"
               rightWidth="220px"
               component={InputAddonInlineLabel} />
