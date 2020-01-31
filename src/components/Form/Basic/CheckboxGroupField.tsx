@@ -30,7 +30,6 @@ const CheckboxGroupField: FunctionComponent<Props> = props => {
     input: { value, checked, ...input },
   } = props
 
-  props.input
   return (
     <CheckboxGroup
       label={label}

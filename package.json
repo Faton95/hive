@@ -88,6 +88,6 @@
     "sass-loader": "^8.0.0",
     "sprintf-js": "^1.1.2",
     "styled-components": "^4.4.1",
-    "ui-cubic": "^0.4.2"
+    "ui-cubic": "^0.4.3"
   }
 }

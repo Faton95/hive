@@ -68,3 +68,10 @@ export const ASSIGNMENT_ITEM_URL = `/${ASSIGNMENT}/%d`
 export const ASSIGNMENT_UPDATE_PATH = `/${ASSIGNMENT}/${ID}/update`
 export const ASSIGNMENT_UPDATE_URL = `/${ASSIGNMENT}/%d/update`
 
+export const POSITION = 'position'
+export const POSITION_LIST_PATH = `/${POSITION}`
+export const POSITION_CREATE_PATH = `/${POSITION}/create`
+export const POSITION_ITEM_PATH = `/${POSITION}/${ID}`
+export const POSITION_ITEM_URL = `/${POSITION}/%d`
+export const POSITION_UPDATE_PATH = `/${POSITION}/${ID}/update`
+export const POSITION_UPDATE_URL = `/${POSITION}/%d/update`

@@ -1,21 +1,30 @@
 import React, { FunctionComponent } from 'react'
 import { Form } from 'react-final-form'
-import { DetailMenu } from 'components/Menu'
+import { DetailMenu } from 'components/Menu/index'
 import { Box } from 'components/UI'
 
-import { TGetDataFromState, TOnSubmit, Merge, TIdName, TGroupItem, TData } from 'types'
+import {
+  TGetDataFromState,
+  TOnSubmit,
+  Merge,
+  TData,
+  TPositionItem
+} from 'types'
 
-import ContractCreateForm from './AssignmentCreateForm'
+import ContractCreateForm from './ContractCreateForm'
 
 type Props = {
   onSubmit: TOnSubmit,
-  groupData: TGetDataFromState<TData<TGroupItem>>
+  positionData: TGetDataFromState<TData<TPositionItem>>
 }
 
-type NewPropType = Merge<TGetDataFromState<TGroupItem | null>, Props>
+type NewPropType = Merge<TGetDataFromState<null>, Props>
 
 export const fields = [
-  'name'
+  'client',
+  'branch',
+  'bankAccount',
+  'currency'
 ]
 const ContractCreate: FunctionComponent<NewPropType> = props => {
   return (
@@ -27,7 +36,7 @@ const ContractCreate: FunctionComponent<NewPropType> = props => {
           render={formikProps => (
             <ContractCreateForm
               {...formikProps}
-              groupData={props.groupData}
+              positionData={props.positionData}
 
             />
           )}

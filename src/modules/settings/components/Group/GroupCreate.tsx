@@ -22,7 +22,7 @@ export const fields = [
 const BranchCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="Position create" />
+      <DetailMenu title="Group create" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}
@@ -30,8 +30,6 @@ const BranchCreate: FunctionComponent<NewPropType> = props => {
             <GroupCreateForm
               permissionData={props.permissionData}
               {...formikProps}
-
-
             />
           )}
         />

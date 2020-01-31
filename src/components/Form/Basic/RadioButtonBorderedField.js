@@ -17,6 +17,7 @@ const Border = styled.div`
   }
 `
 const Children = styled.div`
+  position: relative;
   padding-left: 26px;
 `
 const RadioButtonBordered = props => {

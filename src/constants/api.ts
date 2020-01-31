@@ -100,3 +100,10 @@ export const ASSIGMENT_CREATE = `/${ASSIGMENT}/`
 export const ASSIGMENT_ITEM = `/${ASSIGMENT}/%d/`
 export const ASSIGMENT_DELETE = `/${ASSIGMENT}/%d/`
 export const ASSIGMENT_UPDATE = `/${ASSIGMENT}/%d/`
+
+const POSITION = `${MAIN}/position`
+export const POSITION_LIST = `/${POSITION}/`
+export const POSITION_CREATE = `/${POSITION}/`
+export const POSITION_ITEM = `/${POSITION}/%d/`
+export const POSITION_DELETE = `/${POSITION}/%d/`
+export const POSITION_UPDATE = `/${POSITION}/%d/`

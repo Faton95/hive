@@ -15,9 +15,11 @@ export const MENU_KEYS = {
 export default [
   {
     key: MENU_KEYS.ASSIGNMENT,
-    title: 'Assignments',
+    title: 'Orders',
     url: ROUTES.ASSIGNMENT_LIST_PATH,
     children: [
+      { title: 'Assignments', url: ROUTES.ASSIGNMENT_LIST_PATH },
+      { title: 'Contract', url: ROUTES.CONTRACT_LIST_PATH },
     ]
   },
   {
@@ -42,7 +44,8 @@ export default [
       { title: 'Tags', url: ROUTES.TAGS_LIST_PATH },
       { title: 'Currency', url: ROUTES.CURRENCY_LIST_PATH },
       { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH },
-      { title: 'Positions', url: ROUTES.GROUP_LIST_PATH },
+      { title: 'Groups', url: ROUTES.GROUP_LIST_PATH },
+      { title: 'Position', url: ROUTES.POSITION_LIST_PATH },
     ]
   }
 ]

@@ -7134,10 +7134,10 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
-ui-cubic@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/ui-cubic/-/ui-cubic-0.4.2.tgz#314e9f6050b4a480fa8f37deb8d0f32a823683cb"
-  integrity sha512-NOnknOhrSfllqWLodY75hN3qXjPfAH5dvEYQW/fbXmia9c74lobrJyN1ry5iGsv86Zt/38qDPGld5hkG8maaiQ==
+ui-cubic@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/ui-cubic/-/ui-cubic-0.4.3.tgz#aa35a44765118e2c1083681b4edac9545320dc00"
+  integrity sha512-XGdSSTh03WSzgvi37msFL62qkfqem7JO7nDJULYhuYxYjPXXPWh1aY/skMGPd0+pL9N+c+5F5kcfUuqZRXKGSA==
   dependencies:
     history "^4.10.1"
     prop-types "^15.7.2"
