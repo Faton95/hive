@@ -44,6 +44,25 @@ export type TOrderItem = {
   client: {id: number; fullName: string; phoneNumber: string};
 }
 
+export type TClientItem = {
+  id: number;
+  contacts: Array<TOrderProduct>;
+  createdDate: string;
+  modifiedDate: string;
+  name: string | null;
+  email: string | null;
+  address: string | null;
+  tags: Array<TTagsList>
+}
+
+export type TContactItem = {
+  id: number;
+  name: string | null;
+  email: string | null;
+  phone: string | null;
+  position: string | null;
+}
+export type TClientList = Array<TClientItem>
 export type TOrderList = Array<TOrderItem>
 export type TBranchList = Array<TIdName>
 export type TCurrencyList = Array<TCurrencyItem>

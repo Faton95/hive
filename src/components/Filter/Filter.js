@@ -116,7 +116,7 @@ const Filter = props => {
           onClick={open ? onClose : onOpen}
         >
           <FilterIcon />
-          Фильтр
+          Filter
           {filterCount}
         </FilterButton>
 
@@ -126,7 +126,7 @@ const Filter = props => {
         <>
           <FilterMask />
           <Popup>
-            <Title>Фильтр</Title>
+            <Title>Filter</Title>
             <Form
               initialValues={initialValues}
               onSubmit={onSubmit}
