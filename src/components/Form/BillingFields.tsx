@@ -32,17 +32,17 @@ const BillingFields: FunctionComponent<Props> = props => {
         name="billingType"
         label="Fixed Fee"
         type="radio"
-        value="fixed"
+        value="fixed_fee"
         component={RadioButtonBorderedField}
       >
         <FieldWrapper>
           <Field
-            name="total"
+            name="fixedFeeAmount"
             label="Fee amount"
             component={InputField}/>
         </FieldWrapper>
         <Field
-          name="expensesIncludedInFee"
+          name="fixedFeeExpensesIncludedInFee"
           label={{checkbox: "Expenses included in Fee"}}
           type="checkbox"
           component={CheckboxBordered}/>
@@ -53,7 +53,7 @@ const BillingFields: FunctionComponent<Props> = props => {
         name="billingType"
         label="Hourly Billing"
         type="radio"
-        value="hourly"
+        value="hourly_billing"
         component={RadioButtonBorderedField}
       >
         <FeeCeiling>
@@ -66,7 +66,7 @@ const BillingFields: FunctionComponent<Props> = props => {
         {props.hourlyHasFeeCeiling && (
           <FieldWrapper>
             <Field
-              name='feeCeiling'
+              name='hourlyFeeCeiling'
               label="Fee Ceiling"
               component={InputField}/>
           </FieldWrapper>
