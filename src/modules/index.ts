@@ -16,10 +16,8 @@ const Routes = store => [
     component: Main
   },
   ...order(store),
-
   ...settings(store),
-  ...client(store),
-  ...settings(store)
+  ...client(store)
 ]
 
 export default Routes

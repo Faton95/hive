@@ -1,10 +1,13 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import { Field, FormRenderProps } from 'react-final-form'
-import { FieldWrapper } from 'components/StyledElems'
+import {
+  FieldWrapper,
+  DisplayFlex,
+  DoubleField
+} from 'components/StyledElems'
 import {
   InputField,
   UniversalSearchField,
-
   UniversalMultiSelectField,
   CheckboxBordered,
   RadioButtonSimpleField,
@@ -16,12 +19,14 @@ import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {InputLabel} from 'components/UI'
 import * as ROUTES from 'constants/routes'
 import * as API from 'constants/api'
-import {Merge, TData, TGetDataFromState, TPositionItem} from 'types'
-import {path, pathOr} from "ramda";
 import {
-  DoubleField,
-  DisplayFlex
-} from "components/StyledElems";
+  Merge,
+  TData,
+  TGetDataFromState,
+  TPositionItem,
+} from 'types'
+import {TContractItem} from 'types/models'
+import {path, pathOr, pick} from 'ramda';
 import styled from "styled-components";
 
 const Label = styled(InputLabel)`
@@ -37,14 +42,39 @@ type Props = Merge<FormRenderProps, {
   positionData: TGetDataFromState<TData<TPositionItem>>
 }>
 
+const namesFromContract = [
+  'billingType',
+  'fixedFeeAmount',
+  'fixedFeeExpensesIncludedInFee',
+  'hourlyHasFeeCeiling',
+  'hourlyFeeCeiling',
+  'successFee',
+  'deadLine',
+  'paymentDuration',
+  'paymentDate',
+  'client',
+  'branch',
+  'currency',
+  'bankAccount',
+  'createdDate'
+]
+const EMPTY_ARR = []
 const AssignmentCreateForm: FunctionComponent<Props> = props => {
-  const { handleSubmit, positionData, values } = props
+  const { handleSubmit, positionData, values, form } = props
+  const contract = path<TContractItem>(['contract'], values)
+  const contractId = path<number>(['id'], contract)
 
+  useEffect(() => {
+    if(contractId){
+      const pickedValues = pick(namesFromContract, contract)
+      form.initialize({...pickedValues, isBillable: true, contract})
+    }
+  }, [contractId])
 
-  const positionList = pathOr<TPositionItem[]>([], ['data', 'results'], positionData)
+  const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
 
   const bankAccount = path<number>(['bankAccount', 'id'], values)
-  const billable = path<number>(['billable'], values)
+  const billable = path<number>(['isBillable'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
@@ -117,7 +147,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
                 component={DateField} />
               <Field
                 label="Deadline"
-                name="deadline"
+                name="deadLine"
                 appendToBody={true}
                 component={DateField} />
             </DoubleField>
@@ -128,7 +158,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
         <div>
           <FieldWrapper>
             <Field
-              name="billable"
+              name="isBillable"
               label={{checkbox: "Billable", field: "Billing"}}
               component={CheckboxBordered}
               defaultValue={true}
