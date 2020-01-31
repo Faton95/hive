@@ -9,6 +9,7 @@ export const MENU_KEYS = {
   MANUFACTURING: 'manufacturing',
   REPORTS: 'reports',
   SETTINGS: 'settings',
+  CLIENT: 'client',
 }
 
 export default [
@@ -19,6 +20,13 @@ export default [
     children: [
       { title: 'Assignments', url: ROUTES.ASSIGNMENT_LIST_PATH },
       { title: 'Contract', url: ROUTES.CONTRACT_LIST_PATH },
+    ]
+  },
+  {
+    key: MENU_KEYS.CLIENT,
+    title: 'Client',
+    url: ROUTES.CLIENT_LIST_PATH,
+    children: [
     ]
   },
   {

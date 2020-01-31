@@ -11,7 +11,10 @@ export const LOGOUT = `${MAIN}/logout/`
 
 const CLIENT = `${MAIN}/client`
 export const CLIENT_LIST = `/${CLIENT}/`
+export const CLIENT_CREATE = `/${CLIENT}/`
 export const CLIENT_ITEM = `/${CLIENT}/%d/`
+export const CLIENT_DELETE = `/${CLIENT}/%d/`
+export const CLIENT_UPDATE = `/${CLIENT}/%d/`
 
 const ORDER = `${MAIN}/order`
 export const ORDER_LIST = `/${ORDER}/`

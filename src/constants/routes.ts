@@ -8,9 +8,16 @@ export const ORDER_LIST_PATH = `/${ORDER}`
 export const ORDER_CREATE_PATH = `/${ORDER}/create`
 export const ORDER_ITEM_PATH = `/${ORDER}/${ID}`
 export const ORDER_ITEM_URL = `/${ORDER}/%d`
-
 export const ORDER_UPDATE_PATH = `/${ORDER}/${ID}/update`
 export const ORDER_UPDATE_URL = `/${ORDER}/%d/update`
+
+export const CLIENT = 'client'
+export const CLIENT_LIST_PATH = `/${CLIENT}`
+export const CLIENT_CREATE_PATH = `/${CLIENT}/create`
+export const CLIENT_ITEM_PATH = `/${CLIENT}/${ID}`
+export const CLIENT_ITEM_URL = `/${CLIENT}/%d`
+export const CLIENT_UPDATE_PATH = `/${CLIENT}/${ID}/update`
+export const CLIENT_UPDATE_URL = `/${CLIENT}/%d/update`
 
 export const TAGS = 'tags'
 export const TAGS_LIST_PATH = `/${TAGS}`

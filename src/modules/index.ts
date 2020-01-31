@@ -2,6 +2,7 @@ import SignIn from './sign-in'
 import order from './order'
 import settings from './settings'
 import Main from './Main'
+import client from './client'
 
 const Routes = store => [
   {
@@ -15,6 +16,9 @@ const Routes = store => [
     component: Main
   },
   ...order(store),
+
+  ...settings(store),
+  ...client(store),
   ...settings(store)
 ]
 
