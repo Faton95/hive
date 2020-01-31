@@ -51,20 +51,19 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
       <DoubleField >
         <div>
           <FieldWrapper>
-            <DoubleField>
+            <Field
+              label="Client"
+              name="client"
+              api={API.CLIENT_LIST}
+              component={UniversalSearchField} />
+          </FieldWrapper>
+          <FieldWrapper>
               <Field
                 label="Contract"
                 name="contract"
                 itemText={['id']}
                 api={API.CONTRACT_LIST}
                 component={UniversalSearchField} />
-              <Field
-                label="Client"
-                name="client"
-                api={API.CLIENT_LIST}
-                component={UniversalSearchField} />
-            </DoubleField>
-
           </FieldWrapper>
           <FieldWrapper>
             <Field
