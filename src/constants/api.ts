@@ -104,3 +104,4 @@ export const POSITION_CREATE = `/${POSITION}/`
 export const POSITION_ITEM = `/${POSITION}/%d/`
 export const POSITION_DELETE = `/${POSITION}/%d/`
 export const POSITION_UPDATE = `/${POSITION}/%d/`
+

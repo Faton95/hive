@@ -68,3 +68,11 @@ export const POSITION_ITEM_PATH = `/${POSITION}/${ID}`
 export const POSITION_ITEM_URL = `/${POSITION}/%d`
 export const POSITION_UPDATE_PATH = `/${POSITION}/${ID}/update`
 export const POSITION_UPDATE_URL = `/${POSITION}/%d/update`
+
+export const BANK_ACCOUNT = 'bank'
+export const BANK_ACCOUNT_LIST_PATH = `/${BANK_ACCOUNT}`
+export const BANK_ACCOUNT_CREATE_PATH = `/${BANK_ACCOUNT}/create`
+export const BANK_ACCOUNT_ITEM_PATH = `/${BANK_ACCOUNT}/${ID}`
+export const BANK_ACCOUNT_ITEM_URL = `/${BANK_ACCOUNT}/%d`
+export const BANK_ACCOUNT_UPDATE_PATH = `/${BANK_ACCOUNT}/${ID}/update`
+export const BANK_ACCOUNT_UPDATE_URL = `/${BANK_ACCOUNT}/%d/update`

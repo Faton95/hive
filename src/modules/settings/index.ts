@@ -24,6 +24,11 @@ import {
   PositionListContainer,
   PositionUpdateContainer
 } from './containers/PositionContainer'
+import {
+  BankAccountCreateContainer,
+  BankAccountListContainer,
+  BankAccountUpdateContainer
+} from './containers/BankAccountContainer'
 
 export default (store) => [
   {
@@ -40,6 +45,21 @@ export default (store) => [
     exact: true,
     path: ROUTES.TAGS_UPDATE_PATH,
     component: TagsUpdateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.BANK_ACCOUNT_LIST_PATH,
+    component: BankAccountListContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.BANK_ACCOUNT_CREATE_PATH,
+    component: BankAccountCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.BANK_ACCOUNT_UPDATE_PATH,
+    component: BankAccountUpdateContainer
   },
 
   {

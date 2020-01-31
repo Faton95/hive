@@ -76,8 +76,20 @@ export type TSubscriptionItem = {
   tm: null;
   message: string;
 }
+export type TBankAddressItem = {
+  id: number;
+  createdDate: string;
+  modifiedDate: string | null;
+  name: string | null;
+  code: string | null;
+  address: string | null;
+  bankDetails: string | null;
+  branch: number;
+  currency: Array<number>
+}
 export type TSubscriptionList = TSubscriptionItem[]
 
 export type TOrderList = Array<TOrderItem>
 export type TClientList = Array<TClientItem>
 export type TCommentList = Array<TCommentItem>
+export type TBankAddressList = Array<TBankAddressItem>

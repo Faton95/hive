@@ -67,12 +67,17 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.PERMISSION_UPDATE]: createThunkReducer(actionTypes.PERMISSION_UPDATE),
     [stateNames.PERMISSION_DELETE]: createThunkReducer(actionTypes.PERMISSION_DELETE),
 
-
     [stateNames.POSITION_LIST]: createThunkReducer(actionTypes.POSITION_LIST),
     [stateNames.POSITION_CREATE]: createThunkReducer(actionTypes.POSITION_CREATE),
     [stateNames.POSITION_ITEM]: createThunkReducer(actionTypes.POSITION_ITEM),
     [stateNames.POSITION_UPDATE]: createThunkReducer(actionTypes.POSITION_UPDATE),
     [stateNames.POSITION_DELETE]: createThunkReducer(actionTypes.POSITION_DELETE),
+    
+    [stateNames.BANK_ACCOUNT_LIST]: createThunkReducer(actionTypes.BANK_ACCOUNT_LIST),
+    [stateNames.BANK_ACCOUNT_CREATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_CREATE),
+    [stateNames.BANK_ACCOUNT_ITEM]: createThunkReducer(actionTypes.BANK_ACCOUNT_ITEM),
+    [stateNames.BANK_ACCOUNT_UPDATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_UPDATE),
+    [stateNames.BANK_ACCOUNT_DELETE]: createThunkReducer(actionTypes.BANK_ACCOUNT_DELETE),
 
 
       ...asyncReducers

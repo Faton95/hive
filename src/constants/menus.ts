@@ -9,6 +9,7 @@ export const MENU_KEYS = {
   MANUFACTURING: 'manufacturing',
   REPORTS: 'reports',
   SETTINGS: 'settings',
+  BANK_ACCOUNT: 'bankAccount',
 }
 
 export default [
@@ -38,6 +39,7 @@ export default [
       { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH },
       { title: 'Groups', url: ROUTES.GROUP_LIST_PATH },
       { title: 'Position', url: ROUTES.POSITION_LIST_PATH },
+      { title: 'Bank Account', url: ROUTES.BANK_ACCOUNT_LIST_PATH },
     ]
   }
 ]
