@@ -8,7 +8,6 @@ import { TContractItem } from 'types/models'
 import { Menu } from '../../../../components/Menu'
 import Pagination from '../../../../components/Pagination'
 import { TGetDataFromState, TData } from '../../../../types'
-import numberFormat from '../../../../utils/numberFormat'
 import dateFormat from '../../../../utils/dateFormat'
 import {
   Table,
