@@ -25,5 +25,6 @@ export { default as DateField } from './Dates/DateField'
 export { default as BillingFields } from './BillingFields'
 export { default as UniversalMultiSelectField } from './Select/UniversalMultiSelectField'
 export { default as MultiSearchField } from './Basic/MultiSearchField'
+export { default as DateRangeField } from './Dates/DateRangeField'
 
 export { Field, Form } from 'react-final-form'
