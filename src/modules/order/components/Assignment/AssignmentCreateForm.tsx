@@ -201,14 +201,14 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
               name="invoiceDeliveredBy"
               component={RadioButtonSimpleField}
               label="Billing department"
-              value="billingDepartment"
+              value="billing_department"
               type="radio"
             />
             <Field
               name="invoiceDeliveredBy"
               component={RadioButtonSimpleField}
               label="Team Leader"
-              value="teamLeader"
+              value="team_leader"
               type="radio"
             />
           </DisplayFlex>

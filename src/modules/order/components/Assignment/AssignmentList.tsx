@@ -83,10 +83,10 @@ const AssignmentList: FunctionComponent<Props> = props => {
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
+                        Change
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
+                        Delete
                       </DropdownItem>
                     </Dropdown>
                   </TableCol>
