@@ -24,7 +24,7 @@ const CardBlock = styled.div`
   flex-wrap: wrap;
 `
 const Card = styled(Box)`
-  width: 325px;
+  width: 24%;
   height: 400px;
   padding: 20px;
   margin-top: 20px;
@@ -113,6 +113,7 @@ const BankAccountList: FunctionComponent<Props> = props => {
               const code = prop('code', item)
               const address = prop('address', item)
               const bankDetails = prop('bankDetails', item)
+              console.warn(item)
               return (
                 <Card key={id}>
                   <CardHeader>

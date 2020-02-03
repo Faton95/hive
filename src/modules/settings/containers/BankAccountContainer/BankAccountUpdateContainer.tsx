@@ -6,6 +6,7 @@ import { useFetchItem, useUpdate } from '../../../../hooks'
 import * as stateNames from '../../../../constants/stateNames'
 import Layout from '../../../../components/Layouts/Layout'
 import * as ROUTES from '../../../../constants/routes'
+import {createSerializer} from '../../serializers/bankAccountSerializer'
 
 
 const BankAccountUpdateContainer = () => {
@@ -18,6 +19,7 @@ const BankAccountUpdateContainer = () => {
     action: bankAccountUpdateAction,
     stateName: stateNames.BANK_ACCOUNT_UPDATE,
     redirectUrl: ROUTES.BANK_ACCOUNT_LIST_PATH,
+    serializer: createSerializer
   })
 
   const data = prop('data', bankAccountItem)
