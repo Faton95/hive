@@ -24,7 +24,7 @@ import { Box, Dropdown, DropdownItem } from '../../../components/UI'
 import ClientListFilterForm from './ClientListFilterForm'
 
 const TagsName = styled.span`
-  background-color: lightgrey;
+  background-color: #F1F3F5;
   padding: 5px 7px;
   border-radius: 20px;
   margin-right: 5px;

@@ -1,34 +1,42 @@
 import React, { FunctionComponent } from 'react'
 import { Form } from 'react-final-form'
-import { DetailMenu } from 'components/Menu'
+import { DetailMenu } from 'components/Menu/index'
 import { Box } from 'components/UI'
 
-import { TGetDataFromState, TOnSubmit, Merge, TIdName, TGroupItem, TData } from 'types'
+import { TGetDataFromState, TOnSubmit, Merge, TGroupItem, TData, TPositionItem } from 'types'
 
-import ContractCreateForm from './ContractCreateForm'
+import AssignmentCreateForm from './AssignmentCreateForm'
 
 type Props = {
   onSubmit: TOnSubmit,
-  groupData: TGetDataFromState<TData<TGroupItem>>
+  positionData: TGetDataFromState<TData<TPositionItem>>
 }
 
 type NewPropType = Merge<TGetDataFromState<TGroupItem | null>, Props>
 
 export const fields = [
-  'name'
+  'name',
+  'client',
+  'branch',
+  'tags',
+  'originatedBy',
+  'teamLeader',
+  'workGroup',
+  'paymentDestination',
+  'bankAccount',
+  'currency'
 ]
 const ContractCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="Contract Create" />
+      <DetailMenu title="Assignment Create" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}
           render={formikProps => (
-            <ContractCreateForm
+            <AssignmentCreateForm
               {...formikProps}
-              groupData={props.groupData}
-
+              positionData={props.positionData}
             />
           )}
         />

@@ -26,7 +26,7 @@ const BranchCreateForm: FunctionComponent<Props> = props => {
           <CheckboxGroupField
             {...fieldProps}
             items={items}
-            label={'Label'}
+            label={'Permissions'}
           />
         )}
 

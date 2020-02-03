@@ -140,7 +140,6 @@ const filterArray = filter(item => isNotObject(item) || isNotEmptyObj(item))
 
 export const getSerializedData = (fields, data) =>
   compose(
-    toSnakeCase,
     fromPairs,
     map(key => {
       const defaultValue = prop(key, data)

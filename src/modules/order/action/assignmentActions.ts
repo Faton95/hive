@@ -17,7 +17,8 @@ export const assignmentListFetch = (data) => {
   }
 }
 export const assignmentCreateAction = (data) => {
-
+  console.warn(data)
+  return null
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .post(API.CONTRACT_CREATE, data)

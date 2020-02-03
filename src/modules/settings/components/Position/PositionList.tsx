@@ -1,10 +1,12 @@
 import { MENU_KEYS } from 'constants/menus'
-import { GROUP_CREATE_PATH } from 'constants/routes'
+import { POSITION_CREATE_PATH } from 'constants/routes'
 import React, { FunctionComponent } from 'react'
 import { prop, map, pathOr } from 'ramda'
-import { TUseDelete, TGetDataFromState, TData, TGroupItem } from 'types'
+import { TUseDelete, TGetDataFromState, TData } from 'types'
+import { TPositionItem, TGroupItem } from 'types/models'
 import { Menu } from 'components/Menu'
 import Pagination from 'components/Pagination'
+import styled from 'styled-components'
 
 import {
   Table,
@@ -20,9 +22,16 @@ import {
   DropdownItem
 } from 'components/UI'
 
+const Tag = styled.span`
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  border-radius: ${props => props.theme.borderRadius};
+  padding: 5px 8px;
+  background: #eff2f5;
+`
 type Props = {
-  data: TGetDataFromState<TData<TGroupItem>>;
-  filterAction: any;
+  data: TGetDataFromState<TData<TPositionItem>>;
   onEdit: (id) => void;
   deleteData: TUseDelete;
 }
@@ -30,38 +39,43 @@ type Props = {
 const EMPTY = []
 const ZERO = 0
 
-const GroupList: FunctionComponent<Props> = props => {
-  const { data, filterAction, onEdit, deleteData } = props
+const PositionList: FunctionComponent<Props> = props => {
+  const { data, onEdit, deleteData } = props
   const count = pathOr(ZERO, ['data', 'count'], data)
-  const list = pathOr<TGroupItem[]>(EMPTY, ['data', 'results'], data)
+  const list = pathOr<TPositionItem[]>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
 
   const actions = (
     <TableActions
-      createPath={GROUP_CREATE_PATH}
+      createPath={POSITION_CREATE_PATH}
     />
   )
 
   return (
     <div>
-      <Menu title="Positions" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title="Должносты" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>
               <TableCol span={1}>#</TableCol>
-              <TableCol span={4}>Name</TableCol>
+              <TableCol span={4}>наименование</TableCol>
+              <TableCol span={18}>модули</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {list.map((item) => {
+            {list.map((item: TPositionItem) => {
               const id = prop('id', item)
               const name = prop('name', item)
+              const groups = pathOr<TGroupItem[]>([], ['groups'], item)
+
+              const groupTags = map(group => <Tag key={group.id}>{group.name}</Tag>, groups)
               return (
                 <TableRow key={id} selectId={id} align="center">
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={4}>{name}</TableCol>
+                  <TableCol span={18}>{groupTags}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
@@ -83,4 +97,4 @@ const GroupList: FunctionComponent<Props> = props => {
   )
 }
 
-export default GroupList
+export default PositionList
