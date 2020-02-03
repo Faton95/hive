@@ -78,6 +78,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
+
       <DoubleField >
         <div>
           <FieldWrapper>

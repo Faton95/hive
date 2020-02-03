@@ -94,12 +94,12 @@ export const CONTRACT_DELETE = `/${CONTRACT}/%d/`
 export const CONTRACT_UPDATE = `/${CONTRACT}/%d/`
 
 
-const ASSIGMENT = `${MAIN}/assignment`
-export const ASSIGMENT_LIST = `/${ASSIGMENT}/`
-export const ASSIGMENT_CREATE = `/${ASSIGMENT}/`
-export const ASSIGMENT_ITEM = `/${ASSIGMENT}/%d/`
-export const ASSIGMENT_DELETE = `/${ASSIGMENT}/%d/`
-export const ASSIGMENT_UPDATE = `/${ASSIGMENT}/%d/`
+const ASSIGNMENT = `${MAIN}/assignment`
+export const ASSIGNMENT_LIST = `/${ASSIGNMENT}/`
+export const ASSIGNMENT_CREATE = `/${ASSIGNMENT}/`
+export const ASSIGNMENT_ITEM = `/${ASSIGNMENT}/%d/`
+export const ASSIGNMENT_DELETE = `/${ASSIGNMENT}/%d/`
+export const ASSIGNMENT_UPDATE = `/${ASSIGNMENT}/%d/`
 
 const POSITION = `${MAIN}/position`
 export const POSITION_LIST = `/${POSITION}/`

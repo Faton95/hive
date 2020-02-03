@@ -15,7 +15,7 @@ export const MENU_KEYS = {
 export default [
   {
     key: MENU_KEYS.ASSIGNMENT,
-    title: 'Orders',
+    title: 'Assignment',
     url: ROUTES.ASSIGNMENT_LIST_PATH,
     children: [
       { title: 'Assignments', url: ROUTES.ASSIGNMENT_LIST_PATH },
@@ -29,13 +29,13 @@ export default [
     children: [
     ]
   },
-  {
-    key: MENU_KEYS.CONTRACT,
-    title: 'Contracts',
-    url: ROUTES.CONTRACT_LIST_PATH,
-    children: [
-    ]
-  },
+  // {
+  //   key: MENU_KEYS.CONTRACT,
+  //   title: 'Contracts',
+  //   url: ROUTES.CONTRACT_LIST_PATH,
+  //   children: [
+  //   ]
+  // },
   {
     key: MENU_KEYS.SETTINGS,
     title: 'Settings',
