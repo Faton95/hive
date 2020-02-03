@@ -25,6 +25,14 @@ const Header = styled(DisplayFlex)`
   margin-bottom: 27px;
   border-bottom: ${props => props.theme.border};
 `
+const TagsName = styled.span`
+  background-color: lightgrey;
+  padding: 5px 7px;
+  border-radius: 20px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: inline-flex;
+`
 
 const EMPTY_ARR = []
 
@@ -45,8 +53,7 @@ const ClientDetail: FunctionComponent<Props> = props => {
   const name = prop('name', details)
   const address = prop('address', details)
   const createdDate = prop('createdDate', details)
-  const tags = pathOr(EMPTY_ARR, ['tags', 0, 'name'], details)
-
+  const tags = pathOr(EMPTY_ARR, ['tags'], details)
   const contacts = pathOr(EMPTY_ARR, ['contacts'], details)
   const contactIds = map(prop('id'), contacts)
 
@@ -68,7 +75,16 @@ const ClientDetail: FunctionComponent<Props> = props => {
             <LabeledValue labelMargin={5} label="Address">{address}</LabeledValue>
           </Col>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="Tags">{tags}</LabeledValue>
+            <LabeledValue labelMargin={5} label="Tags">
+              {
+                tags.map((tag, key) => {
+                  return (
+                    <TagsName key={key}>{tag.name}</TagsName>
+                  )
+                })
+              }
+              
+            </LabeledValue>
           </Col>
           <Col span={6}>
             <LabeledValue labelMargin={5} label="Created date">{dateFormat(createdDate)}</LabeledValue>

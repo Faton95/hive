@@ -1,5 +1,6 @@
 import { MENU_KEYS } from 'constants/menus'
 import { CLIENT_ITEM_URL, CLIENT_CREATE_PATH } from 'constants/routes'
+import styled from 'styled-components'
 import React, { FunctionComponent } from 'react'
 import { prop, map, pathOr } from 'ramda'
 import { sprintf } from 'sprintf-js'
@@ -21,6 +22,15 @@ import {
 } from '../../../components/Table'
 import { Box, Dropdown, DropdownItem } from '../../../components/UI'
 import ClientListFilterForm from './ClientListFilterForm'
+
+const TagsName = styled.span`
+  background-color: lightgrey;
+  padding: 5px 7px;
+  border-radius: 20px;
+  margin-right: 5px;
+  display: inline-flex;
+  margin-bottom: 5px;
+`
 
 type Props = {
     data: TGetDataFromState<TData<TClientItem>>;
@@ -67,12 +77,18 @@ const ClientList: FunctionComponent<Props> = props => {
               const address = prop('address', item)
               const link = sprintf(CLIENT_ITEM_URL, id)
               const name = prop('name', item)
+              const tags = pathOr(EMPTY, ['tags'], item)
+              console.warn(tags)
 
               return (
                 <TableRowLink link={link} key={id} selectId={id} align="center">
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={5}>{name}</TableCol>
-                  <TableCol span={4}>{'tags'}</TableCol>
+                  <TableCol span={4}>{tags.map((tag, key) => {
+                    return(
+                      <TagsName key={key}>{tag.name}</TagsName>
+                    )
+                  })}</TableCol>
                   <TableCol span={5}>{address}</TableCol>
                   <TableCol span={5}>{createdDate}</TableCol>
                   <TableCol span={1}>
