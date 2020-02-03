@@ -1,6 +1,7 @@
 import { MENU_KEYS } from 'constants/menus'
 import { BANK_ACCOUNT_CREATE_PATH } from 'constants/routes'
 import React, { FunctionComponent } from 'react'
+import styled from 'styled-components'
 import { prop, map, pathOr } from 'ramda'
 import { TUseDelete } from 'types'
 import { TBankAddressItem, TBankAddressList } from 'types/models'
@@ -17,6 +18,29 @@ import {
 } from '../../../../components/Table'
 import { Box, Dropdown, DropdownItem } from '../../../../components/UI'
 
+const CardBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`
+const Card = styled(Box)`
+  width: 325px;
+  height: 400px;
+  padding: 20px;
+  margin-top: 20px;
+`
+const CardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+const CardTitle = styled.div`
+  color: #8F9BB0;
+  margin-top: 20px;
+`
+const CardContent = styled.div`
+  margin-top: 5px;
+`
 type Props = {
     data: TGetDataFromState<TData<TBankAddressList>>;
     onEdit: (id) => void;
@@ -42,7 +66,7 @@ const BankAccountList: FunctionComponent<Props> = props => {
       <Menu title="Bank Account" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
-          <TableHeader>
+          {/* <TableHeader>
             <TableRow>
               <TableCol span={1}>#</TableCol>
               <TableCol span={5}>Name</TableCol>
@@ -79,9 +103,52 @@ const BankAccountList: FunctionComponent<Props> = props => {
                 </TableRow>
               )
             })}
-          </TableBody>
+          </TableBody> */}
         </Table>
       </Box>
+      <CardBlock>
+      {list.map((item) => {
+              const id = prop('id', item)
+              const name = prop('name', item)
+              const code = prop('code', item)
+              const address = prop('address', item)
+              const bankDetails = prop('bankDetails', item)
+              return (
+                <Card key={id}>
+                  <CardHeader>
+                    <div>
+                      {name}
+                    </div>
+                    <div>
+                      ({code})
+                    </div>
+                    <div>
+                      <Dropdown>
+                        <DropdownItem onClick={() => onEdit(id)}>
+                          Edit
+                        </DropdownItem>
+                        <DropdownItem onClick={() => deleteData.onSubmit(id)}>
+                          Delete
+                        </DropdownItem>
+                      </Dropdown>
+                    </div>
+                  </CardHeader>
+                  <CardTitle>
+                      Address
+                  </CardTitle>
+                  <CardContent>
+                    {address}
+                  </CardContent>
+                  <CardTitle>
+                      Bank Details
+                  </CardTitle>
+                  <CardContent>
+                    {bankDetails}
+                  </CardContent>
+                </Card>
+              )
+            })}
+        </CardBlock>
       <Pagination count={count} />
     </div>
   )
