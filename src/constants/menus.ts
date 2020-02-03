@@ -32,7 +32,7 @@ export default [
   {
     key: MENU_KEYS.CONTRACT,
     title: 'Contracts',
-    url: ROUTES.CONTRACT_CREATE_PATH,
+    url: ROUTES.CONTRACT_LIST_PATH,
     children: [
     ]
   },
