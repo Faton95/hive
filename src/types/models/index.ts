@@ -1,5 +1,6 @@
 export * from './group'
 export * from './position'
+export * from './contract'
 
 export type TIdName = {
   id: number;

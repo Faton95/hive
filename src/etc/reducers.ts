@@ -78,8 +78,6 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.POSITION_ITEM]: createThunkReducer(actionTypes.POSITION_ITEM),
     [stateNames.POSITION_UPDATE]: createThunkReducer(actionTypes.POSITION_UPDATE),
     [stateNames.POSITION_DELETE]: createThunkReducer(actionTypes.POSITION_DELETE),
-
-
       ...asyncReducers
   })
 

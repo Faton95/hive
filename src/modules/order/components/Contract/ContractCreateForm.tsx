@@ -27,12 +27,6 @@ import {
 import styled from "styled-components";
 
 
-const FeeCeiling = styled.div`
-  position: absolute;
-  top: -32px;
-  right: 0;
-`
-
 type Props = Merge<FormRenderProps, {
   positionData: TGetDataFromState<TData<TPositionItem>>
 }>

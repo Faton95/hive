@@ -10,7 +10,10 @@ import {
 } from './containers/AssigmentContainers'
 
 import {
-  ContractCreateContainer
+  ContractCreateContainer,
+  ContractListContainer,
+  ContractDetailContainer,
+  ContractUpdateContainer,
 } from './containers/ContractContainers'
 
 export default (store) => [
@@ -40,10 +43,24 @@ export default (store) => [
     path: ROUTES.ASSIGNMENT_LIST_PATH,
     component: AssignmentCreateContainer
   },
-
   {
     exact: true,
     path: ROUTES.CONTRACT_CREATE_PATH,
     component: ContractCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.CONTRACT_LIST_PATH,
+    component: ContractListContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.CONTRACT_ITEM_PATH,
+    component: ContractDetailContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.CONTRACT_UPDATE_PATH,
+    component: ContractUpdateContainer
   },
 ]
