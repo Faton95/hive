@@ -24,8 +24,20 @@ const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
   margin-bottom: 27px;
   border-bottom: ${props => props.theme.border};
+  display: flex;
+  justify-content: space-between;
 `
-
+const TagsName = styled.span`
+  background-color: #F1F3F5;
+  padding: 5px 7px;
+  border-radius: 20px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: inline-flex;
+`
+const CreatedDate = styled.div`
+  color: #8F9BB0;
+`
 const EMPTY_ARR = []
 
 type Props = {
@@ -45,8 +57,7 @@ const ClientDetail: FunctionComponent<Props> = props => {
   const name = prop('name', details)
   const address = prop('address', details)
   const createdDate = prop('createdDate', details)
-  const tags = pathOr(EMPTY_ARR, ['tags', 0, 'name'], details)
-
+  const tags = pathOr(EMPTY_ARR, ['tags'], details)
   const contacts = pathOr(EMPTY_ARR, ['contacts'], details)
   const contactIds = map(prop('id'), contacts)
 
@@ -55,6 +66,7 @@ const ClientDetail: FunctionComponent<Props> = props => {
       <DetailMenu title={'Client №' + id} />
       <Box padding="25px">
         <Header alignItems="center" justifyContent="flex-end">
+          <CreatedDate>Создано: {dateFormat(createdDate)}</CreatedDate>
           <DetailDropdown marginLeft="50px">
             <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Update</DropdownItem>
             <DropdownItem onClick={() => onDelete(id)} toggleMenu={() => null}>Delete</DropdownItem>
@@ -67,11 +79,17 @@ const ClientDetail: FunctionComponent<Props> = props => {
           <Col span={6}>
             <LabeledValue labelMargin={5} label="Address">{address}</LabeledValue>
           </Col>
-          <Col span={6}>
-            <LabeledValue labelMargin={5} label="Tags">{tags}</LabeledValue>
-          </Col>
-          <Col span={6}>
-            <LabeledValue labelMargin={5} label="Created date">{dateFormat(createdDate)}</LabeledValue>
+          <Col span={12}>
+            <LabeledValue labelMargin={5} label="Tags">
+              {
+                tags.map((tag, key) => {
+                  return (
+                    <TagsName key={key}>{tag.name}</TagsName>
+                  )
+                })
+              }
+              
+            </LabeledValue>
           </Col>
         </Row>
         <br/>

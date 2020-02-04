@@ -26,17 +26,36 @@ const Header = styled(DisplayFlex)`
   border-bottom: ${props => props.theme.border};
 `
 const Date = styled.div`
-  color: #8F9BB0;
+  display: flex;
 `
 const RowMargin = styled(Row)`
   margin-bottom: 20px;
+  margin-top: 20px;
 `
-
+const CreatedDate = styled.span`
+  background-color: #F7F8FA;
+  padding: 5px 7px;
+  border-radius: 12.5px;
+  margin-right: 20px;
+`
+const StyledDate = styled.div`
+  color: #8F9BB0;
+  margin-right: 10px;
+`
+const PreHeader = styled.div`
+  display: flex;
+  align-items: center;
+`
+const PaymentDetail = styled.span`
+  padding-bottom: 2px;
+  border-bottom: 1px dashed #8F9BB0
+`
 type Props = {
   item: TGetDataFromState<TContractItem>;
   deleteData: TUseDelete;
   onEdit: (id) => void;
 }
+
 const ContractDetail: FunctionComponent<Props> = props => {
   const {
     item,
@@ -56,11 +75,7 @@ const ContractDetail: FunctionComponent<Props> = props => {
   const billingType = path(['billingType'], details)
   const fixedFeeAmount = numberFormat(path(['fixedFeeAmount'], details))
   const hourlyFeeCeiling = numberFormat(path(['hourlyFeeCeiling'], details))
-  const bankAccountId = path(['bankAccount', 'id'], details)
   const bankAccountName = path(['bankAccount', 'name'], details)
-  const bankAccountCode = path(['bankAccount', 'code'], details)
-  const bankAccountAddress = path(['bankAccount', 'address'], details)
-  const bankAccountDetails = path(['bankAccount', 'bankDetails'], details)
 
   return (
     <>
@@ -68,14 +83,31 @@ const ContractDetail: FunctionComponent<Props> = props => {
       <Box padding="25px">
         <Header alignItems="center" justifyContent="space-between">
           <Date>
-           Created: {creatredDate}
+            <StyledDate>
+              Deadline: 
+            </StyledDate> 
+            <div>
+              {deadline}
+            </div>
           </Date>
           <DetailDropdown marginLeft="50px">
             <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Изменить</DropdownItem>
             <DropdownItem onClick={() => deleteData.onSubmit(id)} toggleMenu={() => null}>Удалить</DropdownItem>
           </DetailDropdown>
         </Header>
-
+        <PreHeader>
+        <CreatedDate>
+          # {id}
+        </CreatedDate>
+        <Date>
+            <StyledDate>
+              Created date: 
+            </StyledDate> 
+            <div>
+              {creatredDate}
+            </div>
+          </Date>
+        </PreHeader>
         <RowMargin gutter={10}>
           <Col span={6}>
             <LabeledValue labelMargin={5} label="client">{client}</LabeledValue>
@@ -84,49 +116,26 @@ const ContractDetail: FunctionComponent<Props> = props => {
             <LabeledValue labelMargin={5} label="branch">{branch}</LabeledValue>
           </Col>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="currency">{currency}</LabeledValue>
+            <LabeledValue labelMargin={5} label="bank">{bankAccountName} - {currency}</LabeledValue>
           </Col>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="payment duration">{paymentDuration} days</LabeledValue>
           </Col>
         </RowMargin>
         <RowMargin gutter={10}>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="Deadline">{deadline}</LabeledValue>
-          </Col>
-          <Col span={6}>
-            <LabeledValue labelMargin={5} label="success Fee">{successFee}</LabeledValue>
+            <LabeledValue labelMargin={5} label="Billing type">{billingType === 'fixed_fee' ? "Fixed Fee Amount" : "Hourly Fee ceiling"}</LabeledValue>
           </Col>
           <Col span={6}>
             <LabeledValue labelMargin={5} label={`${billingType === 'fixed_fee' ? "Fixed Fee Amount" : "Hourly Fee ceiling"}`}>
               {billingType === 'fixed_fee' ? fixedFeeAmount : hourlyFeeCeiling}
             </LabeledValue>
           </Col>
+          <Col span={6}>
+            <LabeledValue labelMargin={5} label="Success fee">{successFee}</LabeledValue>
+          </Col>
           <Col span={6}></Col>
         </RowMargin>
-        <h3>Bank Account</h3>
-        <div>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableCol span={1}>#</TableCol>
-                <TableCol span={5}>name</TableCol>
-                <TableCol span={5}>code</TableCol>
-                <TableCol span={5}>address</TableCol>
-                <TableCol span={8}>bank details</TableCol>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-                  <TableRow align="center">
-                    <TableCol span={1}>{bankAccountId}</TableCol>
-                    <TableCol span={5}>{bankAccountName}</TableCol>
-                    <TableCol span={5}>{bankAccountCode}</TableCol>
-                    <TableCol span={5}>{bankAccountAddress}</TableCol>
-                    <TableCol span={8}>{bankAccountDetails}</TableCol>
-                  </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+        <PaymentDetail>Payment expected in <b>{paymentDuration}</b> days after invoice delivery.</PaymentDetail>
       </Box>
     </>
   )
