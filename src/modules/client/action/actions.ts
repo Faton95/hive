@@ -3,72 +3,71 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../../util
 import * as API from '../../../constants/api'
 import * as actionTypes from '../../../constants/actionTypes'
 
-export const contractListFetch = (data) => {
+export const clientListFetch = (data) => {
+
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .get(API.CONTRACT_LIST, { params: data })
+      .get(API.CLIENT_LIST, { params: data })
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.CONTRACT_LIST
+      type: actionTypes.CLIENT_LIST
     })
   }
 }
-export const contractCreateAction = (data) => {
-
+export const clientCreateAction = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .post(API.CONTRACT_CREATE, data)
+      .post(API.CLIENT_CREATE, data)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.CONTRACT_CREATE
+      type: actionTypes.CLIENT_CREATE
     })
   }
 }
 
-export const contractUpdateAction = (id, data) => {
+export const clientUpdateAction = (id, data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .put(sprintf(API.CONTRACT_UPDATE, id), data)
+      .put(sprintf(API.CLIENT_UPDATE, id), data)
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.CONTRACT_UPDATE
+      type: actionTypes.CLIENT_UPDATE
     })
   }
 }
-export const contractItemFetch = (id) => {
+export const clientItemFetch = (id) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .get(sprintf(API.CONTRACT_ITEM, id))
+      .get(sprintf(API.CLIENT_ITEM, id))
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.CONTRACT_ITEM
+      type: actionTypes.CLIENT_ITEM
     })
   }
 }
 
-export const contractDeleteAction = (id) => {
+export const clientDeleteAction = (id) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
-      .delete(sprintf(API.CONTRACT_DELETE, id))
+      .delete(sprintf(API.CLIENT_DELETE, id))
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
     return dispatch({
       payload,
-      type: actionTypes.CONTRACT_DELETE
+      type: actionTypes.CLIENT_DELETE
     })
   }
 }
-

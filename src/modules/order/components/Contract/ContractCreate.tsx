@@ -24,7 +24,7 @@ export const fields = [
   'client',
   'branch',
   'bankAccount',
-  'currency'
+  'currency',
 ]
 const ContractCreate: FunctionComponent<NewPropType> = props => {
   return (
