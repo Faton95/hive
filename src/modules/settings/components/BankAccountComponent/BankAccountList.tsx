@@ -37,9 +37,15 @@ const CardHeader = styled.div`
 const CardTitle = styled.div`
   color: #8F9BB0;
   margin-top: 20px;
+  font-size: 13pt;
 `
 const CardContent = styled.div`
   margin-top: 5px;
+  line-height: 1.5
+`
+const BankDetails = styled.pre`
+  white-space: pre-wrap;
+  line-height: 1.5
 `
 type Props = {
     data: TGetDataFromState<TData<TBankAddressList>>;
@@ -144,7 +150,9 @@ const BankAccountList: FunctionComponent<Props> = props => {
                       Bank Details
                   </CardTitle>
                   <CardContent>
-                    {bankDetails}
+                    <BankDetails>
+                      {bankDetails}
+                    </BankDetails>
                   </CardContent>
                 </Card>
               )
