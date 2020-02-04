@@ -5,41 +5,41 @@ import {
   useFilterActions,
   useDelete
 } from '../../../../hooks'
-import { contractListFetch, contractDeleteAction } from '../../action/contractActions'
+import { assignmentListFetch, assignmentDeleteAction } from '../../action/assignmentActions'
 import * as stateNames from '../../../../constants/stateNames'
 import Layout from '../../../../components/Layouts/Layout'
-import ContractList from '../../components/Contract/ContractList'
-import { fields } from '../../../order/components/Contract/ContractListFilterForm'
+import AssignmentList from '../../components/Assignment/AssignmentList'
+import { fields } from '../../components/Assignment/AssignmentListFilterForm'
 import { DEFAULT_PICK_PARAMS } from '../../../../utils/isEquals'
 import * as ROUTES from '../../../../constants/routes'
 
 const PICK_PARAMS = [
   ...DEFAULT_PICK_PARAMS,
-  'branch',
+  'contract',
   'client',
-  'range'
+  'branch',
+  'teamLeader',
+  'isBillable'
 ]
-
-const ContractListContainer = props => {
+const AssignmentListContainer = props => {
   const data = useFetchList({
-    action: contractListFetch,
-    stateName: stateNames.CONTRACT_LIST,
+    action: assignmentListFetch,
+    stateName: stateNames.ASSIGNMENT_LIST,
     pickParams: PICK_PARAMS
   })
-  console.warn(data)
 
   const deleteData = useDelete({
-    stateName: stateNames.CONTRACT_DELETE,
-    action: contractDeleteAction,
-    successAction: contractListFetch
+    stateName: stateNames.ASSIGNMENT_DELETE,
+    action: assignmentDeleteAction,
+    successAction: assignmentListFetch
   })
 
   const filterAction = useFilterActions({ fields })
 
-  const onEdit = (id) => props.history.push(sprintf(ROUTES.CONTRACT_UPDATE_URL, id))
+  const onEdit = (id) => props.history.push(sprintf(ROUTES.ASSIGNMENT_UPDATE_URL, id))
   return (
     <Layout>
-      <ContractList
+      <AssignmentList
         data={data}
         filterAction={filterAction}
         onEdit={onEdit}
@@ -49,4 +49,4 @@ const ContractListContainer = props => {
   )
 }
 
-export default ContractListContainer
+export default AssignmentListContainer

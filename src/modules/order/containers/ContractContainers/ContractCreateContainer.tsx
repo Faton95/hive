@@ -22,7 +22,7 @@ const ContractCreateContainer = props => {
     redirectUrl: ROUTES.CONTRACT_LIST_PATH,
     serializer: createSerializer
   })
-
+  
   const positionData = useFetchList<TData<TPositionItem>>({
     stateName: stateNames.POSITION_LIST,
     action: positionListFetch

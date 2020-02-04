@@ -6,7 +6,9 @@ import {
   OrderUpdateContainer
 } from './containers'
 import {
-  AssignmentCreateContainer
+  AssignmentCreateContainer,
+  AssignmentListContainer,
+  AssignmentUpdateContainer
 } from './containers/AssigmentContainers'
 
 import {
@@ -37,11 +39,20 @@ export default (store) => [
     path: ROUTES.ORDER_UPDATE_PATH,
     component: OrderUpdateContainer
   },
-
   {
     exact: true,
     path: ROUTES.ASSIGNMENT_LIST_PATH,
+    component: AssignmentListContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ASSIGNMENT_CREATE_PATH,
     component: AssignmentCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ASSIGNMENT_UPDATE_PATH,
+    component: AssignmentUpdateContainer
   },
   {
     exact: true,

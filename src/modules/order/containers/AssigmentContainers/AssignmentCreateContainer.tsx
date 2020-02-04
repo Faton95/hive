@@ -14,7 +14,7 @@ import {createSerializer} from '../../serializers/assignmentSerializer'
 const AssignmentCreateContainer = props => {
 
   const data = useCreate({
-    stateName: stateNames.ASSIGMENT_CREATE,
+    stateName: stateNames.ASSIGNMENT_CREATE,
     action: assignmentCreateAction,
     redirectUrl: ROUTES.ASSIGNMENT_LIST_PATH,
     serializer: createSerializer
