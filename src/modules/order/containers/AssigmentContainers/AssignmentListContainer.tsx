@@ -15,8 +15,11 @@ import * as ROUTES from '../../../../constants/routes'
 
 const PICK_PARAMS = [
   ...DEFAULT_PICK_PARAMS,
-  'status',
-  'client'
+  'contract',
+  'client',
+  'branch',
+  'teamLeader',
+  'isBillable'
 ]
 const AssignmentListContainer = props => {
   const data = useFetchList({

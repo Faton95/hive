@@ -4,26 +4,54 @@ import { Col, Row } from '../../../../components/UI'
 import {
   Field,
   UniversalStaticSelectField,
-  ClientSearchField
+  UniversalSearchField,
+  CheckboxBordered
 } from '../../../../components/Form'
+import * as API from '../../../../constants/api'
 
-export const fields = ['status', 'client']
+export const fields = ['contract', 'client', 'branch', 'teamLeader', 'isBillable']
 const AssignmentListFilterForm = props => {
   return (
     <Row gutter={20}>
       <Col span={6}>
         <Field
-          component={UniversalStaticSelectField}
-          list={CONST.ORDER_STATUS_LIST}
-          name="status"
-          label="Статус"
+          component={UniversalSearchField}
+          name="contract"
+          label="contract"
+          api={API.CONTRACT_LIST}
         />
       </Col>
       <Col span={6}>
         <Field
-          component={ClientSearchField}
+          component={UniversalSearchField}
           name="client"
-          label="Клиелт"
+          label="client"
+          api={API.CLIENT_LIST}
+        />
+      </Col>
+      <Col span={6}>
+        <Field
+          component={UniversalSearchField}
+          name="branch"
+          label="Branch"
+          api={API.BRANCH_LIST}
+        />
+      </Col>
+      <Col span={6}>
+        <Field
+          component={UniversalSearchField}
+          name="teamLeader"
+          label="Team Leader"
+          api={API.STAFF_LIST}
+        />
+      </Col>
+      <Col span={6}>
+        <Field
+          name="isBillable"
+          label={{checkbox: "Billable", field: "Billing"}}
+          component={CheckboxBordered}
+          defaultValue={true}
+          type="checkbox"
         />
       </Col>
     </Row>
