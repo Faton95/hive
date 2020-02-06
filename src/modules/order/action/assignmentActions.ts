@@ -71,3 +71,43 @@ export const assignmentDeleteAction = (id) => {
   }
 }
 
+export const feeListFetch = (data) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(API.FEE_LIST, { params: data })
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.FEE_LIST
+    })
+  }
+}
+export const feeCreateAction = (data) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .post(API.FEE_CREATE, data)
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.FEE_CREATE
+    })
+  }
+}
+
+export const feeDeleteAction = (id) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .delete(sprintf(API.FEE_DELETE, id))
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.FEE_DELETE
+    })
+  }
+}

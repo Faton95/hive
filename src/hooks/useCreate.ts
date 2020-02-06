@@ -1,13 +1,13 @@
 import { equals } from 'ramda'
-import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { TGetDataFromState, TUseCreateParams } from 'types'
+import { TUseCreate } from 'types/hooks'
 import { getDataFromState } from '../utils/get'
 import toSnakeCase from '../utils/toSnakeCase'
 import { mapResponseToFormError } from '../utils/form'
 import { useTypedSelector, usePromiseDispatch } from '../etc/reducers'
-import { TGetDataFromState, TUseCreateParams } from '../types'
 
-const useCreate = (params: TUseCreateParams) => {
+const useCreate = (params: TUseCreateParams): TUseCreate => {
   const {
     action,
     stateName,

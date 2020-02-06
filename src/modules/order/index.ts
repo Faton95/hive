@@ -8,7 +8,8 @@ import {
 import {
   AssignmentCreateContainer,
   AssignmentListContainer,
-  AssignmentUpdateContainer
+  AssignmentUpdateContainer,
+  AssignmentDetailContainer
 } from './containers/AssigmentContainers'
 
 import {
@@ -53,6 +54,11 @@ export default (store) => [
     exact: true,
     path: ROUTES.ASSIGNMENT_UPDATE_PATH,
     component: AssignmentUpdateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ASSIGNMENT_ITEM_PATH,
+    component: AssignmentDetailContainer
   },
   {
     exact: true,

@@ -108,3 +108,10 @@ export const POSITION_ITEM = `/${POSITION}/%d/`
 export const POSITION_DELETE = `/${POSITION}/%d/`
 export const POSITION_UPDATE = `/${POSITION}/%d/`
 
+const FEE = `${MAIN}/fee`
+export const FEE_LIST = `/${FEE}/`
+export const FEE_CREATE = `/${FEE}/`
+export const FEE_ITEM = `/${FEE}/%d/`
+export const FEE_DELETE = `/${FEE}/%d/`
+export const FEE_UPDATE = `/${FEE}/%d/`
+

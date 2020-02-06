@@ -91,3 +91,9 @@ export const BANK_ACCOUNT_ITEM = 'BANK_ACCOUNT_ITEM'
 export const BANK_ACCOUNT_DELETE = 'BANK_ACCOUNT_DELETE'
 export const BANK_ACCOUNT_UPDATE = 'BANK_ACCOUNT_UPDATE'
 
+export const FEE_CREATE = 'FEE_CREATE'
+export const FEE_LIST = 'FEE_LIST'
+export const FEE_ITEM = 'FEE_ITEM'
+export const FEE_DELETE = 'FEE_DELETE'
+export const FEE_UPDATE = 'FEE_UPDATE'
+

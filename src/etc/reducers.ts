@@ -91,6 +91,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.BANK_ACCOUNT_UPDATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_UPDATE),
     [stateNames.BANK_ACCOUNT_DELETE]: createThunkReducer(actionTypes.BANK_ACCOUNT_DELETE),
 
+    [stateNames.FEE_LIST]: createThunkReducer(actionTypes.FEE_LIST),
+    [stateNames.FEE_CREATE]: createThunkReducer(actionTypes.FEE_CREATE),
+    [stateNames.FEE_ITEM]: createThunkReducer(actionTypes.FEE_ITEM),
+    [stateNames.FEE_UPDATE]: createThunkReducer(actionTypes.FEE_UPDATE),
+    [stateNames.FEE_DELETE]: createThunkReducer(actionTypes.FEE_DELETE),
+
 
       ...asyncReducers
   })
