@@ -8,7 +8,7 @@ const SignInContainer = props => {
   const dispatch = useDispatch()
   const onLogin = (data) => {
     return dispatch(loginAction(data))
-      .then(() => props.history.replace(ROUTES.ORDER_LIST_PATH))
+      .then(() => props.history.replace(ROUTES.ASSIGNMENT_LIST_PATH))
 
     //      .then(({ value }) => dispatch(userInfoFetch(value.token)))
   }

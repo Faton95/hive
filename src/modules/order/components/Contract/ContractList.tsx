@@ -55,8 +55,7 @@ const ContractList: FunctionComponent<Props> = props => {
               <TableCol span={1}>#</TableCol>
               <TableCol span={6}>Branch</TableCol>
               <TableCol span={6}>Client</TableCol>
-              <TableCol span={5}>Deadline</TableCol>
-              <TableCol span={5}>Payment Date</TableCol>
+              <TableCol span={10}>Deadline</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -74,8 +73,7 @@ const ContractList: FunctionComponent<Props> = props => {
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={6}>{branch}</TableCol>
                   <TableCol span={6}>{client}</TableCol>
-                  <TableCol span={5}>{deadline}</TableCol>
-                  <TableCol span={5}>{paymentDate}</TableCol>
+                  <TableCol span={10}>{deadline}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
