@@ -8,8 +8,6 @@ import { AsyncReducers, TGetDataFromState } from '../types'
 import { TOrderItem } from 'types/models'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
 
-
-const LOGIN = 'login'
 export type RootState = {
   orderList: TGetDataFromState<TOrderItem>;
   login: TGetDataFromState<any>;
@@ -18,7 +16,7 @@ export type RootState = {
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
     confirmDialog: confirmDialogReducer,
-    [LOGIN]: createThunkReducer(actionTypes.LOGIN),
+    [stateNames.LOGIN]: createThunkReducer(actionTypes.LOGIN),
     [stateNames.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
     [stateNames.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
     [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
@@ -84,7 +82,7 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.ASSIGNMENT_ITEM]: createThunkReducer(actionTypes.ASSIGNMENT_ITEM),
     [stateNames.ASSIGNMENT_UPDATE]: createThunkReducer(actionTypes.ASSIGNMENT_UPDATE),
     [stateNames.ASSIGNMENT_DELETE]: createThunkReducer(actionTypes.ASSIGNMENT_DELETE),
-    
+
     [stateNames.BANK_ACCOUNT_LIST]: createThunkReducer(actionTypes.BANK_ACCOUNT_LIST),
     [stateNames.BANK_ACCOUNT_CREATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_CREATE),
     [stateNames.BANK_ACCOUNT_ITEM]: createThunkReducer(actionTypes.BANK_ACCOUNT_ITEM),

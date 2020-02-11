@@ -5,7 +5,7 @@ export const API_PROTOCOL = 'http'
 export const API_URL = `${API_PROTOCOL}://${API_HOST}`
 
 const MAIN = 'main'
-export const CHECK_TOKEN = '/main/client/check_token/'
+export const CHECK_TOKEN = '/main/check_token/'
 export const LOGIN = `${MAIN}/login/`
 export const LOGOUT = `${MAIN}/logout/`
 

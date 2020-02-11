@@ -1,3 +1,5 @@
+export const LOGIN = 'login'
+
 export const ORDER_LIST = 'orderList'
 export const ORDER_ITEM = 'orderItem'
 export const ORDER_CREATE = 'orderCreate'

@@ -54,7 +54,7 @@ const SignIn = props => {
     <LoginLayout>
       <Wrapper>
         <Logo>
-          Lochin
+          Hive
         </Logo>
         <Intro>
           Property management system
