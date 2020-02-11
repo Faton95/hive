@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
 import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux'
 import { compose, forEach, toPairs } from 'ramda'
+import { TOrderItem } from 'types/models'
 import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
-import { TOrderItem } from 'types/models'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
-
 
 const LOGIN = 'login'
 export type RootState = {
@@ -84,7 +83,7 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.ASSIGNMENT_ITEM]: createThunkReducer(actionTypes.ASSIGNMENT_ITEM),
     [stateNames.ASSIGNMENT_UPDATE]: createThunkReducer(actionTypes.ASSIGNMENT_UPDATE),
     [stateNames.ASSIGNMENT_DELETE]: createThunkReducer(actionTypes.ASSIGNMENT_DELETE),
-    
+
     [stateNames.BANK_ACCOUNT_LIST]: createThunkReducer(actionTypes.BANK_ACCOUNT_LIST),
     [stateNames.BANK_ACCOUNT_CREATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_CREATE),
     [stateNames.BANK_ACCOUNT_ITEM]: createThunkReducer(actionTypes.BANK_ACCOUNT_ITEM),
@@ -97,8 +96,13 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.FEE_UPDATE]: createThunkReducer(actionTypes.FEE_UPDATE),
     [stateNames.FEE_DELETE]: createThunkReducer(actionTypes.FEE_DELETE),
 
+    [stateNames.EXPENSE_LIST]: createThunkReducer(actionTypes.EXPENSE_LIST),
+    [stateNames.EXPENSE_CREATE]: createThunkReducer(actionTypes.EXPENSE_CREATE),
+    [stateNames.EXPENSE_ITEM]: createThunkReducer(actionTypes.EXPENSE_ITEM),
+    [stateNames.EXPENSE_UPDATE]: createThunkReducer(actionTypes.EXPENSE_UPDATE),
+    [stateNames.EXPENSE_DELETE]: createThunkReducer(actionTypes.EXPENSE_DELETE),
 
-      ...asyncReducers
+    ...asyncReducers
   })
 
 export const injectReducer = (store, { key, reducer }) => {

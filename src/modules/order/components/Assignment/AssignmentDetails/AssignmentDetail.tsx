@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-import { prop } from 'ramda'
+import { prop, path, concat, pathOr, map, groupBy, toPairs, pipe } from 'ramda'
 import { DetailMenu } from 'components/Menu'
 import {
   DisplayFlex
@@ -20,8 +20,8 @@ import { TAssignmentItem } from 'types/models/assignment'
 import { TGetDataFromState, TUseDelete, TOnSubmit } from 'types'
 import { TUseCreate } from 'types/hooks'
 import { Tab, Tabs } from 'components/Tabs'
-import { Merge } from '../../../../../types/utils'
 import AssignmentFeeExpenses from './AssignmentFeeExpensesCreate'
+import AssignmentDetailsInfo from './AssignmentDetailsInfo'
 
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
@@ -34,24 +34,41 @@ const MainInfo = styled.div`
 `
 const EMPTY_ARR = []
 
-type onCreate = Merge<TGetDataFromState<any>, {onSubmit: TOnSubmit}>
 type Props = {
-  onSubmit: TOnSubmit;
   data: TGetDataFromState<TAssignmentItem>;
   deleteData: TUseDelete;
-  onCreate: TUseCreate;
+  onFeeCreate: TUseCreate;
+  feeData: TGetDataFromState<TAssignmentItem>;
+  onExpenseCreate: TUseCreate;
+  expenseData: TGetDataFromState<TAssignmentItem>;
 }
 
 const AssignmentDetail: FunctionComponent<Props> = props => {
   const {
     data,
     deleteData,
-    onSubmit,
-    onCreate
+    onFeeCreate,
+    feeData,
+    onExpenseCreate,
+    expenseData
   } = props
+
+  const fees = pathOr([], ['data', 'results'], feeData)
+  const expenses = pathOr([], ['data', 'results'], expenseData)
+  const feesExpencesData = concat(fees, expenses)
+  const ids = map(prop('id'), feesExpencesData)
 
   const details = prop('data', data)
   const id = prop('id', details)
+
+  const byId = groupBy(path(['user', 'id']), feesExpencesData)
+  const sortedArr = toPairs(byId)
+
+  pipe(
+    toPairs,
+    map(prop('0'))
+  )(byId)
+
 
   return (
     <>
@@ -64,37 +81,42 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
         </Header>
         <Tabs initialValue="fees">
           <Tab label="Fees & expences" value="fees">
-            <AssignmentFeeExpenses onSubmit={onSubmit} />
+            <AssignmentFeeExpenses
+              onFeeCreate={onFeeCreate.onSubmit}
+              onExpenseCreate={onExpenseCreate.onSubmit}
+            />
+            <div>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableCol span={6}>Performer</TableCol>
+                    <TableCol span={6}>Hours spend</TableCol>
+                    <TableCol span={6}>Expenses</TableCol>
+                    <TableCol span={6}>Total(UZS)</TableCol>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {sortedArr.map((item, key) => {
+                    return (
+                      <TableRow align="center" key={key}>
+                        <TableCol span={6}>332</TableCol>
+                        <TableCol span={6}>3321</TableCol>
+                        <TableCol span={6}>123</TableCol>
+                        <TableCol span={6}>332211</TableCol>
+                      </TableRow>
+                    )
+                  })}
+                </TableBody>
+              </Table>
+            </div>
           </Tab>
           <Tab label="Assignment Details" value="assignment">
-            <MainInfo>
-              123
-            </MainInfo>
+            <AssignmentDetailsInfo item={data} />
           </Tab>
           <Tab label="Comments" value="comments">
             322
           </Tab>
         </Tabs>
-        <div>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableCol span={6}>Наименование</TableCol>
-                <TableCol span={6}>Цена</TableCol>
-                <TableCol span={6}>Кол-во</TableCol>
-                <TableCol span={6}>Сумма</TableCol>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow align="center">
-                <TableCol span={6}>321</TableCol>
-                <TableCol span={6}>3321</TableCol>
-                <TableCol span={6}>123</TableCol>
-                <TableCol span={6}>332211</TableCol>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
       </Box>
     </>
   )

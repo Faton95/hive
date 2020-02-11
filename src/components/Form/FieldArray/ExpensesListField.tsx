@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react'
 import styled from 'styled-components'
-import {pathOr, path, propOr, map} from 'ramda'
-import { 
-  Field, 
-  InputField, 
-  DateField, 
+import { pathOr, path, propOr, map } from 'ramda'
+import {
+  Field,
+  InputField,
+  DateField,
   DurationField,
   UniversalStaticSelectField
 } from '../index'
-import RemoveButton from './RemoveButton'
 import { Table, TableRow, TableCol, TableHeader, TableBody, TableColRight as TableColUI } from '../../Table'
-import FieldArrayHeader from './FieldArrayHeader'
 import { Button } from '../../UI'
 import * as CONST from '../../../constants/backend'
+import FieldArrayHeader from './FieldArrayHeader'
+import RemoveButton from './RemoveButton'
 
 const HeaderRow = styled(TableRow)`
   padding-left: 30px;
@@ -28,10 +28,10 @@ const ExpensesListField = props => {
   const onRemove = index => fields.remove(index)
 
   const values: [] = propOr([], 'value', fields)
-    
+
   return (
     <div>
-      <FieldArrayHeader title={'Expenses'} onAdd={onAdd}/>
+      <FieldArrayHeader title="Expenses" onAdd={onAdd} />
       <Table gutter={20} selection={false} list={values}>
         <TableBody>
           {fields.map((name, index) => {
@@ -52,7 +52,7 @@ const ExpensesListField = props => {
                     placeholder="Description"
                   />
                 </div>
-                <br/>
+                <br />
                 <TableRow>
                   <TableCol span={11} data-cy={`expenses-${index}`}>
                     <Field
@@ -61,20 +61,20 @@ const ExpensesListField = props => {
                       placeholder="Date"
                     />
                   </TableCol>
-                <TableCol span={12} data-cy={`expenses-${index}`}>
-                  <Field
-                    name={`${name}amount`}
-                    component={InputField}
-                    placeholder="Amount"
-                  />
-                </TableCol>
-                <TableColRight span={1}>
-                  <RemoveButton onRemove={() => onRemove(index)} />
-                </TableColRight>
-              </TableRow>
-              <TableRow> 
-                <Button type="submit">Save</Button>
-              </TableRow>
+                  <TableCol span={12} data-cy={`expenses-${index}`}>
+                    <Field
+                      name={`${name}amount`}
+                      component={InputField}
+                      placeholder="Amount"
+                    />
+                  </TableCol>
+                  <TableColRight span={1}>
+                    <RemoveButton onRemove={() => onRemove(index)} />
+                  </TableColRight>
+                </TableRow>
+                <TableRow>
+                  <Button type="submit">Save</Button>
+                </TableRow>
               </div>
             )
           })}

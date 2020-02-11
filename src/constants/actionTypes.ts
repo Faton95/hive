@@ -97,3 +97,8 @@ export const FEE_ITEM = 'FEE_ITEM'
 export const FEE_DELETE = 'FEE_DELETE'
 export const FEE_UPDATE = 'FEE_UPDATE'
 
+export const EXPENSE_CREATE = 'EXPENSE_CREATE'
+export const EXPENSE_LIST = 'EXPENSE_LIST'
+export const EXPENSE_ITEM = 'EXPENSE_ITEM'
+export const EXPENSE_DELETE = 'EXPENSE_DELETE'
+export const EXPENSE_UPDATE = 'EXPENSE_UPDATE'

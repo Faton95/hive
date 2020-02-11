@@ -1,17 +1,17 @@
+
 import { path, pipe, prop, map, propOr } from 'ramda'
-import { getSerializedData } from 'utils/get'
-import { fields } from '../components/Assignment/AssignmentCreate'
+
+import { getSerializedData, getParamFromHistory } from 'utils/get'
 import toSnakeCase from 'utils/toSnakeCase'
-import dateFormat from '../../../utils/dateFormat'
 
-export const createSerializer = data => {
-  console.warn(data)
-  // const createdDate = dateFormat(path(['createdDate'], data))
+import { fields } from '../components/Assignment/AssignmentCreate'
 
+export const createSerializer = (assigment, data) => {
+  const fees = path(['fees'], data)
   const fieldsData = getSerializedData(fields, data)
-
   return toSnakeCase({
     ...fieldsData,
-    // createdDate
+    assigment,
+    fees
   })
 }

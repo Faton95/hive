@@ -4,45 +4,56 @@ import arrayMutators from 'final-form-arrays'
 import { TOnSubmit } from 'types'
 import { FieldArray } from 'react-final-form-arrays'
 import {
+  DoubleField
+} from 'components/StyledElems'
+import {
   FeesListField,
   ExpensesListField
 } from '../../../../../components/Form'
-import {
-  DoubleField
-} from 'components/StyledElems'
 
 type Props = {
-  onSubmit: TOnSubmit,
+    onFeeCreate: TOnSubmit;
+    onExpenseCreate: TOnSubmit;
 }
 
 export const fields = [
   'fees',
-  'cashier'
+  'expenses'
 ]
 
 const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
   return (
     <div>
+      <DoubleField>
         <Form
-          onSubmit={props.onSubmit}
+          onSubmit={props.onFeeCreate}
           mutators={{
             ...arrayMutators
           }}
           render={formikProps => (
-            <div>
-              <DoubleField >
-                <FieldArray
-                  name="fees"
-                  component={FeesListField}
-                />
-                <FieldArray
-                  name="cashier"
-                  component={ExpensesListField}
-                />
-              </DoubleField>
-            </div>
+            <form onSubmit={formikProps.handleSubmit}>
+              <FieldArray
+                name="fees"
+                component={FeesListField}
+              />
+            </form>
           )}
         />
+        <Form
+          onSubmit={props.onExpenseCreate}
+          mutators={{
+            ...arrayMutators
+          }}
+          render={formikProps => (
+            <form onSubmit={formikProps.handleSubmit}>
+              <FieldArray
+                name="expenses"
+                component={ExpensesListField}
+              />
+            </form>
+          )}
+        />
+      </DoubleField>
     </div>
   )
 }
