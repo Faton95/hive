@@ -19,6 +19,14 @@ export const CLIENT_ITEM_URL = `/${CLIENT}/%d`
 export const CLIENT_UPDATE_PATH = `/${CLIENT}/${ID}/update`
 export const CLIENT_UPDATE_URL = `/${CLIENT}/%d/update`
 
+export const STAFF = 'staff'
+export const STAFF_LIST_PATH = `/${STAFF}`
+export const STAFF_CREATE_PATH = `/${STAFF}/create`
+export const STAFF_ITEM_PATH = `/${STAFF}/${ID}`
+export const STAFF_ITEM_URL = `/${STAFF}/%d`
+export const STAFF_UPDATE_PATH = `/${STAFF}/${ID}/update`
+export const STAFF_UPDATE_URL = `/${STAFF}/%d/update`
+
 export const TAGS = 'tags'
 export const TAGS_LIST_PATH = `/${TAGS}`
 export const TAGS_CREATE_PATH = `/${TAGS}/create`

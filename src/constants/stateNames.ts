@@ -48,7 +48,6 @@ export const PERMISSION_CREATE = 'permissionCreate'
 export const PERMISSION_UPDATE = 'permissionUpdate'
 export const PERMISSION_DELETE = 'permissionDelete'
 
-
 export const CONTRACT_LIST = 'contractList'
 export const CONTRACT_ITEM = 'contractItem'
 export const CONTRACT_CREATE = 'contractCreate'
