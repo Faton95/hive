@@ -11,6 +11,7 @@ export const MENU_KEYS = {
   SETTINGS: 'settings',
   BANK_ACCOUNT: 'bankAccount',
   CLIENT: 'client',
+  OUTSOURCE: 'outsource'
 }
 
 export default [
@@ -27,6 +28,13 @@ export default [
     key: MENU_KEYS.CLIENT,
     title: 'Client',
     url: ROUTES.CLIENT_LIST_PATH,
+    children: [
+    ]
+  },
+  {
+    key: MENU_KEYS.OUTSOURCE,
+    title: 'Outsource',
+    url: ROUTES.OUTSOURCE_LIST_PATH,
     children: [
     ]
   },

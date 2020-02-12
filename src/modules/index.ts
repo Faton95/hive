@@ -3,6 +3,7 @@ import order from './order'
 import settings from './settings'
 import Main from './Main'
 import client from './client'
+import outsource from './outsource'
 
 const Routes = store => [
   {
@@ -17,7 +18,8 @@ const Routes = store => [
   },
   ...order(store),
   ...settings(store),
-  ...client(store)
+  ...client(store),
+  ...outsource(store)
 ]
 
 export default Routes

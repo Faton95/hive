@@ -19,6 +19,14 @@ export const CLIENT_ITEM_URL = `/${CLIENT}/%d`
 export const CLIENT_UPDATE_PATH = `/${CLIENT}/${ID}/update`
 export const CLIENT_UPDATE_URL = `/${CLIENT}/%d/update`
 
+export const OUTSOURCE = 'outsource'
+export const OUTSOURCE_LIST_PATH = `/${OUTSOURCE}`
+export const OUTSOURCE_CREATE_PATH = `/${OUTSOURCE}/create`
+export const OUTSOURCE_ITEM_PATH = `/${OUTSOURCE}/${ID}`
+export const OUTSOURCE_ITEM_URL = `/${OUTSOURCE}/%d`
+export const OUTSOURCE_UPDATE_PATH = `/${OUTSOURCE}/${ID}/update`
+export const OUTSOURCE_UPDATE_URL = `/${OUTSOURCE}/%d/update`
+
 export const TAGS = 'tags'
 export const TAGS_LIST_PATH = `/${TAGS}`
 export const TAGS_CREATE_PATH = `/${TAGS}/create`

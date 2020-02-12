@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux'
 import { compose, forEach, toPairs } from 'ramda'
+import { TOrderItem } from 'types/models'
 import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
-import { TOrderItem } from 'types/models'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
 
 export type RootState = {
@@ -71,6 +71,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.CLIENT_UPDATE]: createThunkReducer(actionTypes.CLIENT_UPDATE),
     [stateNames.CLIENT_DELETE]: createThunkReducer(actionTypes.CLIENT_DELETE),
 
+    [stateNames.OUTSOURCE_LIST]: createThunkReducer(actionTypes.OUTSOURCE_LIST),
+    [stateNames.OUTSOURCE_CREATE]: createThunkReducer(actionTypes.OUTSOURCE_CREATE),
+    [stateNames.OUTSOURCE_ITEM]: createThunkReducer(actionTypes.OUTSOURCE_ITEM),
+    [stateNames.OUTSOURCE_UPDATE]: createThunkReducer(actionTypes.OUTSOURCE_UPDATE),
+    [stateNames.OUTSOURCE_DELETE]: createThunkReducer(actionTypes.OUTSOURCE_DELETE),
+
     [stateNames.POSITION_LIST]: createThunkReducer(actionTypes.POSITION_LIST),
     [stateNames.POSITION_CREATE]: createThunkReducer(actionTypes.POSITION_CREATE),
     [stateNames.POSITION_ITEM]: createThunkReducer(actionTypes.POSITION_ITEM),
@@ -89,8 +95,7 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.BANK_ACCOUNT_UPDATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_UPDATE),
     [stateNames.BANK_ACCOUNT_DELETE]: createThunkReducer(actionTypes.BANK_ACCOUNT_DELETE),
 
-
-      ...asyncReducers
+    ...asyncReducers
   })
 
 export const injectReducer = (store, { key, reducer }) => {
