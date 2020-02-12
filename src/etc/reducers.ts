@@ -11,12 +11,14 @@ import confirmDialogReducer from '../components/ConfirmDialog/reducer'
 export type RootState = {
   orderList: TGetDataFromState<TOrderItem>;
   login: TGetDataFromState<any>;
+  userInfo: any
 }
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
     confirmDialog: confirmDialogReducer,
     [stateNames.LOGIN]: createThunkReducer(actionTypes.LOGIN),
+    [stateNames.USER_INFO]: createThunkReducer(actionTypes.USER_INFO),
     [stateNames.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
     [stateNames.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
     [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),

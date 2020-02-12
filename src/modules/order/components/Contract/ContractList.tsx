@@ -47,7 +47,7 @@ const ContractList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Contracts" module={MENU_KEYS.CONTRACT} active={MENU_KEYS.CONTRACT} />
+      <Menu title="Contracts" module={MENU_KEYS.ASSIGNMENT} active={MENU_KEYS.ASSIGNMENT} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>

@@ -59,13 +59,23 @@ const SignIn = props => {
         <Intro>
           Property management system
         </Intro>
+        <form>
         <Box>
           <Input placeholder="Введите логин" name="username" onChange={onChange} />
           <Input type="password" placeholder="Введите пароль" name="password" onChange={onChange} />
           <DisplayFlex align="center" justify="space-between">
-            <Button fullWidth={true} onClick={() => onLogin(state)}>войти</Button>
+            <Button
+              fullWidth={true}
+              type="submit"
+              onClick={ev => {
+                ev.preventDefault()
+                onLogin(state)
+            }}>
+              войти
+            </Button>
           </DisplayFlex>
         </Box>
+        </form>
       </Wrapper>
     </LoginLayout>
   )

@@ -10,6 +10,7 @@ import { Menu } from '../../../../components/Menu'
 import Pagination from '../../../../components/Pagination'
 import { TGetDataFromState, TData } from '../../../../types'
 import dateFormat from '../../../../utils/dateFormat'
+import Perms from 'components/Perms'
 import {
   Table,
   TableActions,
