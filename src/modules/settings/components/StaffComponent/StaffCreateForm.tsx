@@ -4,6 +4,7 @@ import { Col, Row } from 'ui-cubic/dist/index.es'
 import { FieldArray } from 'react-final-form-arrays'
 import { prop, propOr } from 'ramda'
 import styled from 'styled-components'
+import ImageUpload from 'components/UI/ImageUpload/ImageUploadField'
 import { FieldWrapper } from '../../../../components/StyledElems'
 import {
   UniversalSearchField,
@@ -18,12 +19,6 @@ const RowMargin = styled(Row)`
 `
 
 const EMPTY = ''
-const getClientText = (client) => {
-  const name = propOr(EMPTY, 'fullName', client)
-  const phone = prop('phoneNumber', client)
-
-  return phone + ' - ' + name
-}
 
 const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
   const { handleSubmit } = props
@@ -32,9 +27,16 @@ const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
     <form onSubmit={handleSubmit}>
       <FieldWrapper>
         <Field
+          name="photo"
+          component={ImageUpload}
+        />
+      </FieldWrapper>
+      <FieldWrapper>
+        <Field
           label="Username"
           name="username"
           component={InputField}
+          placeholder="Username"
         />
       </FieldWrapper>
       <FieldWrapper>
@@ -42,23 +44,25 @@ const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
           label="Password"
           name="password"
           component={InputField}
+          placeholder="Password"
         />
       </FieldWrapper>
-        <FieldWrapper>
+      <FieldWrapper>
         <Field
-            label="Position"
-            name="position"
-            component={UniversalSearchField}
-            api={API.POSITION_LIST}
+          label="Position"
+          name="position"
+          component={UniversalSearchField}
+          api={API.POSITION_LIST}
         />
-        </FieldWrapper>
-        <FieldWrapper>
-            <Field
-                label="Rate"
-                name="rate"
-                component={InputField}
-            />
-        </FieldWrapper>
+      </FieldWrapper>
+      <FieldWrapper>
+        <Field
+          label="Rate"
+          name="rate"
+          component={InputField}
+          placeholder="Rate"
+        />
+      </FieldWrapper>
       <CreateCancelButtons
         cancelPath={ROUTES.CURRENCY_LIST_PATH}
         submitText="Save"

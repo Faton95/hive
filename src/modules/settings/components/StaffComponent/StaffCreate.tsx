@@ -7,21 +7,23 @@ import { DetailMenu } from '../../../../components/Menu'
 import { Box } from '../../../../components/UI'
 
 import { TGetDataFromState, TOnSubmit } from '../../../../types'
-import { TCurrencyItem } from '../../../../types/models'
+import { TStaffItem } from '../../../../types/models/position'
 import { Merge } from '../../../../types/utils'
 import StaffCreateForm from './StaffCreateForm'
 
 type Props = {
     onSubmit: TOnSubmit;
+    onPicUpdate;
 }
 
-type NewPropType = Merge<TGetDataFromState<TCurrencyItem | null>, Props>
+type NewPropType = Merge<TGetDataFromState<TStaffItem | null>, Props>
 
 export const fields = [
+  'photo',
   'username',
   'password',
-    'position',
-    'rate'
+  'position',
+  'rate'
 ]
 const StaffCreate: FunctionComponent<NewPropType> = props => {
   return (
@@ -31,6 +33,7 @@ const StaffCreate: FunctionComponent<NewPropType> = props => {
         <Form
           onSubmit={props.onSubmit}
           mutators={{ ...arrayMutators }}
+
           component={StaffCreateForm}
         />
       </Box>

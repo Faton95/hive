@@ -7,6 +7,7 @@ export type TPositionItem = Merge<TIdName, {
 
 export type TStaffItem = {
   id: number;
+  photo: string;
   username: string;
   fullName: string;
   position: TPositionItem;

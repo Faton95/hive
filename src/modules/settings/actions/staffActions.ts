@@ -71,3 +71,16 @@ export const staffDeleteAction = (id) => {
     })
   }
 }
+
+export const staffPartiallyUpdateAction = (id, data) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .patch(sprintf(API.STAFF_UPDATE, id), data)
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+    return dispatch({
+      payload: payload,
+      type: actionTypes.USER_INFO
+    })
+  }
+}
