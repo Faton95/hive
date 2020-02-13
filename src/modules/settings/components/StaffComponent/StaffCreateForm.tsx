@@ -24,9 +24,7 @@ const RowMargin = styled(Row)`
 const ShowHideButton = styled.img`
   position: absolute;
   top: 45%;
-  right: 1%;
-  background: lightgrey;
-  padding: 5px 7px;
+  left: 43%;
   border-radius: 4px;
   cursor: pointer;
   height: 30px;
@@ -40,18 +38,14 @@ const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
   const [show, setShow] = useState(false)
   return (
     <form onSubmit={handleSubmit}>
-      <RowMargin>
-        <Col span={11} />
-        <Col span={9}>
+      <RowMargin gutter={20}>
+        <Col span={2}>
           <Field
             name="photo"
             component={ImageUpload}
           />
         </Col>
-        <Col span={4} />
-      </RowMargin>
-      <RowMargin gutter={20}>
-        <Col span={12}>
+        <Col span={10}>
           <Field
             label="Username"
             name="username"
@@ -59,16 +53,7 @@ const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
             placeholder="Username"
           />
         </Col>
-        <Col span={12}>
-          <Field
-            label="Пароль"
-            name="password"
-            component={InputField}
-            type={show === true ? 'text' : 'password'}
-            placeholder="Password"
-          />
-          <ShowHideButton onClick={() => setShow(!show)} src={Eye} alt="eye" />
-        </Col>
+        <Col span={12} />
       </RowMargin>
       <RowMargin gutter={20}>
         <Col span={12}>
@@ -79,14 +64,20 @@ const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
             api={API.POSITION_LIST}
           />
         </Col>
+        <Col span={12} />
+      </RowMargin>
+      <RowMargin gutter={20}>
         <Col span={12}>
           <Field
-            label="Rate"
-            name="rate"
+            label="Пароль"
+            name="password"
             component={InputField}
-            placeholder="Rate"
+            type={show === true ? 'text' : 'password'}
+            placeholder="Password"
           />
+          <ShowHideButton onClick={() => setShow(!show)} src={Eye} alt="eye" />
         </Col>
+        <Col span={12} />
       </RowMargin>
       <CreateCancelButtons
         cancelPath={ROUTES.STAFF_LIST_PATH}

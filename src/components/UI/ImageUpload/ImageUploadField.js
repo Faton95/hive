@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { prop } from 'ramda'
 import Person from 'images/person.png'
+
 import useFileUploads from './useFileUploads'
 
 const Input = styled.input`
@@ -27,7 +28,7 @@ const ImageField = styled('div')`
   overflow: hidden;
   width: 78px;
   &:hover {
-    border-color: green;
+    border-color: grey;
   }
 `
 
@@ -40,7 +41,7 @@ const Image = styled('div')`
 `
 
 const Placeholder = styled('div')`
-  color: green;
+  color: lightgrey;
   font-weight: 500;
   text-align: center;
   & svg {
@@ -50,7 +51,10 @@ const Placeholder = styled('div')`
     margin: 0 auto 7px;
   }
 `
-
+const Img = styled.img`
+  width: 70px;
+  height: 70px;
+`
 const ImageUploadField = props => {
   const {
     label,
@@ -73,7 +77,7 @@ const ImageUploadField = props => {
             <Image url={src} />
           ) : (
             <Placeholder>
-              <div>{loading ? 'loading...' : <img src={Person} alt="person" />}</div>
+              <div>{loading ? 'loading...' : <Img src={Person} alt="person" />}</div>
             </Placeholder>
           )}
         </ImageField>
