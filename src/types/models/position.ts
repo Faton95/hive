@@ -10,3 +10,12 @@ export type TPermissionItem = {
   name: string;
   codename: string
 }
+
+export type TUserInfo = {
+  user: {
+    username: string;
+    id: number;
+  }
+  isSuperuser: boolean;
+  position: TPositionItem
+}
