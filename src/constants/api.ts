@@ -16,6 +16,13 @@ export const CLIENT_ITEM = `/${CLIENT}/%d/`
 export const CLIENT_DELETE = `/${CLIENT}/%d/`
 export const CLIENT_UPDATE = `/${CLIENT}/%d/`
 
+const OUTSOURCE = `${MAIN}/outsource`
+export const OUTSOURCE_LIST = `/${OUTSOURCE}/`
+export const OUTSOURCE_CREATE = `/${OUTSOURCE}/`
+export const OUTSOURCE_ITEM = `/${OUTSOURCE}/%d/`
+export const OUTSOURCE_DELETE = `/${OUTSOURCE}/%d/`
+export const OUTSOURCE_UPDATE = `/${OUTSOURCE}/%d/`
+
 const ORDER = `${MAIN}/order`
 export const ORDER_LIST = `/${ORDER}/`
 export const ORDER_CREATE = `/${ORDER}/`
