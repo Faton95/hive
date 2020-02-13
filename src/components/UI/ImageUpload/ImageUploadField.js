@@ -73,7 +73,7 @@ const ImageUploadField = props => {
             <Image url={src} />
           ) : (
             <Placeholder>
-              <div>{loading ? 'Загрузка...' : <img src={Person} alt="person" />}</div>
+              <div>{loading ? 'loading...' : <img src={Person} alt="person" />}</div>
             </Placeholder>
           )}
         </ImageField>
