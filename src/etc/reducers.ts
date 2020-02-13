@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux'
 import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux'
 import { compose, forEach, toPairs } from 'ramda'
+import { TOrderItem } from 'types/models'
 import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
-import { TOrderItem } from 'types/models'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
+
+
+const LOGIN = 'login'
 
 export type RootState = {
   orderList: TGetDataFromState<TOrderItem>;
@@ -91,8 +94,19 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.BANK_ACCOUNT_UPDATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_UPDATE),
     [stateNames.BANK_ACCOUNT_DELETE]: createThunkReducer(actionTypes.BANK_ACCOUNT_DELETE),
 
+    [stateNames.FEE_LIST]: createThunkReducer(actionTypes.FEE_LIST),
+    [stateNames.FEE_CREATE]: createThunkReducer(actionTypes.FEE_CREATE),
+    [stateNames.FEE_ITEM]: createThunkReducer(actionTypes.FEE_ITEM),
+    [stateNames.FEE_UPDATE]: createThunkReducer(actionTypes.FEE_UPDATE),
+    [stateNames.FEE_DELETE]: createThunkReducer(actionTypes.FEE_DELETE),
 
-      ...asyncReducers
+    [stateNames.EXPENSE_LIST]: createThunkReducer(actionTypes.EXPENSE_LIST),
+    [stateNames.EXPENSE_CREATE]: createThunkReducer(actionTypes.EXPENSE_CREATE),
+    [stateNames.EXPENSE_ITEM]: createThunkReducer(actionTypes.EXPENSE_ITEM),
+    [stateNames.EXPENSE_UPDATE]: createThunkReducer(actionTypes.EXPENSE_UPDATE),
+    [stateNames.EXPENSE_DELETE]: createThunkReducer(actionTypes.EXPENSE_DELETE),
+
+    ...asyncReducers
   })
 
 export const injectReducer = (store, { key, reducer }) => {

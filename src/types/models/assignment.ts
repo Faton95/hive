@@ -39,3 +39,15 @@ export type TAssignmentItem = {
   currency: TCurrencyItem;
   bankAccount: number
 }
+export type fee= {
+  spendTime: string;
+  amount: number;
+  description: string;
+}
+export type fees = Array<fee>
+
+export type TAssignmentFeeItem = {
+  assignment: number;
+  date: string;
+  fees: fees;
+}

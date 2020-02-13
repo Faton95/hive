@@ -25,6 +25,10 @@ export default styled('div')`
     padding-right: 0;
   }
   
+  & .SingleDatePicker_picker {
+    z-index: 10;
+  }
+  
   & .SingleDatePickerInput_calendarIcon {
     position: absolute;
     z-index: 1;
