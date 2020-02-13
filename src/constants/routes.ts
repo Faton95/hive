@@ -3,6 +3,9 @@ export const ROOT_PATH = `/${ROOT}`
 
 const ID = ':id(\\d+)'
 
+const LOGIN = 'login'
+export const LOGIN_URL = `/${LOGIN}`
+
 export const ORDER = 'order'
 export const ORDER_LIST_PATH = `/${ORDER}`
 export const ORDER_CREATE_PATH = `/${ORDER}/create`

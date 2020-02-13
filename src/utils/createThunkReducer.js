@@ -3,7 +3,7 @@ import createReducer from './createReducer'
 export const initialState = {
   data: null,
   error: null,
-  loading: false,
+  loading: true,
   success: false,
   failed: false
 }
