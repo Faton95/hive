@@ -17,6 +17,13 @@ export const CLIENT_ITEM = `/${CLIENT}/%d/`
 export const CLIENT_DELETE = `/${CLIENT}/%d/`
 export const CLIENT_UPDATE = `/${CLIENT}/%d/`
 
+const OUTSOURCE = `${MAIN}/outsource`
+export const OUTSOURCE_LIST = `/${OUTSOURCE}/`
+export const OUTSOURCE_CREATE = `/${OUTSOURCE}/`
+export const OUTSOURCE_ITEM = `/${OUTSOURCE}/%d/`
+export const OUTSOURCE_DELETE = `/${OUTSOURCE}/%d/`
+export const OUTSOURCE_UPDATE = `/${OUTSOURCE}/%d/`
+
 const ORDER = `${MAIN}/order`
 export const ORDER_LIST = `/${ORDER}/`
 export const ORDER_CREATE = `/${ORDER}/`
@@ -65,7 +72,6 @@ const PRODUCT_TYPE = `${MAIN}/product_type`
 export const PRODUCT_TYPE_LIST = `/${PRODUCT_TYPE}/`
 export const PRODUCT_TYPE_ITEM = `/${PRODUCT_TYPE}/%d/`
 
-
 const GROUP = `${MAIN}/group`
 export const GROUP_LIST = `/${GROUP}/`
 export const GROUP_CREATE = `/${GROUP}/`
@@ -94,7 +100,6 @@ export const CONTRACT_ITEM = `/${CONTRACT}/%d/`
 export const CONTRACT_DELETE = `/${CONTRACT}/%d/`
 export const CONTRACT_UPDATE = `/${CONTRACT}/%d/`
 
-
 const ASSIGNMENT = `${MAIN}/assignment`
 export const ASSIGNMENT_LIST = `/${ASSIGNMENT}/`
 export const ASSIGNMENT_CREATE = `/${ASSIGNMENT}/`
@@ -109,3 +114,16 @@ export const POSITION_ITEM = `/${POSITION}/%d/`
 export const POSITION_DELETE = `/${POSITION}/%d/`
 export const POSITION_UPDATE = `/${POSITION}/%d/`
 
+const FEE = `${MAIN}/fee`
+export const FEE_LIST = `/${FEE}/`
+export const FEE_CREATE = `/${FEE}/`
+export const FEE_ITEM = `/${FEE}/%d/`
+export const FEE_DELETE = `/${FEE}/%d/`
+export const FEE_UPDATE = `/${FEE}/%d/`
+
+const EXPENSE = `${MAIN}/expense`
+export const EXPENSE_LIST = `/${EXPENSE}/`
+export const EXPENSE_CREATE = `/${EXPENSE}/`
+export const EXPENSE_ITEM = `/${EXPENSE}/%d/`
+export const EXPENSE_DELETE = `/${EXPENSE}/%d/`
+export const EXPENSE_UPDATE = `/${EXPENSE}/%d/`

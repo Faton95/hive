@@ -25,7 +25,7 @@ const notNumber = pipe(
 )
 const overflow = pipe(
   length,
-  lt(6)
+  lt(4)
 )
 
 const onType = curry((onChange, ev) => {
@@ -47,7 +47,7 @@ const DurationInput = props => {
     height
   } = props
 
-  const tested = test(/[0-9]{2}:[0-9]{2}:[0-9]{2}/, value)
+  const tested = test(/[0-9]{2}:[0-9]{2}/, value)
   const active = prop('active', meta)
   const touched = prop('touched', meta)
   const dirty = prop('dirty', meta)
@@ -56,7 +56,7 @@ const DurationInput = props => {
 
   return (
     <Input
-      placeholder="03:20:00"
+      placeholder="03:20"
       onChange={onType(onChange)}
       value={value}
       {...input}

@@ -55,6 +55,12 @@ export const userInfoFetch = token => {
       .then(getPayloadFromSuccess)
       .catch(getPayloadFromError)
 
+
+    dispatch({
+      payload: { token },
+      type: `${actionTypes.LOGIN}_FULFILLED`
+    })
+
     return dispatch({
       payload,
       type: actionTypes.USER_INFO

@@ -1,22 +1,27 @@
 import { combineReducers } from 'redux'
 import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux'
 import { compose, forEach, toPairs } from 'ramda'
+import { TOrderItem } from 'types/models'
 import createThunkReducer from '../utils/createThunkReducer'
 import * as actionTypes from '../constants/actionTypes'
 import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
-import { TOrderItem } from 'types/models'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
+
+
+const LOGIN = 'login'
 
 export type RootState = {
   orderList: TGetDataFromState<TOrderItem>;
   login: TGetDataFromState<any>;
+  userInfo: any
 }
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
     confirmDialog: confirmDialogReducer,
     [stateNames.LOGIN]: createThunkReducer(actionTypes.LOGIN),
+    [stateNames.USER_INFO]: createThunkReducer(actionTypes.USER_INFO),
     [stateNames.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
     [stateNames.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
     [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
@@ -71,6 +76,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.CLIENT_UPDATE]: createThunkReducer(actionTypes.CLIENT_UPDATE),
     [stateNames.CLIENT_DELETE]: createThunkReducer(actionTypes.CLIENT_DELETE),
 
+    [stateNames.OUTSOURCE_LIST]: createThunkReducer(actionTypes.OUTSOURCE_LIST),
+    [stateNames.OUTSOURCE_CREATE]: createThunkReducer(actionTypes.OUTSOURCE_CREATE),
+    [stateNames.OUTSOURCE_ITEM]: createThunkReducer(actionTypes.OUTSOURCE_ITEM),
+    [stateNames.OUTSOURCE_UPDATE]: createThunkReducer(actionTypes.OUTSOURCE_UPDATE),
+    [stateNames.OUTSOURCE_DELETE]: createThunkReducer(actionTypes.OUTSOURCE_DELETE),
+
     [stateNames.POSITION_LIST]: createThunkReducer(actionTypes.POSITION_LIST),
     [stateNames.POSITION_CREATE]: createThunkReducer(actionTypes.POSITION_CREATE),
     [stateNames.POSITION_ITEM]: createThunkReducer(actionTypes.POSITION_ITEM),
@@ -89,8 +100,19 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.BANK_ACCOUNT_UPDATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_UPDATE),
     [stateNames.BANK_ACCOUNT_DELETE]: createThunkReducer(actionTypes.BANK_ACCOUNT_DELETE),
 
+    [stateNames.FEE_LIST]: createThunkReducer(actionTypes.FEE_LIST),
+    [stateNames.FEE_CREATE]: createThunkReducer(actionTypes.FEE_CREATE),
+    [stateNames.FEE_ITEM]: createThunkReducer(actionTypes.FEE_ITEM),
+    [stateNames.FEE_UPDATE]: createThunkReducer(actionTypes.FEE_UPDATE),
+    [stateNames.FEE_DELETE]: createThunkReducer(actionTypes.FEE_DELETE),
 
-      ...asyncReducers
+    [stateNames.EXPENSE_LIST]: createThunkReducer(actionTypes.EXPENSE_LIST),
+    [stateNames.EXPENSE_CREATE]: createThunkReducer(actionTypes.EXPENSE_CREATE),
+    [stateNames.EXPENSE_ITEM]: createThunkReducer(actionTypes.EXPENSE_ITEM),
+    [stateNames.EXPENSE_UPDATE]: createThunkReducer(actionTypes.EXPENSE_UPDATE),
+    [stateNames.EXPENSE_DELETE]: createThunkReducer(actionTypes.EXPENSE_DELETE),
+
+    ...asyncReducers
   })
 
 export const injectReducer = (store, { key, reducer }) => {
