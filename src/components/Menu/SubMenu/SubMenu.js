@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import menus from '../../../constants/menus'
 import mapIndexed from '../../../utils/mapIndexed'
+import {useUserPerms} from "hooks";
+import {pipe, map, split, last, uniq} from 'ramda'
 
 const borderAnimate = keyframes`
   from {
@@ -64,6 +66,12 @@ const SubMenuItem = styled(NavLink)`
 `
 
 const SubMenu = ({ active }) => {
+  const [userPerms, isSuperUser] = useUserPerms()
+  const permKeys = pipe(
+    map(pipe(split('_'), last)),
+    uniq
+  )(userPerms)
+
   const childMenus = R.pipe(
     R.find(item => R.prop('key', item) === active),
     R.prop('children')
@@ -78,16 +86,20 @@ const SubMenu = ({ active }) => {
       {mapIndexed((item, index) => {
         const title = R.prop('title', item)
         const url = R.prop('url', item)
+        const key = R.prop('key', item)
 
-        return (
-          <SubMenuItem
-            to={url}
-            activeClassName="active"
-            key={index}
-          >
-            {title}
-          </SubMenuItem>
-        )
+        if(isSuperUser || permKeys.includes(key)){
+          return (
+            <SubMenuItem
+              to={url}
+              activeClassName="active"
+              key={index}
+            >
+              {title}
+            </SubMenuItem>
+          )
+        }
+        return null
       }, childMenus)}
     </Wrapper>
   )

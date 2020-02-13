@@ -41,7 +41,6 @@ const AssignmentList: FunctionComponent<Props> = props => {
 
   const count = pathOr(ZERO, ['data', 'count'], data)
   const list = pathOr<TAssignmentItem[]>(EMPTY, ['data', 'results'], data)
-  console.warn(list)
   const ids = map(prop('id'), list)
 
   const filterForm = (<AssignmentListFilterForm />)

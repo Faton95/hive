@@ -25,7 +25,7 @@ const EmptyQuery = props => {
   return (
     <Empty padding={padding} {...props}>
       <Clipboard />
-      <NoData>Нет данных</NoData>
+      <NoData>No Data</NoData>
       <PromptText>{promptText}</PromptText>
     </Empty>
   )

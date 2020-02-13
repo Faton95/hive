@@ -3,6 +3,9 @@ export const ROOT_PATH = `/${ROOT}`
 
 const ID = ':id(\\d+)'
 
+const LOGIN = 'login'
+export const LOGIN_URL = `/${LOGIN}`
+
 export const ORDER = 'order'
 export const ORDER_LIST_PATH = `/${ORDER}`
 export const ORDER_CREATE_PATH = `/${ORDER}/create`
@@ -26,6 +29,14 @@ export const STAFF_ITEM_PATH = `/${STAFF}/${ID}`
 export const STAFF_ITEM_URL = `/${STAFF}/%d`
 export const STAFF_UPDATE_PATH = `/${STAFF}/${ID}/update`
 export const STAFF_UPDATE_URL = `/${STAFF}/%d/update`
+
+export const OUTSOURCE = 'outsource'
+export const OUTSOURCE_LIST_PATH = `/${OUTSOURCE}`
+export const OUTSOURCE_CREATE_PATH = `/${OUTSOURCE}/create`
+export const OUTSOURCE_ITEM_PATH = `/${OUTSOURCE}/${ID}`
+export const OUTSOURCE_ITEM_URL = `/${OUTSOURCE}/%d`
+export const OUTSOURCE_UPDATE_PATH = `/${OUTSOURCE}/${ID}/update`
+export const OUTSOURCE_UPDATE_URL = `/${OUTSOURCE}/%d/update`
 
 export const TAGS = 'tags'
 export const TAGS_LIST_PATH = `/${TAGS}`
