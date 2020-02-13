@@ -1,6 +1,5 @@
 import React from 'react'
 import * as CONST from '../../../constants/backend'
-import * as API from '../../../constants/api'
 import { Col, Row } from '../../../components/UI'
 import {
   Field,

@@ -12,6 +12,7 @@ export const MENU_KEYS = {
   SETTINGS: 'settings',
   BANK_ACCOUNT: 'bankAccount',
   CLIENT: 'client',
+  STAFF: 'staff',
   OUTSOURCE: 'outsource'
 }
 
@@ -64,6 +65,7 @@ export default [
       { title: 'Currency', url: ROUTES.CURRENCY_LIST_PATH },
       { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH },
       { title: 'Groups', url: ROUTES.GROUP_LIST_PATH },
+      { title: 'Staff', url: ROUTES.STAFF_LIST_PATH },
       { title: 'Position', url: ROUTES.POSITION_LIST_PATH },
       { title: 'Bank Account', url: ROUTES.BANK_ACCOUNT_LIST_PATH },
     ]

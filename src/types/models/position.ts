@@ -5,6 +5,16 @@ export type TPositionItem = Merge<TIdName, {
   groups: TGroupItem[];
 }>
 
+
+export type TStaffItem = {
+  id: number;
+  photo: string;
+  username: string;
+  fullName: string;
+  position: TPositionItem;
+  rate: string;
+}
+
 export type TPermissionItem = {
   id: number;
   name: string;

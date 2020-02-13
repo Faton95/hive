@@ -14,6 +14,11 @@ import {
   CurrencyCreateContainer,
   CurrencyUpdateContainer
 } from './containers/Currency'
+import {
+  StaffCreateContainer,
+  StaffListContainer,
+  StaffUpdateContainer
+} from './containers/StaffContainer'
 
 import {
   GroupListContainer,
@@ -92,6 +97,22 @@ export default (store) => [
     exact: true,
     path: ROUTES.CURRENCY_UPDATE_PATH,
     component: CurrencyUpdateContainer
+  },
+
+  {
+    exact: true,
+    path: ROUTES.STAFF_LIST_PATH,
+    component: StaffListContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.STAFF_CREATE_PATH,
+    component: StaffCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.STAFF_UPDATE_PATH,
+    component: StaffUpdateContainer
   },
 
   {
