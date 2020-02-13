@@ -1,4 +1,5 @@
 import * as ROUTES from '../constants/routes'
+import * as PERMS from '../constants/permissions'
 
 export const MENU_KEYS = {
   ORDER: 'order',
@@ -19,9 +20,18 @@ export default [
     key: MENU_KEYS.ASSIGNMENT,
     title: 'Assignment',
     url: ROUTES.ASSIGNMENT_LIST_PATH,
+    perms: PERMS.ASSIGNMENT,
     children: [
-      { title: 'Assignments', url: ROUTES.ASSIGNMENT_LIST_PATH },
-      { title: 'Contract', url: ROUTES.CONTRACT_LIST_PATH },
+      {
+        title: 'Assignments',
+        url: ROUTES.ASSIGNMENT_LIST_PATH,
+        key: MENU_KEYS.ASSIGNMENT
+      },
+      {
+        title: 'Contract',
+        url: ROUTES.CONTRACT_LIST_PATH,
+        key: MENU_KEYS.CONTRACT
+      },
     ]
   },
   {

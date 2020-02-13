@@ -1,4 +1,5 @@
 export const LOGIN = 'login'
+export const USER_INFO = 'userInfo'
 
 export const ORDER_LIST = 'orderList'
 export const ORDER_ITEM = 'orderItem'
@@ -77,3 +78,15 @@ export const BANK_ACCOUNT_ITEM = 'bankAccountItem'
 export const BANK_ACCOUNT_CREATE = 'bankAccountCreate'
 export const BANK_ACCOUNT_UPDATE = 'bankAccountUpdate'
 export const BANK_ACCOUNT_DELETE = 'bankAccountDelete'
+
+export const FEE_LIST = 'feeList'
+export const FEE_ITEM = 'feeItem'
+export const FEE_CREATE = 'feeCreate'
+export const FEE_UPDATE = 'feeUpdate'
+export const FEE_DELETE = 'feeDelete'
+
+export const EXPENSE_LIST = 'expenseList'
+export const EXPENSE_ITEM = 'expenseItem'
+export const EXPENSE_CREATE = 'expenseCreate'
+export const EXPENSE_UPDATE = 'expenseUpdate'
+export const EXPENSE_DELETE = 'expenseDelete'

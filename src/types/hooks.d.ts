@@ -58,7 +58,10 @@ type TExtraUpdate = {
     id: any;
     isUpdate: boolean;
 }
+
+
 export type TUseUpdate = Merge<TGetDataFromState<any | null>, TExtraUpdate>
+export type TUseCreate = Merge<TGetDataFromState<any | null>, {onSubmit: TOnSubmit}>
 export type TOnSubmit = (action: any) => Promise<void | Pick<any, string | number | symbol>>
 export type TUseDelete = Merge<TGetDataFromState<any | null>, {onSubmit: TOnSubmit}>
 

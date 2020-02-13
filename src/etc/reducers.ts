@@ -8,15 +8,20 @@ import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
 
+
+const LOGIN = 'login'
+
 export type RootState = {
   orderList: TGetDataFromState<TOrderItem>;
   login: TGetDataFromState<any>;
+  userInfo: any
 }
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
   combineReducers({
     confirmDialog: confirmDialogReducer,
     [stateNames.LOGIN]: createThunkReducer(actionTypes.LOGIN),
+    [stateNames.USER_INFO]: createThunkReducer(actionTypes.USER_INFO),
     [stateNames.ORDER_LIST]: createThunkReducer(actionTypes.ORDER_LIST),
     [stateNames.ORDER_CREATE]: createThunkReducer(actionTypes.ORDER_CREATE),
     [stateNames.ORDER_ITEM]: createThunkReducer(actionTypes.ORDER_ITEM),
@@ -94,6 +99,18 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.BANK_ACCOUNT_ITEM]: createThunkReducer(actionTypes.BANK_ACCOUNT_ITEM),
     [stateNames.BANK_ACCOUNT_UPDATE]: createThunkReducer(actionTypes.BANK_ACCOUNT_UPDATE),
     [stateNames.BANK_ACCOUNT_DELETE]: createThunkReducer(actionTypes.BANK_ACCOUNT_DELETE),
+
+    [stateNames.FEE_LIST]: createThunkReducer(actionTypes.FEE_LIST),
+    [stateNames.FEE_CREATE]: createThunkReducer(actionTypes.FEE_CREATE),
+    [stateNames.FEE_ITEM]: createThunkReducer(actionTypes.FEE_ITEM),
+    [stateNames.FEE_UPDATE]: createThunkReducer(actionTypes.FEE_UPDATE),
+    [stateNames.FEE_DELETE]: createThunkReducer(actionTypes.FEE_DELETE),
+
+    [stateNames.EXPENSE_LIST]: createThunkReducer(actionTypes.EXPENSE_LIST),
+    [stateNames.EXPENSE_CREATE]: createThunkReducer(actionTypes.EXPENSE_CREATE),
+    [stateNames.EXPENSE_ITEM]: createThunkReducer(actionTypes.EXPENSE_ITEM),
+    [stateNames.EXPENSE_UPDATE]: createThunkReducer(actionTypes.EXPENSE_UPDATE),
+    [stateNames.EXPENSE_DELETE]: createThunkReducer(actionTypes.EXPENSE_DELETE),
 
     ...asyncReducers
   })

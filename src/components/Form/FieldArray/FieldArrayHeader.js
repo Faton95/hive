@@ -29,7 +29,7 @@ const FieldArrayHeader = props => {
 }
 
 FieldArrayHeader.defaultProps = {
-  buttonText: 'Добавить'
+  buttonText: 'Add'
 }
 
 export default FieldArrayHeader

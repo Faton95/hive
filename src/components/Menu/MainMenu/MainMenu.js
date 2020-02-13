@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { prop } from 'ramda'
+import {pipe, prop, map, last, split, uniq} from 'ramda'
 import { Link } from 'react-router-dom'
 import mapIndexed from '../../../utils/mapIndexed'
 import menus from '../../../constants/menus'
+import {useUserPerms} from 'hooks'
 
 const SubMenuItems = styled(({ isActive, ...props }) => <Link {...props} />)`
   border-radius: ${props => props.theme.input.borderRadius};
@@ -32,6 +33,12 @@ const SubMenuItems = styled(({ isActive, ...props }) => <Link {...props} />)`
 `
 
 const MainMenu = ({ active }) => {
+  const [userPerms, isSuperUser] = useUserPerms()
+  const permKeys = pipe(
+    map(pipe(split('_'), last)),
+    uniq
+  )(userPerms)
+
   return (
     <div>
       {mapIndexed((item, index) => {
@@ -40,15 +47,19 @@ const MainMenu = ({ active }) => {
         const key = prop('key', item)
         const isActive = active === key
 
-        return (
-          <SubMenuItems
-            key={index}
-            to={url}
-            isActive={isActive}
-          >
-            {title}
-          </SubMenuItems>
-        )
+        if(isSuperUser || permKeys.includes(key)){
+          return (
+            <SubMenuItems
+              key={index}
+              to={url}
+              isActive={isActive}
+            >
+              {title}
+            </SubMenuItems>
+          )
+        }
+        return null
+
       }, menus)}
     </div>
   )
