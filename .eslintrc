@@ -58,7 +58,9 @@
     "import/no-extraneous-dependencies": ["error"],
     "react-hooks/rules-of-hooks": ["error"],
     "react-hooks/exhaustive-deps": ["warn"],
-    "no-console": "error"
+    "no-console": "warn",
+    "react/jsx-handler-names": ["warn"],
+    "react/display-name": ["warn"]
   },
   "settings": {
     "import/resolver": "babel-plugin-root-import"

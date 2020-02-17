@@ -55,7 +55,7 @@ const CalendarDay = styled('div')`
   )}
 `
 
-export default ({ key, day, daySize, modifiers = {}, ...props }) => {
+const CalendarDayElem = ({ key, day, daySize, modifiers = {}, ...props }) => {
   const modifiersKeys = Array.from(modifiers)
   const prettyDay = moment(day).format('D')
   const isSelectedSingle = includes('selected', modifiersKeys)
@@ -71,7 +71,8 @@ export default ({ key, day, daySize, modifiers = {}, ...props }) => {
       style={{ height: daySize, width: daySize }}
       onClick={() => props.onDayClick(day)}
       onMouseEnter={() => props.onDayMouseEnter(day)}
-      onMouseLeave={() => props.onDayMouseLeave(day)}>
+      onMouseLeave={() => props.onDayMouseLeave(day)}
+    >
       {day && (
         <CalendarDay
           isToday={isToday}
@@ -79,10 +80,13 @@ export default ({ key, day, daySize, modifiers = {}, ...props }) => {
           isSelected={isSelectedSingle}
           isSelectedStart={isSelectedStart}
           isSelectedSpan={isSelectedSpan}
-          isSelectedEnd={isSelectedEnd}>
+          isSelectedEnd={isSelectedEnd}
+        >
           {prettyDay}
         </CalendarDay>
       )}
     </CalendarDayCell>
   )
 }
+
+export default CalendarDayElem

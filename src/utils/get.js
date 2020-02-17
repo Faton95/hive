@@ -24,7 +24,6 @@ import {
 import moment from 'moment'
 import { getSearchParam, parseParams } from './urls'
 import { mapParamsToRequest, mapStrToBoolean, decodeURLParams } from './mapper'
-import toSnakeCase from './toSnakeCase'
 
 export const getIdFromProps = curry((paramName, props) =>
   compose(

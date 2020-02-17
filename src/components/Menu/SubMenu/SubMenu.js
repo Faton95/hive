@@ -3,10 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
+import { useUserPerms } from 'hooks'
+import { pipe, map, split, last, uniq } from 'ramda'
 import menus from '../../../constants/menus'
 import mapIndexed from '../../../utils/mapIndexed'
-import {useUserPerms} from "hooks";
-import {pipe, map, split, last, uniq} from 'ramda'
 
 const borderAnimate = keyframes`
   from {
@@ -88,7 +88,7 @@ const SubMenu = ({ active }) => {
         const url = R.prop('url', item)
         const key = R.prop('key', item)
 
-        if(isSuperUser || permKeys.includes(key)){
+        if (isSuperUser || permKeys.includes(key)) {
           return (
             <SubMenuItem
               to={url}

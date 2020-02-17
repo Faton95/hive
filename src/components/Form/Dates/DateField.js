@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import styled, { css } from 'styled-components'
 import { SingleDatePicker } from 'react-dates'
-import {OPEN_DOWN} from 'react-dates/constants'
+import { OPEN_DOWN } from 'react-dates/constants'
 import commonProps from './commonProps'
 import DateContainer from './DateContainer'
 import { getFieldError } from '~/utils/form'
@@ -26,7 +26,6 @@ const defaultOptions = {
   initialVisibleMonth: null,
   numberOfMonths: 1
 }
-
 
 const getFormattedDate = input => {
   const value = input.value

@@ -1,13 +1,13 @@
 import React from 'react'
-import {useStore} from 'react-redux'
+import { useStore } from 'react-redux'
 import PropTypes from 'prop-types'
-import MultiSearchField from '../Basic/MultiSearchField'
 import {
   getOption,
   getOptions,
   defaultGetText,
   defaultGetValue
 } from 'utils/searchField'
+import MultiSearchField from '../Basic/MultiSearchField'
 
 const UniversalMultiSearchField = props => {
   const { api, params, itemText, ...rest } = props
