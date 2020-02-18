@@ -21,6 +21,11 @@ const ButtonBLock = styled.div`
   text-align: right;
   margin-top: 20px;
 `
+const Line = styled.div`
+  border: 0.5px solid lightgrey;
+  width: 100%;
+  margin: 20px 0;
+`
 const EMPTY_OBJ = {}
 const FeesListField = props => {
   const { fields, ...p } = props
@@ -60,7 +65,7 @@ const FeesListField = props => {
                   <RemoveButton onRemove={() => onRemove(index)} />
                 </RemoveBlock>
               </DeleteBlock>
-              <hr/>
+              <Line/>
             </div>
           )
         })}
