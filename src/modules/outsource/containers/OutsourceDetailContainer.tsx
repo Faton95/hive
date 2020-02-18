@@ -21,13 +21,11 @@ const OutsourceDetailContainer = (props: Props) => {
   const onEdit = (id) => props.history.push(sprintf(ROUTES.OUTSOURCE_UPDATE_URL, id))
 
   return (
-    <Layout>
       <OutsourceDetail
         item={data}
         onDelete={() => null}
         onEdit={onEdit}
       />
-    </Layout>
   )
 }
 export default OutsourceDetailContainer

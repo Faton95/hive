@@ -10,7 +10,7 @@ import { useFetchItem, useUpdate } from '../../../hooks'
 import * as stateNames from '../../../constants/stateNames'
 import Layout from '../../../components/Layouts/Layout'
 import * as ROUTES from '../../../constants/routes'
-import { getIdForInitValues } from '../../../utils/get'
+
 
 type Props = {
     history: History;
@@ -39,9 +39,7 @@ const OutsourceUpdateContainer = (props: Props) => {
   }
 
   return (
-    <Layout>
-      <OutsourceUpdate {...update} initialValues={initialValues} />
-    </Layout>
+    <OutsourceUpdate {...update} initialValues={initialValues} />
   )
 }
 

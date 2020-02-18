@@ -5,7 +5,6 @@ import { createSerializer } from '../action/outsourceSerializer'
 import { useCreate } from '../../../hooks'
 import * as stateNames from '../../../constants/stateNames'
 import * as ROUTES from '../../../constants/routes'
-import Layout from '../../../components/Layouts/Layout'
 
 const OutsourceCreateContainer = props => {
 
@@ -16,11 +15,9 @@ const OutsourceCreateContainer = props => {
     serializer: createSerializer
   })
   return (
-    <Layout>
-      <OutsourceCreate
-        {...data}
-      />
-    </Layout>
+    <OutsourceCreate
+      {...data}
+    />
   )
 }
 export default OutsourceCreateContainer
