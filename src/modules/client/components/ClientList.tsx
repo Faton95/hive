@@ -62,11 +62,9 @@ const ClientList: FunctionComponent<Props> = props => {
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>
-              <TableCol span={1}>#</TableCol>
               <TableCol span={5}>Name</TableCol>
-              <TableCol span={4}>Tags</TableCol>
-              <TableCol span={5}>Address</TableCol>
-              <TableCol span={5}>Created date</TableCol>
+              <TableCol span={14}>Tags</TableCol>
+              <TableCol span={4}>Created date</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -82,15 +80,13 @@ const ClientList: FunctionComponent<Props> = props => {
 
               return (
                 <TableRowLink link={link} key={id} selectId={id} align="center">
-                  <TableCol span={1}>{id}</TableCol>
                   <TableCol span={5}>{name}</TableCol>
-                  <TableCol span={4}>{tags.map((tag, key) => {
+                  <TableCol span={14}>{tags.map((tag, key) => {
                     return(
                       <TagsName key={key}>{tag.name}</TagsName>
                     )
                   })}</TableCol>
-                  <TableCol span={5}>{address}</TableCol>
-                  <TableCol span={5}>{createdDate}</TableCol>
+                  <TableCol span={4}>{createdDate}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
