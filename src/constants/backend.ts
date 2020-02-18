@@ -36,3 +36,13 @@ export const ORDER_STATUS_LIST = [
     name: 'Confirmed',
   }
 ]
+export const BILLING_TYPE = [
+  {
+    id: 0,
+    name: 'Fixed fee'
+  },
+  {
+    id: 1,
+    name: 'Hourly fee'
+  }
+]

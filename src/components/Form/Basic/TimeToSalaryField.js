@@ -18,10 +18,12 @@ import { get2D } from '../../../utils/get'
 import { getFieldError } from '~/utils/form'
 import { Input } from '~/components/UI'
 
-const Space = styled.div`
+const Field = styled.div`
   display: flex;
-  align-items: center;
-  margin: 0 20px;
+  justify-content: space-between;
+`
+const Equal = styled.div`
+  margin: 35px 30px 0 30px;
 `
 const getPure = pipe(
   pathOr('', ['target', 'value']),
@@ -39,8 +41,6 @@ const overflow = pipe(
 const onType = curry((onChange, ev) => {
   const pureValue = getPure(ev)
   if (notNumber(pureValue) || overflow(pureValue)) return
-
-  console.warn(pureValue)
 
   pipe(
     splitEvery(2),
@@ -94,30 +94,29 @@ const DurationInput = props => {
     }
   }
   return (
-    <>
+    <Field>
       <Input
         placeholder="Ex: 03:20"
         onChange={onType(onChange)}
         value={value}
         {...input}
         onKeyPress={onTimeEnter}
-
-        label={label}
+        label={'Time'}
         error={error || getFieldError(meta)}
         height={height}
       />
-      <Space>
+      <Equal>
       =
-      </Space>
+      </Equal>
       <Input
         placeholder="Ex: 2300"
         value={salary}
         onChange={(ev) => setSalary(ev.target.value)}
         {...input}
         onKeyPress={onSalaryEnter}
-        label={label}
+        label={'Salary'}
       />
-    </>
+    </Field>
   )
 }
 

@@ -1,85 +1,93 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { pathOr, path, propOr, map } from 'ramda'
+import { path} from 'ramda'
 import {
   Field,
   InputField,
   DateField,
-  DurationField,
-  UniversalStaticSelectField
+  UniversalSearchField
 } from '../index'
-import { Table, TableRow, TableCol, TableHeader, TableBody, TableColRight as TableColUI } from '../../Table'
-import { Button } from '../../UI'
-import * as CONST from '../../../constants/backend'
+
+import { Button, Modal } from '../../UI'
+
+import * as API from 'constants/api'
 import FieldArrayHeader from './FieldArrayHeader'
 import RemoveButton from './RemoveButton'
 
-const HeaderRow = styled(TableRow)`
-  padding-left: 30px;
+const InputBlock = styled.div`
+  margin-bottom: 10px;
 `
-
-const TableColRight = styled(TableColUI)`
-  align-self: center;
+const InputDeleteBlock = styled.div`
+  display: flex;
 `
-
+const DeleteBlock = styled.div`
+  margin: 35px 0 0 20px;
+`
+const ButtonBLock = styled.div`
+  text-align: right;
+`
+const Line = styled.div`
+  border: 0.5px solid lightgrey;
+  width: 100%;
+  margin: 20px 0;
+`
 const ExpensesListField = props => {
   const { fields, ...p } = props
+
   const onAdd = () => fields.push({})
   const onRemove = index => fields.remove(index)
-
-  const values: [] = propOr([], 'value', fields)
+  const len = path(['length'], fields)
 
   return (
     <div>
       <FieldArrayHeader title="Expenses" onAdd={onAdd} />
-      <Table gutter={20} selection={false} list={values}>
-        <TableBody>
-          {fields.map((name, index) => {
-            return (
-              <div key={index}>
-                <div data-cy={`expenses-${index}`}>
-                  <Field
-                    component={UniversalStaticSelectField}
-                    list={CONST.ORDER_STATUS_LIST}
-                    name={`${name}cashier`}
-                  />
-                </div>
-                <br />
-                <div data-cy={`count-${index}`}>
-                  <Field
-                    name={`${name}description`}
-                    component={InputField}
-                    placeholder="Description"
-                  />
-                </div>
-                <br />
-                <TableRow>
-                  <TableCol span={11} data-cy={`expenses-${index}`}>
-                    <Field
-                      name={`${name}date`}
-                      component={DateField}
-                      placeholder="Date"
-                    />
-                  </TableCol>
-                  <TableCol span={12} data-cy={`expenses-${index}`}>
-                    <Field
-                      name={`${name}amount`}
-                      component={InputField}
-                      placeholder="Amount"
-                    />
-                  </TableCol>
-                  <TableColRight span={1}>
-                    <RemoveButton onRemove={() => onRemove(index)} />
-                  </TableColRight>
-                </TableRow>
-                <TableRow>
-                  <Button type="submit">Save</Button>
-                </TableRow>
-              </div>
-            )
-          })}
-        </TableBody>
-      </Table>
+      <InputBlock>
+          <Field
+            component={UniversalSearchField}
+            api={API.POSITION_LIST}
+            name={`${name}.cashier`}
+            label="Cashier"
+          />
+      </InputBlock>
+      {fields.map((name, index) => {
+        return (
+          <div key={index}>
+            <InputBlock data-cy={`count-${index}`}>
+              <Field
+                name={`${name}.description`}
+                component={InputField}
+                placeholder="Description"
+                label="Description"
+              />
+            </InputBlock>
+            <InputBlock data-cy={`expenses-${index}`}>
+              <Field
+                name={`${name}.date`}
+                component={DateField}
+                placeholder="Date"
+                label="Date"
+              />
+            </InputBlock>
+            <InputDeleteBlock>
+              <InputBlock data-cy={`expenses-${index}`}>
+                <Field
+                  name={`${name}.amount`}
+                  component={InputField}
+                  placeholder="Amount"
+                  label="Amount"
+                />
+              </InputBlock>
+              <DeleteBlock>
+                <RemoveButton onRemove={() => onRemove(index)} />
+              </DeleteBlock>
+            </InputDeleteBlock>
+            <Line />
+          </div>
+        )
+      })}
+      <ButtonBLock>
+        {Boolean(len) && <Button type="submit">Save</Button>}
+      </ButtonBLock>
     </div>
   )
 }

@@ -60,10 +60,9 @@ const AssignmentList: FunctionComponent<Props> = props => {
           <TableHeader>
             <TableRow>
               <TableCol span={1}>#</TableCol>
-              <TableCol span={4}>Name</TableCol>
-              <TableCol span={3}>Client</TableCol>
-              <TableCol span={4}>Teem leader</TableCol>
-              <TableCol span={3}>Created Date</TableCol>
+              <TableCol span={5}>Assignment</TableCol>
+              <TableCol span={5}>Teem leader</TableCol>
+              <TableCol span={4}>Status</TableCol>
               <TableCol span={4}>Billing Type</TableCol>
               <TableCol span={4}>Tags</TableCol>
               <TableCol span={1}> </TableCol>
@@ -71,22 +70,26 @@ const AssignmentList: FunctionComponent<Props> = props => {
           </TableHeader>
           <TableBody>
             {list.map((item: TAssignmentItem) => {
+              console.warn(item)
               const id = prop('id', item)
               const name = prop('name', item)
               const client = path(['client', 'name'], item)
-              const teamLeader = path(['teamLeader', 'username'], item)
+              const teamLeader = path(['teamLeader', 'fullName'], item)
               const createdDate = dateFormat(item.createdDate)
               const billingType = prop('billingType', item)
+              const status = path(['status'], item)
               const tags = pathOr(EMPTY, ['tags'], item)
               const link = sprintf(ASSIGNMENT_ITEM_URL, id)
               return (
                 <TableRowLink link={link} key={id} selectId={id} align="center">
                   <TableCol span={1}>{id}</TableCol>
-                  <TableCol span={4}>{name}</TableCol>
-                  <TableCol span={3}>{client}</TableCol>
-                  <TableCol span={4}>{teamLeader}</TableCol>
-                  <TableCol span={3}>{createdDate}</TableCol>
-                  <TableCol span={4}>{billingType}</TableCol>
+                  <TableCol span={5}>
+                    <b>{client}</b>
+                    <p>{name}</p>
+                  </TableCol>
+                  <TableCol span={5}>{teamLeader}</TableCol>
+                  <TableCol span={4}>{status}</TableCol>
+                  <TableCol span={4}>{billingType === 'fixed_fee' ? "Fixed Fee" : 'Hourly billing'}</TableCol>
                   <TableCol span={4}>{tags.map(tag => (<Tags>{tag.name}</Tags>))}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>

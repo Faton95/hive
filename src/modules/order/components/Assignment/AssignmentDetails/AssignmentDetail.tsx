@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import styled from 'styled-components'
-import { prop, path, concat, pathOr, map, groupBy, toPairs, pipe } from 'ramda'
+import { prop, path, concat, pathOr, map, groupBy, toPairs, pipe, propOr, split } from 'ramda'
 import { DetailMenu } from 'components/Menu'
 import {
   DisplayFlex
@@ -22,6 +22,7 @@ import { TUseCreate } from 'types/hooks'
 import { Tab, Tabs } from 'components/Tabs'
 import AssignmentFeeExpenses from './AssignmentFeeExpensesCreate'
 import AssignmentDetailsInfo from './AssignmentDetailsInfo'
+import {Modal} from 'components/UI'
 
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
@@ -32,15 +33,45 @@ const MainInfo = styled.div`
   width: 400px;
 
 `
+const Tab1 = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 const EMPTY_ARR = []
 
 type Props = {
   data: TGetDataFromState<TAssignmentItem>;
   deleteData: TUseDelete;
-  onFeeCreate: TUseCreate;
+  onExpenseCreate: {
+    onSubmit: TOnSubmit,
+    onClose: () => {};
+    open: boolean,
+    onOpen: () => {};
+  };
+  onFeeCreate: {
+    onSubmit: TOnSubmit,
+    onClose: () => {};
+    open: boolean,
+    onOpen: () => {};
+  };
   feeData: TGetDataFromState<TAssignmentItem>;
-  onExpenseCreate: TUseCreate;
   expenseData: TGetDataFromState<TAssignmentItem>;
+}
+let totalTime = 0;
+const ConsumeTable = (arrItem) => {
+  const spentTimes = pathOr([], ['arrItem'], arrItem)
+  const spentTime = map(propOr('', 'spentTime'), spentTimes)
+  const times = map(split(':'), spentTime)
+
+
+  return (
+    <TableRow align="center">
+      <TableCol span={6}>332</TableCol>
+      <TableCol span={6}>3321</TableCol>
+      <TableCol span={6}>123</TableCol>
+      <TableCol span={6}>332211</TableCol>
+    </TableRow>
+  )
 }
 
 const AssignmentDetail: FunctionComponent<Props> = props => {
@@ -50,9 +81,11 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
     onFeeCreate,
     feeData,
     onExpenseCreate,
-    expenseData
+    expenseData,
   } = props
 
+  const [open, setOpen] = useState(true)
+  const onClose = () => setOpen(!open)
   const fees = pathOr([], ['data', 'results'], feeData)
   const expenses = pathOr([], ['data', 'results'], expenseData)
   const feesExpencesData = concat(fees, expenses)
@@ -81,11 +114,11 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
         </Header>
         <Tabs initialValue="fees">
           <Tab label="Fees & expences" value="fees">
+            <Tab1>
             <AssignmentFeeExpenses
-              onFeeCreate={onFeeCreate.onSubmit}
-              onExpenseCreate={onExpenseCreate.onSubmit}
+              onFeeCreate={onFeeCreate}
+              onExpenseCreate={onExpenseCreate}
             />
-            <div>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -97,24 +130,26 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
                 </TableHeader>
                 <TableBody>
                   {sortedArr.map((item, key) => {
+                    const arrItem = pathOr([], [1], item)
                     return (
-                      <TableRow align="center" key={key}>
-                        <TableCol span={6}>332</TableCol>
-                        <TableCol span={6}>3321</TableCol>
-                        <TableCol span={6}>123</TableCol>
-                        <TableCol span={6}>332211</TableCol>
-                      </TableRow>
+                      <ConsumeTable arrItem={arrItem} />
                     )
                   })}
                 </TableBody>
               </Table>
-            </div>
+            </Tab1>
           </Tab>
           <Tab label="Assignment Details" value="assignment">
             <AssignmentDetailsInfo item={data} />
           </Tab>
           <Tab label="Comments" value="comments">
-            322
+              <Modal
+                open={open}
+                title={'feed'}
+                onClose={onClose}
+              >
+              123
+            </Modal>
           </Tab>
         </Tabs>
       </Box>

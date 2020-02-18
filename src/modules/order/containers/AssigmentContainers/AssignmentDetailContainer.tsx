@@ -12,7 +12,7 @@ import {
   expenseCreateAction,
   expenseListFetch
 } from '../../action/assignmentActions'
-import { useFetchItem, useDelete, useCreate, useFetchList } from '../../../../hooks'
+import { useFetchItem, useDelete, useCreateModal, useFetchList } from '../../../../hooks'
 import { createSerializer } from '../../action/assignmentSerializer'
 import { createExpenseSerializer } from '../../serializers/expenseSerializer'
 import * as stateNames from '../../../../constants/stateNames'
@@ -36,7 +36,8 @@ const AssignmentDetailContainer = (props: Props) => {
     successAction: assignmentListFetch
   })
 
-  const onFeeCreate = useCreate({
+  const onFeeCreate = useCreateModal({
+    key: 'feeModal',
     stateName: stateNames.FEE_CREATE,
     action: feeCreateAction,
     redirectUrl: ROUTES.ASSIGNMENT_ITEM_URL,
@@ -48,7 +49,8 @@ const AssignmentDetailContainer = (props: Props) => {
     stateName: stateNames.FEE_LIST,
   })
 
-  const onExpenseCreate = useCreate({
+  const onExpenseCreate = useCreateModal({
+    key: 'expenseModal',
     stateName: stateNames.EXPENSE_CREATE,
     action: expenseCreateAction,
     redirectUrl: ROUTES.ASSIGNMENT_ITEM_URL,
