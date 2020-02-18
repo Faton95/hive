@@ -101,7 +101,7 @@ const DurationInput = props => {
         value={value}
         {...input}
         onKeyPress={onTimeEnter}
-        label={'Time'}
+        label="Time"
         error={error || getFieldError(meta)}
         height={height}
       />
@@ -114,7 +114,7 @@ const DurationInput = props => {
         onChange={(ev) => setSalary(ev.target.value)}
         {...input}
         onKeyPress={onSalaryEnter}
-        label={'Salary'}
+        label="Salary"
       />
     </Field>
   )

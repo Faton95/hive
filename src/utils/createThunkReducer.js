@@ -8,7 +8,6 @@ const initialState = {
   failed: false
 }
 
-
 const createGetThunkReducer = actionName => {
   return createReducer(initialState, {
     [`${actionName}_PENDING`] (state) {
@@ -43,7 +42,7 @@ const createGetThunkReducer = actionName => {
   })
 }
 
-export const postInitialState = {
+const postInitialState = {
   data: null,
   error: null,
   loading: false,
@@ -85,7 +84,5 @@ const createPostThunkReducer = actionName => {
   })
 }
 
-
 export default createGetThunkReducer
-export {createGetThunkReducer, createPostThunkReducer}
-
+export { createGetThunkReducer, createPostThunkReducer }

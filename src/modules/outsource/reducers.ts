@@ -1,6 +1,6 @@
-import * as stateNames from "constants/stateNames";
-import {createPostThunkReducer, createGetThunkReducer} from "utils/createThunkReducer";
-import * as actionTypes from "constants/actionTypes";
+import * as stateNames from 'constants/stateNames'
+import * as actionTypes from 'constants/actionTypes'
+import { createPostThunkReducer, createGetThunkReducer } from 'utils/createThunkReducer'
 
 export default {
   [stateNames.OUTSOURCE_LIST]: createGetThunkReducer(actionTypes.OUTSOURCE_LIST),
