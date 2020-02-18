@@ -6,7 +6,8 @@ export function AsyncComponent (getComponent) {
     static Component = null
     state = { Component: AsyncComponent.Component }
 
-    componentWillMount () {
+    constructor (props) {
+      super(props)
       if (!this.state.Component) {
         getComponent().then(Component => {
           AsyncComponent.Component = Component

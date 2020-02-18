@@ -24,13 +24,13 @@ const MainBodyTable = styled.div`
 
 const MainBodySkeleton = props => {
   return (
-    <Container>
+    <div>
       <HeaderBox />
       <PreHeaderBox />
       <MainBodyTable>
         <TableSkelet />
       </MainBodyTable>
-    </Container>
+    </div>
   )
 }
 
