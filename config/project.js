@@ -9,7 +9,7 @@ module.exports = {
   /** The full path to the project's root directory */
   basePath: `${__dirname}/../`,
   /** Host name **/
-  API_HOST: NODE_ENV !== 'development' || process.env.API_HOST ? process.env.API_HOST : 'dev.apicube.wienerdeming.com',
+  API_HOST: NODE_ENV !== 'development' || process.env.API_HOST ? process.env.API_HOST : 'api.com',
   /** The name of the directory containing the application source code */
   srcDir: 'src',
   /** The file name of the application's entry point */
@@ -29,5 +29,6 @@ module.exports = {
   /** Whether to enable verbose logging */
   verbose: false,
   /** Enable redux log */
-  log: process.env.LOG === 'enable'
+  log: process.env.LOG === 'enable',
+  analyze: process.argv.includes('--analyze')
 }

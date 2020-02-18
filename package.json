@@ -3,7 +3,8 @@
   "version": "0.1.1",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./scripts/start.js",
-    "build": "cross-env NODE_ENV=production  node ./scripts/build.js",
+    "build": "yarn clear && cross-env NODE_ENV=production  node ./scripts/build.js",
+    "clear": "rm -rf dist",
     "lint": "eslint src"
   },
   "devDependencies": {

@@ -8,6 +8,7 @@ const project = require('../config/project')
 const runWebpackCompiler = (webpackConfig) =>
   new Promise((resolve, reject) => {
     webpack(webpackConfig).run((err, stats) => {
+
       if (err) {
         logger.error('Webpack compiler encountered a fatal error.', err)
         return reject(err)
@@ -31,11 +32,16 @@ const compile = () => Promise.resolve()
   .then(() => logger.info('Target application environment: ' + project.env))
   .then(() => runWebpackCompiler(webpackConfig))
   .then((stats) => {
+
     logger.info(`Copying static assets from ./public to ./${project.outDir}.`)
-    fs.copySync(
-      path.resolve(project.basePath, 'public'),
-      path.resolve(project.basePath, project.outDir)
-    )
+    const publicPath = path.resolve(project.basePath, 'public')
+    if(fs.existsSync(publicPath)){
+      fs.copySync(
+        publicPath,
+        path.resolve(project.basePath, project.outDir)
+      )
+    }
+
     return stats
   })
   .then((stats) => {
