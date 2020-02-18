@@ -107,7 +107,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Branch"
+              label="Service delivered by"
               name="branch"
               api={API.BRANCH_LIST}
               component={UniversalSearchField}
@@ -206,6 +206,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
               <BillingFields
                 positionList={positionList}
                 hourlyHasFeeCeiling={hourlyHasFeeCeiling}
+                
               />
               <FieldWrapper>
                 <Label>Invoice Delivered By</Label>
@@ -242,7 +243,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
       </DoubleField>
 
       <CreateCancelButtons
-        cancelPath={ROUTES.GROUP_LIST_PATH}
+        cancelPath={ROUTES.ASSIGNMENT_LIST_PATH}
         submitText="Save"
       />
     </form>
