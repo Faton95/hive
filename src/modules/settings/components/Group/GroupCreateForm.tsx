@@ -12,8 +12,6 @@ const BranchCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, permissionData } = props
 
   const items = pathOr<TPermissionItem[]>([], ['data', 'results'], permissionData)
-
-  console.warn(items.map(i => i.codename))
   return (
     <form onSubmit={handleSubmit}>
       <FieldWrapper>
