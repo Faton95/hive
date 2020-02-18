@@ -21,10 +21,11 @@ const FeeCeiling = styled.div`
 
 type Props = {
   hourlyHasFeeCeiling: boolean,
-  positionList: TPositionItem[]
+  positionList: TPositionItem[],
+  isMulti?: boolean
 }
 const BillingFields: FunctionComponent<Props> = props => {
-
+  const {isMulti} = props
   return (
   <>
     <FieldWrapper>
@@ -35,12 +36,14 @@ const BillingFields: FunctionComponent<Props> = props => {
         value="fixed_fee"
         component={RadioButtonBorderedField}
       >
+        {isMulti && 
         <FieldWrapper>
           <Field
             name="fixedFeeAmount"
             label="Fee amount"
             component={InputField}/>
         </FieldWrapper>
+      }
         <Field
           name="fixedFeeExpensesIncludedInFee"
           label={{checkbox: "Expenses included in Fee"}}

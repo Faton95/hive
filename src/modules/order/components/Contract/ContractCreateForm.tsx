@@ -34,8 +34,10 @@ type Props = Merge<FormRenderProps, {
 const EMPTY_ARR = []
 const ContractCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values } = props
+  console.warn(values)
   const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
   const bankAccount = path<number>(['bankAccount', 'id'], values)
+  const isMulti = path<boolean>(['isMulti'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
@@ -50,7 +52,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
       </FieldWrapper>
       <FieldWrapper>
         <Field
-          label="Branch"
+          label="Service delivered by"
           name="branch"
           api={API.BRANCH_LIST}
           component={UniversalSearchField} />
@@ -88,15 +90,27 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           rightWidth="220px"
           component={InputAddonInlineLabel} />
       </FieldWrapper>
-      </div>
-
+      </div>      
       <div>
-        <InputLabel>Billing Type</InputLabel>
-        <BillingFields
-          hourlyHasFeeCeiling={hourlyHasFeeCeiling}
-          positionList={positionList}
-        />
+          <FieldWrapper>
+            <Field
+              name="isMulti"
+              label={{ checkbox: 'Is Multi', field: 'isMulti' }}
+              component={CheckboxBordered}
+              defaultValue={true}
+              type="checkbox"
+            />
+          </FieldWrapper>
+            <div>
+              <InputLabel>Billing Type</InputLabel>
+              <BillingFields
+                hourlyHasFeeCeiling={hourlyHasFeeCeiling}
+                positionList={positionList}
+                isMulti={isMulti}
+              />
+            </div>
       </div>
+      
       </DoubleField>
       <CreateCancelButtons
         cancelPath={ROUTES.GROUP_LIST_PATH}
