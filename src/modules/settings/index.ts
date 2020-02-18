@@ -22,7 +22,8 @@ import {
 
 import {
   GroupListContainer,
-  GroupCreateContainer
+  GroupCreateContainer,
+  GroupUpdateContainer
 } from './containers/GroupContainers'
 import {
   PositionCreateContainer,
@@ -124,6 +125,11 @@ export default (store) => [
     exact: true,
     path: ROUTES.GROUP_CREATE_PATH,
     component: GroupCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.GROUP_UPDATE_PATH,
+    component: GroupUpdateContainer
   },
 
   {

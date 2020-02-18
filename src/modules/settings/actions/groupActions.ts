@@ -44,6 +44,7 @@ export const groupUpdateAction = (id, data) => {
     })
   }
 }
+
 export const groupItemFetch = (id) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
