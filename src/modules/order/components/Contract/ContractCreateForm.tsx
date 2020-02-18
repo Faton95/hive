@@ -37,7 +37,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
   console.warn(values)
   const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
   const bankAccount = path<number>(['bankAccount', 'id'], values)
-  const isMulti = path<boolean>(['isMulti'], values)
+  const isMultiple = path<boolean>(['isMultiple'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
@@ -94,10 +94,10 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
       <div>
           <FieldWrapper>
             <Field
-              name="isMulti"
-              label={{ checkbox: 'Is Multi', field: 'isMulti' }}
+              name="isMultiple"
+              label={{ checkbox: 'Is Multi', field: 'Multi contract' }}
               component={CheckboxBordered}
-              defaultValue={true}
+              defaultValue={false}
               type="checkbox"
             />
           </FieldWrapper>
@@ -106,14 +106,14 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
               <BillingFields
                 hourlyHasFeeCeiling={hourlyHasFeeCeiling}
                 positionList={positionList}
-                isMulti={isMulti}
+                isMultiple={isMultiple}
               />
             </div>
       </div>
       
       </DoubleField>
       <CreateCancelButtons
-        cancelPath={ROUTES.GROUP_LIST_PATH}
+        cancelPath={ROUTES.CONTRACT_LIST_PATH}
         submitText="Save"
       />
     </form>
