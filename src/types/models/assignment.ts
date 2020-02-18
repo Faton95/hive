@@ -37,7 +37,8 @@ export type TAssignmentItem = {
   client: TIdName;
   branch: TIdName;
   currency: TCurrencyItem;
-  bankAccount: number
+  bankAccount: number;
+  status: string;
 }
 export type fee= {
   spendTime: string;

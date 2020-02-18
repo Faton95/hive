@@ -13,15 +13,17 @@ import {
   prop,
   test,
 } from 'ramda'
+import numberFormat from '../../../utils/numberFormat'
+import { get2D } from '../../../utils/get'
 import { getFieldError } from '~/utils/form'
 import { Input } from '~/components/UI'
-import numberFormat from '../../../utils/numberFormat'
-import {get2D} from '../../../utils/get'
 
-const Space = styled.div`
+const Field = styled.div`
   display: flex;
-  align-items: center;
-  margin: 0 20px;
+  justify-content: space-between;
+`
+const Equal = styled.div`
+  margin: 35px 30px 0 30px;
 `
 const getPure = pipe(
   pathOr('', ['target', 'value']),
@@ -40,15 +42,12 @@ const onType = curry((onChange, ev) => {
   const pureValue = getPure(ev)
   if (notNumber(pureValue) || overflow(pureValue)) return
 
-  console.warn(pureValue)
-
   pipe(
     splitEvery(2),
     join(':'),
     onChange
   )(pureValue)
 })
-
 
 const ONE_HOUR_IN_MINUTES = 60
 const DurationInput = props => {
@@ -68,64 +67,56 @@ const DurationInput = props => {
   const isValid = !tested && !active && touched && dirty
   const error = isValid && 'Укажите время в правильном формате (03:20).'
 
-
-  
-
   const onTimeEnter = ev => {
-
-    if(ev.key === 'Enter'){
+    if (ev.key === 'Enter') {
       ev.preventDefault()
 
       const v = ev.target.value
-      const hourSpend = Number(v.substring(0,2))
+      const hourSpend = Number(v.substring(0, 2))
       const hourToMinute = Number(hourSpend) * ONE_HOUR_IN_MINUTES
-      const minuteSpend = Number(value.substring(3,5))
+      const minuteSpend = Number(value.substring(3, 5))
       const totalMinute = hourToMinute + minuteSpend
       const salaryPerMinute = salaryRate / 60
       const formSalary = numberFormat(Number(totalMinute) * salaryPerMinute)
       setSalary(formSalary)
-    
-    
     }
   }
   const onSalaryEnter = ev => {
-//    ev.preventDefault()
+    //    ev.preventDefault()
 
-    if(ev.key === 'Enter'){
+    if (ev.key === 'Enter') {
       ev.preventDefault()
       const salary = parseFloat(ev.target.value)
       const salaryToHour = Math.floor(salary / salaryRate)
       const salaryToMinute = (salary % salaryRate) * (60 / salaryRate)
       const reverseValue = get2D(salaryToHour) + ':' + salaryToMinute
-      console.warn(ev)
       onChange(reverseValue)
     }
   }
   return (
-    <>
-    <Input
-      placeholder="Ex: 03:20"
-      onChange={onType(onChange)}
-      value={value}
-      {...input}
-      onKeyPress={onTimeEnter}
-
-      label={label}
-      error={error || getFieldError(meta)}
-      height={height}
-    />
-    <Space>
+    <Field>
+      <Input
+        placeholder="Ex: 03:20"
+        onChange={onType(onChange)}
+        value={value}
+        {...input}
+        onKeyPress={onTimeEnter}
+        label={'Time'}
+        error={error || getFieldError(meta)}
+        height={height}
+      />
+      <Equal>
       =
-    </Space>
-    <Input 
-      placeholder="Ex: 2300"
-      value={salary}
-      onChange={(ev) => setSalary(ev.target.value)}
-      {...input}
-      onKeyPress={onSalaryEnter}
-      label={label}
-    />
-    </>
+      </Equal>
+      <Input
+        placeholder="Ex: 2300"
+        value={salary}
+        onChange={(ev) => setSalary(ev.target.value)}
+        {...input}
+        onKeyPress={onSalaryEnter}
+        label={'Salary'}
+      />
+    </Field>
   )
 }
 
