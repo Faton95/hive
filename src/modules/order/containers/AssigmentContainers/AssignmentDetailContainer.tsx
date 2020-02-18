@@ -37,6 +37,7 @@ const AssignmentDetailContainer = (props: Props) => {
   })
 
   const onFeeCreate = useCreateModal({
+    key: 'feeModal',
     stateName: stateNames.FEE_CREATE,
     action: feeCreateAction,
     redirectUrl: ROUTES.ASSIGNMENT_ITEM_URL,
@@ -49,6 +50,7 @@ const AssignmentDetailContainer = (props: Props) => {
   })
 
   const onExpenseCreate = useCreateModal({
+    key: 'expenseModal',
     stateName: stateNames.EXPENSE_CREATE,
     action: expenseCreateAction,
     redirectUrl: ROUTES.ASSIGNMENT_ITEM_URL,

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import styled from 'styled-components'
-import { prop, path, concat, pathOr, map, groupBy, toPairs, pipe } from 'ramda'
+import { prop, path, concat, pathOr, map, groupBy, toPairs, pipe, propOr, split } from 'ramda'
 import { DetailMenu } from 'components/Menu'
 import {
   DisplayFlex
@@ -57,9 +57,14 @@ type Props = {
   feeData: TGetDataFromState<TAssignmentItem>;
   expenseData: TGetDataFromState<TAssignmentItem>;
 }
-
+let totalTime = 0;
 const ConsumeTable = (arrItem) => {
-  console.warn(arrItem)
+  const spentTimes = pathOr([], ['arrItem'], arrItem)
+  const spentTime = map(propOr('', 'spentTime'), spentTimes)
+  const times = map(split(':'), spentTime)
+  
+
+  console.warn(times)
   return (
     <TableRow align="center">
       <TableCol span={6}>332</TableCol>
