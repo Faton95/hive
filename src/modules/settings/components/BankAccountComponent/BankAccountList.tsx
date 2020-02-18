@@ -19,12 +19,12 @@ import {
 import { Box, Dropdown, DropdownItem } from '../../../../components/UI'
 
 const CardBlock = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+display: grid;
+grid-column-gap: 50px;
+grid-template-columns: auto auto auto;
 `
 const Card = styled(Box)`
-  width: 24%;
+  width: 100%;
   height: 400px;
   padding: 20px;
   margin-top: 20px;
@@ -72,44 +72,6 @@ const BankAccountList: FunctionComponent<Props> = props => {
       <Menu title="Bank Account" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
-          {/* <TableHeader>
-            <TableRow>
-              <TableCol span={1}>#</TableCol>
-              <TableCol span={5}>Name</TableCol>
-              <TableCol span={5}>Code</TableCol>
-              <TableCol span={5}>address</TableCol>
-              <TableCol span={7}>Bank detail</TableCol>
-              <TableCol span={1}> </TableCol>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {list.map((item) => {
-              const id = prop('id', item)
-              const name = prop('name', item)
-              const code = prop('code', item)
-              const address = prop('address', item)
-              const bankDetails = prop('bankDetails', item)
-              return (
-                <TableRow key={id} align="center">
-                  <TableCol span={1}>{id}</TableCol>
-                  <TableCol span={5}>{name}</TableCol>
-                  <TableCol span={5}>{code}</TableCol>
-                  <TableCol span={5}>{address}</TableCol>
-                  <TableCol span={7}>{bankDetails}</TableCol>
-                  <TableCol span={1}>
-                    <Dropdown>
-                      <DropdownItem onClick={() => onEdit(id)}>
-                        Edit
-                      </DropdownItem>
-                      <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Delete
-                      </DropdownItem>
-                    </Dropdown>
-                  </TableCol>
-                </TableRow>
-              )
-            })}
-          </TableBody> */}
         </Table>
       </Box>
       <CardBlock>
