@@ -4,7 +4,9 @@ export const getStorage = (key, defaultValue = null) => {
   if (value) {
     try {
       return JSON.parse(value)
-    } catch (e) {}
+    } catch (e) {
+      console.warn(e)
+    }
   }
 
   return defaultValue

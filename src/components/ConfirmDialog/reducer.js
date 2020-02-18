@@ -18,7 +18,7 @@ export default createReducer(defaultState, {
     }
   },
 
-  [`${actions.CONFIRM_DIALOG_CLOSE}`] (state) {
+  [`${actions.CONFIRM_DIALOG_CLOSE}`] () {
     return {
       ...defaultState,
       open: false

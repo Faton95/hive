@@ -5,8 +5,6 @@ import styled, { css } from 'styled-components'
 import { Checkbox } from 'ui-cubic'
 import { InputLabel } from 'components/UI'
 
-
-
 const StyledCheckbox = styled(Checkbox)`
   padding-left: 26px !important;
 
@@ -14,7 +12,6 @@ const StyledCheckbox = styled(Checkbox)`
 
 const CheckboxBordered = props => {
   const { input, label, ...rest } = props
-
 
   return (
 

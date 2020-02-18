@@ -3,7 +3,8 @@
   "version": "0.1.1",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./scripts/start.js",
-    "build": "cross-env NODE_ENV=production  node ./scripts/build.js",
+    "build": "yarn clear && cross-env NODE_ENV=production  node ./scripts/build.js",
+    "clear": "rm -rf dist",
     "lint": "eslint src"
   },
   "devDependencies": {
@@ -70,6 +71,7 @@
     "history": "^4.9.0",
     "moment": "^2.18.1",
     "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.12.0",
     "react-dates": "^21.7.0",

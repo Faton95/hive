@@ -97,23 +97,33 @@ const Pagination = props => {
     pageCount > 10 ? (
       <>
         <Page
-          children={1}
           isActive={currPage === 1}
           onClick={() => goTo(1)}
-        />
+        >
+          1
+        </Page>
         {currPage > 2 && '...'}
         {currPage !== 1 && currPage !== lastPage && (
-          <Page children={currPage} isActive={true} />
+          <Page isActive={true}>{currPage}</Page>
         )}
         {currPage < lastPage - 1 && '...'}
         <Page
-          children={lastPage}
           isActive={lastPage === currPage}
           onClick={() => goTo(lastPage)}
-        />
+        >
+          {lastPage}
+        </Page>
       </>
     ) : (
-      pages.map(item => <Page children={item} key={item} isActive={item === currPage} onClick={() => goTo(item)} />)
+      pages.map(item => (
+        <Page
+          key={item}
+          isActive={item === currPage}
+          onClick={() => goTo(item)}
+        >
+          {item}
+        </Page>
+      ))
     )
 
   return (

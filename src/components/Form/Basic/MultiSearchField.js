@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, { useReducer } from 'react'
 import PropTypes from 'prop-types'
 import {
   path,
@@ -11,7 +11,7 @@ import {
   not,
   is, isEmpty
 } from 'ramda'
-/*import {
+/* import {
   compose,
   withReducer,
   mapPropsStream,
@@ -27,10 +27,10 @@ import {
   filter,
   distinctUntilChanged,
   debounceTime
-} from 'rxjs/operators'*/
+} from 'rxjs/operators' */
 import { Select } from 'ui-cubic'
 import { getFieldError } from 'utils/form'
-import {useCompareEffect} from "hooks";
+import { useCompareEffect } from 'hooks'
 
 const DEFAULT_STATE = {
   options: [],
@@ -96,7 +96,6 @@ const useFirstFetch = props => {
   }, [])
 }
 
-
 const useParentChangeFetch = props => {
   const parent = prop('parent', props)
   useCompareEffect(() => {
@@ -105,7 +104,6 @@ const useParentChangeFetch = props => {
     }
   }, [parent])
 }
-
 
 const useInitialValues = props => {
   const id = getIdFromProps(props)
@@ -256,7 +254,6 @@ const enhance = compose(
 const actionReducer = (state, action) => ({ ...state, ...action })
 
 const SearchField = props => {
-
   const [state, dispatch] = useReducer(actionReducer, DEFAULT_STATE)
   const newProps = { ...props, state, dispatch }
   useFirstFetch(newProps)
@@ -264,8 +261,8 @@ const SearchField = props => {
   useInitialValues(newProps)
   useStaticInitialsFetch(newProps)
   const {
-//    state,
-//    dispatch,
+    //    state,
+    //    dispatch,
     input,
     meta,
     label,

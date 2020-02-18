@@ -4,10 +4,10 @@ import moment from 'moment'
 import { path } from 'ramda'
 import styled, { css } from 'styled-components'
 import { DateRangePicker } from 'react-dates'
-import commonProps from './commonProps'
-import { customArrowIcon } from './customIcons'
 import { getFieldError } from 'utils/form'
 import { InputLabel, InputError } from 'components/UI'
+import commonProps from './commonProps'
+import { customArrowIcon } from './customIcons'
 
 const DateContainer = styled('div')`
   align-items: center;
@@ -128,7 +128,8 @@ class DateRangeField extends React.Component {
             if (event.currentTarget === event.target) {
               this.onFocusChange('startDate')
             }
-          }}>
+          }}
+        >
           <DateRangePicker
             {...this.dateRangeProps}
             {...defaultProps}

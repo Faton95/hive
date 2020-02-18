@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Container from 'components/StyledElems/Container'
 import TableSkelet from './TableSkeleton'
 
 const HeaderBox = styled.div`
@@ -23,13 +24,13 @@ const MainBodyTable = styled.div`
 
 const MainBodySkeleton = props => {
   return (
-    <div>
+    <Container>
       <HeaderBox />
       <PreHeaderBox />
       <MainBodyTable>
         <TableSkelet />
       </MainBodyTable>
-    </div>
+    </Container>
   )
 }
 

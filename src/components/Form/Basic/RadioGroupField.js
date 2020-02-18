@@ -5,8 +5,7 @@ import { path } from 'ramda'
 const RadioGroupField = props => {
   const {
     children,
-    input: { value, checked, ...input },
-    meta
+    input: { value, checked, ...input }
   } = props
 
   const isChecked = v => v === value
@@ -20,7 +19,7 @@ const RadioGroupField = props => {
     })
   })
 
-  return <React.Fragment>{formattedChild}</React.Fragment>
+  return <>{formattedChild}</>
 }
 
 export default RadioGroupField

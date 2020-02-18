@@ -6,11 +6,12 @@ import { Dropdown as DropdownCUI } from 'ui-cubic'
 const Dropdown = ({ children, marginLeft, ...props }) => (
   <DropdownCUI
     {...props}
-    children={children}
     mode="horizontal"
     backgroundColor="#f1f3f5"
     dotColor="#435260"
-  />
+  >
+    {children}
+  </DropdownCUI>
 )
 
 Dropdown.propTypes = {

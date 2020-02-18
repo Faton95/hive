@@ -29,10 +29,20 @@ const App: FunctionComponent<Props> = ({ routes, store }) => {
             <GlobalStyles />
             <BrowserRouter>
               {!tokenExists && <Redirect to="/login" />}
-              {routes.map((route) => (
+              {routes.map(({component: Component,layout: Layout, ...route}) => (
                 <Route
+
                   key={route.path}
+                  path={route.path}
                   {...route}
+                  render={(renderProps) => Layout ? (
+                    <Layout>
+                    <Component {...renderProps}/>
+                    </Layout>
+                  ) : (
+                    <Component {...renderProps}/>
+                  )}
+
                 />
               ))}
             </BrowserRouter>

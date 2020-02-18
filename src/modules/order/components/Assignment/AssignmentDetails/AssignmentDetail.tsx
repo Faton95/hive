@@ -62,9 +62,8 @@ const ConsumeTable = (arrItem) => {
   const spentTimes = pathOr([], ['arrItem'], arrItem)
   const spentTime = map(propOr('', 'spentTime'), spentTimes)
   const times = map(split(':'), spentTime)
-  
 
-  console.warn(times)
+
   return (
     <TableRow align="center">
       <TableCol span={6}>332</TableCol>

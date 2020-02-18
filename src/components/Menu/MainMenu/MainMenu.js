@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import {pipe, prop, map, last, split, uniq} from 'ramda'
+import { pipe, prop, map, last, split, uniq } from 'ramda'
 import { Link } from 'react-router-dom'
+import { useUserPerms } from 'hooks'
 import mapIndexed from '../../../utils/mapIndexed'
 import menus from '../../../constants/menus'
-import {useUserPerms} from 'hooks'
 
 const SubMenuItems = styled(({ isActive, ...props }) => <Link {...props} />)`
   border-radius: ${props => props.theme.input.borderRadius};
@@ -47,7 +47,7 @@ const MainMenu = ({ active }) => {
         const key = prop('key', item)
         const isActive = active === key
 
-        if(isSuperUser || permKeys.includes(key)){
+        if (isSuperUser || permKeys.includes(key)) {
           return (
             <SubMenuItems
               key={index}
@@ -59,7 +59,6 @@ const MainMenu = ({ active }) => {
           )
         }
         return null
-
       }, menus)}
     </div>
   )

@@ -10,10 +10,12 @@ const CalendarMonth = styled('div')`
   text-transform: capitalize;
 `
 
-export default ({ month }) => {
+const MonthElement = ({ month }) => {
   return (
     <CalendarMonth>
       {moment(month).format('MMMM YYYY')}
     </CalendarMonth>
   )
 }
+
+export default MonthElement

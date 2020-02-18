@@ -1,16 +1,21 @@
+import { injectReducers } from 'etc/reducers'
 import * as ROUTES from '../../constants/routes'
 import {
-  OutsourceListContainer,
   OutsourceDetailContainer,
   OutsourceCreateContainer,
-  OutsourceUpdateContainer
+  OutsourceUpdateContainer,
+  getOutSourceListContainer
 } from './containers'
+import AsyncComponent from 'components/AsyncComponent'
+import Layout from "components/Layouts/Layout";
+
 
 export default (store) => [
   {
     exact: true,
     path: ROUTES.OUTSOURCE_LIST_PATH,
-    component: OutsourceListContainer
+    layout: Layout,
+    component: AsyncComponent(() => getOutSourceListContainer(store))
   },
   {
     exact: true,

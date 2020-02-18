@@ -25,13 +25,13 @@ const NavButton = styled('div')`
 `
 
 export const navPrev = (
-  <NavButton position={'left'}>
+  <NavButton position="left">
     <ChevronLeft />
   </NavButton>
 )
 
 export const navNext = (
-  <NavButton position={'right'}>
+  <NavButton position="right">
     <ChevronRight />
   </NavButton>
 )

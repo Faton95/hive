@@ -34,7 +34,7 @@ const Text = styled('div')`
   font-size: 15px;
 `
 
-export default () => {
+const EmptyState = () => {
   return (
     <Container>
       <IconWrap>
@@ -44,3 +44,5 @@ export default () => {
     </Container>
   )
 }
+
+export default EmptyState

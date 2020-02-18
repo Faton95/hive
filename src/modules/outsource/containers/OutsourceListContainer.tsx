@@ -34,14 +34,13 @@ const OutsourceListContainer = props => {
 
   const onEdit = (id) => props.history.push(sprintf(ROUTES.OUTSOURCE_UPDATE_URL, id))
   return (
-    <Layout>
+
       <OutsourceList
         data={data}
         filterAction={filterAction}
         onEdit={onEdit}
         deleteData={deleteData}
       />
-    </Layout>
   )
 }
 

@@ -14,7 +14,7 @@ const getStateData = state => ({
   loading: path(['confirmDialog', 'loading'], state),
 })
 
-const ConfirmDialog = props => {
+const ConfirmDialog = () => {
   const dispatch = useDispatch()
   const onClose = () => dispatch(closeConfirmDialogAction())
   const { title, message, open, onConfirm, loading } = useSelector(getStateData, shallowEqual)

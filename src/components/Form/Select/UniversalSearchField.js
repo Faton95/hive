@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useStore } from 'react-redux'
-import SearchField from '../Basic/SearchField'
 import {
   getOption,
   getOptions,
   defaultGetText,
   defaultGetValue
 } from 'utils/searchField'
+import SearchField from '../Basic/SearchField'
 
 const UniversalSearchField = props => {
   const { api, params, itemText, getText, ...rest } = props

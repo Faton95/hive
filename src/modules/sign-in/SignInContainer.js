@@ -10,7 +10,6 @@ const SignInContainer = props => {
     return dispatch(loginAction(data))
       .then(({ value }) => dispatch(userInfoFetch(value.token)))
       .then(() => props.history.replace(ROUTES.ASSIGNMENT_LIST_PATH))
-
   }
   return (
     <SignIn onLogin={onLogin} />

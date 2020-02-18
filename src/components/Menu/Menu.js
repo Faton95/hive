@@ -1,10 +1,14 @@
+import * as ACTIONS from 'constants/actionTypes'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
+import expireDocumentCookie from 'utils/expireDocumentCookie'
+import { Power } from 'react-feather'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
 import MenuIcon from '../../icons/Menu'
 import * as ROUTES from '../../constants/routes'
 import DisplayFlex from '../StyledElems/DisplayFlex'
-import expireDocumentCookie from 'utils/expireDocumentCookie'
 import {
   NavBar,
   IconWrapper,
@@ -14,10 +18,7 @@ import {
 } from './components'
 import MainMenu from './MainMenu'
 import SubMenu from './SubMenu'
-import { Power } from 'react-feather'
-import {useDispatch} from 'react-redux'
-import * as ACTIONS from 'constants/actionTypes'
-import styled from "styled-components"
+
 const DisplayTitle = styled(DisplayFlex)`
   min-width: 200px;
   max-width: 200px;
@@ -49,7 +50,7 @@ const Menu = props => {
 
         <DisplayFlex alignItems="center">
           <span onClick={onLogout}>
-          <Power/>
+            <Power />
           </span>
         </DisplayFlex>
       </NavBar>
