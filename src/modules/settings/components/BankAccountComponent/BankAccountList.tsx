@@ -59,7 +59,6 @@ const BankAccountList: FunctionComponent<Props> = props => {
 
   const count = pathOr(ZERO, ['data', 'count'], data)
   const list = pathOr<TBankAddressItem[]>(EMPTY, ['data', 'results'], data)
-  console.warn(list)
   const ids = map(prop('id'), list)
   const actions = (
     <TableActions
@@ -81,7 +80,6 @@ const BankAccountList: FunctionComponent<Props> = props => {
               const code = prop('code', item)
               const address = prop('address', item)
               const bankDetails = prop('bankDetails', item)
-              console.warn(item)
               return (
                 <Card key={id}>
                   <CardHeader>

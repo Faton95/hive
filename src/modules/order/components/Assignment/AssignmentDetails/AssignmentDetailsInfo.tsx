@@ -56,7 +56,6 @@ const OrderDetail: FunctionComponent<Props> = props => {
   const workGroup = map(path(['fullName']), workGroups)
   const billingType = path(['billingType'], details)
   const paymentDestination = path(['paymentDestination'], details)
-  console.warn('dd', details)
   return (
     <>
         <MarginBottom gutter={10}>

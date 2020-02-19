@@ -78,7 +78,6 @@ const OutsourceList: FunctionComponent<Props> = props => {
               const link = sprintf(OUTSOURCE_ITEM_URL, id)
               const name = prop('name', item)
               const tags = pathOr(EMPTY, ['tags'], item)
-              console.warn(tags)
 
               return (
                 <TableRowLink link={link} key={id} selectId={id} align="center">
