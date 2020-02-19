@@ -34,7 +34,6 @@ type Props = Merge<FormRenderProps, {
 const EMPTY_ARR = []
 const ContractCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values } = props
-  console.warn(values)
   const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
   const bankAccount = path<number>(['bankAccount', 'id'], values)
   const isMultiple = path<boolean>(['isMultiple'], values)
