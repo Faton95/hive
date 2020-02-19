@@ -19,9 +19,9 @@ import {
 import { Box, Dropdown, DropdownItem } from '../../../../components/UI'
 
 const CardBlock = styled.div`
-display: grid;
-grid-column-gap: 50px;
-grid-template-columns: auto auto auto;
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
 `
 const Card = styled(Box)`
   width: 100%;

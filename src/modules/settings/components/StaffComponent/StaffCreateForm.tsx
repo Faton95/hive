@@ -24,7 +24,7 @@ const RowMargin = styled(Row)`
 const ShowHideButton = styled.img`
   position: absolute;
   top: 45%;
-  left: 43%;
+  left: 45.5%;
   border-radius: 4px;
   cursor: pointer;
   height: 30px;
@@ -51,6 +51,17 @@ const StaffCreateForm: FunctionComponent<FormRenderProps> = props => {
             name="username"
             component={InputField}
             placeholder="Username"
+          />
+        </Col>
+        <Col span={12} />
+      </RowMargin>
+      <RowMargin gutter={20}>
+        <Col span={12}>
+          <Field
+            label="Full Name"
+            name="full_name"
+            component={InputField}
+            placeholder="Full name"
           />
         </Col>
         <Col span={12} />

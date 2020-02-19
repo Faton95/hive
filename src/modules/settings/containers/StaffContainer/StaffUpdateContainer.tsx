@@ -23,9 +23,12 @@ const StaffUpdateContainer = () => {
 
   const data = prop('data', staffItem)
   const position = path(['position', 'id'], data)
+  const full_name = path(['fullName'], data)
+  console.warn(data)
   const initialValues = {
     ...data,
-    position
+    position,
+    full_name
   }
 
   return (

@@ -22,7 +22,7 @@ type NewPropType = Merge<TGetDataFromState<TCurrencyItem | null>, Props>
 const StaffUpdate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title={`Update staff №${props.id}`} />
+      <DetailMenu title={`Update Staff № ${props.id}`} />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}
