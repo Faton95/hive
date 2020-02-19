@@ -26,7 +26,6 @@ const ContractListContainer = props => {
     stateName: stateNames.CONTRACT_LIST,
     pickParams: PICK_PARAMS
   })
-  console.warn(data)
 
   const deleteData = useDelete({
     stateName: stateNames.CONTRACT_DELETE,

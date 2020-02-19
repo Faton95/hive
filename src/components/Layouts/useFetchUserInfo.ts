@@ -33,12 +33,11 @@ const useFetchUserInfo = () => {
       dispatch(userInfoFetch(cookieToken))
         .catch(eee => {
           setIsAuth(false)
-          console.warn(eee)
+          
         })
     }
     if (!token && !cookieToken) {
       setIsAuth(false)
-      console.warn(token, cookieToken)
     }
   }, [])
 

@@ -75,7 +75,6 @@ const AssignmentList: FunctionComponent<Props> = props => {
           </TableHeader>
           <TableBody>
             {list.map((item: TAssignmentItem) => {
-              console.warn(item)
               const id = prop('id', item)
               const name = prop('name', item)
               const client = path(['client', 'name'], item)

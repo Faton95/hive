@@ -12,7 +12,6 @@ const Border = styled.div`
 const RadioButtonField = props => {
   const { label, input } = props
   const checked = input.checked || false
-  console.warn(input)
   return (
     <Border checked={checked}>
       <RadioButton label={label} {...input} />

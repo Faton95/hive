@@ -5,7 +5,6 @@ import  toCamelCase  from 'utils/toCamelCase'
 
 const EMPTY = []
 export const createSerializer = data => {
-  console.warn('staff', data)
   const fieldsData = getSerializedData(fields, data)
   return {
     ...fieldsData
