@@ -28,6 +28,11 @@ const Tags = styled.span`
   background-color: #f3f4f6;
   margin-right: 5px;
 `
+const AssignmentName = styled.div`
+  font-size: 15px;
+  line-height: 24px;
+  color: #36434E;
+`
 type Props = {
     data: TGetDataFromState<TData<TAssignmentItem>>;
     filterAction: any;
@@ -84,8 +89,14 @@ const AssignmentList: FunctionComponent<Props> = props => {
                 <TableRowLink link={link} key={id} selectId={id} align="center">
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={5}>
-                    <b>{client}</b>
-                    <p>{name}</p>
+                    <b>
+                      <AssignmentName>
+                        {client}
+                      </AssignmentName>
+                    </b>
+                    <AssignmentName>
+                      {name}
+                    </AssignmentName>
                   </TableCol>
                   <TableCol span={5}>{teamLeader}</TableCol>
                   <TableCol span={4}>{status}</TableCol>

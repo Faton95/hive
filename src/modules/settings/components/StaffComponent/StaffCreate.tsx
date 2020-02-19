@@ -21,6 +21,7 @@ type NewPropType = Merge<TGetDataFromState<TStaffItem | null>, Props>
 export const fields = [
   'photo',
   'username',
+  'full_name',
   'password',
   'position',
   'rate'
@@ -28,12 +29,11 @@ export const fields = [
 const StaffCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="Currencies" />
+      <DetailMenu title="Staff create" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}
           mutators={{ ...arrayMutators }}
-
           component={StaffCreateForm}
         />
       </Box>

@@ -63,8 +63,8 @@ const ClientList: FunctionComponent<Props> = props => {
           <TableHeader>
             <TableRow>
               <TableCol span={5}>Name</TableCol>
-              <TableCol span={14}>Tags</TableCol>
-              <TableCol span={4}>Created date</TableCol>
+              <TableCol span={8}>Created date</TableCol>
+              <TableCol span={10}>Tags</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -81,12 +81,12 @@ const ClientList: FunctionComponent<Props> = props => {
               return (
                 <TableRowLink link={link} key={id} selectId={id} align="center">
                   <TableCol span={5}>{name}</TableCol>
-                  <TableCol span={14}>{tags.map((tag, key) => {
+                  <TableCol span={8}>{createdDate}</TableCol>
+                  <TableCol span={10}>{tags.map((tag, key) => {
                     return(
                       <TagsName key={key}>{tag.name}</TagsName>
                     )
                   })}</TableCol>
-                  <TableCol span={4}>{createdDate}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
