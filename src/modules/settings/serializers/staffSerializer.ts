@@ -1,12 +1,9 @@
-import {path, pathOr, prop, map} from 'ramda'
-import { getSerializedData } from '../../../utils/get'
+import { getSerializedData } from 'utils/get'
+import toSnakeCase from 'utils/toSnakeCase'
 import { fields } from '../components/StaffComponent/StaffCreate'
-import  toCamelCase  from 'utils/toCamelCase'
 
-const EMPTY = []
 export const createSerializer = data => {
   const fieldsData = getSerializedData(fields, data)
-  return {
-    ...fieldsData
-  }
+
+  return toSnakeCase(fieldsData)
 }

@@ -2,25 +2,28 @@ import React from 'react'
 import { History, Location } from 'history'
 import { sprintf } from 'sprintf-js'
 import { useParams } from 'react-router-dom'
-import { prop } from 'ramda'
+import { prop, propOr } from 'ramda'
+import { TContractItem, TData, TPositionItem } from 'types'
+import { TRateItem } from 'types/models/assignment'
+import { positionListFetch } from 'modules/settings/actions/positionActions'
+import { getPositionRate } from 'utils/get'
 import ContractUpdate from '../../components/Contract/ContractUpdate'
 import { contractItemFetch, contractUpdateAction } from '../../action/contractActions'
 import { createSerializer } from '../../serializers/contractSerializer'
-import { useFetchItem, useUpdate } from '../../../../hooks'
+import { useFetchItem, useFetchList, useUpdate } from '../../../../hooks'
 import * as stateNames from '../../../../constants/stateNames'
 import Layout from '../../../../components/Layouts/Layout'
 import * as ROUTES from '../../../../constants/routes'
-import { getIdForInitValues } from '../../../../utils/get'
 
 type Props = {
     history: History;
     location: Location;
 }
 const ContractUpdateContainer = (props: Props) => {
-  const params: {id?: string} = useParams()
+  const params: { id?: string } = useParams()
   const id = prop('id', params)
 
-  const contractItem = useFetchItem({
+  const contractItem = useFetchItem<TContractItem>({
     action: contractItemFetch,
     stateName: stateNames.CONTRACT_ITEM
   })
@@ -32,15 +35,28 @@ const ContractUpdateContainer = (props: Props) => {
     serializer: createSerializer
   })
 
+  const positionData = useFetchList<TData<TPositionItem>>({
+    stateName: stateNames.POSITION_LIST,
+    action: positionListFetch
+  })
+
   const data = prop('data', contractItem)
+
+  const rateList = propOr<Array<TRateItem>, TContractItem, TRateItem[]>([], 'rates', data)
+
+  const rates = getPositionRate(rateList)
   const initialValues = {
     ...data,
-    ...getIdForInitValues(data, ['paymentType'])
+    rates
   }
 
   return (
     <Layout>
-      <ContractUpdate {...update} initialValues={initialValues} />
+      <ContractUpdate
+        {...update}
+        initialValues={initialValues}
+        positionData={positionData}
+      />
     </Layout>
   )
 }

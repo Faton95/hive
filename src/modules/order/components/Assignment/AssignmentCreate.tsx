@@ -8,8 +8,8 @@ import { TGetDataFromState, TOnSubmit, Merge, TGroupItem, TData, TPositionItem }
 import AssignmentCreateForm from './AssignmentCreateForm'
 
 type Props = {
-  onSubmit: TOnSubmit,
-  positionData: TGetDataFromState<TData<TPositionItem>>
+  onSubmit: TOnSubmit;
+  positionData: TGetDataFromState<TData<TPositionItem>>;
 }
 
 type NewPropType = Merge<TGetDataFromState<TGroupItem | null>, Props>

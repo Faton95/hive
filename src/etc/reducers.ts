@@ -8,13 +8,10 @@ import * as stateNames from '../constants/stateNames'
 import { AsyncReducers, TGetDataFromState } from '../types'
 import confirmDialogReducer from '../components/ConfirmDialog/reducer'
 
-
-const LOGIN = 'login'
-
 export type RootState = {
   orderList: TGetDataFromState<TOrderItem>;
   login: TGetDataFromState<any>;
-  userInfo: any
+  userInfo: any;
 }
 
 export const makeRootReducer = (asyncReducers: AsyncReducers) =>
@@ -82,6 +79,12 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.POSITION_UPDATE]: createThunkReducer(actionTypes.POSITION_UPDATE),
     [stateNames.POSITION_DELETE]: createThunkReducer(actionTypes.POSITION_DELETE),
 
+    [stateNames.ROLE_LIST]: createThunkReducer(actionTypes.ROLE_LIST),
+    [stateNames.ROLE_CREATE]: createThunkReducer(actionTypes.ROLE_CREATE),
+    [stateNames.ROLE_ITEM]: createThunkReducer(actionTypes.ROLE_ITEM),
+    [stateNames.ROLE_UPDATE]: createThunkReducer(actionTypes.ROLE_UPDATE),
+    [stateNames.ROLE_DELETE]: createThunkReducer(actionTypes.ROLE_DELETE),
+
     [stateNames.ASSIGNMENT_LIST]: createThunkReducer(actionTypes.ASSIGNMENT_LIST),
     [stateNames.ASSIGNMENT_CREATE]: createThunkReducer(actionTypes.ASSIGNMENT_CREATE),
     [stateNames.ASSIGNMENT_ITEM]: createThunkReducer(actionTypes.ASSIGNMENT_ITEM),
@@ -128,4 +131,4 @@ type ThunkResult<R> = {
 }
 export type PromiseThunksResult = (action: any) => Promise<ThunkResult<any>>
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
-export const usePromiseDispatch: () => (action: any) => Promise<ThunkResult<any>> = useDispatch
+export const usePromiseDispatch: () => (action: any) => Promise<any> = useDispatch

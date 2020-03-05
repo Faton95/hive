@@ -1,4 +1,4 @@
-import {TIdName, TCurrencyItem} from "types";
+import { TIdName, TCurrencyItem, TRateItem } from 'types'
 
 /*
 *
@@ -24,7 +24,7 @@ export type TContractItem = {
   id: number;
   createdDate: string;
   modifiedDate: string;
-  billingType: "hourly_billing" | 'fixed_fee' | undefined;
+  billingType: 'hourly_billing' | 'fixed_fee' | undefined;
   fixedFeeAmount: number | null;
   fixedFeeExpensesIncludedInFee: boolean;
   hourlyHasFeeCeiling: boolean;
@@ -36,5 +36,6 @@ export type TContractItem = {
   client: TIdName;
   branch: TIdName;
   currency: TCurrencyItem;
-  bankAccount: number
+  bankAccount: number;
+  rates: TRateItem[];
 }

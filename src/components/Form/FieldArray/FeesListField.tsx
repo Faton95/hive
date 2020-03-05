@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { pathOr, path, propOr, map, replace, pipe, dropWhile, split, last } from 'ramda'
+import { path } from 'ramda'
+import { Button } from 'components/UI'
 import { Field, InputField, DateField, TimeToSalaryField } from '../index'
-import { Button } from '../../../components/UI'
 import RemoveButton from './RemoveButton'
 import FieldArrayHeader from './FieldArrayHeader'
 
@@ -27,6 +27,7 @@ const Line = styled.div`
   margin: 20px 0;
 `
 const EMPTY_OBJ = {}
+const FIRST_ITEM = 0
 const FeesListField = props => {
   const { fields, ...p } = props
   const onAdd = () => fields.push(EMPTY_OBJ)
@@ -36,42 +37,44 @@ const FeesListField = props => {
   return (
     <div>
       <FieldArrayHeader title="Fees" onAdd={onAdd} />
-        {fields.map((name, index) => {
-          return (
-            <div key={index}>
-              <FieldBlock data-cy={`fees-${index}`}>
+      {fields.map((name, index) => {
+        return (
+          <div key={index}>
+            <FieldBlock data-cy={`fees-${index}`}>
+              <Field
+                name={`${name}.description`}
+                component={InputField}
+                label="Description"
+                placeholder="Description"
+              />
+            </FieldBlock>
+            <FieldBlock data-cy={`count-${index}`}>
+              <Field
+                name={`${name}.date`}
+                component={DateField}
+                label="Date"
+              />
+            </FieldBlock>
+            <DeleteBlock>
+              <div data-cy={`fees-${index}`}>
                 <Field
-                  name={`${name}.description`}
-                  component={InputField}
-                  label="Description"
-                  placeholder="Description"
+                  name={`${name}.spentTime`}
+                  component={TimeToSalaryField}
                 />
-              </FieldBlock>
-              <FieldBlock data-cy={`count-${index}`}>
-                <Field
-                  name={`${name}.date`}
-                  component={DateField}
-                  label="Date"
-                />
-              </FieldBlock>
-              <DeleteBlock>
-                <div data-cy={`fees-${index}`}>
-                  <Field
-                    name={`${name}.spent_time`}
-                    component={TimeToSalaryField}
-                  />
-                </div>
+              </div>
+              {index !== FIRST_ITEM && (
                 <RemoveBlock>
                   <RemoveButton onRemove={() => onRemove(index)} />
                 </RemoveBlock>
-              </DeleteBlock>
-              <Line/>
-            </div>
-          )
-        })}
-        <ButtonBLock>
-          {Boolean(len) && <Button type="submit">Save</Button>}
-        </ButtonBLock>
+              )}
+            </DeleteBlock>
+            <Line />
+          </div>
+        )
+      })}
+      <ButtonBLock>
+        {Boolean(len) && <Button type="submit">Save</Button>}
+      </ButtonBLock>
     </div>
   )
 }

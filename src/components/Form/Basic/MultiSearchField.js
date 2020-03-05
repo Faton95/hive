@@ -9,25 +9,8 @@ import {
   unionWith,
   pipe,
   not,
-  is, isEmpty
+  is
 } from 'ramda'
-/* import {
-  compose,
-  withReducer,
-  mapPropsStream,
-  createEventHandler,
-  pure
-} from 'react-fc'
-import {
-  map,
-  tap,
-  skip,
-  first,
-  withLatestFrom,
-  filter,
-  distinctUntilChanged,
-  debounceTime
-} from 'rxjs/operators' */
 import { Select } from 'ui-cubic'
 import { getFieldError } from 'utils/form'
 import { useCompareEffect } from 'hooks'
@@ -122,6 +105,7 @@ const useInitialValues = props => {
 
         dispatch({ options, loading: false })
       })
+        .catch(() => dispatch({loading: false}))
     }
   }, [id])
 }
@@ -136,6 +120,7 @@ const useStaticInitialsFetch = props => {
   const isStatic = props.isStatic
   useCompareEffect(() => {
     if (value && notObject && isStatic) {
+      console.warn('STATIC')
       fetchSubscribe(props)
     }
   }, [])

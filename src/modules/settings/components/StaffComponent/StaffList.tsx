@@ -5,7 +5,6 @@ import { prop, map, pathOr, path } from 'ramda'
 import styled from 'styled-components'
 import { TUseDelete } from 'types'
 import { TStaffItem } from 'types/models/position'
-import numberFormat from 'utils/numberFormat'
 import manager from '../../../../icons/manager.svg'
 import { Menu } from '../../../../components/Menu'
 import Pagination from '../../../../components/Pagination'
@@ -16,7 +15,8 @@ import {
   TableRow,
   TableHeader,
   TableCol,
-  TableBody
+  TableBody,
+  TableColRight
 } from '../../../../components/Table'
 import { Box, Dropdown, DropdownItem } from '../../../../components/UI'
 
@@ -55,9 +55,8 @@ const StaffList: FunctionComponent<Props> = props => {
               <TableCol span={1}>#</TableCol>
               <TableCol span={2}>Image</TableCol>
               <TableCol span={5}>Username</TableCol>
-              <TableCol span={5}>Fullname</TableCol>
-              <TableCol span={5}>Position</TableCol>
-              <TableCol span={5}>Rate</TableCol>
+              <TableColRight span={7}>Fullname</TableColRight>
+              <TableColRight span={8}>Position</TableColRight>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -67,7 +66,6 @@ const StaffList: FunctionComponent<Props> = props => {
               const username = prop('username', item)
               const fullname = prop('fullName', item)
               const position = path(['position', 'name'], item)
-              const rate = numberFormat(prop('rate', item))
               const image = path(['photo', 'file'], item)
               return (
                 <TableRow key={id} align="center">
@@ -76,9 +74,8 @@ const StaffList: FunctionComponent<Props> = props => {
                     <Img src={typeof (image) === 'undefined' ? manager : image} alt="image" />
                   </TableCol>
                   <TableCol span={5}>{username}</TableCol>
-                  <TableCol span={5}>{fullname}</TableCol>
-                  <TableCol span={5}>{position}</TableCol>
-                  <TableCol span={5}>{rate}</TableCol>
+                  <TableColRight span={7}>{fullname}</TableColRight>
+                  <TableColRight span={8}>{position}</TableColRight>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>

@@ -24,6 +24,15 @@ export const OUTSOURCE_ITEM = `/${OUTSOURCE}/%d/`
 export const OUTSOURCE_DELETE = `/${OUTSOURCE}/%d/`
 export const OUTSOURCE_UPDATE = `/${OUTSOURCE}/%d/`
 
+const TIME_SHEET = `${MAIN}/time_sheet`
+export const TIME_SHEET_LIST = `/${TIME_SHEET}/`
+export const TIME_SHEET_CREATE = `/${TIME_SHEET}/`
+export const TIME_SHEET_ITEM = `/${TIME_SHEET}/%d/`
+export const TIME_SHEET_DELETE = `/${TIME_SHEET}/%d/`
+export const TIME_SHEET_UPDATE = `/${TIME_SHEET}/%d/`
+export const TIME_SHEET_CHANGE_STATUS = `/${TIME_SHEET}/%d/change_status/`
+
+
 const ORDER = `${MAIN}/order`
 export const ORDER_LIST = `/${ORDER}/`
 export const ORDER_CREATE = `/${ORDER}/`
@@ -114,6 +123,13 @@ export const POSITION_ITEM = `/${POSITION}/%d/`
 export const POSITION_DELETE = `/${POSITION}/%d/`
 export const POSITION_UPDATE = `/${POSITION}/%d/`
 
+const ROLE = `${MAIN}/role`
+export const ROLE_LIST = `/${ROLE}/`
+export const ROLE_CREATE = `/${ROLE}/`
+export const ROLE_ITEM = `/${ROLE}/%d/`
+export const ROLE_DELETE = `/${ROLE}/%d/`
+export const ROLE_UPDATE = `/${ROLE}/%d/`
+
 const FEE = `${MAIN}/fee`
 export const FEE_LIST = `/${FEE}/`
 export const FEE_CREATE = `/${FEE}/`
@@ -127,3 +143,17 @@ export const EXPENSE_CREATE = `/${EXPENSE}/`
 export const EXPENSE_ITEM = `/${EXPENSE}/%d/`
 export const EXPENSE_DELETE = `/${EXPENSE}/%d/`
 export const EXPENSE_UPDATE = `/${EXPENSE}/%d/`
+
+const UNINVOICED = `${MAIN}/pre_invoice`
+export const UNINVOICED_LIST = `/${UNINVOICED}/`
+export const UNINVOICED_CREATE = `/${UNINVOICED}/`
+export const UNINVOICED_ITEM = `/${UNINVOICED}/%d/`
+export const UNINVOICED_DELETE = `/${UNINVOICED}/%d/`
+export const UNINVOICED_UPDATE = `/${UNINVOICED}/%d/`
+
+const INVOICE = `${MAIN}/invoice`
+export const INVOICE_LIST = `/${INVOICE}/`
+export const INVOICE_CREATE = `/${INVOICE}/`
+export const INVOICE_ITEM = `/${INVOICE}/%d/`
+export const INVOICE_DELETE = `/${INVOICE}/%d/`
+export const INVOICE_UPDATE = `/${INVOICE}/%d/`

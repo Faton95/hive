@@ -1,7 +1,7 @@
-import {mapObjIndexed, pipe, prop, values} from "ramda";
+import { mapObjIndexed, pipe, prop, values } from 'ramda'
 
 const trimLodash = (value, key) => ({
-  amount: value,
+  amount_per_hour: value,
   position: key.replace('_', '')
 })
 

@@ -31,7 +31,7 @@ const EMPTY = []
 const ZERO = 0
 
 const GroupList: FunctionComponent<Props> = props => {
-  const { data, filterAction, onEdit, deleteData } = props
+  const { data, onEdit, deleteData } = props
   const count = pathOr(ZERO, ['data', 'count'], data)
   const list = pathOr<TGroupItem[]>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
@@ -44,7 +44,7 @@ const GroupList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Positions" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title="Groups" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>

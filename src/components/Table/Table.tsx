@@ -6,7 +6,10 @@ import { TableSkeleton } from '../Skeletons'
 import useTableActions from '../../hooks/useTableActions'
 
 type Props = {
-  tableActions?: object;
+  tableActions?: {
+    initialSelected: number[];
+    onSelect: (keys: Array<any>) => void;
+  };
   actions?: ReactElement;
   gutter?: number;
   list?: Array<any>;
@@ -15,10 +18,10 @@ type Props = {
   loading?: boolean;
 }
 const Table: FunctionComponent<Props> = props => {
-  const { actions, loading, promptText, list, ...defaultProps } = props
+  const { actions, loading, promptText, list, tableActions, ...defaultProps } = props
 
-  const tableActions = useTableActions()
-  const { initialSelected } = tableActions
+  const defaultTableActions = useTableActions()
+  const { initialSelected } = tableActions || defaultTableActions
   const empty = !loading && isEmpty(list)
   const actionProps = { selectedList: initialSelected }
 

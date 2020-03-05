@@ -2,8 +2,8 @@ import { curry, find, path, pathOr, propEq } from 'ramda'
 import toSnakeCase from './toSnakeCase'
 import axios, { getPayloadFromSuccess } from './axios'
 
-export const getOptions = (store, { api, search, params, pageSize = 5 }) => {
-  const defaultParams = toSnakeCase({ pageSize, search, ...params })
+export const getOptions = (store, { api, search, params }) => {
+  const defaultParams = toSnakeCase({ search, ...params })
   return axios(store)
     .get(api, { params: defaultParams })
     .then(pathOr([], ['data', 'results']))

@@ -28,7 +28,7 @@ const useDelete = (params: TUseDeleteParams): TUseDelete => {
   const data = useTypedSelector<TGetDataFromState<any>>(state => getDataFromState(stateName, state), equals)
 
   const onConfirm = id => {
-      dispatch(openConfirmDialogAction({loading: true}))
+    dispatch(openConfirmDialogAction({ loading: true }))
     return dispatch(action(id))
       .then(() => dispatch(closeConfirmDialogAction()))
       .then(() =>
@@ -46,8 +46,10 @@ const useDelete = (params: TUseDeleteParams): TUseDelete => {
         else dispatch(successAction(listParams))
       })
       .catch(() => Promise.resolve()
-        .then(() => dispatch(closeConfirmDialogAction())
-          .then(() => showToast({ type: 'error' }))
+        .then(() => {
+          dispatch(closeConfirmDialogAction())
+          showToast({ type: 'error' })
+        }
         ))
   }
 

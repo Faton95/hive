@@ -5,6 +5,7 @@ export { default as IconInputField } from './Basic/IconInputField'
 export { default as InputAddonInlineLabel } from './Basic/InputAddonInlineLabel'
 export { default as InputAddon } from './Basic/InputAddon'
 export { default as InputField } from './Basic/InputField'
+export { default as InputPasswordField } from './Basic/InputPasswordField'
  export { default as RadioButtonBorderedField } from './Basic/RadioButtonBorderedField'
 export { default as RadioButtonField } from './Basic/RadioButtonField'
 export { default as RadioButtonSimpleField } from './Basic/RadioButtonSimpleField'
@@ -29,6 +30,7 @@ export { default as UniversalMultiSelectField } from './Select/UniversalMultiSel
 export { default as MultiSearchField } from './Basic/MultiSearchField'
 export { default as TimeToSalaryField } from './Basic/TimeToSalaryField'
 export { default as DateRangeField } from './Dates/DateRangeField'
+export { default as UninvoicedAssigmentListField } from './FieldArray/UninvoicedAssigmentListField'
 
 
 export { Field, Form } from 'react-final-form'

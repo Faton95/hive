@@ -1,7 +1,5 @@
 
-import { path, pipe, prop, map, propOr } from 'ramda'
-
-import { getSerializedData, getParamFromHistory } from 'utils/get'
+import { getSerializedData } from 'utils/get'
 import toSnakeCase from 'utils/toSnakeCase'
 
 import { fields } from '../components/Assignment/AssignmentCreate'

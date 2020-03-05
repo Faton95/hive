@@ -1,16 +1,17 @@
+import * as stateNames from 'constants/stateNames'
+import * as ROUTES from 'constants/routes'
 import React from 'react'
 import { History, Location } from 'history'
 import { sprintf } from 'sprintf-js'
 import { useParams } from 'react-router-dom'
-import { prop } from 'ramda'
+import {map, path, pipe, prop, propOr} from 'ramda'
+import Layout from 'components/Layouts/Layout'
+import { TData, TPositionItem } from 'types'
+import { positionListFetch } from 'modules/settings/actions/positionActions'
 import AssignmentUpdate from '../../components/Assignment/AssignmentUpdate'
 import { assignmentItemFetch, assignmentUpdateAction } from '../../action/assignmentActions'
-// import { createSerializer } from '../../action/'
-import { useFetchItem, useUpdate } from '../../../../hooks'
-import * as stateNames from '../../../../constants/stateNames'
-import Layout from '../../../../components/Layouts/Layout'
-import * as ROUTES from '../../../../constants/routes'
-import { getIdForInitValues } from '../../../../utils/get'
+import { createSerializer } from '../../serializers/assignmentSerializer'
+import { useFetchItem, useFetchList, useUpdate } from '../../../../hooks'
 
 type Props = {
     history: History;
@@ -29,19 +30,33 @@ const AssignmentUpdateContainer = (props: Props) => {
     action: assignmentUpdateAction,
     stateName: stateNames.ASSIGNMENT_UPDATE,
     redirectUrl: sprintf(ROUTES.ASSIGNMENT_ITEM_URL, id),
-    // serializer: createSerializer
+    serializer: createSerializer
+  })
+
+  const positionData = useFetchList<TData<TPositionItem>>({
+    stateName: stateNames.POSITION_LIST,
+    action: positionListFetch
   })
 
   const data = prop('data', assignmentItem)
-  
+
+  const workGroup = pipe(
+    propOr([], 'workGroup'),
+    map((user: object) => ({ ...user, name: path(['fullName'], user) }))
+  )(data)
+
   const initialValues = {
     ...data,
-    
+    workGroup
   }
 
   return (
     <Layout>
-      <AssignmentUpdate {...update} initialValues={initialValues} />
+      <AssignmentUpdate
+        {...update}
+        initialValues={initialValues}
+        positionData={positionData}
+      />
     </Layout>
   )
 }

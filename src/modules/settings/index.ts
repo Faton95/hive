@@ -31,6 +31,11 @@ import {
   PositionUpdateContainer
 } from './containers/PositionContainer'
 import {
+  RoleCreateContainer,
+  RoleListContainer,
+  RoleUpdateContainer
+} from './containers/RoleContainer'
+import {
   BankAccountCreateContainer,
   BankAccountListContainer,
   BankAccountUpdateContainer
@@ -146,6 +151,21 @@ export default (store) => [
     exact: true,
     path: ROUTES.POSITION_UPDATE_PATH,
     component: PositionUpdateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ROLE_LIST_PATH,
+    component: RoleListContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ROLE_CREATE_PATH,
+    component: RoleCreateContainer
+  },
+  {
+    exact: true,
+    path: ROUTES.ROLE_UPDATE_PATH,
+    component: RoleUpdateContainer
   }
 
 ]

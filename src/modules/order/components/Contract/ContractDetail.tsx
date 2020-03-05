@@ -70,9 +70,9 @@ const ContractDetail: FunctionComponent<Props> = props => {
   const branch = path(['branch', 'name'], details)
   const currency = path(['currency', 'name'], details)
   const paymentDuration = path(['paymentDuration'], details)
-  const deadline = dateFormat(path(['deadLine'], details))
   const successFee = numberFormat(path(['successFee'], details))
   const billingType = path(['billingType'], details)
+  const contractNumber = path(['contractNumber'], details)
   const fixedFeeAmount = numberFormat(path(['fixedFeeAmount'], details))
   const hourlyFeeCeiling = numberFormat(path(['hourlyFeeCeiling'], details))
   const bankAccountName = path(['bankAccount', 'name'], details)
@@ -83,12 +83,7 @@ const ContractDetail: FunctionComponent<Props> = props => {
       <Box padding="25px">
         <Header alignItems="center" justifyContent="space-between">
           <Date>
-            <StyledDate>
-              Deadline: 
-            </StyledDate> 
-            <div>
-              {deadline}
-            </div>
+            {contractNumber}
           </Date>
           <DetailDropdown marginLeft="50px">
             <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Изменить</DropdownItem>
@@ -96,13 +91,10 @@ const ContractDetail: FunctionComponent<Props> = props => {
           </DetailDropdown>
         </Header>
         <PreHeader>
-        <CreatedDate>
-          # {id}
-        </CreatedDate>
-        <Date>
+          <Date>
             <StyledDate>
-              Created date: 
-            </StyledDate> 
+              Created date:
+            </StyledDate>
             <div>
               {creatredDate}
             </div>
@@ -118,22 +110,21 @@ const ContractDetail: FunctionComponent<Props> = props => {
           <Col span={6}>
             <LabeledValue labelMargin={5} label="bank">{bankAccountName} - {currency}</LabeledValue>
           </Col>
-          <Col span={6}>
-          </Col>
+          <Col span={6} />
         </RowMargin>
         <RowMargin gutter={10}>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="Billing type">{billingType === 'fixed_fee' ? "Fixed Fee Amount" : "Hourly Fee ceiling"}</LabeledValue>
+            <LabeledValue labelMargin={5} label="Billing type">{billingType === 'fixed_fee' ? 'Fixed Fee Amount' : 'Hourly Fee ceiling'}</LabeledValue>
           </Col>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label={`${billingType === 'fixed_fee' ? "Fixed Fee Amount" : "Hourly Fee ceiling"}`}>
+            <LabeledValue labelMargin={5} label={`${billingType === 'fixed_fee' ? 'Fixed Fee Amount' : 'Hourly Fee ceiling'}`}>
               {billingType === 'fixed_fee' ? fixedFeeAmount : hourlyFeeCeiling}
             </LabeledValue>
           </Col>
           <Col span={6}>
             <LabeledValue labelMargin={5} label="Success fee">{successFee}</LabeledValue>
           </Col>
-          <Col span={6}></Col>
+          <Col span={6} />
         </RowMargin>
         <PaymentDetail>Payment expected in <b>{paymentDuration}</b> days after invoice delivery.</PaymentDetail>
       </Box>

@@ -1,6 +1,7 @@
+import * as API from 'constants/api'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { path} from 'ramda'
+import { path } from 'ramda'
 import {
   Field,
   InputField,
@@ -10,7 +11,6 @@ import {
 
 import { Button, Modal } from '../../UI'
 
-import * as API from 'constants/api'
 import FieldArrayHeader from './FieldArrayHeader'
 import RemoveButton from './RemoveButton'
 
@@ -31,8 +31,9 @@ const Line = styled.div`
   width: 100%;
   margin: 20px 0;
 `
+const FIRST_ITEM = 0
 const ExpensesListField = props => {
-  const { fields, ...p } = props
+  const { fields } = props
 
   const onAdd = () => fields.push({})
   const onRemove = index => fields.remove(index)
@@ -42,12 +43,12 @@ const ExpensesListField = props => {
     <div>
       <FieldArrayHeader title="Expenses" onAdd={onAdd} />
       <InputBlock>
-          <Field
-            component={UniversalSearchField}
-            api={API.POSITION_LIST}
-            name={`${name}.cashier`}
-            label="Cashier"
-          />
+        <Field
+          component={UniversalSearchField}
+          api={API.POSITION_LIST}
+          name={`${name}.cashier`}
+          label="Cashier"
+        />
       </InputBlock>
       {fields.map((name, index) => {
         return (
@@ -77,9 +78,11 @@ const ExpensesListField = props => {
                   label="Amount"
                 />
               </InputBlock>
-              <DeleteBlock>
-                <RemoveButton onRemove={() => onRemove(index)} />
-              </DeleteBlock>
+              {index !== FIRST_ITEM && (
+                <DeleteBlock>
+                  <RemoveButton onRemove={() => onRemove(index)} />
+                </DeleteBlock>
+              )}
             </InputDeleteBlock>
             <Line />
           </div>

@@ -53,14 +53,14 @@ const PositionList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Должносты" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title="Positions" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>
               <TableCol span={1}>#</TableCol>
-              <TableCol span={4}>наименование</TableCol>
-              <TableCol span={18}>модули</TableCol>
+              <TableCol span={4}>Name</TableCol>
+              <TableCol span={4}>Rate</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -68,14 +68,13 @@ const PositionList: FunctionComponent<Props> = props => {
             {list.map((item: TPositionItem) => {
               const id = prop('id', item)
               const name = prop('name', item)
-              const groups = pathOr<TGroupItem[]>([], ['groups'], item)
+              const rate = prop('rate', item)
 
-              const groupTags = map(group => <Tag key={group.id}>{group.name}</Tag>, groups)
               return (
                 <TableRow key={id} selectId={id} align="center">
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={4}>{name}</TableCol>
-                  <TableCol span={18}>{groupTags}</TableCol>
+                  <TableCol span={4}>{rate}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>

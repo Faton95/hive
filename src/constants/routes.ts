@@ -30,6 +30,14 @@ export const STAFF_ITEM_URL = `/${STAFF}/%d`
 export const STAFF_UPDATE_PATH = `/${STAFF}/${ID}/update`
 export const STAFF_UPDATE_URL = `/${STAFF}/%d/update`
 
+export const TIME_SHEET = 'time-sheet'
+export const TIME_SHEET_LIST_PATH = `/${TIME_SHEET}`
+export const TIME_SHEET_CREATE_PATH = `/${TIME_SHEET}/create`
+export const TIME_SHEET_ITEM_PATH = `/${TIME_SHEET}/${ID}`
+export const TIME_SHEET_ITEM_URL = `/${TIME_SHEET}/%d`
+export const TIME_SHEET_UPDATE_PATH = `/${TIME_SHEET}/${ID}/update`
+export const TIME_SHEET_UPDATE_URL = `/${TIME_SHEET}/%d/update`
+
 export const OUTSOURCE = 'outsource'
 export const OUTSOURCE_LIST_PATH = `/${OUTSOURCE}`
 export const OUTSOURCE_CREATE_PATH = `/${OUTSOURCE}/create`
@@ -95,6 +103,14 @@ export const POSITION_ITEM_URL = `/${POSITION}/%d`
 export const POSITION_UPDATE_PATH = `/${POSITION}/${ID}/update`
 export const POSITION_UPDATE_URL = `/${POSITION}/%d/update`
 
+export const ROLE = 'role'
+export const ROLE_LIST_PATH = `/${ROLE}`
+export const ROLE_CREATE_PATH = `/${ROLE}/create`
+export const ROLE_ITEM_PATH = `/${ROLE}/${ID}`
+export const ROLE_ITEM_URL = `/${ROLE}/%d`
+export const ROLE_UPDATE_PATH = `/${ROLE}/${ID}/update`
+export const ROLE_UPDATE_URL = `/${ROLE}/%d/update`
+
 export const BANK_ACCOUNT = 'bank'
 export const BANK_ACCOUNT_LIST_PATH = `/${BANK_ACCOUNT}`
 export const BANK_ACCOUNT_CREATE_PATH = `/${BANK_ACCOUNT}/create`
@@ -102,3 +118,21 @@ export const BANK_ACCOUNT_ITEM_PATH = `/${BANK_ACCOUNT}/${ID}`
 export const BANK_ACCOUNT_ITEM_URL = `/${BANK_ACCOUNT}/%d`
 export const BANK_ACCOUNT_UPDATE_PATH = `/${BANK_ACCOUNT}/${ID}/update`
 export const BANK_ACCOUNT_UPDATE_URL = `/${BANK_ACCOUNT}/%d/update`
+
+export const UNINVOICED = 'uninvoiced'
+export const UNINVOICED_LIST_PATH = `/${UNINVOICED}`
+export const UNINVOICED_CREATE_PATH = `/${UNINVOICED}/${ID}/create`
+export const UNINVOICED_CREATE_URL = `/${UNINVOICED}/%d/create`
+export const UNINVOICED_ITEM_PATH = `/${UNINVOICED}/${ID}`
+export const UNINVOICED_ITEM_URL = `/${UNINVOICED}/%d`
+export const UNINVOICED_UPDATE_PATH = `/${UNINVOICED}/${ID}/update`
+export const UNINVOICED_UPDATE_URL = `/${UNINVOICED}/%d/update`
+
+export const INVOICE = 'invoice'
+export const INVOICE_LIST_PATH = `/${INVOICE}`
+export const INVOICE_CREATE_PATH = `/${INVOICE}/${ID}/create`
+export const INVOICE_CREATE_URL = `/${INVOICE}/%d/create`
+export const INVOICE_ITEM_PATH = `/${INVOICE}/${ID}`
+export const INVOICE_ITEM_URL = `/${INVOICE}/%d`
+export const INVOICE_UPDATE_PATH = `/${INVOICE}/${ID}/update`
+export const INVOICE_UPDATE_URL = `/${INVOICE}/%d/update`

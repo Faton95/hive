@@ -1,12 +1,12 @@
 import {
-  defaultTo,
-  find,
   last,
   map,
   pipe,
   split,
   startsWith,
-  trim
+  trim,
+  filter, prop,
+  head, defaultTo
 } from 'ramda'
 
 export const setCookie = (name, value, expire) => {
@@ -18,12 +18,19 @@ export const setCookie = (name, value, expire) => {
   }
 }
 
+const a = (b) => {
+  console.warn(b)
+  return b
+}
 export const getCookie = key =>
   pipe(
     split(';'),
     map(trim),
-    find(startsWith(key)),
-    defaultTo(''),
-    split('='),
+    filter(startsWith(key)),
+    defaultTo([]),
+    map(split('=')),
+    filter(prop(1)),
+    head,
+    defaultTo([]),
     last
   )(document.cookie)

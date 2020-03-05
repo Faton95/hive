@@ -6,13 +6,12 @@ import { DetailMenu } from 'components/Menu'
 import { Box } from 'components/UI'
 
 import { TGetDataFromState, TOnSubmit } from 'types'
-import { TOrderItem, TGroupItem } from 'types/models'
+import { TOrderItem } from 'types/models'
 import { Merge } from 'types/utils'
 import PositionCreateForm from './PositionCreateForm'
 
 type Props = {
   onSubmit: TOnSubmit;
-  groups: TGetDataFromState<TGroupItem>
 }
 
 type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>
@@ -22,16 +21,15 @@ export const fields = [
   'name'
 ]
 const OrderCreate: FunctionComponent<NewPropType> = props => {
-
   return (
     <div>
-      <DetailMenu title="Добавить Должность" />
+      <DetailMenu title="Create Position" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}
           render={(formikProps) => (
-            <PositionCreateForm {...formikProps}  groups={props.groups}/>
-            )}
+            <PositionCreateForm {...formikProps} />
+          )}
         />
       </Box>
     </div>

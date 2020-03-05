@@ -1,39 +1,39 @@
+import * as ROUTES from 'constants/routes'
 import React, { FunctionComponent } from 'react'
 import { Field, FormRenderProps } from 'react-final-form'
-import { FieldWrapper } from 'components/StyledElems'
 import {
-  InputField,
-  CheckboxGroupField
+  InputField
 } from 'components/Form'
-
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
-import * as ROUTES from 'constants/routes'
-import {Merge, TGetDataFromState, TGroupItem} from 'types'
-import {pathOr} from "ramda";
+import { RowMargin, Col } from 'components/UI/Grid'
 
-const EMPTY_ARR = []
+const PositionCreateForm: FunctionComponent<FormRenderProps> = props => {
+  const { handleSubmit } = props
 
-type Props = Merge<FormRenderProps, { groups: TGetDataFromState<TGroupItem> }>
-
-const PositionCreateForm: FunctionComponent<Props> = props => {
-  const { handleSubmit, groups, values } = props
-
-  const groupsList = pathOr(EMPTY_ARR, ['data', 'results'], groups)
   return (
     <form onSubmit={handleSubmit}>
-      <FieldWrapper>
-        <Field
-          label="наименование"
-          name="name"
-          component={InputField}
-        />
-      </FieldWrapper>
-      <Field
-        label="Модули"
-        name="groups"
-        items={groupsList}
-        component={CheckboxGroupField}
-      />
+      <RowMargin>
+        <Col span={12}>
+          <Field
+            label="Name"
+            name="name"
+            component={InputField}
+          />
+
+        </Col>
+        <Col span={12} />
+
+      </RowMargin>
+      <RowMargin>
+        <Col span={12}>
+          <Field
+            label="Rate per hour"
+            name="rate"
+            component={InputField}
+          />
+        </Col>
+        <Col span={12} />
+      </RowMargin>
       <CreateCancelButtons
         cancelPath={ROUTES.POSITION_LIST_PATH}
         submitText="Сохранить"

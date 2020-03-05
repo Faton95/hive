@@ -34,7 +34,7 @@ const Menu = props => {
     dispatch({
       type: `${ACTIONS.LOGIN}_CLEAR`
     })
-    history.replace(ROUTES.LOGIN_URL)
+    window.location.pathname = ROUTES.LOGIN_URL
   }
   return (
     <>

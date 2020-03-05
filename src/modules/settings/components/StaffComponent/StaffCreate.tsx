@@ -21,10 +21,10 @@ type NewPropType = Merge<TGetDataFromState<TStaffItem | null>, Props>
 export const fields = [
   'photo',
   'username',
-  'full_name',
+  'fullName',
   'password',
   'position',
-  'rate'
+  'role'
 ]
 const StaffCreate: FunctionComponent<NewPropType> = props => {
   return (

@@ -1,10 +1,12 @@
 import equal from 'fast-deep-equal'
-import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { getDataFromState } from '../utils/get'
-import { mapResponseToFormError } from '../utils/form'
+import { getDataFromState } from 'utils/get'
+import { mapResponseToFormError } from 'utils/form'
+import { useTypedSelector, usePromiseDispatch } from 'etc/reducers'
+import { TUseCreateModalParams, TUseCreateModal } from 'types/hooks'
 import toSnakeCase from '../utils/toSnakeCase'
 import useModal from './useModal'
+import {TGetDataFromState} from "types";
 
 export const onOpenModal = ({ value, params, history, onOpen }) => {
   onOpen()
@@ -20,7 +22,7 @@ export const onCloseModal = ({ onClose, params, history }) => {
   }
 }
 
-export default params => {
+const useCreateModal = <T extends any>(params: TUseCreateModalParams): TUseCreateModal<T> => {
   const {
     key = 'createModal',
     action,
@@ -35,11 +37,10 @@ export default params => {
     throw Error('useCreateModal hook requires stateName!')
   }
 
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const state = useSelector(getDataFromState(stateName), equal)
+  const dispatch = usePromiseDispatch()
+  const state = useTypedSelector<TGetDataFromState<T>>(state => getDataFromState(state, stateName), equal)
 
-  const onSubmit = values => {
+  const onSubmit = (values: object) => {
     const serializeValues = serializer(values)
     return dispatch(action(serializeValues))
       .then(data => {
@@ -51,9 +52,11 @@ export default params => {
 
   return {
     open,
-    onOpen: value => onOpenModal({ value, params, onOpen, history }),
-    onClose: () => onCloseModal({ params, onClose, history }),
+    onOpen,
+    onClose,
     onSubmit,
     ...state
   }
 }
+
+export default useCreateModal

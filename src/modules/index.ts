@@ -4,6 +4,7 @@ import settings from './settings'
 import Main from './Main'
 import client from './client'
 import outsource from './outsource'
+import billing from './billing'
 import * as ROUTES from 'constants/routes'
 
 const Routes = store => [
@@ -20,7 +21,8 @@ const Routes = store => [
   ...order(store),
   ...settings(store),
   ...client(store),
-  ...outsource(store)
+  ...outsource(store),
+  ...billing(store)
 ]
 
 export default Routes

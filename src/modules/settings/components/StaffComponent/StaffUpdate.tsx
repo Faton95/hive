@@ -3,12 +3,12 @@ import arrayMutators from 'final-form-arrays'
 import {
   Form,
 } from 'react-final-form'
-import { DetailMenu } from '../../../../components/Menu'
-import { Box } from '../../../../components/UI'
+import { DetailMenu } from 'components/Menu'
+import { Box } from 'components/UI'
 
-import { TGetDataFromState, TOnSubmit } from '../../../../types'
-import { TCurrencyItem } from '../../../../types/models'
-import { Merge } from '../../../../types/utils'
+import { TGetDataFromState, TOnSubmit } from 'types'
+import { TCurrencyItem } from 'types/models'
+import { Merge } from 'types/utils'
 import StaffCreateForm from './StaffCreateForm'
 
 type Props = {
@@ -22,7 +22,7 @@ type NewPropType = Merge<TGetDataFromState<TCurrencyItem | null>, Props>
 const StaffUpdate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title={`Update Staff № ${props.id}`} />
+      <DetailMenu title="Update Staff" />
       <Box padding="25px">
         <Form
           onSubmit={props.onSubmit}

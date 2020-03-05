@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from 'react'
-import arrayMutators from 'final-form-arrays'
 import {
   Form,
 } from 'react-final-form'
 import { DetailMenu } from 'components/Menu'
 import { Box } from 'components/UI'
 
-import {TGetDataFromState, TGroupItem, TOnSubmit} from 'types'
+import { TGetDataFromState, TOnSubmit } from 'types'
 import { TOrderItem } from 'types/models'
 import { Merge } from 'types/utils'
 import PositionCreateForm from './PositionCreateForm'
@@ -15,23 +14,21 @@ type Props = {
   onSubmit: TOnSubmit;
   initialValues: object;
   id: string;
-  groups: TGetDataFromState<TGroupItem>
 }
 
 type NewPropType = Merge<TGetDataFromState<TOrderItem | null>, Props>
 
-const OrderUpdate: FunctionComponent<NewPropType> = props => {
+const PositionUpdate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title={`Изменить №${props.id} Заказ`} />
+      <DetailMenu title="Update Position" />
       <Box padding="25px">
         <Form
           keepDirtyOnReinitialize={true}
           onSubmit={props.onSubmit}
           initialValues={props.initialValues}
-          mutators={{ ...arrayMutators }}
           render={(formikProps) => (
-            <PositionCreateForm {...formikProps} groups={props.groups}/>
+            <PositionCreateForm {...formikProps} />
           )}
         />
       </Box>
@@ -39,4 +36,4 @@ const OrderUpdate: FunctionComponent<NewPropType> = props => {
   )
 }
 
-export default OrderUpdate
+export default PositionUpdate

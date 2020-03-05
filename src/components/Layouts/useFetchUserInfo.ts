@@ -30,10 +30,12 @@ const useFetchUserInfo = () => {
   const token = path(['data', 'token'], data)
   useEffect(() => {
     if ((!token && cookieToken) || isNil(userInfo.data)) {
+      console.warn(cookieToken, token, userInfo)
+      console.warn(document.cookie)
       dispatch(userInfoFetch(cookieToken))
         .catch(eee => {
           setIsAuth(false)
-          
+
         })
     }
     if (!token && !cookieToken) {

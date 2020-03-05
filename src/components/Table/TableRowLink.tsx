@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 type Props = {
   link: string;
-  selectId: number;
+  selectId?: number;
   align: string;
 }
 const TableRowLink: FunctionComponent<Props> = props => {

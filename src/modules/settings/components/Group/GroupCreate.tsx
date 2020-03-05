@@ -5,8 +5,14 @@ import {
 import { DetailMenu } from 'components/Menu'
 import { Box } from 'components/UI'
 
-import { TGetDataFromState, TOnSubmit, Merge, TIdName, TGroupItem, TData } from 'types'
-
+import {
+  TGetDataFromState,
+  TOnSubmit,
+  Merge,
+  TIdName,
+  TGroupItem,
+  TData
+} from 'types'
 import GroupCreateForm from './GroupCreateForm'
 
 type Props = {

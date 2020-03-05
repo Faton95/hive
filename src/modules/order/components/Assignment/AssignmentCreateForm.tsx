@@ -1,12 +1,8 @@
 import * as ROUTES from 'constants/routes'
 import * as API from 'constants/api'
-import React, { FunctionComponent, useState, useEffect } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { Field, FormRenderProps } from 'react-final-form'
-import {
-  FieldWrapper,
-  DisplayFlex,
-  DoubleField
-} from 'components/StyledElems'
+import { FieldWrapper, DisplayFlex, DoubleField } from 'components/StyledElems'
 import {
   InputField,
   UniversalSearchField,
@@ -19,28 +15,22 @@ import {
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import { InputLabel } from 'components/UI'
-import {
-  Merge,
-  TData,
-  TGetDataFromState,
-  TPositionItem,
-} from 'types'
+import {Merge, TData, TGetDataFromState, TPositionItem, TRateItem} from 'types'
 import { TContractItem } from 'types/models'
-import { path, pathOr, pick } from 'ramda'
+import {path, pathOr, pick, propOr} from 'ramda'
 import styled from 'styled-components'
+import {getPositionRate} from "utils/get";
 
 const Label = styled(InputLabel)`
   margin-bottom: 10px;
 `
 
-const FeeCeiling = styled.div`
-  position: absolute;
-  top: -32px;
-  right: 0;
-`
-type Props = Merge<FormRenderProps, {
-  positionData: TGetDataFromState<TData<TPositionItem>>;
-}>
+type Props = Merge<
+  FormRenderProps,
+  {
+    positionData: TGetDataFromState<TData<TPositionItem>>;
+  }
+>;
 
 const namesFromContract = [
   'billingType',
@@ -56,29 +46,42 @@ const namesFromContract = [
   'branch',
   'currency',
   'bankAccount',
-  'createdDate'
+  'serviceProvidedTo'
 ]
 const EMPTY_ARR = []
 const AssignmentCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values, form } = props
   const contract = path<TContractItem>(['contract'], values)
   const contractId = path<number>(['id'], contract)
+  const client = path<number>(['client', 'id'], values)
+
+
+  useEffect(() => {
+    form.change('serviceProvidedTo.id', client)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [client])
 
   useEffect(() => {
     if (contractId) {
       const pickedValues = pick(namesFromContract, contract)
-      form.initialize({ ...pickedValues, isBillable: true, contract })
+      const rateList = propOr<Array<TRateItem>, TContractItem, TRateItem[]>([], 'rates', contract)
+      const rates = getPositionRate(rateList)
+
+      form.initialize({ ...pickedValues, rates, isBillable: true, contract })
     }
-  }, [contract, contractId, form])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contractId])
 
-  const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
+  const positionList = pathOr<TPositionItem[]>(
+    EMPTY_ARR,
+    ['data', 'results'],
+    positionData
+  )
 
-  const bankAccount = path<number>(['bankAccount', 'id'], values)
   const billable = path<number>(['isBillable'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
     <form onSubmit={handleSubmit}>
-
       <DoubleField>
         <div>
           <FieldWrapper>
@@ -93,17 +96,23 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
             <Field
               label="Contract"
               name="contract"
-              itemText={['id']}
+              itemText={['contractNumber']}
               api={API.CONTRACT_LIST}
+              params={{ client }}
+              parent={client}
               component={UniversalSearchField}
             />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Assignment"
-              name="name"
-              component={InputField}
+              label="Service provided to"
+              name="serviceProvidedTo"
+              api={API.CLIENT_LIST}
+              component={UniversalSearchField}
             />
+          </FieldWrapper>
+          <FieldWrapper>
+            <Field label="Assignment" name="name" component={InputField} />
           </FieldWrapper>
           <FieldWrapper>
             <Field
@@ -162,7 +171,6 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
                 component={DateField}
               />
             </DoubleField>
-
           </FieldWrapper>
         </div>
 
@@ -201,12 +209,10 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
                     component={UniversalSearchField}
                   />
                 </DoubleField>
-
               </FieldWrapper>
               <BillingFields
                 positionList={positionList}
                 hourlyHasFeeCeiling={hourlyHasFeeCeiling}
-                
               />
               <FieldWrapper>
                 <Label>Invoice Delivered By</Label>

@@ -26,7 +26,7 @@ const RadioButtonBordered = props => {
   return (
     <Border checked={input.checked}>
       <RadioButton label={label} {...input} />
-      {input.checked && <Children>{children}</Children>}
+      {input.checked && children && <Children>{children}</Children>}
     </Border>
   )
 }

@@ -4,12 +4,10 @@ import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { prop, map, pathOr, path } from 'ramda'
 import { sprintf } from 'sprintf-js'
-import { TUseDelete } from 'types'
+import { TUseDelete, TGetDataFromState, TData } from 'types'
 import { TAssignmentItem } from 'types/models/assignment'
-import { Menu } from '../../../../components/Menu'
-import Pagination from '../../../../components/Pagination'
-import { TGetDataFromState, TData } from '../../../../types'
-import dateFormat from '../../../../utils/dateFormat'
+import { Menu } from 'components/Menu'
+import Pagination from 'components/Pagination'
 import {
   Table,
   TableActions,
@@ -18,8 +16,8 @@ import {
   TableHeader,
   TableCol,
   TableBody
-} from '../../../../components/Table'
-import { Box, Dropdown, DropdownItem } from '../../../../components/UI'
+} from 'components/Table'
+import { Box, Dropdown, DropdownItem } from 'components/UI'
 import AssignmentListFilterForm from './AssignmentListFilterForm'
 
 const Tags = styled.span`
@@ -29,8 +27,8 @@ const Tags = styled.span`
   margin-right: 5px;
 `
 const AssignmentName = styled.div`
-  font-size: 15px;
-  line-height: 24px;
+  font-weight: 500;
+  padding-bottom: 2px;
   color: #36434E;
 `
 type Props = {
@@ -79,28 +77,21 @@ const AssignmentList: FunctionComponent<Props> = props => {
               const name = prop('name', item)
               const client = path(['client', 'name'], item)
               const teamLeader = path(['teamLeader', 'fullName'], item)
-              const createdDate = dateFormat(item.createdDate)
               const billingType = prop('billingType', item)
               const status = path(['status'], item)
               const tags = pathOr(EMPTY, ['tags'], item)
               const link = sprintf(ASSIGNMENT_ITEM_URL, id)
               return (
-                <TableRowLink link={link} key={id} selectId={id} align="center">
+                <TableRowLink link={link} key={id} align="center">
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={5}>
-                    <b>
-                      <AssignmentName>
-                        {client}
-                      </AssignmentName>
-                    </b>
-                    <AssignmentName>
-                      {name}
-                    </AssignmentName>
+                    <AssignmentName>{client}</AssignmentName>
+                    {name}
                   </TableCol>
                   <TableCol span={5}>{teamLeader}</TableCol>
                   <TableCol span={4}>{status}</TableCol>
-                  <TableCol span={4}>{billingType === 'fixed_fee' ? "Fixed Fee" : 'Hourly billing'}</TableCol>
-                  <TableCol span={4}>{tags.map(tag => (<Tags>{tag.name}</Tags>))}</TableCol>
+                  <TableCol span={4}>{billingType === 'fixed_fee' ? 'Fixed Fee' : 'Hourly billing'}</TableCol>
+                  <TableCol span={4}>{tags.map(tag => (<Tags key={tag.id}>{tag.name}</Tags>))}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>

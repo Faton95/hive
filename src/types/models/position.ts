@@ -1,10 +1,15 @@
 import { TGroupItem } from 'types'
-import { Merge, TIdName } from '../index'
 
-export type TPositionItem = Merge<TIdName, {
+export type TPositionItem = {
+  rate: string;
+  name: string;
+  id: number;
+}
+export type TRoleItem = {
   groups: TGroupItem[];
-}>
-
+  name: string;
+  id: number;
+}
 
 export type TStaffItem = {
   id: number;
@@ -18,14 +23,15 @@ export type TStaffItem = {
 export type TPermissionItem = {
   id: number;
   name: string;
-  codename: string
+  codename: string;
 }
 
 export type TUserInfo = {
   user: {
     username: string;
     id: number;
-  }
+  };
   isSuperuser: boolean;
-  position: TPositionItem
+  position: TPositionItem;
+  role: TRoleItem;
 }

@@ -14,8 +14,8 @@ import {
 import ContractCreateForm from './ContractCreateForm'
 
 type Props = {
-  onSubmit: TOnSubmit,
-  positionData: TGetDataFromState<TData<TPositionItem>>
+  onSubmit: TOnSubmit;
+  positionData: TGetDataFromState<TData<TPositionItem>>;
 }
 
 type NewPropType = Merge<TGetDataFromState<null>, Props>

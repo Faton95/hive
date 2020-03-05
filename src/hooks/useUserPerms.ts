@@ -1,10 +1,9 @@
-import {useTypedSelector} from 'etc/reducers'
-import {getDataFromState} from "utils/getTyped";
-import * as STATE from "constants/stateNames";
-import {flatten, map, path, pathOr, pipe, prop} from "ramda";
-import {TPermissionItem} from "types";
-import {TUserInfo} from "types/models";
-
+import * as STATE from 'constants/stateNames'
+import { useTypedSelector } from 'etc/reducers'
+import { getDataFromState } from 'utils/getTyped'
+import { flatten, map, path, pathOr, pipe, prop } from 'ramda'
+import { TPermissionItem } from 'types'
+import { TUserInfo } from 'types/models'
 
 const getCodeNames = pipe(
   path<TPermissionItem[]>(['permissions']),
@@ -12,16 +11,14 @@ const getCodeNames = pipe(
 )
 const EMPTY_ARR = []
 const useUserPerms = () => {
-
   const user = useTypedSelector(state => getDataFromState(STATE.USER_INFO, state))
 
   const userInfo = path<TUserInfo>(['data'], user)
   const permissionList = pipe(
-    pathOr(EMPTY_ARR, ['data', 'position', 'groups']),
+    pathOr(EMPTY_ARR, ['data', 'role', 'groups']),
     map(getCodeNames),
     flatten
   )(user)
-
 
   return [permissionList, userInfo.isSuperuser]
 }

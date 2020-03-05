@@ -28,6 +28,7 @@ export type TUseCreateParams = {
     onSuccess?: (data, values) => void;
     serializer?: (values) => void;
 }
+
 export type TUseUpdateParams = {
     stateName: string;
     action: (id, params) => (dispatch, store) => Promise<void>;
@@ -59,6 +60,28 @@ type TExtraUpdate = {
     isUpdate: boolean;
 }
 
+export type TUseCreateModalParams = {
+    key: string;
+    action: (params) => (dispatch, store) => Promise<void>;
+    stateName: string;
+    onSuccess?: (data, values) => void;
+    serializer?: (values) => void;
+}
+
+export type TUseCreateModal<T extends any> = {
+    loading: boolean;
+    failed: boolean;
+    data: T;
+    open: boolean;
+    onSubmit: TOnSubmit;
+    onOpen: () => void;
+    onClose: () => void;
+}
+export type TUseCustomModal = {
+    open: boolean;
+    onOpen: (id) => void;
+    onClose: () => void;
+}
 
 export type TUseUpdate = Merge<TGetDataFromState<any | null>, TExtraUpdate>
 export type TUseCreate = Merge<TGetDataFromState<any | null>, {onSubmit: TOnSubmit}>

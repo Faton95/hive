@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {
@@ -13,7 +13,7 @@ import {
   prop,
   test,
 } from 'ramda'
-import numberFormat from '../../../utils/numberFormat'
+import { RateContext } from 'etc/context'
 import { get2D } from '../../../utils/get'
 import { getFieldError } from '~/utils/form'
 import { Input } from '~/components/UI'
@@ -50,14 +50,31 @@ const onType = curry((onChange, ev) => {
 })
 
 const ONE_HOUR_IN_MINUTES = 60
-const DurationInput = props => {
+const calcSalary = (ev, rate) => {
+  const v = ev.target.value
+  const hourSpend = Number(v.substring(0, 2))
+  const hourToMinute = Number(hourSpend) * ONE_HOUR_IN_MINUTES
+  const minuteSpend = Number(v.substring(3, 5))
+  const totalMinute = hourToMinute + minuteSpend
+  const salaryPerMinute = rate / 60
+  return Number(totalMinute) * salaryPerMinute
+}
+
+const calcTime = (ev, salaryRate) => {
+  const salary = parseFloat(ev.target.value)
+  const salaryToHour = Math.floor(salary / salaryRate)
+  const salaryToMinute = (salary % salaryRate) * (60 / salaryRate)
+  return get2D(salaryToHour) + ':' + get2D(salaryToMinute)
+}
+
+const TimeToSalaryField = props => {
   const {
     input: { onChange, value, ...input },
-    label,
     meta,
     height,
-    salaryRate = 40
   } = props
+
+  const salaryRate = useContext(RateContext)
 
   const [salary, setSalary] = React.useState('')
   const tested = test(/[0-9]{2}:[0-9]{2}/, value)
@@ -70,29 +87,27 @@ const DurationInput = props => {
   const onTimeEnter = ev => {
     if (ev.key === 'Enter') {
       ev.preventDefault()
-
-      const v = ev.target.value
-      const hourSpend = Number(v.substring(0, 2))
-      const hourToMinute = Number(hourSpend) * ONE_HOUR_IN_MINUTES
-      const minuteSpend = Number(value.substring(3, 5))
-      const totalMinute = hourToMinute + minuteSpend
-      const salaryPerMinute = salaryRate / 60
-      const formSalary = numberFormat(Number(totalMinute) * salaryPerMinute)
-      setSalary(formSalary)
+      const formSalary = calcSalary(ev, salaryRate)
+      return setSalary(formSalary)
     }
+  }
+
+  const onBlur = ev => {
+    const formSalary = calcSalary(ev, salaryRate)
+    return setSalary(formSalary)
   }
   const onSalaryEnter = ev => {
-    //    ev.preventDefault()
-
     if (ev.key === 'Enter') {
       ev.preventDefault()
-      const salary = parseFloat(ev.target.value)
-      const salaryToHour = Math.floor(salary / salaryRate)
-      const salaryToMinute = (salary % salaryRate) * (60 / salaryRate)
-      const reverseValue = get2D(salaryToHour) + ':' + salaryToMinute
-      onChange(reverseValue)
+      const time = calcTime(ev, salaryRate)
+      onChange(time)
     }
   }
+  const onSalaryBlur = ev => {
+    const time = calcTime(ev, salaryRate)
+    onChange(time)
+  }
+
   return (
     <Field>
       <Input
@@ -101,6 +116,7 @@ const DurationInput = props => {
         value={value}
         {...input}
         onKeyPress={onTimeEnter}
+        onBlur={onBlur}
         label="Time"
         error={error || getFieldError(meta)}
         height={height}
@@ -114,17 +130,18 @@ const DurationInput = props => {
         onChange={(ev) => setSalary(ev.target.value)}
         {...input}
         onKeyPress={onSalaryEnter}
+        onBlur={onSalaryBlur}
         label="Salary"
       />
     </Field>
   )
 }
 
-DurationInput.propTypes = {
+TimeToSalaryField.propTypes = {
   input: PropTypes.object,
   meta: PropTypes.object,
   label: PropTypes.string,
   height: PropTypes.number,
 }
 
-export default DurationInput
+export default TimeToSalaryField

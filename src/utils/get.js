@@ -199,3 +199,8 @@ export const getItemFromTree = (arr, target) => {
   }
   return null
 }
+
+export const getPositionRate = pipe(
+  map(rate => [`_${rate.position.id}`, rate.amountPerHour]),
+  fromPairs
+)

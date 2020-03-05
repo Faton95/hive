@@ -47,15 +47,15 @@ const ContractList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Contracts" module={MENU_KEYS.ASSIGNMENT} active={MENU_KEYS.ASSIGNMENT} />
+      <Menu title="Contracts" module={MENU_KEYS.CONTRACT} active={MENU_KEYS.CONTRACT} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>
-              <TableCol span={1}>#</TableCol>
+              <TableCol span={5}>#</TableCol>
               <TableCol span={6}>Branch</TableCol>
               <TableCol span={6}>Client</TableCol>
-              <TableCol span={10}>Deadline</TableCol>
+              <TableCol span={6}>Deadline</TableCol>
               <TableCol span={1}> </TableCol>
             </TableRow>
           </TableHeader>
@@ -64,16 +64,16 @@ const ContractList: FunctionComponent<Props> = props => {
               const id = prop('id', item)
               const branch = path(['branch', 'name'], item)
               const client = path(['client', 'name'], item)
+              const contractNumber = path(['contractNumber'], item)
               const deadline = dateFormat(path(['deadLine'], item))
-              const paymentDate = path(['paymentDuration'], item)
               const link = sprintf(CONTRACT_ITEM_URL, id)
 
               return (
                 <TableRowLink link={link} key={id} selectId={id} align="center">
-                  <TableCol span={1}>{id}</TableCol>
+                  <TableCol span={5}>{contractNumber}</TableCol>
                   <TableCol span={6}>{branch}</TableCol>
                   <TableCol span={6}>{client}</TableCol>
-                  <TableCol span={10}>{deadline}</TableCol>
+                  <TableCol span={6}>{deadline}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
