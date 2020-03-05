@@ -2,12 +2,12 @@ import {TAssignmentItem, TExpenseItem, TFeeItem, TIdName, TUserInfo} from "types
 
 
 export type PreInvoiceAssignmentItem = {
-  id: number
+  id: number;
   fees: TFeeItem[];
   expenses: TExpenseItem[];
   created_date: string;
   modified_date: string;
-  assignment: TAssignmentItem
+  assignment: TAssignmentItem;
 }
 export type TPreInvoiceItem = {
   id: number;
@@ -17,7 +17,7 @@ export type TPreInvoiceItem = {
   fromDate: string;
   toDate: string;
   date: string;
-  type: "all" | 'custom' | 'expense';
+  type: 'all' | 'custom' | 'expense';
   user: TUserInfo;
   client: TIdName;
 }

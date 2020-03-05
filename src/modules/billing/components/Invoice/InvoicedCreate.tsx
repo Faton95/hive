@@ -76,7 +76,7 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                     </FieldWrapper>
                     <FieldWrapper>
                       <Field
-                        name="subject"
+                        name="description"
                         label="subject"
                         component={InputField}
                       />

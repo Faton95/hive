@@ -16,7 +16,7 @@ export const invoicedListFetch = (data) => {
     })
   }
 }
-export const uninvoicedCreateAction = (data) => {
+export const invoiceCreateAction = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .post(API.INVOICE_CREATE, data)

@@ -1,14 +1,28 @@
 import * as stateNames from 'constants/stateNames'
 
+import { INVOICE_LIST_PATH } from 'constants/routes'
 import { useCreate, useFetchItem } from 'hooks'
 import React from 'react'
 import { TPreInvoiceItem } from 'types'
-
 import { useParams } from 'react-router-dom'
-import { uninvoicedCreateAction } from '../../action/billing'
+import toSnakeCase from 'utils/toSnakeCase'
+import { invoiceCreateAction } from '../../action/invoice'
 import { preInvoiceItemFetch } from '../../action/preInvoice'
 import InvoicedCreate from '../../components/Invoice/InvoicedCreate'
 
+const serializer = (values, data: TPreInvoiceItem) => {
+  const client = data.client.id
+  const assignments = data.assignments.map(ass => ({
+    assignment: ass.assignment.id,
+    fee_list: ass.fees.map(fee => fee.id),
+    expense_list: ass.expenses.map(fee => fee.id)
+  }))
+  return toSnakeCase({
+    client,
+    assignments,
+    ...values
+  })
+}
 const UninvoicedCreateContainer = props => {
   const { id } = useParams<{id: string}>()
   const preInvoiceData = useFetchItem<TPreInvoiceItem>({
@@ -17,9 +31,10 @@ const UninvoicedCreateContainer = props => {
   })
 
   const data = useCreate({
-    stateName: stateNames.UNINVOICED_CREATE,
-    action: uninvoicedCreateAction,
-    onSuccess: data => console.warn(data)
+    stateName: stateNames.INVOICE_CREATE,
+    action: invoiceCreateAction,
+    serializer: (values) => serializer(values, preInvoiceData.data),
+    redirectUrl: INVOICE_LIST_PATH
   })
   return (
     <InvoicedCreate

@@ -5,7 +5,8 @@
     "start": "cross-env NODE_ENV=development node ./scripts/start.js",
     "build": "yarn clear && cross-env NODE_ENV=production  node ./scripts/build.js",
     "clear": "rm -rf dist",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "check-types": "tsc --skipLibCheck"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
