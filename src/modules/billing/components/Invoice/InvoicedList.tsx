@@ -14,6 +14,9 @@ import {
   TableColRight
 } from 'components/Table'
 import { Box, } from 'components/UI'
+import dateFormat from "utils/dateFormat";
+import {number} from "prop-types";
+import numberFormat from "utils/numberFormat";
 
 type Props = {
   invoiceData: TGetDataFromState<TData<any>>;
@@ -30,7 +33,6 @@ const InvoicedList: FunctionComponent<Props> = props => {
   const count = pathOr(ZERO, ['data', 'count'], invoiceData)
   const list = pathOr<any[]>(EMPTY, ['data', 'results'], invoiceData)
 
-  console.warn(list)
   const ids = map(prop('id'), list)
   const actions = (
     <TableActions />
@@ -40,6 +42,7 @@ const InvoicedList: FunctionComponent<Props> = props => {
     <div>
       <Menu title="Invoice" module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
       <Box>
+
         <Table loading={invoiceData.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>
@@ -58,9 +61,12 @@ const InvoicedList: FunctionComponent<Props> = props => {
 
               return (
                 <TableRow key={id} align="center">
-                  <TableCol span={24}>
-                    {id}
-                  </TableCol>
+                  <TableCol span={3}>{id}</TableCol>
+                  <TableCol span={8}>{item.client.name}</TableCol>
+                  <TableCol span={4}>{dateFormat(item.issueDate)}</TableCol>
+                  <TableCol span={3}>{numberFormat(item.balance)}</TableCol>
+                  <TableCol span={3}>{numberFormat(item.balance)}</TableCol>
+                  <TableColRight span={3}>{item.statusPayment}</TableColRight>
                 </TableRow>
               )
             })}

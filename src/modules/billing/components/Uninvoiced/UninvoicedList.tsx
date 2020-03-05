@@ -98,7 +98,6 @@ const UninvoicedList: FunctionComponent<Props> = props => {
 
               const totalUninvoicedHours = assignments.reduce((prev, curr) => addTimes(prev, curr.uninvoiceFeeHours), '00:00')
 
-
               const feeAmountList = pipe(
                 flatten,
                 map(pipe(prop('amount'), Number))
@@ -127,6 +126,7 @@ const UninvoicedList: FunctionComponent<Props> = props => {
                     {assignments.map(assigment => (
                       <AssigmentRow key={assigment.id}>
                         <Col>{assigment.name}</Col>
+                        <Col>{assigment.id + assigment.name}</Col>
                       </AssigmentRow>
                     ))}
                   </TableCol>
