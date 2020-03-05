@@ -46,14 +46,19 @@ export default [
     ]
   },
   {
-    key: MENU_KEYS.CONTRACT,
+    key: MENU_KEYS.BILLING,
     title: 'Billing',
     url: ROUTES.UNINVOICED_LIST_PATH,
     children: [
       {
+        title: 'Invoices',
+        url: ROUTES.INVOICE_LIST_PATH,
+        key: MENU_KEYS.BILLING
+      },
+      {
         title: 'Uninvoiced',
         url: ROUTES.UNINVOICED_LIST_PATH,
-        key: MENU_KEYS.CONTRACT
+        key: MENU_KEYS.BILLING
       }
     ]
   },

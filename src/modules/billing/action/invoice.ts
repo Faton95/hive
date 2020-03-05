@@ -3,7 +3,7 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../../util
 import * as API from '../../../constants/api'
 import * as actionTypes from '../../../constants/actionTypes'
 
-export const uninvoicedListFetch = (data) => {
+export const invoicedListFetch = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(API.INVOICE_LIST, { params: data })

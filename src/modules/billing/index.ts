@@ -43,6 +43,12 @@ export default (store) => [
     layout: Layout,
     component: AsyncComponent(() => getInvoiceCreateContainer(store))
   },
+  {
+    exact: true,
+    path: ROUTES.INVOICE_LIST_PATH,
+    layout: Layout,
+    component: AsyncComponent(() => getInvoiceListContainer(store))
+  },
 /*  {
     exact: true,
     path: ROUTES.OUTSOURCE_ITEM_PATH,

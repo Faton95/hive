@@ -1,5 +1,4 @@
-import {injectReducers} from "etc/reducers";
-
+import { injectReducers } from 'etc/reducers'
 
 export const getInvoiceListContainer = store =>
   import(/* webpackChunkName: "uninvoiced" */ '../../reducers')
