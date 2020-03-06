@@ -11,3 +11,9 @@ export const getInvoiceCreateContainer = store =>
     .then(module => injectReducers(store, module.default))
     .then(() => import(/* webpackChunkName: "uninvoiced" */ './InvoiceCreateContainer'))
     .then(module => module.default)
+
+export const getInvoiceDetailsContainer = store =>
+  import(/* webpackChunkName: "uninvoiced" */ '../../reducers')
+    .then(module => injectReducers(store, module.default))
+    .then(() => import(/* webpackChunkName: "uninvoiced" */ './InvoiceDetailContainer'))
+    .then(module => module.default)

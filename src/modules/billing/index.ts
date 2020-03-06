@@ -15,7 +15,8 @@ import {
 
 import {
   getInvoiceCreateContainer,
-  getInvoiceListContainer
+  getInvoiceListContainer,
+  getInvoiceDetailsContainer
 } from './containers/InvoiceContainers'
 
 export default (store) => [
@@ -48,6 +49,12 @@ export default (store) => [
     path: ROUTES.INVOICE_LIST_PATH,
     layout: Layout,
     component: AsyncComponent(() => getInvoiceListContainer(store))
+  },
+  {
+    exact: true,
+    path: ROUTES.INVOICE_ITEM_PATH,
+    layout: Layout,
+    component: AsyncComponent(() => getInvoiceDetailsContainer(store))
   },
 /*  {
     exact: true,

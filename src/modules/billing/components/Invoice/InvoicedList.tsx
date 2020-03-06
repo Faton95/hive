@@ -11,12 +11,14 @@ import {
   TableHeader,
   TableCol,
   TableBody,
-  TableColRight
+  TableColRight,
+  TableRowLink
 } from 'components/Table'
 import { Box, } from 'components/UI'
-import dateFormat from "utils/dateFormat";
-import {number} from "prop-types";
-import numberFormat from "utils/numberFormat";
+import dateFormat from 'utils/dateFormat'
+import numberFormat from 'utils/numberFormat'
+import {sprintf} from "sprintf-js";
+import {INVOICE_ITEM_URL} from "constants/routes";
 
 type Props = {
   invoiceData: TGetDataFromState<TData<any>>;
@@ -52,22 +54,20 @@ const InvoicedList: FunctionComponent<Props> = props => {
               <TableCol span={3}>Paid</TableCol>
               <TableCol span={3}>Balance</TableCol>
               <TableColRight span={3}>Status</TableColRight>
-
             </TableRow>
           </TableHeader>
           <TableBody>
             {list.map((item) => {
               const id = prop('id', item)
-
               return (
-                <TableRow key={id} align="center">
+                <TableRowLink link={sprintf(INVOICE_ITEM_URL, id)} key={id} align="center">
                   <TableCol span={3}>{id}</TableCol>
                   <TableCol span={8}>{item.client.name}</TableCol>
                   <TableCol span={4}>{dateFormat(item.issueDate)}</TableCol>
                   <TableCol span={3}>{numberFormat(item.balance)}</TableCol>
                   <TableCol span={3}>{numberFormat(item.balance)}</TableCol>
                   <TableColRight span={3}>{item.statusPayment}</TableColRight>
-                </TableRow>
+                </TableRowLink>
               )
             })}
           </TableBody>
