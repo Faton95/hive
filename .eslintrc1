@@ -1,0 +1,68 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": ".",
+    "createDefaultProgram": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "standard-react",
+    "typescript/react",
+    "typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
+    "plugin:import/warnings"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "babel",
+    "react",
+    "promise",
+    "import",
+    "react-hooks"
+  ],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "__DEV__": false,
+    "__TEST__": false,
+    "__PROD__": false,
+    "__COVERAGE__": false,
+    "Cypress": false,
+    "cy": true,
+    "expect": true,
+    "describe": true,
+    "it": true,
+    "context": true,
+    "beforeEach": true
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/jsx-indent": [2, 2],
+    "react/prop-types": "off",
+    "react/jsx-boolean-value": [2, "always"],
+    "key-spacing": "off",
+    "jsx-quotes": [2, "prefer-double"],
+    "max-len": [2, 120, 2],
+    "object-curly-spacing": [2, "always"],
+    "indent": [2, 2],
+    "comma-dangle": "off",
+    "import/order": [2, {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
+    "import/newline-after-import": ["error"],
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": ["error"],
+    "react-hooks/rules-of-hooks": ["error"],
+    "react-hooks/exhaustive-deps": ["warn"],
+    "no-console": "warn",
+    "react/jsx-handler-names": ["warn"],
+    "react/display-name": ["warn"]
+  },
+  "settings": {
+    "import/resolver": "babel-plugin-root-import"
+  }
+}

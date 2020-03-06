@@ -14,11 +14,11 @@ import {
   TableColRight,
   TableRowLink
 } from 'components/Table'
-import { Box, } from 'components/UI'
+import { Box } from 'components/UI'
 import dateFormat from 'utils/dateFormat'
 import numberFormat from 'utils/numberFormat'
-import {sprintf} from "sprintf-js";
-import {INVOICE_ITEM_URL} from "constants/routes";
+import { sprintf } from 'sprintf-js'
+import { INVOICE_ITEM_URL } from 'constants/routes'
 
 type Props = {
   invoiceData: TGetDataFromState<TData<any>>;
@@ -42,7 +42,7 @@ const InvoicedList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Invoice" module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
+      <Menu title='Invoice' module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
       <Box>
 
         <Table loading={invoiceData.loading} list={ids} actions={actions} gutter={30}>
@@ -60,7 +60,7 @@ const InvoicedList: FunctionComponent<Props> = props => {
             {list.map((item) => {
               const id = prop('id', item)
               return (
-                <TableRowLink link={sprintf(INVOICE_ITEM_URL, id)} key={id} align="center">
+                <TableRowLink link={sprintf(INVOICE_ITEM_URL, id)} key={id} align='center'>
                   <TableCol span={3}>{id}</TableCol>
                   <TableCol span={8}>{item.client.name}</TableCol>
                   <TableCol span={4}>{dateFormat(item.issueDate)}</TableCol>
