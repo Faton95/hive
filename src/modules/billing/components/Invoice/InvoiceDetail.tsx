@@ -6,19 +6,31 @@ import numberFormat from 'utils/numberFormat'
 import { DetailMenu } from 'components/Menu'
 import { DisplayFlex } from 'components/StyledElems'
 import {
-  LabeledValue,
   DetailDropdown
 } from 'components/DetailComponents'
 import { Box, DropdownItem, Row, Col } from 'components/UI'
-import { TOrderItem, TOrderProduct } from 'types/models'
+import {
+  ButtonSmall,
+  PrimaryBorderedButtonSmall
+} from 'components/UI/Buttons'
 import { TGetDataFromState } from 'types'
-
+import InvoicePdf from './InvoicePdf'
+import { PDFViewer } from '@react-pdf/renderer'
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
   margin-bottom: 27px;
   border-bottom: ${props => props.theme.border};
 `
 
+const PDFView = styled(PDFViewer)`
+  width: 100%;
+  height: 500px;
+  border: none;
+`
+
+const Button = styled(PrimaryBorderedButtonSmall)`
+  margin-left: 20px;
+`
 const EMPTY_ARR = []
 
 type Props = {
@@ -35,34 +47,24 @@ const InvoiceDetail: FunctionComponent<Props> = props => {
 
   const details = prop('data', data)
   const id = prop('id', details)
-  const status = prop('status', details)
-
-  console.warn(details)
-  const clientName = path(['client', 'fullName'], details)
-  const paymentType = prop('paymentType', details)
-  const createdDate = prop('createdDate', details)
-  const products = prop('orderProducts', details) || EMPTY_ARR
-  const productIds = map(prop('id'), products)
 
   return (
     <>
-      <DetailMenu title={'№' + id} />
-      <Box padding="25px">
-        <Header alignItems="center" justifyContent="flex-end">
-          <DetailDropdown marginLeft="50px">
-            <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Изменить</DropdownItem>
-            <DropdownItem onClick={() => onDelete(id)} toggleMenu={() => null}>Удалить</DropdownItem>
-          </DetailDropdown>
+      <DetailMenu title={'Invoice №' + id} />
+      <Box padding='25px'>
+        <Header alignItems='center' justifyContent='space-between'>
+          <ButtonSmall>Send Invoice</ButtonSmall>
+          <div>
+            <Button>Make Payment</Button>
+            <DetailDropdown marginLeft='20px'>
+              <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Изменить</DropdownItem>
+              <DropdownItem onClick={() => onDelete(id)} toggleMenu={() => null}>Удалить</DropdownItem>
+            </DetailDropdown>
+          </div>
         </Header>
-
-        <Row gutter={10}>
-          <Col span={6}>
-            <LabeledValue labelMargin={5} label="Клиент">{clientName}</LabeledValue>
-          </Col>
-          <Col span={6}>
-            <LabeledValue labelMargin={5} label="ТИП ОПЛАТИ">{paymentType}</LabeledValue>
-          </Col>
-        </Row>
+        <PDFView>
+          <InvoicePdf data={details} />
+        </PDFView>
       </Box>
     </>
   )

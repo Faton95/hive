@@ -17,9 +17,6 @@ import {
 } from 'components/Form'
 import {
   PreInvoiceAssignmentItem,
-  TAssignmentItem,
-  TClientItem,
-  TData,
   TGetDataFromState,
   TOnSubmit, TPreInvoiceItem
 } from 'types'
@@ -58,8 +55,8 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
   const assignmentList = pathOr<PreInvoiceAssignmentItem[]>([], ['data', 'assignments'], preInvoiceData)
   return (
     <div>
-      <DetailMenu title="Invoice for " />
-      <Box padding="25px">
+      <DetailMenu title='Invoice for ' />
+      <Box padding='25px'>
         <Form
           onSubmit={createData.onSubmit}
           render={(formikProps) => {
@@ -69,15 +66,15 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                   <div>
                     <FieldWrapper>
                       <Field
-                        name="number"
-                        label="Invoice ID"
+                        name='number'
+                        label='Invoice ID'
                         component={InputField}
                       />
                     </FieldWrapper>
                     <FieldWrapper>
                       <Field
-                        name="description"
-                        label="subject"
+                        name='description'
+                        label='subject'
                         component={InputField}
                       />
                     </FieldWrapper>
@@ -85,15 +82,15 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                   <div>
                     <FieldWrapper>
                       <Field
-                        name="issueDate"
-                        label="Issue Date"
+                        name='issueDate'
+                        label='Issue Date'
                         component={DateField}
                       />
                     </FieldWrapper>
                     <FieldWrapper>
                       <Field
-                        name="dueDate"
-                        label="Due Date"
+                        name='dueDate'
+                        label='Due Date'
                         component={DateField}
                       />
                     </FieldWrapper>
@@ -137,7 +134,7 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                   </Fragment>
                 ))}
                 <SecondaryButton>Cancel</SecondaryButton>
-                <Button type="submit">Review Invoice</Button>
+                <Button type='submit'>Review Invoice</Button>
               </form>
             )
           }}

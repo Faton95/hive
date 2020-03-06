@@ -7,11 +7,15 @@ import {
 } from 'ui-cubic/dist/index.es'
 import styled from 'styled-components'
 
-export { default as BorderedButtonSmall } from './BorderedButtonSmall'
-export { default as ButtonSmall } from './ButtonSmall'
+export {
+  default as ButtonSmall,
+  BorderedButtonSmall,
+  SecondaryButtonSmall,
+  PrimaryBorderedButtonSmall
+} from './ButtonSmall'
 export { default as LinkButton } from './LinkButton'
 export { default as PlusButton } from './PlusButton'
 
-export const SecondaryButton = props => <SecondaryButtonCUI type="button" {...props} />
+export const SecondaryButton = props => <SecondaryButtonCUI type='button' {...props} />
 export const DangerButton = styled(DangerButtonCUI)``
 export { Button, BorderedButton }

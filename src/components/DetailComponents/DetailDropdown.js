@@ -6,9 +6,9 @@ import { Dropdown as DropdownCUI } from 'ui-cubic'
 const Dropdown = ({ children, marginLeft, ...props }) => (
   <DropdownCUI
     {...props}
-    mode="horizontal"
-    backgroundColor="#f1f3f5"
-    dotColor="#435260"
+    mode='horizontal'
+    backgroundColor='#f1f3f5'
+    dotColor='#435260'
   >
     {children}
   </DropdownCUI>
@@ -25,4 +25,5 @@ Dropdown.defaultProps = {
 
 export default styled(Dropdown)`
   margin-left: ${props => props.marginLeft};
+  display: inline-block;
 `

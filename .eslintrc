@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
@@ -27,7 +27,7 @@
       "parserOptions": {
         "project": "./tsconfig.json"
       },
-      "extends": ["plugin:@typescript-eslint/recommended"],
+      "extends": ["plugin:@typescript-eslint/recommended", "plugin:import/typescript", "typescript/react"],
       "plugins": [ "@typescript-eslint" ],
       "rules": {
       "@typescript-eslint/no-unused-vars": "off",
