@@ -1,7 +1,7 @@
 import { prop } from 'ramda'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import equal from 'fast-deep-equal'
+import equal from 'react-fast-compare'
 import { getDataFromState } from '../utils/getTyped'
 import { TGetDataFromState, TUseFetchItemParams } from '../types'
 import { useTypedSelector, usePromiseDispatch } from '../etc/reducers'

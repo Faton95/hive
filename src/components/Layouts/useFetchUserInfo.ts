@@ -1,12 +1,12 @@
 import * as stateNames from 'constants/stateNames'
 import { useEffect, useState } from 'react'
-import equals from 'fast-deep-equal'
+import equals from 'react-fast-compare'
 import { useTypedSelector, usePromiseDispatch } from 'etc/reducers'
 import { getDataFromState } from 'utils/getTyped'
 import { getCookie } from 'utils/cookie'
-import {isNil, path} from 'ramda'
+import { isNil, path } from 'ramda'
 import { userInfoFetch } from 'modules/sign-in/action'
-import {TGetDataFromState, TPositionItem} from "types";
+import { TGetDataFromState, TPositionItem } from 'types'
 
 type TLogin = {
   token: string
@@ -35,14 +35,12 @@ const useFetchUserInfo = () => {
       dispatch(userInfoFetch(cookieToken))
         .catch(eee => {
           setIsAuth(false)
-
         })
     }
     if (!token && !cookieToken) {
       setIsAuth(false)
     }
   }, [])
-
 
   const loading = data.loading || userInfo.loading
 

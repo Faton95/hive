@@ -31,11 +31,12 @@ const EMPTY = []
 const ZERO = 0
 
 const GroupList: FunctionComponent<Props> = props => {
-  const { data, onEdit, deleteData } = props
+  const { data } = props
   const count = pathOr(ZERO, ['data', 'count'], data)
   const list = pathOr<TGroupItem[]>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
 
+  console.warn('Group')
   const actions = (
     <TableActions
       createPath={GROUP_CREATE_PATH}
@@ -44,7 +45,7 @@ const GroupList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Groups" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title='Groups' module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
@@ -59,17 +60,12 @@ const GroupList: FunctionComponent<Props> = props => {
               const id = prop('id', item)
               const name = prop('name', item)
               return (
-                <TableRow key={id} selectId={id} align="center">
+                <TableRow key={id} selectId={id} align='center'>
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={4}>{name}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
-                      <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
-                      </DropdownItem>
-                      <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
-                      </DropdownItem>
+                      <DropdownItem>dasds</DropdownItem>
                     </Dropdown>
                   </TableCol>
                 </TableRow>

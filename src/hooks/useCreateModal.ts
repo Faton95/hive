@@ -1,4 +1,4 @@
-import equal from 'fast-deep-equal'
+import equal from 'react-fast-compare'
 import { useHistory } from 'react-router-dom'
 import { getDataFromState } from 'utils/get'
 import { mapResponseToFormError } from 'utils/form'
