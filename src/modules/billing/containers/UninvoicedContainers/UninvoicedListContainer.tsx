@@ -17,14 +17,14 @@ import {
 import { TAssignmentItem, TClientItem, TData, TExpenseItem, TFeeItem } from 'types'
 import {
   uninvoicedListFetch,
-  uninvoicedDeleteAction,
+  uninvoicedDeleteAction
 } from '../../action/billing'
 
 import UninvoicedList from '../../components/Uninvoiced/UninvoicedList'
 
 const PICK_PARAMS = [
   ...DEFAULT_PICK_PARAMS,
-  'tags',
+  'tags'
 ]
 const PAGE_SIZE = 'page_size'
 const UninvoicedListContainer = props => {

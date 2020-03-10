@@ -65,6 +65,7 @@ export const fields = [
   'expenses'
 ]
 
+const HUND = 100
 const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
   const {
     onFeeCreate,
@@ -83,10 +84,14 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
 
   const hourlyFeeCeiling = prop('hourlyFeeCeiling', details)
   const hourlyHasFeeCeiling = prop('hourlyHasFeeCeiling', details)
+  const expenseInFee = prop('fixedFeeExpensesIncludedInFee', details)
 
+  console.warn(details)
   const budget = toNumber(fixedFeeAmount || hourlyFeeCeiling)
   const totalFee = sum(map<{amount: number}, number>(prop('amount'), fees))
-  const feePercent = totalFee > budget ? 100 : totalFee / budget * 100
+  const totalExpense = sum(map<{amount: string}, number>(pipe(prop('amount'), Number), expensesList))
+  const totalAmount = expenseInFee ? totalFee + totalExpense : totalFee
+  const amountPercent = totalAmount > budget ? HUND : totalAmount / budget * HUND
 
   const feesByUser: TFeeItem[][] = pipe(
     groupBy(path(['user', 'id'])),
@@ -101,8 +106,8 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
       <Wrapper>
         {Boolean(totalFee) && (
           <ProgressContainer>
-            <Progress width={feePercent} />
-            <Percent>{numberFormat(feePercent)}%</Percent>
+            <Progress width={amountPercent} />
+            <Percent>{numberFormat(amountPercent)}%</Percent>
           </ProgressContainer>
         )}
         <div>

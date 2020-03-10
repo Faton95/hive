@@ -61,14 +61,15 @@ const config = {
 // ES6
 // ------------------------------------
 config.module.rules.push({
-  test: /\.(js|jsx)$/,
+  test: [/\.jsx?$/, /\.tsx?$/],
   exclude: /node_modules/,
   use: [{
     loader: 'babel-loader',
     options: {
       presets: [
         "@babel/preset-env",
-        "@babel/preset-react"
+        "@babel/preset-react",
+        "@babel/preset-typescript"
       ],
       plugins: [
         "@babel/plugin-transform-runtime",
@@ -83,11 +84,13 @@ config.module.rules.push({
 
 // TypeScript
 // ------------------------------------
+/*
 config.module.rules.push({
   test: /\.tsx?$/,
   use: 'ts-loader',
   exclude: /node_modules/,
 },)
+*/
 
 // Styles
 // ------------------------------------

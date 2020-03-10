@@ -5,6 +5,14 @@ import './root.css'
 // ======================================================
 // Store Initialization
 // ======================================================
+/*
+if (__DEV__) {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render')
+
+  whyDidYouRender(React, {
+    trackAllPureComponents: true
+  })
+}*/
 const initialState = window.__INITIAL_STATE__
 const store = createStore(initialState)
 

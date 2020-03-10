@@ -4,7 +4,7 @@ import * as PERMS from '../constants/permissions'
 export const MENU_KEYS = {
   ORDER: 'order',
   ASSIGNMENT: 'assignment',
-  BILLING: 'billing',
+  BILLING: 'assignmentpreinvoice',
   CONTRACT: 'contract',
   REVIEW: 'review',
   OPERATIONS: 'operations',

@@ -1,17 +1,17 @@
-import { pick, pipe, equals } from 'ramda'
-import { useDispatch } from 'react-redux'
+import { pick, pipe } from 'ramda'
+import equals from 'react-fast-compare'
 import { useHistory } from 'react-router-dom'
 
-import { getParamsFormHistory } from '../utils/get'
-import { getDataFromState } from '../utils/getTyped'
-import { DEFAULT_PICK_PARAMS } from '../utils/isEquals'
+import { getParamsFormHistory } from 'utils/get'
+import { getDataFromState } from 'utils/getTyped'
+import { DEFAULT_PICK_PARAMS } from 'utils/isEquals'
 import toSnakeCase from '../utils/toSnakeCase'
 import {
   TUseFetchListParams,
   TGetDataFromState,
   THistory
 } from '../types'
-import { usePromiseDispatch, useTypedSelector } from '../etc/reducers'
+import { usePromiseDispatch, useTypedSelector } from 'etc/reducers'
 import useCompareEffect from './useCompareEffect'
 
 export const getListParams = (history: THistory, keys: Array<string>) =>

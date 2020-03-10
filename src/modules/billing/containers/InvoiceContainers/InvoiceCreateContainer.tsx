@@ -14,8 +14,8 @@ const serializer = (values, data: TPreInvoiceItem) => {
   const client = data.client.id
   const assignments = data.assignments.map(ass => ({
     assignment: ass.assignment.id,
-    fee_list: ass.fees.map(fee => fee.id),
-    expense_list: ass.expenses.map(fee => fee.id)
+    fees: ass.fees.map(fee => fee.id),
+    expenses: ass.expenses.map(fee => fee.id)
   }))
   return toSnakeCase({
     client,

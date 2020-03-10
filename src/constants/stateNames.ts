@@ -114,4 +114,6 @@ export const INVOICE_ITEM = 'invoiceItem'
 export const INVOICE_CREATE = 'invoiceCreate'
 export const INVOICE_UPDATE = 'invoiceUpdate'
 export const INVOICE_DELETE = 'invoiceDelete'
+export const INVOICE_TOTAL_PAYMENT = 'invoiceTotalPayment'
+export const INVOICE_MONTH_PAYMENT = 'invoiceMonthPayment'
 

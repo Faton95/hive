@@ -1,7 +1,7 @@
-import axios, {getPayloadFromError, getPayloadFromSuccess} from "utils/axios";
-import * as API from "constants/api";
-import * as actionTypes from "constants/actionTypes";
-import {sprintf} from "sprintf-js";
+import axios, { getPayloadFromError, getPayloadFromSuccess } from 'utils/axios'
+import * as API from 'constants/api'
+import * as actionTypes from 'constants/actionTypes'
+import { sprintf } from 'sprintf-js'
 
 export const preInvoiceCreateAction = (data) => {
   return (dispatch, getState) => {
@@ -16,7 +16,6 @@ export const preInvoiceCreateAction = (data) => {
     })
   }
 }
-
 
 export const preInvoiceItemFetch = (id) => {
   return (dispatch, getState) => {

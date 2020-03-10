@@ -157,3 +157,7 @@ export const INVOICE_CREATE = `/${INVOICE}/`
 export const INVOICE_ITEM = `/${INVOICE}/%d/`
 export const INVOICE_DELETE = `/${INVOICE}/%d/`
 export const INVOICE_UPDATE = `/${INVOICE}/%d/`
+
+const INVOICE_STATS = `${MAIN}/invoice_statistics`
+export const INVOICE_TOTAL_PAYMENT = `/${INVOICE_STATS}/invoice_period/`
+export const INVOICE_MONTH_PAYMENT = `/${INVOICE_STATS}/invoice_status/`

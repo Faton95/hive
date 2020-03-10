@@ -19,7 +19,7 @@ import dateFormat from 'utils/dateFormat'
 import numberFormat from 'utils/numberFormat'
 import { sprintf } from 'sprintf-js'
 import { INVOICE_ITEM_URL } from 'constants/routes'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts/es6'
+import InvoiceListStat from './InvoiceListStat'
 
 type Props = {
   invoiceData: TGetDataFromState<TData<any>>;
@@ -52,24 +52,8 @@ const InvoicedList: FunctionComponent<Props> = props => {
   return (
     <div>
       <Menu title='Invoice' module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
+      <InvoiceListStat />
       <Box>
-        <BarChart
-          barGap={-40}
-
-          width={600} height={300} data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='name' />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey='pv' fill='#82ca9d94' />
-          <Bar dataKey='uv' fill='#82ca9d' />
-        </BarChart>
-      </Box>
-      <Box>
-
         <Table loading={invoiceData.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
             <TableRow>

@@ -13,9 +13,11 @@ import {
   ButtonSmall,
   PrimaryBorderedButtonSmall
 } from 'components/UI/Buttons'
-import { TGetDataFromState } from 'types'
+import { TGetDataFromState, TInvoiceItem } from 'types'
 import InvoicePdf from './InvoicePdf'
-import { PDFViewer } from '@react-pdf/renderer'
+import InvoiceTimeSheetPDF from './InvoiceTimeSheetPDF'
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer'
+
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
   margin-bottom: 27px;
@@ -34,7 +36,7 @@ const Button = styled(PrimaryBorderedButtonSmall)`
 const EMPTY_ARR = []
 
 type Props = {
-  data: TGetDataFromState<any>;
+  data: TGetDataFromState<TInvoiceItem>;
   onDelete: (id) => void;
   onEdit: (id) => void;
 }
@@ -57,14 +59,17 @@ const InvoiceDetail: FunctionComponent<Props> = props => {
           <div>
             <Button>Make Payment</Button>
             <DetailDropdown marginLeft='20px'>
-              <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Изменить</DropdownItem>
-              <DropdownItem onClick={() => onDelete(id)} toggleMenu={() => null}>Удалить</DropdownItem>
+              <DropdownItem onClick={() => onEdit(id)}>Изменить</DropdownItem>
+              <DropdownItem onClick={() => onDelete(id)}>Удалить</DropdownItem>
             </DetailDropdown>
           </div>
         </Header>
         <PDFView>
-          <InvoicePdf data={details} />
+          <InvoiceTimeSheetPDF data={details} />
         </PDFView>
+        <PDFDownloadLink document={<InvoicePdf data={details} />} fileName='somename.pdf'>
+          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+        </PDFDownloadLink>
       </Box>
     </>
   )

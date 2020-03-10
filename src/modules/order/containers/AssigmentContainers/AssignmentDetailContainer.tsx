@@ -45,24 +45,25 @@ const AssignmentDetailContainer = (props: Props) => {
     successAction: assignmentListFetch
   })
 
+  const feeParams = { page_size: 100, assignment }
   const expenseData = useFetchList({
     action: expenseListFetch,
     stateName: stateNames.EXPENSE_LIST,
-    mapper: () => ({ page_size: 100, assignment })
+    mapper: () => (feeParams)
 
   })
 
   const feeData = useFetchList({
     action: feeListFetch,
     stateName: stateNames.FEE_LIST,
-    mapper: () => ({ page_size: 100, assignment })
+    mapper: () => (feeParams)
   })
 
   const onFeeCreate = useCreateModal({
     key: 'feeModal',
     stateName: stateNames.FEE_CREATE,
     action: feeCreateAction,
-    onSuccess: () => dispatch(feeListFetch({})),
+    onSuccess: () => dispatch(feeListFetch(feeParams)),
     serializer: (values) => createFeeSerializer(assignment, values)
   })
 
@@ -70,7 +71,7 @@ const AssignmentDetailContainer = (props: Props) => {
     key: 'expenseModal',
     stateName: stateNames.EXPENSE_CREATE,
     action: expenseCreateAction,
-    onSuccess: () => dispatch(expenseListFetch({})),
+    onSuccess: () => dispatch(expenseListFetch(feeParams)),
     serializer: (values) => createExpenseSerializer(assignment, values)
   })
 
