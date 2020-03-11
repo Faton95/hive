@@ -1,4 +1,4 @@
-import {TAssignmentItem} from "types";
+import {TAssignmentItem, TStaffItem} from "types";
 
 export type TFeeItem = {
   id: number;
@@ -9,7 +9,7 @@ export type TFeeItem = {
   amount: string;
   date: string;
   description: string;
-  user: number;
+  user: TStaffItem;
 }
 
 export type TTimeSheetItem = {

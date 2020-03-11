@@ -28,9 +28,9 @@ type Props = Merge<FormRenderProps, {
 const EMPTY_ARR = []
 const ContractCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values } = props
-  console.warn(values)
   const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
   const bankAccount = path<number>(['bankAccount', 'id'], values)
+  const branch = path<number>(['branch', 'id'], values)
   const isMultiple = path<boolean>(['isMultiple'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (
@@ -39,16 +39,16 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
         <div>
           <FieldWrapper>
             <Field
-              label="Client"
-              name="client"
+              label='Client'
+              name='client'
               api={API.CLIENT_LIST}
               component={UniversalSearchField}
             />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Service delivered by"
-              name="branch"
+              label='Service delivered by'
+              name='branch'
               api={API.BRANCH_LIST}
               component={UniversalSearchField}
             />
@@ -56,14 +56,17 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           <FieldWrapper>
             <DoubleField>
               <Field
-                label="Bank Account"
-                name="bankAccount"
+                label='Bank Account'
+                name='bankAccount'
                 api={API.BANK_ACCOUNT_LIST}
+                params={{ branch }}
+                parent={branch}
+                disabled={!branch}
                 component={UniversalSearchField}
               />
               <Field
-                label="Currency"
-                name="currency"
+                label='Currency'
+                name='currency'
                 api={API.CURRENCY_LIST}
                 params={{ bankAccount }}
                 parent={bankAccount}
@@ -75,18 +78,18 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Deadline"
-              name="deadLine"
+              label='Deadline'
+              name='deadLine'
               component={DateField}
             />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Payment expected in"
-              addon="days after invoice delivery"
-              name="paymentDuration"
-              leftWidth="220px"
-              rightWidth="220px"
+              label='Payment expected in'
+              addon='days after invoice delivery'
+              name='paymentDuration'
+              leftWidth='220px'
+              rightWidth='220px'
               component={InputAddonInlineLabel}
             />
           </FieldWrapper>
@@ -94,11 +97,11 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
         <div>
           <FieldWrapper>
             <Field
-              name="isMultiple"
+              name='isMultiple'
               label={{ checkbox: 'Is Multi', field: 'Multi contract' }}
               component={CheckboxBordered}
               defaultValue={false}
-              type="checkbox"
+              type='checkbox'
             />
           </FieldWrapper>
           <div>
@@ -114,7 +117,7 @@ const ContractCreateForm: FunctionComponent<Props> = props => {
       </DoubleField>
       <CreateCancelButtons
         cancelPath={ROUTES.CONTRACT_LIST_PATH}
-        submitText="Save"
+        submitText='Save'
       />
     </form>
   )

@@ -6,7 +6,7 @@ import { Box } from 'components/UI'
 import { TGetDataFromState, TOnSubmit, Merge, TGroupItem, TData, TPositionItem } from 'types'
 
 import AssignmentCreateForm from './AssignmentCreateForm'
-import isEqual from "react-fast-compare";
+import isEqual from 'react-fast-compare'
 
 type Props = {
   onSubmit: TOnSubmit;

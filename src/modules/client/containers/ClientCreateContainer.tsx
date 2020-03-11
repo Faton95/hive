@@ -16,11 +16,9 @@ const ClientDetailContainer = props => {
     serializer: createSerializer
   })
   return (
-    <Layout>
       <ClientCreate
         {...data}
       />
-    </Layout>
   )
 }
 export default ClientDetailContainer

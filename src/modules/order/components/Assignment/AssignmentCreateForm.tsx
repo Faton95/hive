@@ -75,7 +75,6 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
 
   const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
 
-
   const billable = path<number>(['isBillable'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
   return (

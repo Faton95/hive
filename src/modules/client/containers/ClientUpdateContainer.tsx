@@ -2,22 +2,20 @@ import React from 'react'
 import { History, Location } from 'history'
 import { sprintf } from 'sprintf-js'
 import { useParams } from 'react-router-dom'
-import { prop, pathOr, map, pipe } from 'ramda'
+import { prop} from 'ramda'
 import CLientUpdate from '../components/ClientUpdate'
 import { clientItemFetch, clientUpdateAction } from '../action/actions'
 import { createSerializer } from '../action/clientSerializer'
-import { useFetchItem, useUpdate } from '../../../hooks'
-import * as stateNames from '../../../constants/stateNames'
-import Layout from '../../../components/Layouts/Layout'
-import * as ROUTES from '../../../constants/routes'
-import { getIdForInitValues } from '../../../utils/get'
+import { useFetchItem, useUpdate } from 'hooks'
+import * as stateNames from 'constants/stateNames'
+import * as ROUTES from 'constants/routes'
 
 type Props = {
-    history: History;
-    location: Location;
-}
+  history: History;
+  location: Location;
+};
 const ClientUpdateContainer = (props: Props) => {
-  const params: {id?: string} = useParams()
+  const params: { id?: string } = useParams()
   const id = prop('id', params)
 
   const clientItem = useFetchItem({
@@ -33,16 +31,12 @@ const ClientUpdateContainer = (props: Props) => {
   })
 
   const data = prop('data', clientItem)
-  
+
   const initialValues = {
     ...data
   }
 
-  return (
-    <Layout>
-      <CLientUpdate {...update} initialValues={initialValues} />
-    </Layout>
-  )
+  return <CLientUpdate {...update} initialValues={initialValues} />
 }
 
 export default ClientUpdateContainer

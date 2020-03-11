@@ -44,6 +44,7 @@ const UninvoicedListContainer = props => {
     mapper: () => ({ [PAGE_SIZE]: 1000 })
   })
 
+  /*
   const feeData = useFetchList<TData<TFeeItem>>({
     action: feeListFetch,
     stateName: stateNames.FEE_LIST,
@@ -56,6 +57,7 @@ const UninvoicedListContainer = props => {
     pickParams: PICK_PARAMS,
     mapper: () => ({ [PAGE_SIZE]: 1000 })
   })
+*/
 
   const deleteData = useDelete({
     stateName: stateNames.UNINVOICED_LIST,
@@ -67,8 +69,8 @@ const UninvoicedListContainer = props => {
     <UninvoicedList
       clientData={clientData}
       assigmentData={assigmentData}
-      feeData={feeData}
-      expenseData={expenseData}
+      //      feeData={feeData}
+      //      expenseData={expenseData}
       deleteData={deleteData}
     />
   )

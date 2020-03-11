@@ -45,8 +45,10 @@ const ColRight = styled(Col)`
 type Props = {
   clientData: TGetDataFromState<TData<TClientItem>>;
   assigmentData: TGetDataFromState<TData<TAssignmentItem>>;
+/*
   feeData: TGetDataFromState<TData<TFeeItem>>;
   expenseData: TGetDataFromState<TData<TExpenseItem>>;
+*/
   deleteData: TUseDelete;
 }
 const EMPTY = []

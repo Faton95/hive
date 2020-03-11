@@ -67,12 +67,6 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.PERMISSION_UPDATE]: createThunkReducer(actionTypes.PERMISSION_UPDATE),
     [stateNames.PERMISSION_DELETE]: createThunkReducer(actionTypes.PERMISSION_DELETE),
 
-    [stateNames.CLIENT_LIST]: createThunkReducer(actionTypes.CLIENT_LIST),
-    [stateNames.CLIENT_CREATE]: createThunkReducer(actionTypes.CLIENT_CREATE),
-    [stateNames.CLIENT_ITEM]: createThunkReducer(actionTypes.CLIENT_ITEM),
-    [stateNames.CLIENT_UPDATE]: createThunkReducer(actionTypes.CLIENT_UPDATE),
-    [stateNames.CLIENT_DELETE]: createThunkReducer(actionTypes.CLIENT_DELETE),
-
     [stateNames.POSITION_LIST]: createThunkReducer(actionTypes.POSITION_LIST),
     [stateNames.POSITION_CREATE]: createThunkReducer(actionTypes.POSITION_CREATE),
     [stateNames.POSITION_ITEM]: createThunkReducer(actionTypes.POSITION_ITEM),
@@ -108,6 +102,7 @@ export const makeRootReducer = (asyncReducers: AsyncReducers) =>
     [stateNames.EXPENSE_ITEM]: createThunkReducer(actionTypes.EXPENSE_ITEM),
     [stateNames.EXPENSE_UPDATE]: createThunkReducer(actionTypes.EXPENSE_UPDATE),
     [stateNames.EXPENSE_DELETE]: createThunkReducer(actionTypes.EXPENSE_DELETE),
+    [stateNames.CLIENT_LIST]: createThunkReducer(actionTypes.CLIENT_LIST),
 
     ...asyncReducers
   })

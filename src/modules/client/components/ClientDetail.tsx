@@ -18,6 +18,7 @@ import {
 } from 'components/Table'
 import { TClientItem } from 'types/models'
 import { TGetDataFromState } from 'types'
+import {TOnSubmit} from "types/hooks";
 
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
@@ -34,7 +35,7 @@ const EMPTY_ARR = []
 
 type Props = {
   item: TGetDataFromState<TClientItem>;
-  onDelete: (id) => void;
+  onDelete: TOnSubmit;
   onEdit: (id) => void;
 }
 const ClientDetail: FunctionComponent<Props> = props => {

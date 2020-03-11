@@ -42,13 +42,13 @@ type Props = {
 }
 const OrderDetail: FunctionComponent<Props> = props => {
   const {
-    item,
+    item
   } = props
 
   const details = prop('data', item)
   const id = prop('id', details)
   const client = path(['client', 'name'], details)
-  const contract = prop('contract', details)
+  const contract = path(['contract', 'id'], details)
   const branch = path(['branch', 'name'], details)
   const createdDate = dateFormat(path(['createdDate'], details))
   const originatedBy = path(['originatedBy', 'username'], details)
@@ -58,46 +58,46 @@ const OrderDetail: FunctionComponent<Props> = props => {
   const paymentDestination = path(['paymentDestination'], details)
   return (
     <>
-        <MarginBottom gutter={10}>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Client">{client}</LabeledValue>
-          </Col>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Client Contact">placeholder</LabeledValue>
-          </Col>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Contract">{contract}</LabeledValue>
-          </Col>
-          
-        </MarginBottom>
-        <MarginBottom gutter={10}>
+      <MarginBottom gutter={10}>
         <Col span={8}>
-            <LabeledValue labelMargin={5} label="Branch">{branch}</LabeledValue>
-          </Col>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Created date">{createdDate}</LabeledValue>
-          </Col>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Originated by">{originatedBy}</LabeledValue>
-          </Col>
-        </MarginBottom>
-        <MarginBottom gutter={10}>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="payment destination">{paymentDestination}</LabeledValue>
-          </Col>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Work group">
-                <HighLight>
-                  {workGroup}
-                </HighLight>
-              </LabeledValue>
-          </Col>
-          <Col span={8}>
-            <LabeledValue labelMargin={5} label="Billing type">
-              {billingType === 'fixed_fee' ? "Fixed Fee" : 'Hourly billing'}
-            </LabeledValue>
-          </Col>
-        </MarginBottom>
+          <LabeledValue labelMargin={5} label='Client'>{client}</LabeledValue>
+        </Col>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Client Contact'>placeholder</LabeledValue>
+        </Col>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Contract'>{contract}</LabeledValue>
+        </Col>
+
+      </MarginBottom>
+      <MarginBottom gutter={10}>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Branch'>{branch}</LabeledValue>
+        </Col>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Created date'>{createdDate}</LabeledValue>
+        </Col>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Originated by'>{originatedBy}</LabeledValue>
+        </Col>
+      </MarginBottom>
+      <MarginBottom gutter={10}>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='payment destination'>{paymentDestination}</LabeledValue>
+        </Col>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Work group'>
+            <HighLight>
+              {workGroup}
+            </HighLight>
+          </LabeledValue>
+        </Col>
+        <Col span={8}>
+          <LabeledValue labelMargin={5} label='Billing type'>
+            {billingType === 'fixed_fee' ? 'Fixed Fee' : 'Hourly billing'}
+          </LabeledValue>
+        </Col>
+      </MarginBottom>
     </>
   )
 }

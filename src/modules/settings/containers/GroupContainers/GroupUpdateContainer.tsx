@@ -4,10 +4,9 @@ import GroupUpdate from '../../components/Group/GroupUpdate'
 import { groupItemFetch, groupUpdateAction, permissionListFetch } from '../../actions/groupActions'
 import { useFetchItem, useUpdate, useFetchList } from '../../../../hooks'
 import * as stateNames from '../../../../constants/stateNames'
-import Layout from '../../../../components/Layouts/Layout'
 import * as ROUTES from '../../../../constants/routes'
-import {createSerializer} from '../../serializers/groupSerializer'
-import {TData, TIdName} from 'types'
+import { createSerializer } from '../../serializers/groupSerializer'
+import { TData, TIdName } from 'types'
 
 const GroupUpdateContainer = () => {
   const groupItem = useFetchItem({
@@ -21,7 +20,7 @@ const GroupUpdateContainer = () => {
     redirectUrl: ROUTES.GROUP_LIST_PATH,
     serializer: createSerializer
   })
-  
+
   const permissionData = useFetchList<TData<TIdName>>({
     stateName: stateNames.PERMISSION_LIST,
     action: permissionListFetch
@@ -39,13 +38,11 @@ const GroupUpdateContainer = () => {
   }
 
   return (
-    <Layout>
-      <GroupUpdate 
-        {...update} 
-        initialValues={initialValues} 
-        permissionData={permissionData}
-      />
-    </Layout>
+    <GroupUpdate
+      {...update}
+      initialValues={initialValues}
+      permissionData={permissionData}
+    />
   )
 }
 
