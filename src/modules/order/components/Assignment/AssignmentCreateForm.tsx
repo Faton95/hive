@@ -15,11 +15,13 @@ import {
 } from 'components/Form'
 import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import { InputLabel } from 'components/UI'
-import {Merge, TData, TGetDataFromState, TPositionItem, TRateItem} from 'types'
+import { Merge, TData, TGetDataFromState, TPositionItem, TRateItem } from 'types'
 import { TContractItem } from 'types/models'
-import {path, pathOr, pick, propOr} from 'ramda'
+import { path, pathOr, pick, propOr } from 'ramda'
 import styled from 'styled-components'
-import {getPositionRate} from "utils/get";
+import { getPositionRate } from 'utils/get'
+
+import isEqual from 'react-fast-compare'
 
 const Label = styled(InputLabel)`
   margin-bottom: 10px;
@@ -55,7 +57,6 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
   const contractId = path<number>(['id'], contract)
   const client = path<number>(['client', 'id'], values)
 
-
   useEffect(() => {
     form.change('serviceProvidedTo.id', client)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,11 +73,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contractId])
 
-  const positionList = pathOr<TPositionItem[]>(
-    EMPTY_ARR,
-    ['data', 'results'],
-    positionData
-  )
+  const positionList = pathOr<TPositionItem[]>(EMPTY_ARR, ['data', 'results'], positionData)
 
   const billable = path<number>(['isBillable'], values)
   const hourlyHasFeeCeiling = path<boolean>(['hourlyHasFeeCeiling'], values)
@@ -86,16 +83,16 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
         <div>
           <FieldWrapper>
             <Field
-              label="Client"
-              name="client"
+              label='Client'
+              name='client'
               api={API.CLIENT_LIST}
               component={UniversalSearchField}
             />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Contract"
-              name="contract"
+              label='Contract'
+              name='contract'
               itemText={['contractNumber']}
               api={API.CONTRACT_LIST}
               params={{ client }}
@@ -105,35 +102,35 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Service provided to"
-              name="serviceProvidedTo"
+              label='Service provided to'
+              name='serviceProvidedTo'
               api={API.CLIENT_LIST}
               component={UniversalSearchField}
             />
           </FieldWrapper>
           <FieldWrapper>
-            <Field label="Assignment" name="name" component={InputField} />
+            <Field label='Assignment' name='name' component={InputField} />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Service delivered by"
-              name="branch"
+              label='Service delivered by'
+              name='branch'
               api={API.BRANCH_LIST}
               component={UniversalSearchField}
             />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Tags"
-              name="tags"
+              label='Tags'
+              name='tags'
               api={API.TAGS_LIST}
               component={UniversalMultiSelectField}
             />
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Originated by"
-              name="originatedBy"
+              label='Originated by'
+              name='originatedBy'
               itemText={['fullName']}
               api={API.STAFF_LIST}
               component={UniversalSearchField}
@@ -141,8 +138,8 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Team Leader"
-              name="teamLeader"
+              label='Team Leader'
+              name='teamLeader'
               api={API.STAFF_LIST}
               itemText={['fullName']}
               component={UniversalSearchField}
@@ -150,8 +147,8 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
           </FieldWrapper>
           <FieldWrapper>
             <Field
-              label="Work group"
-              name="workGroup"
+              label='Work group'
+              name='workGroup'
               itemText={['fullName']}
               api={API.STAFF_LIST}
               component={UniversalMultiSelectField}
@@ -160,14 +157,14 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
           <FieldWrapper>
             <DoubleField>
               <Field
-                label="Created on"
-                name="createdDate"
+                label='Created on'
+                name='createdDate'
                 component={DateField}
               />
               <Field
-                label="Deadline"
-                name="deadLine"
-                appendToBody={true}
+                label='Deadline'
+                name='deadLine'
+                appendToBody
                 component={DateField}
               />
             </DoubleField>
@@ -177,19 +174,19 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
         <div>
           <FieldWrapper>
             <Field
-              name="isBillable"
+              name='isBillable'
               label={{ checkbox: 'Billable', field: 'Billing' }}
               component={CheckboxBordered}
-              defaultValue={true}
-              type="checkbox"
+              defaultValue
+              type='checkbox'
             />
           </FieldWrapper>
           {billable && (
             <>
               <FieldWrapper>
                 <Field
-                  label="Payment Destination"
-                  name="paymentDestination"
+                  label='Payment Destination'
+                  name='paymentDestination'
                   api={API.BRANCH_LIST}
                   component={UniversalSearchField}
                 />
@@ -197,14 +194,14 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
               <FieldWrapper>
                 <DoubleField>
                   <Field
-                    label="Bank Account"
-                    name="bankAccount"
+                    label='Bank Account'
+                    name='bankAccount'
                     api={API.BANK_ACCOUNT_LIST}
                     component={UniversalSearchField}
                   />
                   <Field
-                    label="Currency"
-                    name="currency"
+                    label='Currency'
+                    name='currency'
                     api={API.CURRENCY_LIST}
                     component={UniversalSearchField}
                   />
@@ -218,28 +215,28 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
                 <Label>Invoice Delivered By</Label>
                 <DisplayFlex>
                   <Field
-                    name="invoiceDeliveredBy"
+                    name='invoiceDeliveredBy'
                     component={RadioButtonSimpleField}
-                    label="Billing department"
-                    value="billing_department"
-                    type="radio"
+                    label='Billing department'
+                    value='billing_department'
+                    type='radio'
                   />
                   <Field
-                    name="invoiceDeliveredBy"
+                    name='invoiceDeliveredBy'
                     component={RadioButtonSimpleField}
-                    label="Team Leader"
-                    value="team_leader"
-                    type="radio"
+                    label='Team Leader'
+                    value='team_leader'
+                    type='radio'
                   />
                 </DisplayFlex>
               </FieldWrapper>
               <FieldWrapper>
                 <Field
-                  label="Payment expected in"
-                  addon="days after invoice delivery"
-                  name="paymentDuration"
-                  leftWidth="220px"
-                  rightWidth="220px"
+                  label='Payment expected in'
+                  addon='days after invoice delivery'
+                  name='paymentDuration'
+                  leftWidth='220px'
+                  rightWidth='220px'
                   component={InputAddonInlineLabel}
                 />
               </FieldWrapper>
@@ -250,7 +247,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
 
       <CreateCancelButtons
         cancelPath={ROUTES.ASSIGNMENT_LIST_PATH}
-        submitText="Save"
+        submitText='Save'
       />
     </form>
   )

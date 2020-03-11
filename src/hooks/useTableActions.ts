@@ -19,7 +19,7 @@ const useTableActions = () => {
     onSelect,
     onSort,
     initialSelected: getSelectedFromHistory(history),
-    initialSorting: getOrderingFromHistory(history),
+    initialSorting: getOrderingFromHistory(history)
   }
 }
 

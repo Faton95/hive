@@ -1,9 +1,9 @@
-import React, {FunctionComponent} from 'react'
-import {CheckboxGroup, Checkbox} from 'components/UI'
-import {TIdName, Merge} from 'types'
-import {FieldRenderProps} from 'react-final-form'
-import {prop} from "ramda";
-import styled from "styled-components";
+import React, { FunctionComponent } from 'react'
+import { CheckboxGroup, Checkbox } from 'components/UI'
+import { TIdName, Merge } from 'types'
+import { FieldRenderProps } from 'react-final-form'
+import { prop } from 'ramda'
+import styled from 'styled-components'
 type Props = Merge<FieldRenderProps<Array<number>, HTMLInputElement>, {
   items?: TIdName[];
   label?: string;
@@ -22,14 +22,13 @@ const StyledCheckbox = styled(Checkbox)<{width: any}>`
   display: inline-block;
 `
 
-
 const CheckboxGroupField: FunctionComponent<Props> = props => {
   const {
     items,
     label,
     mode,
     width,
-    input: { value, checked, ...input },
+    input: { value, checked, ...input }
   } = props
 
   return (
@@ -37,7 +36,8 @@ const CheckboxGroupField: FunctionComponent<Props> = props => {
       label={label}
       mode={mode}
       value={value}
-      onChange={input.onChange} >
+      onChange={input.onChange}
+    >
       {items.map(checkbox => (
         <StyledCheckbox
           width={width}
@@ -45,7 +45,8 @@ const CheckboxGroupField: FunctionComponent<Props> = props => {
           key={checkbox.id}
           value={checkbox.id}
           label={checkbox.name}
-          checked={value.includes(checkbox.id)}/>
+          checked={value.includes(checkbox.id)}
+        />
       ))}
     </CheckboxGroup>
   )

@@ -49,6 +49,8 @@ export type TAssignmentItem = {
   currency: TCurrencyItem;
   bankAccount: number;
   status: string;
+  teamLeader: TStaffItem,
+  workGroup: TStaffItem[],
   rates: TRateItem[];
 }
 

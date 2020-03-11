@@ -1,8 +1,8 @@
-import {useCustomModal} from "hooks";
-import {useHistory} from 'react-router-dom'
-import {getParamFromHistory} from "utils/get";
-import {UPDATE_MODAL} from "./containers/TimeSheetListContainer";
-import {find, prop, propEq} from "ramda";
+import { useCustomModal } from 'hooks'
+import { useHistory } from 'react-router-dom'
+import { getParamFromHistory } from 'utils/get'
+import { UPDATE_MODAL } from './containers/TimeSheetListContainer'
+import { find, prop, propEq } from 'ramda'
 
 export const useUpdateTimeSheet = (list = []) => {
   const history = useHistory()
@@ -10,7 +10,7 @@ export const useUpdateTimeSheet = (list = []) => {
   const item = find(propEq('id', id), list)
 
   const updateModal = useCustomModal({
-    key: UPDATE_MODAL,
+    key: UPDATE_MODAL
   })
 
   const initialValues = {
@@ -18,5 +18,5 @@ export const useUpdateTimeSheet = (list = []) => {
     assignment: prop('assignment', item),
     id: id
   }
-  return {...updateModal, initialValues}
+  return { ...updateModal, initialValues }
 }

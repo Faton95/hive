@@ -40,6 +40,7 @@ import {
   BankAccountListContainer,
   BankAccountUpdateContainer
 } from './containers/BankAccountContainer'
+import Layout from "components/Layouts/Layout";
 
 export default (store) => [
   {
@@ -124,16 +125,19 @@ export default (store) => [
   {
     exact: true,
     path: ROUTES.GROUP_LIST_PATH,
+    layout: Layout,
     component: GroupListContainer
   },
   {
     exact: true,
     path: ROUTES.GROUP_CREATE_PATH,
+    layout: Layout,
     component: GroupCreateContainer
   },
   {
     exact: true,
     path: ROUTES.GROUP_UPDATE_PATH,
+    layout: Layout,
     component: GroupUpdateContainer
   },
 

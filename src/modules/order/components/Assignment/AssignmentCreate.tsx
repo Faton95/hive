@@ -6,6 +6,7 @@ import { Box } from 'components/UI'
 import { TGetDataFromState, TOnSubmit, Merge, TGroupItem, TData, TPositionItem } from 'types'
 
 import AssignmentCreateForm from './AssignmentCreateForm'
+import isEqual from 'react-fast-compare'
 
 type Props = {
   onSubmit: TOnSubmit;
@@ -30,8 +31,8 @@ export const fields = [
 const ContractCreate: FunctionComponent<NewPropType> = props => {
   return (
     <div>
-      <DetailMenu title="Assignment Create" />
-      <Box padding="25px">
+      <DetailMenu title='Assignment Create' />
+      <Box padding='25px'>
         <Form
           onSubmit={props.onSubmit}
           render={formikProps => (
@@ -46,4 +47,4 @@ const ContractCreate: FunctionComponent<NewPropType> = props => {
   )
 }
 
-export default ContractCreate
+export default React.memo(ContractCreate, isEqual)

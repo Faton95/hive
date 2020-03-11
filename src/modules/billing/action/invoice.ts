@@ -3,7 +3,7 @@ import axios, { getPayloadFromError, getPayloadFromSuccess } from '../../../util
 import * as API from '../../../constants/api'
 import * as actionTypes from '../../../constants/actionTypes'
 
-export const invoicedListFetch = (data) => {
+export const invoiceListFetch = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(API.INVOICE_LIST, { params: data })
@@ -16,6 +16,35 @@ export const invoicedListFetch = (data) => {
     })
   }
 }
+
+export const invoiceTotalPaymentFetch = (data) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(API.INVOICE_TOTAL_PAYMENT, { params: data })
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.INVOICE_TOTAL_PAYMENT
+    })
+  }
+}
+
+export const invoiceMonthPaymentFetch = (data) => {
+  return (dispatch, getState) => {
+    const payload = axios({ dispatch, getState })
+      .get(API.INVOICE_MONTH_PAYMENT, { params: data })
+      .then(getPayloadFromSuccess)
+      .catch(getPayloadFromError)
+
+    return dispatch({
+      payload,
+      type: actionTypes.INVOICE_MONTH_PAYMENT
+    })
+  }
+}
+
 export const invoiceCreateAction = (data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
@@ -30,7 +59,7 @@ export const invoiceCreateAction = (data) => {
   }
 }
 
-export const uninvoicedUpdateAction = ([id, data]) => {
+export const invoiceUpdateAction = (id, data) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .put(sprintf(API.INVOICE_UPDATE, id), data)
@@ -44,7 +73,7 @@ export const uninvoicedUpdateAction = ([id, data]) => {
   }
 }
 
-export const uninvoicedItemFetch = (id) => {
+export const invoiceItemFetch = (id) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .get(sprintf(API.INVOICE_ITEM, id))
@@ -58,7 +87,7 @@ export const uninvoicedItemFetch = (id) => {
   }
 }
 
-export const uninvoicedDeleteAction = (id) => {
+export const invoiceDeleteAction = (id) => {
   return (dispatch, getState) => {
     const payload = axios({ dispatch, getState })
       .delete(sprintf(API.INVOICE_DELETE, id))

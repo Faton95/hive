@@ -83,6 +83,7 @@ const DateField = props => {
           onFocusChange={onFocusChange}
           keepOpenOnDateSelect={false}
           appendToBody={false}
+          isOutsideRange={() => false}
         />
       </DateContainer>
       <InputError>{error}</InputError>

@@ -19,5 +19,8 @@ export default {
   [stateNames.INVOICE_CREATE]: createPostThunkReducer(actionTypes.INVOICE_CREATE),
   [stateNames.INVOICE_ITEM]: createGetThunkReducer(actionTypes.INVOICE_ITEM),
   [stateNames.INVOICE_UPDATE]: createPostThunkReducer(actionTypes.INVOICE_UPDATE),
-  [stateNames.INVOICE_DELETE]: createPostThunkReducer(actionTypes.INVOICE_DELETE)
+  [stateNames.INVOICE_DELETE]: createPostThunkReducer(actionTypes.INVOICE_DELETE),
+
+  [stateNames.INVOICE_TOTAL_PAYMENT]: createPostThunkReducer(actionTypes.INVOICE_MONTH_PAYMENT),
+  [stateNames.INVOICE_MONTH_PAYMENT]: createPostThunkReducer(actionTypes.INVOICE_TOTAL_PAYMENT)
 }

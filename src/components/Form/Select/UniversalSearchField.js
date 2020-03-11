@@ -8,6 +8,7 @@ import {
   defaultGetValue
 } from 'utils/searchField'
 import SearchField from '../Basic/SearchField'
+import isEqual from 'react-fast-compare'
 
 const UniversalSearchField = props => {
   const { api, params, itemText, getText, ...rest } = props
@@ -30,6 +31,7 @@ const UniversalSearchField = props => {
 UniversalSearchField.propTypes = {
   api: PropTypes.string.isRequired,
   params: PropTypes.object,
+  getText: PropTypes.func,
   itemText: PropTypes.array
 }
 
@@ -37,4 +39,4 @@ UniversalSearchField.defaultProps = {
   itemText: ['name']
 }
 
-export default UniversalSearchField
+export default React.memo(UniversalSearchField, isEqual)

@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-import { path, prop, map, pathOr } from 'ramda'
+import { prop, map, pathOr } from 'ramda'
 import dateFormat from 'utils/dateFormat'
-import numberFormat from 'utils/numberFormat'
 import { DetailMenu } from 'components/Menu'
-import { DisplayFlex } from 'components/StyledElems'
+import { DisplayFlex, Tag } from 'components/StyledElems'
 import {
   LabeledValue,
   DetailDropdown
@@ -17,8 +16,9 @@ import {
   TableBody,
   TableHeader
 } from 'components/Table'
-import { TClientItem, TContactItem } from 'types/models'
+import { TClientItem } from 'types/models'
 import { TGetDataFromState } from 'types'
+import {TOnSubmit} from "types/hooks";
 
 const Header = styled(DisplayFlex)`
   padding-bottom: 27px;
@@ -27,14 +27,7 @@ const Header = styled(DisplayFlex)`
   display: flex;
   justify-content: space-between;
 `
-const TagsName = styled.span`
-  background-color: #F1F3F5;
-  padding: 5px 7px;
-  border-radius: 20px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  display: inline-flex;
-`
+
 const CreatedDate = styled.div`
   color: #8F9BB0;
 `
@@ -42,7 +35,7 @@ const EMPTY_ARR = []
 
 type Props = {
   item: TGetDataFromState<TClientItem>;
-  onDelete: (id) => void;
+  onDelete: TOnSubmit;
   onEdit: (id) => void;
 }
 const ClientDetail: FunctionComponent<Props> = props => {
@@ -52,7 +45,7 @@ const ClientDetail: FunctionComponent<Props> = props => {
     onEdit
   } = props
   const details = prop('data', item)
-  
+
   const id = prop('id', details)
   const name = prop('name', details)
   const address = prop('address', details)
@@ -64,35 +57,35 @@ const ClientDetail: FunctionComponent<Props> = props => {
   return (
     <>
       <DetailMenu title={'Client №' + id} />
-      <Box padding="25px">
-        <Header alignItems="center" justifyContent="flex-end">
+      <Box padding='25px'>
+        <Header alignItems='center' justifyContent='flex-end'>
           <CreatedDate>Создано: {dateFormat(createdDate)}</CreatedDate>
-          <DetailDropdown marginLeft="50px">
+          <DetailDropdown marginLeft='50px'>
             <DropdownItem onClick={() => onEdit(id)} toggleMenu={() => null}>Update</DropdownItem>
             <DropdownItem onClick={() => onDelete(id)} toggleMenu={() => null}>Delete</DropdownItem>
           </DetailDropdown>
         </Header>
         <Row gutter={10}>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="Name">{name}</LabeledValue>
+            <LabeledValue labelMargin={5} label='Name'>{name}</LabeledValue>
           </Col>
           <Col span={6}>
-            <LabeledValue labelMargin={5} label="Address">{address}</LabeledValue>
+            <LabeledValue labelMargin={5} label='Address'>{address}</LabeledValue>
           </Col>
           <Col span={12}>
-            <LabeledValue labelMargin={5} label="Tags">
+            <LabeledValue labelMargin={5} label='Tags'>
               {
                 tags.map((tag, key) => {
                   return (
-                    <TagsName key={key}>{tag.name}</TagsName>
+                    <Tag key={key}>{tag.name}</Tag>
                   )
                 })
               }
-              
+
             </LabeledValue>
           </Col>
         </Row>
-        <br/>
+        <br />
         <div>
           <Table list={contactIds}>
             <TableHeader>
@@ -110,7 +103,7 @@ const ClientDetail: FunctionComponent<Props> = props => {
                 const phone = prop('phone', contact)
                 const position = prop('position', contact)
                 return (
-                  <TableRow key={index} align="center">
+                  <TableRow key={index} align='center'>
                     <TableCol span={6}>{name}</TableCol>
                     <TableCol span={6}>{email}</TableCol>
                     <TableCol span={6}>{phone}</TableCol>

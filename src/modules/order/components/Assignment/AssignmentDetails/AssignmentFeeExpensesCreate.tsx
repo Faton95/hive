@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { TAssignmentItem, TData, TGetDataFromState, TRateItem, TStaffItem } from 'types'
 import { TFeeItem, TExpenseItem } from 'types/models'
 import { Table, TableBody, TableCol, TableHeader, TableRow } from 'components/Table'
-import { filter, find, groupBy, map, path, pathOr, pipe, prop, propOr, sum, values, equals } from 'ramda'
+import {filter, find, groupBy, map, path, pathOr, pipe, prop, propOr, sum, values, equals, union} from 'ramda'
 import addTime from 'utils/addTime'
 import toNumber from 'utils/toNumber'
 import { TUseCreateModal } from 'types/hooks'
@@ -65,6 +65,8 @@ export const fields = [
   'expenses'
 ]
 
+const HUND = 100
+const EMPTY_ARR = []
 const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
   const {
     onFeeCreate,
@@ -76,23 +78,25 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
 
   const userPosition = useUserPosition()
 
-  const fees = pathOr([], ['data', 'results'], feeData)
-  const expensesList = pathOr<TExpenseItem[]>([], ['data', 'results'], expenseData)
+  const teamLeader = prop('teamLeader', details)
+  const workGroup = pipe(propOr(EMPTY_ARR, 'workGroup'), union([teamLeader]), filter(Boolean))(details)
+
+  const fees = pathOr<TFeeItem[]>(EMPTY_ARR, ['data', 'results'], feeData)
+  const expensesList = pathOr<TExpenseItem[]>(EMPTY_ARR, ['data', 'results'], expenseData)
 
   const fixedFeeAmount = prop('fixedFeeAmount', details)
 
   const hourlyFeeCeiling = prop('hourlyFeeCeiling', details)
-  const hourlyHasFeeCeiling = prop('hourlyHasFeeCeiling', details)
+
+  const expenseInFee = prop('fixedFeeExpensesIncludedInFee', details)
 
   const budget = toNumber(fixedFeeAmount || hourlyFeeCeiling)
-  const totalFee = sum(map<{amount: number}, number>(prop('amount'), fees))
-  const feePercent = totalFee > budget ? 100 : totalFee / budget * 100
+  const totalFee = sum(map(pipe(prop('amount'), Number), fees))
+  const totalExpense = sum(map<{amount: string}, number>(pipe(prop('amount'), Number), expensesList))
+  const totalAmount = expenseInFee ? totalFee + totalExpense : totalFee
+  const amountPercent = totalAmount > budget ? HUND : totalAmount / budget * HUND
 
-  const feesByUser: TFeeItem[][] = pipe(
-    groupBy(path(['user', 'id'])),
-    values
-  )(fees)
-
+  console.warn(fees)
   const rates = pathOr<TRateItem[]>([], ['rates'], details)
   const position = find(item => equal(item.position.id, userPosition.id), rates)
   const rate: string = propOr(userPosition.rate, 'amountPerHour', position)
@@ -101,8 +105,8 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
       <Wrapper>
         {Boolean(totalFee) && (
           <ProgressContainer>
-            <Progress width={feePercent} />
-            <Percent>{numberFormat(feePercent)}%</Percent>
+            <Progress width={amountPercent} />
+            <Percent>{numberFormat(amountPercent)}%</Percent>
           </ProgressContainer>
         )}
         <div>
@@ -121,16 +125,16 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {feesByUser.map((item, index) => {
-            const user = path<TStaffItem>(['0', 'user'], item)
-
-            const filteredExpenses = filter((item) => equals(item.user.id, user.id), expensesList)
+          {workGroup.map(staff => {
+            const filteredExpenses = filter((item) => equals(item.user.id, staff.id), expensesList)
+            const filteredFees = filter((fee) => equals(fee.user.id, staff.id), fees)
             const expenseSum = pipe(
               map(path(['amount'])),
               sum
             )(filteredExpenses)
 
-            const spentTime = item.reduce(
+
+            const spentTime = filteredFees.reduce(
               (prev, curr) => addTime(prev, curr.spentTime),
               '00:00'
             )
@@ -138,19 +142,19 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
             const amount = pipe(
               map(pipe(prop('amount'), toNumber)),
               sum
-            )(item)
+            )(filteredFees)
+
 
             return (
-              <TableRow key={index}>
-                <TableCol span={6}>{user.fullName}</TableCol>
+              <TableRow key={staff.id}>
+                <TableCol span={6}>{staff.fullName}</TableCol>
                 <TableCol span={4}>{spentTime}</TableCol>
                 <TableCol span={4}>{numberFormat(amount)} USD</TableCol>
                 <TableCol span={4}>{expenseSum} USD</TableCol>
-                <TableCol span={6}>{numberFormat(amount + expenseSum, 'USD')}</TableCol>
+                <TableCol span={6}>{numberFormat(amount + expenseSum)}</TableCol>
               </TableRow>
             )
           })}
-
         </TableBody>
       </Table>
       <RateContext.Provider value={toNumber(rate)}>

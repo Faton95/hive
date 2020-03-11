@@ -15,7 +15,7 @@ import * as ROUTES from '../../../constants/routes'
 
 const PICK_PARAMS = [
   ...DEFAULT_PICK_PARAMS,
-  'tags',
+  'tags'
 ]
 const ClientListContainer = props => {
   const data = useFetchList({
@@ -34,14 +34,13 @@ const ClientListContainer = props => {
 
   const onEdit = (id) => props.history.push(sprintf(ROUTES.CLIENT_UPDATE_URL, id))
   return (
-    <Layout>
-      <ClientList
-        data={data}
-        filterAction={filterAction}
-        onEdit={onEdit}
-        deleteData={deleteData}
-      />
-    </Layout>
+
+    <ClientList
+      data={data}
+      filterAction={filterAction}
+      onEdit={onEdit}
+      deleteData={deleteData}
+    />
   )
 }
 

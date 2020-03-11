@@ -4,7 +4,7 @@ import * as PERMS from '../constants/permissions'
 export const MENU_KEYS = {
   ORDER: 'order',
   ASSIGNMENT: 'assignment',
-  BILLING: 'billing',
+  BILLING: 'preinvoice',
   CONTRACT: 'contract',
   REVIEW: 'review',
   OPERATIONS: 'operations',
@@ -16,6 +16,17 @@ export const MENU_KEYS = {
   STAFF: 'staff',
   OUTSOURCE: 'outsource',
   TIME_SHEET: 'timesheet'
+}
+
+const PERMISSIONS = {
+  TAGS: 'tags',
+  CURRENCY: 'currency',
+  BRANCH: 'branch',
+  GROUP: 'group',
+  ROLE: 'role',
+  USER: 'user',
+  POSITION: 'position',
+  BANK_ACCOUNT: 'bankaccount'
 }
 
 export default [
@@ -88,14 +99,14 @@ export default [
     title: 'Settings',
     url: ROUTES.TAGS_LIST_PATH,
     children: [
-      { title: 'Tags', url: ROUTES.TAGS_LIST_PATH },
-      { title: 'Currency', url: ROUTES.CURRENCY_LIST_PATH },
-      { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH },
-      { title: 'Groups', url: ROUTES.GROUP_LIST_PATH },
-      { title: 'Role', url: ROUTES.ROLE_LIST_PATH },
-      { title: 'Staff', url: ROUTES.STAFF_LIST_PATH },
-      { title: 'Position', url: ROUTES.POSITION_LIST_PATH },
-      { title: 'Bank Account', url: ROUTES.BANK_ACCOUNT_LIST_PATH },
+      { title: 'Tags', url: ROUTES.TAGS_LIST_PATH, key: PERMISSIONS.TAGS },
+      { title: 'Currency', url: ROUTES.CURRENCY_LIST_PATH, key: PERMISSIONS.CURRENCY },
+      { title: 'Branch', url: ROUTES.BRANCH_LIST_PATH, key: PERMISSIONS.BRANCH },
+      { title: 'Groups', url: ROUTES.GROUP_LIST_PATH, key: PERMISSIONS.GROUP },
+      { title: 'Role', url: ROUTES.ROLE_LIST_PATH, key: PERMISSIONS.ROLE },
+      { title: 'Staff', url: ROUTES.STAFF_LIST_PATH, key: PERMISSIONS.USER },
+      { title: 'Position', url: ROUTES.POSITION_LIST_PATH, key: PERMISSIONS.POSITION },
+      { title: 'Bank Account', url: ROUTES.BANK_ACCOUNT_LIST_PATH, key: PERMISSIONS.BANK_ACCOUNT },
     ]
   }
 ]

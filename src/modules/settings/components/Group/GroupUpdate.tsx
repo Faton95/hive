@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import arrayMutators from 'final-form-arrays'
 import {
-  Form,
+  Form
 } from 'react-final-form'
 import { DetailMenu } from '../../../../components/Menu'
 import { Box } from '../../../../components/UI'
@@ -21,11 +21,10 @@ type Props = {
 type NewPropType = Merge<TGetDataFromState<TGroupItem | null>, Props>
 
 const GroupUpdate: FunctionComponent<NewPropType> = props => {
-  const {permissionData} = props
   return (
     <div>
       <DetailMenu title={`Update group №${props.id}`} />
-      <Box padding="25px">
+      <Box padding='25px'>
         <Form
           onSubmit={props.onSubmit}
           initialValues={props.initialValues}

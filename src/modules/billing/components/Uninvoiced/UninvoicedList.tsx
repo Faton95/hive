@@ -1,7 +1,7 @@
 import { MENU_KEYS } from 'constants/menus'
 import { TAGS_CREATE_PATH, UNINVOICED_CREATE_URL } from 'constants/routes'
 import React, { FunctionComponent } from 'react'
-import { prop, map, pathOr, filter, curry, equals, flatten, sum, pipe } from 'ramda'
+import { prop, map, pathOr, filter, curry, equals, flatten, sum, pipe, reduced, reduce } from 'ramda'
 import { TAssignmentItem, TClientItem, TExpenseItem, TFeeItem, TUseDelete, TGetDataFromState, TData } from 'types'
 import styled from 'styled-components'
 import addTimes from 'utils/addTime'
@@ -16,7 +16,7 @@ import {
   TableCol,
   TableBody
 } from 'components/Table'
-import { Box, } from 'components/UI'
+import { Box } from 'components/UI'
 import { Row, Col } from 'components/UI/Grid'
 import { LinkButton } from 'components/UI/Buttons'
 import { sprintf } from 'sprintf-js'
@@ -28,6 +28,8 @@ const AssigmentRow = styled(Row)`
 
 const PaddingRow = styled(Row)`
   padding: 10px 0;
+  font-weight: 500;
+  align-items: center;
 `
 
 const LinkButtonSmall = styled(LinkButton)`
@@ -43,29 +45,26 @@ const ColRight = styled(Col)`
 type Props = {
   clientData: TGetDataFromState<TData<TClientItem>>;
   assigmentData: TGetDataFromState<TData<TAssignmentItem>>;
+/*
   feeData: TGetDataFromState<TData<TFeeItem>>;
   expenseData: TGetDataFromState<TData<TExpenseItem>>;
+*/
   deleteData: TUseDelete;
 }
 const EMPTY = []
 const ZERO = 0
 
 const clientEquals = curry((id, item) => equals(id, item.client.id))
-const assignmentEquals = curry((assign, fee) => equals(assign.id, fee.assignment.id))
-const filterByAssignment = curry((list, assign) => filter(assignmentEquals(assign), list))
+
 const UninvoicedList: FunctionComponent<Props> = props => {
   const {
     clientData,
-    assigmentData,
-    expenseData,
-    feeData
+    assigmentData
   } = props
 
   const count = pathOr(ZERO, ['data', 'count'], clientData)
   const list = pathOr<TClientItem[]>(EMPTY, ['data', 'results'], clientData)
   const assignmentList = pathOr<TAssignmentItem[]>(EMPTY, ['data', 'results'], assigmentData)
-  const feeList = pathOr<TFeeItem[]>(EMPTY, ['data', 'results'], feeData)
-  const expenseList = pathOr<TExpenseItem[]>(EMPTY, ['data', 'results'], expenseData)
 
   const ids = map(prop('id'), list)
   const actions = (
@@ -76,7 +75,7 @@ const UninvoicedList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Uninvoiced" module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
+      <Menu title='Uninvoiced' module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
       <Box>
         <Table loading={clientData.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
@@ -93,40 +92,29 @@ const UninvoicedList: FunctionComponent<Props> = props => {
               const id = prop('id', item)
               const name = prop('name', item)
               const assignments = filter<TAssignmentItem>(clientEquals(id), assignmentList)
-
-              const assignmentFees = map(filterByAssignment(feeList), assignments)
-
+              const totalFeeAmount = assignments.reduce((prev, curr) => Number(curr.uninvoiceFeeAmount) + prev, 0)
+              const totalExpenseAmount = assignments.reduce((prev, curr) => Number(curr.uninvoiceExpenseAmount) + prev, 0)
               const totalUninvoicedHours = assignments.reduce((prev, curr) => addTimes(prev, curr.uninvoiceFeeHours), '00:00')
 
-              const feeAmountList = pipe(
-                flatten,
-                map(pipe(prop('amount'), Number))
-              )(assignmentFees)
-              const totalFeeAmount = sum(feeAmountList)
-
-              const assignmentExpenses = map(filterByAssignment(expenseList), assignments)
-              const expenses = pipe(
-                flatten,
-                map(pipe(prop('amount'), Number))
-              )(assignmentExpenses)
-              const totalExpenses = sum(expenses)
-
               return (
-                <TableRow key={id} align="center">
+                <TableRow key={id} align='center'>
                   <TableCol span={24}>
                     <PaddingRow gutter={30}>
                       <Col span={9}>{name}</Col>
                       <Col span={4}>{totalUninvoicedHours}</Col>
-                      <Col span={4}>{totalExpenses}</Col>
-                      <Col span={4}>{numberFormat(totalFeeAmount + totalExpenses)}</Col>
+                      <Col span={4}>{totalExpenseAmount}</Col>
+                      <Col span={4}>{numberFormat(totalFeeAmount + totalExpenseAmount)}</Col>
                       <ColRight span={3}>
                         <LinkButtonSmall to={sprintf(UNINVOICED_CREATE_URL, id)}>Invoice</LinkButtonSmall>
                       </ColRight>
                     </PaddingRow>
                     {assignments.map(assigment => (
                       <AssigmentRow key={assigment.id}>
-                        <Col>{assigment.name}</Col>
-                        <Col>{assigment.id + assigment.name}</Col>
+                        <Col span={9}>{assigment.name}</Col>
+                        <Col span={4}>{assigment.uninvoiceFeeHours}</Col>
+                        <Col span={4}>{assigment.uninvoiceExpenseAmount}</Col>
+                        <Col span={4}>{+assigment.uninvoiceFeeAmount + +assigment.uninvoiceExpenseAmount}</Col>
+                        <Col span={3} />
                       </AssigmentRow>
                     ))}
                   </TableCol>

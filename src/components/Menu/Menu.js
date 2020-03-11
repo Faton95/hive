@@ -12,7 +12,7 @@ import DisplayFlex from '../StyledElems/DisplayFlex'
 import {
   NavBar,
   IconWrapper,
-  Title,
+  Title
 //  Notifications,
 //  UserInfo
 } from './components'
@@ -36,10 +36,11 @@ const Menu = props => {
     })
     window.location.pathname = ROUTES.LOGIN_URL
   }
+
   return (
     <>
       <NavBar>
-        <DisplayTitle alignItems="center">
+        <DisplayTitle alignItems='center'>
           <IconWrapper>
             <MenuIcon onClick={goToMainMenu} />
           </IconWrapper>
@@ -48,7 +49,7 @@ const Menu = props => {
 
         <MainMenu module={module} active={active} />
 
-        <DisplayFlex alignItems="center">
+        <DisplayFlex alignItems='center'>
           <span onClick={onLogout}>
             <Power />
           </span>

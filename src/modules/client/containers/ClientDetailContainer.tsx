@@ -2,11 +2,10 @@ import React from 'react'
 import { History, Location } from 'history'
 import { sprintf } from 'sprintf-js'
 import ClientDetail from '../components/ClientDetail'
-import { clientItemFetch } from '../action/actions'
-import { useFetchItem } from '../../../hooks'
-import * as stateNames from '../../../constants/stateNames'
-import Layout from '../../../components/Layouts/Layout'
-import * as ROUTES from '../../../constants/routes'
+import { clientDeleteAction, clientItemFetch, clientListFetch } from '../action/actions'
+import { useDelete, useFetchItem } from '../../../hooks'
+import * as stateNames from 'constants/stateNames'
+import * as ROUTES from 'constants/routes'
 
 type Props = {
     history: History;
@@ -18,16 +17,20 @@ const ClientDetailContainer = (props: Props) => {
     stateName: stateNames.CLIENT_ITEM
   })
 
+  const deleteData = useDelete({
+    stateName: stateNames.CLIENT_DELETE,
+    action: clientDeleteAction,
+    redirectUrl: ROUTES.CLIENT_LIST_PATH
+  })
+
   const onEdit = (id) => props.history.push(sprintf(ROUTES.CLIENT_UPDATE_URL, id))
 
   return (
-    <Layout>
-      <ClientDetail
-        item={data}
-        onDelete={() => null}
-        onEdit={onEdit}
-      />
-    </Layout>
+    <ClientDetail
+      item={data}
+      onDelete={deleteData.onSubmit}
+      onEdit={onEdit}
+    />
   )
 }
 export default ClientDetailContainer

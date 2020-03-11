@@ -26,7 +26,6 @@ const Tab1 = styled.div`
   flex-direction: column;
 `
 
-
 type Props = {
   data: TGetDataFromState<TAssignmentItem>;
   deleteData: TUseDelete;
@@ -43,7 +42,7 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
     onFeeCreate,
     feeData,
     onExpenseCreate,
-    expenseData,
+    expenseData
   } = props
 
   const details: TAssignmentItem = prop('data', data)
@@ -52,16 +51,16 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
 
   return (
     <>
-      <DetailMenu title="Assignment details" />
-      <Box padding="25px">
-        <Header alignItems="center" justifyContent="space-between">
+      <DetailMenu title='Assignment details' />
+      <Box padding='25px'>
+        <Header alignItems='center' justifyContent='space-between'>
           {name}
-          <DetailDropdown marginLeft="50px">
+          <DetailDropdown marginLeft='50px'>
             <DropdownItem onClick={() => deleteData.onSubmit(id)} toggleMenu={() => null}>Удалить</DropdownItem>
           </DetailDropdown>
         </Header>
-        <Tabs initialValue="fees">
-          <Tab label="Fees & expences" value="fees">
+        <Tabs initialValue='fees'>
+          <Tab label='Fees & expences' value='fees'>
             <Tab1>
               <AssignmentFeeExpenses
                 details={details}
@@ -72,7 +71,7 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
               />
             </Tab1>
           </Tab>
-          <Tab label="Assignment Details" value="assignment">
+          <Tab label='Assignment Details' value='assignment'>
             <AssignmentDetailsInfo item={data} />
           </Tab>
         </Tabs>

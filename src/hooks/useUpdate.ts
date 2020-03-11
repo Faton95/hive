@@ -8,7 +8,7 @@ import { mapResponseToFormError } from '../utils/form'
 import { useTypedSelector, usePromiseDispatch } from '../etc/reducers'
 import { TGetDataFromState, TUseUpdateParams, TUseUpdate } from '../types'
 
-const useUpdate = (params: TUseUpdateParams): TUseUpdate => {
+const useUpdate = <T extends any>(params: TUseUpdateParams): TUseUpdate => {
   const {
     stateName,
     action,
@@ -22,7 +22,7 @@ const useUpdate = (params: TUseUpdateParams): TUseUpdate => {
   const paramsRoute = useParams()
   const history = useHistory()
   const dispatch = usePromiseDispatch()
-  const state = useTypedSelector<TGetDataFromState<any>>(state => getDataFromState(stateName, state), equal)
+  const state = useTypedSelector<TGetDataFromState<T>>(state => getDataFromState(stateName, state), equal)
   const id: string = path([key], paramsRoute)
 
   const onSubmit = (values: object) => {

@@ -8,20 +8,20 @@ import { DetailMenu } from 'components/Menu'
 import { DoubleField, FieldWrapper, Tag } from 'components/StyledElems'
 import { Box, InputLabel } from 'components/UI'
 import { Table, TableRow, TableHeader, TableCol } from 'components/Table'
-import { Row, Col, ColRight } from 'components/UI/Grid'
+import { Row, Col } from 'components/UI/Grid'
 import { Button, SecondaryButton } from 'components/UI/Buttons'
 import {
   DateField,
   InputField
 } from 'components/Form'
 import {
-  PreInvoiceAssignmentItem,
-  TGetDataFromState,
-  TOnSubmit, TPreInvoiceItem
+  TGetDataFromState, TInvoiceAssignmentItem, TInvoiceItem,
+  TOnSubmit
 } from 'types'
-import { pathOr } from 'ramda'
-import { TUseCreate } from 'types/hooks'
+import { map, path, pathOr } from 'ramda'
+import {TUseCreate, TUseUpdate} from 'types/hooks'
 import styled from 'styled-components'
+import dateFormat from 'utils/dateFormat'
 
 const RowUI = styled(Row)`
   padding: 10px 0 10px 10px;
@@ -30,16 +30,17 @@ const RowUI = styled(Row)`
 const RowItem = styled(Row)`
   padding: 10px 0 10px 30px;
   border-bottom: 1px #efefef solid;
-  align-items: center;
 `
 const ColUI = styled(Col)`
-  
+  font-weight: 600;
+  padding-top: 15px;
+ 
 `
 
 type Props = {
-  preInvoiceData: TGetDataFromState<TPreInvoiceItem>;
+  invoiceData: TGetDataFromState<TInvoiceItem>;
   onSubmit: TOnSubmit;
-  createData: TUseCreate;
+  updateData: TUseUpdate;
 }
 
 export const fields = [
@@ -48,17 +49,18 @@ export const fields = [
 
 const InvoicedCreate: FunctionComponent<Props> = props => {
   const {
-    createData,
-    preInvoiceData
+    updateData,
+    invoiceData
   } = props
 
-  const assignmentList = pathOr<PreInvoiceAssignmentItem[]>([], ['data', 'assignments'], preInvoiceData)
+  const assignmentList = pathOr<TInvoiceAssignmentItem[]>([], ['data', 'assignments'], invoiceData)
   return (
     <div>
       <DetailMenu title='Invoice for ' />
       <Box padding='25px'>
         <Form
-          onSubmit={createData.onSubmit}
+          onSubmit={updateData.onSubmit}
+          initialValues={updateData.initialValues}
           render={(formikProps) => {
             return (
               <form onSubmit={formikProps.handleSubmit}>
@@ -102,33 +104,30 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableCol span={2}>Type</TableCol>
-                      <TableCol span={4}>Date</TableCol>
-                      <TableCol span={14}>Description</TableCol>
-                      <TableCol span={4}>amount</TableCol>
+                      <TableCol span={6}>Date</TableCol>
+                      <TableCol span={12}>Description</TableCol>
+                      <TableCol span={6}>Amount</TableCol>
                     </TableRow>
                   </TableHeader>
                 </Table>
                 {assignmentList.map(assign => (
                   <Fragment key={assign.id}>
                     <RowUI key={assign.id}>
-                      <ColUI span={12}>
-                        {assign.assignment.name}
-                      </ColUI>
+                      <ColUI span={12}>{assign.assignment.name}</ColUI>
                     </RowUI>
                     {assign.fees.map(fee => (
                       <RowItem key={fee.id}>
                         <Col span={2}><Tag>Fee</Tag></Col>
-                        <Col span={4}>{fee.date}</Col>
-                        <Col span={14}>{fee.description}</Col>
+                        <Col span={6}>{dateFormat(fee.date)}</Col>
+                        <Col span={12}>{fee.description}</Col>
                         <Col span={4}>{fee.amount}</Col>
                       </RowItem>
                     ))}
                     {assign.expenses.map(exp => (
                       <RowItem key={exp.id}>
                         <Col span={2}><Tag>Exp</Tag></Col>
-                        <Col span={4}>{exp.date}</Col>
-                        <Col span={14}>{exp.description}</Col>
+                        <Col span={6}>{dateFormat(exp.date)}</Col>
+                        <Col span={12}>{exp.description}</Col>
                         <Col span={4}>{exp.amount}</Col>
                       </RowItem>
                     ))}

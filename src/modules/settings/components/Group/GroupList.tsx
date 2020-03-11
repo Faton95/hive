@@ -31,12 +31,11 @@ const EMPTY = []
 const ZERO = 0
 
 const GroupList: FunctionComponent<Props> = props => {
-  const { data } = props
+  const { data, onEdit } = props
   const count = pathOr(ZERO, ['data', 'count'], data)
   const list = pathOr<TGroupItem[]>(EMPTY, ['data', 'results'], data)
   const ids = map(prop('id'), list)
 
-  console.warn('Group')
   const actions = (
     <TableActions
       createPath={GROUP_CREATE_PATH}
@@ -65,7 +64,7 @@ const GroupList: FunctionComponent<Props> = props => {
                   <TableCol span={4}>{name}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
-                      <DropdownItem>dasds</DropdownItem>
+                      <DropdownItem onClick={() => onEdit(id)}>Update</DropdownItem>
                     </Dropdown>
                   </TableCol>
                 </TableRow>

@@ -42,7 +42,7 @@ const UninvoicedCreate: FunctionComponent<Props> = props => {
   return (
     <div>
       <DetailMenu title={'New Invoice for ' + clientName} />
-      <Box padding="25px">
+      <Box padding='25px'>
         <Form
           onSubmit={createData.onSubmit}
           render={(formikProps) => {
@@ -52,7 +52,7 @@ const UninvoicedCreate: FunctionComponent<Props> = props => {
                 <FieldWrapper>
                   <InputLabel>What Assignments would you like to invoice?</InputLabel>
                   <Field
-                    name="assignments"
+                    name='assignments'
                     defaultValue={ids}
                     render={fieldProps => (
                       <UninvoicedAssigmentListField {...fieldProps} list={assignmentList} />
@@ -65,20 +65,20 @@ const UninvoicedCreate: FunctionComponent<Props> = props => {
                   <Col span={12}>
                     <FieldWrapper>
                       <Field
-                        name="type"
-                        type="radio"
-                        value="all"
+                        name='type'
+                        type='radio'
+                        value='all'
                         component={RadioButtonField}
-                        label="All uninvoiced time & materials"
+                        label='All uninvoiced time & materials'
                       />
                     </FieldWrapper>
                     <FieldWrapper>
                       <Field
-                        name="type"
-                        type="radio"
-                        value="custom"
+                        name='type'
+                        type='radio'
+                        value='custom'
                         component={RadioButtonField}
-                        label="Include uninvoiced time & materials from custom period"
+                        label='Include uninvoiced time & materials from custom period'
                       />
                     </FieldWrapper>
                     <FieldWrapper>
@@ -86,15 +86,15 @@ const UninvoicedCreate: FunctionComponent<Props> = props => {
                         <Row gutter={20}>
                           <Col span={12}>
                             <Field
-                              name="fromDate"
-                              label="From Date"
+                              name='fromDate'
+                              label='From Date'
                               component={DateField}
                             />
                           </Col>
                           <Col span={12}>
                             <Field
-                              name="toDate"
-                              label="To Date"
+                              name='toDate'
+                              label='To Date'
                               component={DateField}
                             />
                           </Col>
@@ -103,18 +103,18 @@ const UninvoicedCreate: FunctionComponent<Props> = props => {
                     </FieldWrapper>
                     <FieldWrapper>
                       <Field
-                        name="type"
-                        type="radio"
-                        value="expense"
+                        name='type'
+                        type='radio'
+                        value='expenses'
                         component={RadioButtonField}
-                        label="Do not include any hours"
+                        label='Do not include any hours'
                       />
                     </FieldWrapper>
                   </Col>
                   <Col span={12} />
                 </Row>
                 <SecondaryButton>Cancel</SecondaryButton>
-                <Button type="submit">Review Invoice</Button>
+                <Button type='submit'>Review Invoice</Button>
               </form>
             )
           }}

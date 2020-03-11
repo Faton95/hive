@@ -53,7 +53,7 @@ const RoleList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Positions" module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
+      <Menu title='Positions' module={MENU_KEYS.SETTINGS} active={MENU_KEYS.SETTINGS} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
@@ -72,17 +72,17 @@ const RoleList: FunctionComponent<Props> = props => {
 
               const groupTags = map(group => <Tag key={group.id}>{group.name}</Tag>, groups)
               return (
-                <TableRow key={id} selectId={id} align="center">
+                <TableRow key={id} selectId={id} align='center'>
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={4}>{name}</TableCol>
                   <TableCol span={18}>{groupTags}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
+                        Update
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
+                        Delete
                       </DropdownItem>
                     </Dropdown>
                   </TableCol>

@@ -57,7 +57,7 @@ const ClientList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Client" module={MENU_KEYS.CLIENT} active={MENU_KEYS.CLIENT} />
+      <Menu title='Client' module={MENU_KEYS.CLIENT} active={MENU_KEYS.CLIENT} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
@@ -78,21 +78,18 @@ const ClientList: FunctionComponent<Props> = props => {
               const tags = pathOr(EMPTY, ['tags'], item)
 
               return (
-                <TableRowLink link={link} key={id} selectId={id} align="center">
+                <TableRowLink link={link} key={id} selectId={id} align='center'>
                   <TableCol span={5}>{name}</TableCol>
                   <TableCol span={8}>{createdDate}</TableCol>
-                  <TableCol span={10}>{tags.map((tag, key) => {
-                    return(
-                      <TagsName key={key}>{tag.name}</TagsName>
-                    )
-                  })}</TableCol>
+                  <TableCol span={10}>{tags.map((tag, key) => (<TagsName key={key}>{tag.name}</TagsName>))}
+                  </TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
+                        Update
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
+                        Delete
                       </DropdownItem>
                     </Dropdown>
                   </TableCol>

@@ -16,7 +16,7 @@ const useFetchItem = <T extends any>(params: TUseFetchItemParams) => {
 
   useEffect(
     () => { dispatch(action(id)) },
-    [id, dispatch, action],
+    [id, dispatch, action]
   )
 
   return state
