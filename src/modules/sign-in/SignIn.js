@@ -57,29 +57,29 @@ const SignIn = props => {
             return (
               <form onSubmit={formikProps.handleSubmit}>
                 <Box>
-                  <FieldWrapper>
+                  <FieldWrapper data-cy='username-wrap'>
                     <Field
-                      name="username"
+                      name='username'
                       component={InputField}
-                      label="Username"
-                      placeholder="Введите логин"
+                      label='Username'
+                      placeholder='Введите логин'
                     />
                   </FieldWrapper>
-                  <FieldWrapper>
+                  <FieldWrapper data-cy='password-wrap'>
                     <Field
-                      label="Password"
-                      name="password"
-                      placeholder="Введите пароль"
+                      label='Password'
+                      name='password'
+                      placeholder='Введите пароль'
                       component={InputPasswordField}
                     />
                   </FieldWrapper>
                   {formikProps.submitError && (
-                    <FieldWrapper>
+                    <FieldWrapper data-cy='auth-error-wrapper'>
                       <InputError>{formikProps.submitError}</InputError>
                     </FieldWrapper>
                   )}
-                  <DisplayFlex align="center" justify="space-between">
-                    <Button fullWidth={true} type="submit">
+                  <DisplayFlex align='center' justify='space-between'>
+                    <Button fullWidth type='submit' data-cy='submit'>
                       войти
                     </Button>
                   </DisplayFlex>
