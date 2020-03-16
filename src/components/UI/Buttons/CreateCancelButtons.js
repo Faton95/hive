@@ -18,14 +18,14 @@ const CreateCancelButtons = props => {
     <ActionButtons mode={mode} marginTop={marginTop}>
       {(cancelPath || onCancel) && (
         <LinkSecondaryButton
-          type="button"
+          type='button'
           to={cancelPath}
           onClick={onCancel}
         >
         Cancel
         </LinkSecondaryButton>
       )}
-      <Button type="submit" loading={loading}>{submitText}</Button>
+      <Button type='submit' data-cy='submit' loading={loading}>{submitText}</Button>
     </ActionButtons>
   )
 }

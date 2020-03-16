@@ -6,7 +6,8 @@
     "build": "yarn clear && cross-env NODE_ENV=production  node ./scripts/build.js",
     "clear": "rm -rf dist",
     "lint": "eslint src",
-    "check-types": "tsc --skipLibCheck"
+    "check-types": "tsc --skipLibCheck",
+    "cypress": "cypress open"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
@@ -35,6 +36,7 @@
     "compression": "^1.7.4",
     "cross-env": "^5.2.0",
     "css-loader": "^3.4.0",
+    "cypress": "^4.1.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
