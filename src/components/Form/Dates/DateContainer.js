@@ -13,6 +13,12 @@ export default styled('div')`
     transition: background-color 200ms;
   }
   
+  & .DateInput_input__disabled {
+      background-color:#fafbfc;
+      font-style: unset !important;
+      pointer-events: none;
+  }
+
   & .DateInput_input::placeholder {
     color: ${props => props.theme.input.placeholderColor};
   }
@@ -21,6 +27,9 @@ export default styled('div')`
     background-color: ${props => props.theme.input.backgroundColorHover};
   }
   
+  & .SingleDatePickerInput__disabled {
+    background-color: transparent;
+  }
   & .SingleDatePickerInput__showClearDate {
     padding-right: 0;
   }
@@ -38,6 +47,6 @@ export default styled('div')`
   }
   
   & .DateInput__disabled {
-    background: transparent
+    background: transparent;
   }
 `

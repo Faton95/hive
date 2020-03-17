@@ -20,19 +20,13 @@ import { TContractItem } from 'types/models'
 import { path, pathOr, pick, propOr } from 'ramda'
 import styled from 'styled-components'
 import { getPositionRate } from 'utils/get'
-
-import isEqual from 'react-fast-compare'
-
+import { EMPTY_ARR } from 'constants/usefulConstants'
+import {OPEN_UP} from 'react-dates/constants'
 const Label = styled(InputLabel)`
   margin-bottom: 10px;
 `
 
-type Props = Merge<
-  FormRenderProps,
-  {
-    positionData: TGetDataFromState<TData<TPositionItem>>;
-  }
->;
+type Props = Merge<FormRenderProps, {positionData: TGetDataFromState<TData<TPositionItem>>;}>;
 
 const namesFromContract = [
   'billingType',
@@ -50,13 +44,14 @@ const namesFromContract = [
   'bankAccount',
   'serviceProvidedTo'
 ]
-const EMPTY_ARR = []
 const AssignmentCreateForm: FunctionComponent<Props> = props => {
   const { handleSubmit, positionData, values, form } = props
   const contract = path<TContractItem>(['contract'], values)
   const contractId = path<number>(['id'], contract)
   const client = path<number>(['client', 'id'], values)
+  const paymentDestination = path<number>(['paymentDestination', 'id'], values)
 
+  const hasContract = Boolean(contractId)
   useEffect(() => {
     form.change('serviceProvidedTo.id', client)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,6 +110,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
             <Field
               label='Service delivered by'
               name='branch'
+              disabled={hasContract}
               api={API.BRANCH_LIST}
               component={UniversalSearchField}
             />
@@ -159,12 +155,14 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
               <Field
                 label='Created on'
                 name='createdDate'
+                openDirection={OPEN_UP}
                 component={DateField}
               />
               <Field
                 label='Deadline'
                 name='deadLine'
-                appendToBody
+                disabled={hasContract}
+                openDirection={OPEN_UP}
                 component={DateField}
               />
             </DoubleField>
@@ -196,18 +194,23 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
                   <Field
                     label='Bank Account'
                     name='bankAccount'
+                    disabled={hasContract}
+                    params={{ branch: paymentDestination }}
+                    parent={paymentDestination}
                     api={API.BANK_ACCOUNT_LIST}
                     component={UniversalSearchField}
                   />
                   <Field
                     label='Currency'
                     name='currency'
+                    disabled={hasContract}
                     api={API.CURRENCY_LIST}
                     component={UniversalSearchField}
                   />
                 </DoubleField>
               </FieldWrapper>
               <BillingFields
+                hasContract={hasContract}
                 positionList={positionList}
                 hourlyHasFeeCeiling={hourlyHasFeeCeiling}
               />
@@ -235,6 +238,7 @@ const AssignmentCreateForm: FunctionComponent<Props> = props => {
                   label='Payment expected in'
                   addon='days after invoice delivery'
                   name='paymentDuration'
+                  disabled={hasContract}
                   leftWidth='220px'
                   rightWidth='220px'
                   component={InputAddonInlineLabel}

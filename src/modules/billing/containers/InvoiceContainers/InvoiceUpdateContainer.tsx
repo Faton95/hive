@@ -46,7 +46,6 @@ const InvoiceUpdateContainer = props => {
     <InvoiceUpdate
       invoiceData={invoiceData}
       updateData={data}
-      onSubmit={() => null}
     />
   )
 }

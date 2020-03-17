@@ -2,79 +2,76 @@ import React, { FunctionComponent } from 'react'
 import { Field, FormRenderProps } from 'react-final-form'
 import { Col, Row } from 'ui-cubic/dist/index.es'
 import { FieldArray } from 'react-final-form-arrays'
-import { prop, propOr } from 'ramda'
 import styled from 'styled-components'
-import { FieldWrapper } from '../../../components/StyledElems'
+import { FieldWrapper } from 'components/StyledElems'
 import {
   ClientListField,
   InputField,
   UniversalMultiSelectField
-} from '../../../components/Form'
-import * as API from '../../../constants/api'
-import CreateCancelButtons from '../../../components/UI/Buttons/CreateCancelButtons'
-import * as ROUTES from '../../../constants/routes'
+} from 'components/Form'
+import * as API from 'constants/api'
+import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
+import * as ROUTES from 'constants/routes'
 
 const RowMargin = styled(Row)`
   margin-bottom: 20px;
 `
-
-const EMPTY = ''
 
 const ClientCreateForm: FunctionComponent<FormRenderProps> = props => {
   const { handleSubmit } = props
   return (
     <form onSubmit={handleSubmit}>
       <RowMargin gutter={20}>
-        <Col span={12}>
+        <Col span={12} data-cy='name-wrapper'>
           <Field
-            label="Name"
-            name="name"
+            label='Name'
+            name='name'
             component={InputField}
-            placeholder="Name"
+            placeholder='Name'
           />
         </Col>
-        <Col span={12}>
+        <Col span={12} data-cy='address-wrapper'>
           <Field
-            label="Address"
-            name="address"
-            component={InputField} 
-            placeholder="Address"
+            label='Address'
+            name='address'
+            component={InputField}
+            placeholder='Address'
           />
         </Col>
       </RowMargin>
       <RowMargin gutter={20}>
-        <Col span={12}>
+        <Col span={12} data-cy='email-wrapper'>
           <Field
-            label="Email"
-            name="email"
+            label='Email'
+            name='email'
             component={InputField}
-            placeholder="Email"
+            placeholder='Email'
           />
         </Col>
-        <Col span={12}>
+        <Col span={12} data-cy='password-wrapper'>
           <Field
-            label="Password"
-            name="password"
-            component={InputField} 
-            placeholder="Password"
+            label='Password'
+            name='password'
+            component={InputField}
+            placeholder='Password'
           />
         </Col>
       </RowMargin>
-      <FieldWrapper>
+      <FieldWrapper data-cy='tags-wrapper'>
         <Field
-          label="Tags"
-          name="tags"
-          component={UniversalMultiSelectField} 
+          label='Tags'
+          name='tags'
+          component={UniversalMultiSelectField}
           api={API.TAGS_LIST}
         />
       </FieldWrapper>
       <FieldArray
-        name="contacts"
+        name='contacts'
         component={ClientListField}
       />
       <CreateCancelButtons
         cancelPath={ROUTES.CLIENT_LIST_PATH}
-        submitText="Save"
+        submitText='Save'
       />
     </form>
   )

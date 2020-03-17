@@ -1167,6 +1167,14 @@
   dependencies:
     ts-toolbelt "^4.12.0"
 
+"@types/react-dates@^17.1.10":
+  version "17.1.10"
+  resolved "https://registry.yarnpkg.com/@types/react-dates/-/react-dates-17.1.10.tgz#e85cafa41b16762ef386a1b30fc0928bccebd616"
+  integrity sha512-vMMO4bw88PJ5yLfeo1WR0peR7hkYIsso1wGLiO5Xkpcb/B86LK2P1l3YbNWXD1M7BqFekezkuWaO1qKGf8uX4Q==
+  dependencies:
+    "@types/react" "*"
+    moment ">=2.17.1"
+
 "@types/react-dom@^16.9.4":
   version "16.9.4"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.4.tgz#0b58df09a60961dcb77f62d4f1832427513420df"
@@ -4381,7 +4389,7 @@ he@1.2.x:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-history@^4.10.1, history@^4.9.0:
+history@^4.9.0:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/history/-/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
   integrity sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==
@@ -5571,7 +5579,7 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-moment@2.24.0, moment@>=1.6.0, moment@^2.18.1:
+moment@2.24.0, moment@>=1.6.0, moment@>=2.17.1, moment@^2.18.1:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -8186,12 +8194,11 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
-ui-cubic@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/ui-cubic/-/ui-cubic-0.4.5.tgz#0ab23372c8d5f81c59c49b43c9d6f0e0c8c766aa"
-  integrity sha512-ToMBBwoyBuRTpEtWl+mk3LAByv2Ht7KKDZa7WfmgpRjUKPrVvnvzkvA2YpIbTNKcht+VAlj/RMUSdfA4SEgr9A==
+ui-cubic@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/ui-cubic/-/ui-cubic-0.4.6.tgz#177ae7076a0ed55d8a2b12b7f3bf5466a7878534"
+  integrity sha512-2D/ve0E9eGkL3ZgXUajfP8CTzt5rzFiiX7iQNozBlbXC08rjQ7VHfsmIOSW6ulprVa9y1NjOPSXBcoKJ3cTzPw==
   dependencies:
-    history "^4.10.1"
     prop-types "^15.7.2"
     react "^16.12.0"
     react-dom "^16.12.0"

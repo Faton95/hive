@@ -45,3 +45,14 @@ export type TInvoiceItem = {
   user: TUserInfo;
   client: TIdName
 }
+
+export type TTotalInvoiceAmount = {
+  totalPaidAmount: string | null;
+  totalAmount: string | null;
+}
+
+export type TMonthlyInvoiceAmount = {
+  month: string;
+  totalPaidPmount: string | null;
+  totalAmount: string | null;
+}

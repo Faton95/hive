@@ -77,10 +77,10 @@ const ContractList: FunctionComponent<Props> = props => {
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Изменить
+                        Update
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
-                        Удалить
+                        Delete
                       </DropdownItem>
                     </Dropdown>
                   </TableCol>

@@ -55,7 +55,7 @@ const TableActions = props => {
       <Actions>
         {extraButtons}
         {(onCreate || createPath) && (
-          <Button data-cy="table-add" onClick={onCreate} to={createPath}>
+          <Button data-cy='table-add' onClick={onCreate} to={createPath}>
             + Create
           </Button>
         )}

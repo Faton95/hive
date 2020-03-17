@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Input } from 'components/UI'
 import { getFieldError } from 'utils/form'
 import isEqual from 'react-fast-compare'
+
 const InputField = ({ label, meta, input, rtl, ...rest }) => {
   const textAlign = rtl ? 'right' : 'left'
   return (

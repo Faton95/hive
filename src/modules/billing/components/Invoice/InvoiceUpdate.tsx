@@ -15,11 +15,10 @@ import {
   InputField
 } from 'components/Form'
 import {
-  TGetDataFromState, TInvoiceAssignmentItem, TInvoiceItem,
-  TOnSubmit
+  TGetDataFromState, TInvoiceAssignmentItem, TInvoiceItem
 } from 'types'
-import { map, path, pathOr } from 'ramda'
-import {TUseCreate, TUseUpdate} from 'types/hooks'
+import { pathOr } from 'ramda'
+import { TUseUpdate } from 'types/hooks'
 import styled from 'styled-components'
 import dateFormat from 'utils/dateFormat'
 
@@ -39,7 +38,6 @@ const ColUI = styled(Col)`
 
 type Props = {
   invoiceData: TGetDataFromState<TInvoiceItem>;
-  onSubmit: TOnSubmit;
   updateData: TUseUpdate;
 }
 

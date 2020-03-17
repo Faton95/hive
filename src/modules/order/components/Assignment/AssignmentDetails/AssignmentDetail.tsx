@@ -29,6 +29,7 @@ const Tab1 = styled.div`
 type Props = {
   data: TGetDataFromState<TAssignmentItem>;
   deleteData: TUseDelete;
+  onEdit: (id) => void;
   onExpenseCreate: TUseCreateModal<TFeeItem>;
   onFeeCreate: TUseCreateModal<TFeeItem>;
   feeData: TGetDataFromState<TData<TFeeItem>>;
@@ -42,7 +43,8 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
     onFeeCreate,
     feeData,
     onExpenseCreate,
-    expenseData
+    expenseData,
+    onEdit
   } = props
 
   const details: TAssignmentItem = prop('data', data)
@@ -56,7 +58,8 @@ const AssignmentDetail: FunctionComponent<Props> = props => {
         <Header alignItems='center' justifyContent='space-between'>
           {name}
           <DetailDropdown marginLeft='50px'>
-            <DropdownItem onClick={() => deleteData.onSubmit(id)} toggleMenu={() => null}>Удалить</DropdownItem>
+            <DropdownItem onClick={() => onEdit(id)}>Update</DropdownItem>
+            <DropdownItem onClick={() => deleteData.onSubmit(id)}>Delete</DropdownItem>
           </DetailDropdown>
         </Header>
         <Tabs initialValue='fees'>

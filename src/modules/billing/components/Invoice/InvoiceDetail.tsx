@@ -1,19 +1,18 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { path, prop, map } from 'ramda'
-import dateFormat from 'utils/dateFormat'
-import numberFormat from 'utils/numberFormat'
 import { DetailMenu } from 'components/Menu'
 import { DisplayFlex } from 'components/StyledElems'
 import {
   DetailDropdown
 } from 'components/DetailComponents'
-import { Box, DropdownItem, Row, Col } from 'components/UI'
+import { Box, DropdownItem } from 'components/UI'
 import {
   ButtonSmall,
   PrimaryBorderedButtonSmall
 } from 'components/UI/Buttons'
 import { TGetDataFromState, TInvoiceItem } from 'types'
+import { TOnSubmit } from 'types/hooks'
 import InvoicePdf from './InvoicePdf'
 import InvoiceTimeSheetPDF from './InvoiceTimeSheetPDF'
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer'
@@ -37,7 +36,7 @@ const EMPTY_ARR = []
 
 type Props = {
   data: TGetDataFromState<TInvoiceItem>;
-  onDelete: (id) => void;
+  onDelete: TOnSubmit;
   onEdit: (id) => void;
 }
 const InvoiceDetail: FunctionComponent<Props> = props => {

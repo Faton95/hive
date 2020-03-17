@@ -10,26 +10,15 @@ import {
   Legend,
   Margin,
   ResponsiveContainer,
-  Label,
   LabelList
 } from 'recharts'
 import styled from 'styled-components'
 import { DisplayFlex } from 'components/StyledElems'
 import pure from 'utils/pure'
-const data = [
-  { name: 'Jan', Open: 4000, Paid: 2400 },
-  { name: 'Feb', Open: 3000, Paid: 1398 },
-  { name: 'Mar', Open: 2000, Paid: 1000 },
-  { name: 'Apr', Open: 2780, Paid: 2000 },
-  { name: 'May', Open: 1890, Paid: 1500 },
-  { name: 'June', Open: 2390, Paid: 2000 },
-  { name: 'July', Open: 3490, Paid: 3000 },
-  { name: 'Aug', Open: 3490, Paid: 3000 },
-  { name: 'Sep', Open: 3490, Paid: 3000 },
-  { name: 'Oct', Open: 3490, Paid: 3000 },
-  { name: 'Nov', Open: 3490, Paid: 3000 },
-  { name: 'Dec', Open: 3490, Paid: 3000 }
-]
+import { TGetDataFromState, TMonthlyInvoiceAmount, TTotalInvoiceAmount } from 'types'
+import { curry, find, pathOr, propOr } from 'ramda'
+import { EMPTY_ARR, ZERO } from 'constants/usefulConstants'
+import moment from 'moment'
 
 const BoxUI = styled(Box)`
   margin-bottom: 15px;
@@ -58,32 +47,67 @@ const margin: Margin = {
   left: 0
 }
 
-class CustomizedLabel extends Label {
-  render (): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
-    return <span>text</span>
-  }
+type Props = {
+  invoiceTotalData: TGetDataFromState<TTotalInvoiceAmount[]>;
+  invoiceMonthData: TGetDataFromState<TMonthlyInvoiceAmount[]>
 }
 
-const Label2 = props => {
-  const { x, y, stroke, value } = props
+const monthEq = curry((month, item: TMonthlyInvoiceAmount) => {
+  const name = moment(item.month, 'YYYY-MM-DD').format('MMM')
+  console.warn(name, month)
+  return name === month
+})
+const InvoiceListStat: FunctionComponent<Props> = props => {
+  const { invoiceTotalData, invoiceMonthData } = props
 
-  console.warn(props)
-  return (
-    <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor='middle'>{value}</text>
-  )
-}
-const InvoiceListStat: FunctionComponent<{}> = props => {
+  const totalOpenAmount = pathOr(ZERO, ['data', '0', 'totalAmount'], invoiceTotalData)
+  const totalPaidAmount = pathOr(ZERO, ['data', '0', 'totalPaidAmount'], invoiceTotalData)
+  const data = [
+    { name: 'Jan', Open: 4000, Paid: 2400 },
+    { name: 'Feb', Open: 3000, Paid: 1398 },
+    { name: 'Mar', Open: 2000, Paid: 1000 },
+    { name: 'Apr', Open: 2780, Paid: 2000 },
+    { name: 'May', Open: 1890, Paid: 1500 },
+    { name: 'June', Open: 2390, Paid: 2000 },
+    { name: 'July', Open: 3490, Paid: 3000 },
+    { name: 'Aug', Open: 3490, Paid: 3000 },
+    { name: 'Sep', Open: 3490, Paid: 3000 },
+    { name: 'Oct', Open: 3490, Paid: 3000 },
+    { name: 'Nov', Open: 3490, Paid: 3000 },
+    { name: 'Dec', Open: 3490, Paid: 3000 }
+  ]
+
+  const monthlyList = pathOr<TMonthlyInvoiceAmount[]>(EMPTY_ARR, ['data'], invoiceMonthData)
+  const graphData = monthlyList.map(month => {
+    const name = moment(month.month, 'YYYY-MM-DD').format('MMM')
+    return { name, Paid: month.totalPaidPmount, Open: month.totalAmount }
+  })
+
+  const g = data.map(item => {
+    const name = item.name
+
+    const monthly = find(monthEq(item.name), monthlyList)
+    const Open = propOr(ZERO, 'totalAmount', monthly)
+    const Paid = propOr(ZERO, 'totalPaidAmount', monthly)
+    return {
+      name,
+      Open,
+      Paid
+    }
+  })
+
+
   return (
     <BoxUI>
       <DisplayFlex>
         <div>
           <Total>
             <InputLabel>Total Opened</InputLabel>
-            <Value>1000</Value>
+            <Value>{totalOpenAmount}</Value>
           </Total>
           <Total>
             <InputLabel>Total Paid</InputLabel>
-            <Value>2000</Value>
+            <Value>{totalPaidAmount}</Value>
           </Total>
         </div>
         <Chart>
@@ -92,7 +116,7 @@ const InvoiceListStat: FunctionComponent<{}> = props => {
               barGap={-30}
               barSize={30}
               barCategoryGap={50}
-              data={data}
+              data={g}
               margin={{ top: 15, right: 30, left: 20, bottom: 0 }}
               style={{ paddingTop: 0 }}
             >

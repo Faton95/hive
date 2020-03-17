@@ -1,7 +1,7 @@
 import { MENU_KEYS } from 'constants/menus'
 import React, { FunctionComponent } from 'react'
 import { prop, map, pathOr } from 'ramda'
-import { TGetDataFromState, TData } from 'types'
+import {TGetDataFromState, TData, TInvoiceItem, TTotalInvoiceAmount, TMonthlyInvoiceAmount} from 'types'
 import { Menu } from 'components/Menu'
 import Pagination from 'components/Pagination'
 import {
@@ -20,25 +20,30 @@ import numberFormat from 'utils/numberFormat'
 import { sprintf } from 'sprintf-js'
 import { INVOICE_ITEM_URL } from 'constants/routes'
 import InvoiceListStat from './InvoiceListStat'
+import { EMPTY_ARR, ZERO } from 'constants/usefulConstants'
 
 type Props = {
-  invoiceData: TGetDataFromState<TData<any>>;
-
+  invoiceData: TGetDataFromState<TData<TInvoiceItem>>;
+  invoiceTotalData: TGetDataFromState<TTotalInvoiceAmount[]>;
+  invoiceMonthData: TGetDataFromState<TMonthlyInvoiceAmount[]>
 }
-const EMPTY = []
-const ZERO = 0
 
 const InvoicedList: FunctionComponent<Props> = props => {
   const {
-    invoiceData
+    invoiceData,
+    invoiceTotalData,
+    invoiceMonthData
   } = props
 
   const count = pathOr(ZERO, ['data', 'count'], invoiceData)
-  const list = pathOr<any[]>(EMPTY, ['data', 'results'], invoiceData)
+  const list = pathOr<TInvoiceItem[]>(EMPTY_ARR, ['data', 'results'], invoiceData)
+
 
   const ids = map(prop('id'), list)
   const actions = (
-    <TableActions />
+    <TableActions
+
+    />
   )
   const data = [
     { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
@@ -52,7 +57,10 @@ const InvoicedList: FunctionComponent<Props> = props => {
   return (
     <div>
       <Menu title='Invoice' module={MENU_KEYS.BILLING} active={MENU_KEYS.BILLING} />
-      <InvoiceListStat />
+      <InvoiceListStat
+        invoiceTotalData={invoiceTotalData}
+        invoiceMonthData={invoiceMonthData}
+      />
       <Box>
         <Table loading={invoiceData.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>

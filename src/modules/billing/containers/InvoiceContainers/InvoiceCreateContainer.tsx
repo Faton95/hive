@@ -23,7 +23,7 @@ const serializer = (values, data: TPreInvoiceItem) => {
     ...values
   })
 }
-const UninvoicedCreateContainer = props => {
+const InvoicedCreateContainer = props => {
   const { id } = useParams<{id: string}>()
   const preInvoiceData = useFetchItem<TPreInvoiceItem>({
     action: preInvoiceItemFetch,
@@ -45,4 +45,4 @@ const UninvoicedCreateContainer = props => {
   )
 }
 
-export default UninvoicedCreateContainer
+export default InvoicedCreateContainer

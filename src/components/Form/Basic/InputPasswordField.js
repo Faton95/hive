@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Input, InputLabel } from 'components/UI'
+import { Input } from 'components/UI'
 import { getFieldError } from 'utils/form'
 import styled from 'styled-components'
 import Eye from 'icons/view.svg'
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   position: relative;
 `
 
-const ShowHideButton = styled.img`
+const HideButton = styled.img`
   position: absolute;
   top: 35px;
   right: 20px;
@@ -18,10 +18,14 @@ const ShowHideButton = styled.img`
   height: 30px;
   width: 40px;
 `
+
+const PASSWORD = 'password'
+const TEXT = 'text'
 const InputPasswordField = ({ label, meta, input, rtl, ...rest }) => {
   const textAlign = rtl ? 'right' : 'left'
 
   const [show, setShow] = useState(false)
+  const onToggle = () => setShow(!show)
   return (
     <>
       <Wrapper>
@@ -30,10 +34,10 @@ const InputPasswordField = ({ label, meta, input, rtl, ...rest }) => {
           {...rest}
           label={label}
           style={{ textAlign }}
-          type={show ? 'text' : 'password'}
+          type={show ? TEXT : PASSWORD}
           error={getFieldError(meta)}
         />
-        <ShowHideButton onClick={() => setShow(!show)} src={Eye} alt='eye' />
+        <HideButton onClick={onToggle} src={Eye} alt='eye' />
       </Wrapper>
     </>
   )
@@ -42,6 +46,7 @@ const InputPasswordField = ({ label, meta, input, rtl, ...rest }) => {
 InputPasswordField.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
+  rtl: PropTypes.string,
   meta: PropTypes.object,
   placeholder: PropTypes.string
 }

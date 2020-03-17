@@ -96,7 +96,6 @@ const AssignmentFeeExpensesCreate: FunctionComponent<Props> = props => {
   const totalAmount = expenseInFee ? totalFee + totalExpense : totalFee
   const amountPercent = totalAmount > budget ? HUND : totalAmount / budget * HUND
 
-  console.warn(fees)
   const rates = pathOr<TRateItem[]>([], ['rates'], details)
   const position = find(item => equal(item.position.id, userPosition.id), rates)
   const rate: string = propOr(userPosition.rate, 'amountPerHour', position)

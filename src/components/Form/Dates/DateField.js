@@ -55,6 +55,7 @@ const DateField = props => {
     label,
     height,
     dateFormat,
+    disabled,
     openDirection,
     ...rest
   } = props
@@ -78,6 +79,7 @@ const DateField = props => {
           openDirection={openDirection}
           id={input.name}
           date={date}
+          disabled={disabled}
           focused={focusedInput}
           onDateChange={onChange}
           onFocusChange={onFocusChange}

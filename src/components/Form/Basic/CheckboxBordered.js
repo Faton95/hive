@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { prop } from 'ramda'
 import styled, { css } from 'styled-components'
 import { Checkbox } from 'ui-cubic'
 import { InputLabel } from 'components/UI'
 
-const CheckboxWrapper = styled('div')``
+const CheckboxWrapper = styled('div')`
+`
 
 const Container = styled('div')`
   align-items: center;
@@ -18,10 +19,18 @@ const Container = styled('div')`
   padding: 6px 20px;
   transition: ${props => props.theme.cube.transition};
   width: 100%;
+
+   ${props => props.disabled && css`
+    pointer-events: none;
+  & label {
+    color: ${props.theme.input.labelColor}
+  }
+`}
   ${props => props.checked && css`
     background-color: #f5f6fd;
     border-color: ${props => props.theme.cube.primaryColor};
   `}
+  
 `
 
 const StyledCheckbox = styled(Checkbox)`
@@ -32,7 +41,7 @@ const toBoolean = value =>
   value === 'true' || value === true
 
 const CheckboxBordered = props => {
-  const { input, label, ...rest } = props
+  const { input, label, disabled, ...rest } = props
 
   const checked = toBoolean(prop('checked', input))
 
@@ -51,7 +60,7 @@ const CheckboxBordered = props => {
   return (
     <CheckboxWrapper {...rest}>
       <InputLabel>{fieldLabel}</InputLabel>
-      <Container onClick={onChange} checked={checked}>
+      <Container onClick={onChange} disabled={disabled} checked={checked}>
         <StyledCheckbox
           label={checkboxLabel}
           checked={checked}

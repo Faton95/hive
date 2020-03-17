@@ -8,6 +8,7 @@ import { TUseDelete, TGetDataFromState, TData } from 'types'
 import { TAssignmentItem } from 'types/models/assignment'
 import { Menu } from 'components/Menu'
 import Pagination from 'components/Pagination'
+import { Tag } from 'components/StyledElems'
 import {
   Table,
   TableActions,
@@ -19,13 +20,8 @@ import {
 } from 'components/Table'
 import { Box, Dropdown, DropdownItem } from 'components/UI'
 import AssignmentListFilterForm from './AssignmentListFilterForm'
+import { EMPTY_ARR, ZERO } from 'constants/usefulConstants'
 
-const Tags = styled.span`
-  padding: 5px 7px;
-  border-radius: 12.5px;
-  background-color: #f3f4f6;
-  margin-right: 5px;
-`
 const AssignmentName = styled.div`
   font-weight: 500;
   padding-bottom: 2px;
@@ -37,13 +33,12 @@ type Props = {
     onEdit: (id) => void;
     deleteData: TUseDelete;
 }
-const EMPTY = []
-const ZERO = 0
+
 const AssignmentList: FunctionComponent<Props> = props => {
   const { data, filterAction, onEdit, deleteData } = props
 
   const count = pathOr(ZERO, ['data', 'count'], data)
-  const list = pathOr<TAssignmentItem[]>(EMPTY, ['data', 'results'], data)
+  const list = pathOr<TAssignmentItem[]>(EMPTY_ARR, ['data', 'results'], data)
   const ids = map(prop('id'), list)
 
   const filterForm = (<AssignmentListFilterForm />)
@@ -57,7 +52,7 @@ const AssignmentList: FunctionComponent<Props> = props => {
 
   return (
     <div>
-      <Menu title="Assignments" module={MENU_KEYS.ASSIGNMENT} active={MENU_KEYS.ASSIGNMENT} />
+      <Menu title='Assignments' module={MENU_KEYS.ASSIGNMENT} active={MENU_KEYS.ASSIGNMENT} />
       <Box>
         <Table loading={data.loading} list={ids} actions={actions} gutter={30}>
           <TableHeader>
@@ -79,10 +74,10 @@ const AssignmentList: FunctionComponent<Props> = props => {
               const teamLeader = path(['teamLeader', 'fullName'], item)
               const billingType = prop('billingType', item)
               const status = path(['status'], item)
-              const tags = pathOr(EMPTY, ['tags'], item)
+              const tags = pathOr(EMPTY_ARR, ['tags'], item)
               const link = sprintf(ASSIGNMENT_ITEM_URL, id)
               return (
-                <TableRowLink link={link} key={id} align="center">
+                <TableRowLink link={link} key={id} align='center'>
                   <TableCol span={1}>{id}</TableCol>
                   <TableCol span={5}>
                     <AssignmentName>{client}</AssignmentName>
@@ -91,11 +86,11 @@ const AssignmentList: FunctionComponent<Props> = props => {
                   <TableCol span={5}>{teamLeader}</TableCol>
                   <TableCol span={4}>{status}</TableCol>
                   <TableCol span={4}>{billingType === 'fixed_fee' ? 'Fixed Fee' : 'Hourly billing'}</TableCol>
-                  <TableCol span={4}>{tags.map(tag => (<Tags key={tag.id}>{tag.name}</Tags>))}</TableCol>
+                  <TableCol span={4}>{tags.map(tag => (<Tag key={tag.id}>{tag.name}</Tag>))}</TableCol>
                   <TableCol span={1}>
                     <Dropdown>
                       <DropdownItem onClick={() => onEdit(id)}>
-                        Change
+                        Update
                       </DropdownItem>
                       <DropdownItem onClick={() => deleteData.onSubmit(id)}>
                         Delete

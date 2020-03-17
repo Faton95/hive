@@ -32,6 +32,7 @@ import { Select } from 'ui-cubic'
 import { useCompareEffect } from '../../../hooks'
 import { getFieldError } from '~/utils/form'
 import { isNumber } from '~/utils/is'
+import { EMPTY_STRING } from 'constants/usefulConstants'
 
 const DEFAULT_STATE = {
   options: [],
@@ -354,7 +355,7 @@ const SearchField = props => {
     isStatic
   } = props
 
-  const selectedOption = getSelectedOption(state.options, input.value) || ''
+  const selectedOption = getSelectedOption(state.options, input.value) || EMPTY_STRING
 
   const onInputChange = (value, { action }) => {
     if (action === 'input-change') {

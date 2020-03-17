@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 import styled from 'styled-components'
-import {pathOr, path, propOr, map} from 'ramda'
+import { pathOr, path, propOr, map } from 'ramda'
 import { Field, InputField } from '../index'
 import RemoveButton from './RemoveButton'
 import { Table, TableRow, TableCol, TableHeader, TableBody, TableColRight as TableColUI } from '../../Table'
@@ -15,16 +15,15 @@ const TableColRight = styled(TableColUI)`
 `
 
 const ClientListField = props => {
-
   const { fields, ...p } = props
   const onAdd = () => fields.push({})
   const onRemove = index => fields.remove(index)
 
-    const values: [] = propOr([], 'value', fields)
-    
+  const values: [] = propOr([], 'value', fields)
+
   return (
     <div>
-      <FieldArrayHeader title={'Contacts'} onAdd={onAdd}/>
+      <FieldArrayHeader title='Contacts' onAdd={onAdd} />
       <Table gutter={20} selection={false} list={values}>
         <TableHeader>
           <HeaderRow>
@@ -41,30 +40,30 @@ const ClientListField = props => {
               <TableRow key={index}>
                 <TableCol span={6} data-cy={`client-${index}`}>
                   <Field
-                    name={`${name}name`}
+                    name={`${name}.name`}
                     component={InputField}
-                    placeholder="Name"
+                    placeholder='Name'
                   />
                 </TableCol>
                 <TableCol span={6} data-cy={`count-${index}`}>
                   <Field
-                    name={`${name}email`}
+                    name={`${name}.email`}
                     component={InputField}
-                    placeholder="Email"
+                    placeholder='Email'
                   />
                 </TableCol>
                 <TableCol span={5} data-cy={`client-${index}`}>
                   <Field
-                    name={`${name}phone`}
+                    name={`${name}.phone`}
                     component={InputField}
-                    placeholder="Phone"
+                    placeholder='Phone'
                   />
                 </TableCol>
                 <TableCol span={6} data-cy={`client-${index}`}>
                   <Field
-                    name={`${name}position`}
+                    name={`${name}.position`}
                     component={InputField}
-                    placeholder="Position"
+                    placeholder='Position'
                   />
                 </TableCol>
                 <TableColRight span={1}>

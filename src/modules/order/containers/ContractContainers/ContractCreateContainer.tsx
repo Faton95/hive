@@ -23,7 +23,8 @@ const ContractCreateContainer = props => {
 
   const positionData = useFetchList<TData<TPositionItem>>({
     stateName: stateNames.POSITION_LIST,
-    action: positionListFetch
+    action: positionListFetch,
+    mapper: () => ({ page_size: 100 })
   })
   return (
     <Layout>

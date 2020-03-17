@@ -10,7 +10,6 @@ import {
   useCreateModal,
   useFetchList
 } from 'hooks'
-import Layout from 'components/Layouts/Layout'
 import AssignmentDetail from '../../components/Assignment/AssignmentDetails/AssignmentDetail'
 import {
   assignmentItemFetch,
@@ -25,6 +24,7 @@ import {
   createExpenseSerializer,
   createFeeSerializer
 } from '../../serializers/feeExpenseSerializer'
+import { sprintf } from 'sprintf-js'
 
 type Props = {
     history: History;
@@ -75,17 +75,18 @@ const AssignmentDetailContainer = (props: Props) => {
     serializer: (values) => createExpenseSerializer(assignment, values)
   })
 
+  const onEdit = (id) => props.history.push(sprintf(ROUTES.ASSIGNMENT_UPDATE_URL, id))
   return (
-    <Layout>
-      <AssignmentDetail
-        data={data}
-        deleteData={deleteData}
-        onFeeCreate={onFeeCreate}
-        feeData={feeData}
-        onExpenseCreate={onExpenseCreate}
-        expenseData={expenseData}
-      />
-    </Layout>
+
+    <AssignmentDetail
+      data={data}
+      deleteData={deleteData}
+      onFeeCreate={onFeeCreate}
+      feeData={feeData}
+      onExpenseCreate={onExpenseCreate}
+      expenseData={expenseData}
+      onEdit={onEdit}
+    />
   )
 }
 export default AssignmentDetailContainer

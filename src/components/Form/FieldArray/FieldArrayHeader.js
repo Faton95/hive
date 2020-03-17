@@ -20,7 +20,7 @@ const FieldArrayHeader = props => {
     <Header>
       <Title>{title}</Title>
       {onAdd && (
-        <PlusButton data-cy="add-button" onClick={onAdd}>
+        <PlusButton data-cy='add-button' onClick={onAdd}>
           {buttonText}
         </PlusButton>
       )}

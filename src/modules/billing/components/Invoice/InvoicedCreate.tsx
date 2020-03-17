@@ -5,7 +5,7 @@ import {
 } from 'react-final-form'
 
 import { DetailMenu } from 'components/Menu'
-import { DoubleField, FieldWrapper, Tag } from 'components/StyledElems'
+import { DoubleField, FieldWrapper, Tag, ActionButtons } from 'components/StyledElems'
 import { Box, InputLabel } from 'components/UI'
 import { Table, TableRow, TableHeader, TableCol } from 'components/Table'
 import { Row, Col, ColRight } from 'components/UI/Grid'
@@ -19,7 +19,7 @@ import {
   TGetDataFromState,
   TOnSubmit, TPreInvoiceItem
 } from 'types'
-import { pathOr } from 'ramda'
+import { path, pathOr } from 'ramda'
 import { TUseCreate } from 'types/hooks'
 import styled from 'styled-components'
 
@@ -52,10 +52,12 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
     preInvoiceData
   } = props
 
+  console.warn(props)
+  const clientName = path(['data', 'client', 'name'], preInvoiceData)
   const assignmentList = pathOr<PreInvoiceAssignmentItem[]>([], ['data', 'assignments'], preInvoiceData)
   return (
     <div>
-      <DetailMenu title='Invoice for ' />
+      <DetailMenu title={'Invoice for ' + clientName} />
       <Box padding='25px'>
         <Form
           onSubmit={createData.onSubmit}
@@ -134,8 +136,10 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                     ))}
                   </Fragment>
                 ))}
-                <SecondaryButton>Cancel</SecondaryButton>
-                <Button type='submit'>Review Invoice</Button>
+                <ActionButtons>
+                  <SecondaryButton>Cancel</SecondaryButton>
+                  <Button type='submit'>Create Invoice</Button>
+                </ActionButtons>
               </form>
             )
           }}

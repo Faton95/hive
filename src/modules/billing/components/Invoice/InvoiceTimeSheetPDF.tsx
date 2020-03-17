@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     marginBottom: 15
   },
   invoiceNo: {
@@ -202,7 +202,7 @@ const InvoicePdf = (props: Props) => {
 
               {assign.fees.map(fee => (
                 <View style={styles.tableRow} key={fee.id}>
-                  <Text style={styles.tableCol1}>{fee.date}</Text>
+                  <Text style={styles.tableCol1}>{fee.user.fullName}</Text>
                   <Text style={styles.tableCol1}>{fee.date}</Text>
                   <Text style={styles.tableCol2}>{fee.description}</Text>
                   <Text style={styles.tableCol1}>{fee.spentTime}</Text>
@@ -217,12 +217,6 @@ const InvoicePdf = (props: Props) => {
             </Fragment>
           )
         })}
-        <View style={styles.tableWrap}>
-          <View style={styles.tableRowTotal}>
-            <Text style={styles.tableCol2}>Total</Text>
-            <Text style={styles.tableCol1Right}>{totalExpenseAmount}</Text>
-          </View>
-        </View>
         <Text
           style={styles.pageNumber}
           render={({ pageNumber, totalPages }) =>

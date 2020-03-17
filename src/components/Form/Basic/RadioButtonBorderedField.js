@@ -21,11 +21,11 @@ const Children = styled.div`
   padding-left: 26px;
 `
 const RadioButtonBordered = props => {
-  const { label, children, input } = props
+  const { label, children, input, disabled } = props
 
   return (
     <Border checked={input.checked}>
-      <RadioButton label={label} {...input} />
+      <RadioButton label={label} {...input} disabled={disabled} />
       {input.checked && children && <Children>{children}</Children>}
     </Border>
   )
@@ -33,7 +33,12 @@ const RadioButtonBordered = props => {
 
 RadioButtonBordered.propTypes = {
   label: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
+  disabled: PropTypes.bool,
+  input: PropTypes.object
 }
 
+RadioButtonBordered.defaultProps = {
+  disabled: false
+}
 export default RadioButtonBordered

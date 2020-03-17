@@ -10,8 +10,9 @@ import {
   ContractCreateContainer,
   ContractListContainer,
   ContractDetailContainer,
-  ContractUpdateContainer,
+  ContractUpdateContainer
 } from './containers/ContractContainers'
+import Layout from 'components/Layouts/Layout'
 
 export default (store) => [
   {
@@ -32,6 +33,7 @@ export default (store) => [
   {
     exact: true,
     path: ROUTES.ASSIGNMENT_ITEM_PATH,
+    layout: Layout,
     component: AssignmentDetailContainer
   },
   {
@@ -53,5 +55,5 @@ export default (store) => [
     exact: true,
     path: ROUTES.CONTRACT_UPDATE_PATH,
     component: ContractUpdateContainer
-  },
+  }
 ]
