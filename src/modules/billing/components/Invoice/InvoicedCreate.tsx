@@ -3,13 +3,14 @@ import {
   Form,
   Field
 } from 'react-final-form'
-
+import * as ROUTES from 'constants/routes'
 import { DetailMenu } from 'components/Menu'
 import { DoubleField, FieldWrapper, Tag, ActionButtons } from 'components/StyledElems'
 import { Box, InputLabel } from 'components/UI'
 import { Table, TableRow, TableHeader, TableCol } from 'components/Table'
 import { Row, Col, ColRight } from 'components/UI/Grid'
 import { Button, SecondaryButton } from 'components/UI/Buttons'
+import CreateCancelButtons from 'components/UI/Buttons/CreateCancelButtons'
 import {
   DateField,
   InputField
@@ -52,7 +53,6 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
     preInvoiceData
   } = props
 
-  console.warn(props)
   const clientName = path(['data', 'client', 'name'], preInvoiceData)
   const assignmentList = pathOr<PreInvoiceAssignmentItem[]>([], ['data', 'assignments'], preInvoiceData)
   return (
@@ -136,10 +136,11 @@ const InvoicedCreate: FunctionComponent<Props> = props => {
                     ))}
                   </Fragment>
                 ))}
-                <ActionButtons>
-                  <SecondaryButton>Cancel</SecondaryButton>
-                  <Button type='submit'>Create Invoice</Button>
-                </ActionButtons>
+                <CreateCancelButtons
+                  cancelPath={ROUTES.UNINVOICED_LIST_PATH}
+                  loading={false}
+                  submitText='Create Invoice'
+                />
               </form>
             )
           }}
