@@ -78,7 +78,7 @@
     "final-form-arrays": "^3.0.2",
     "history": "^4.9.0",
     "moment": "^2.18.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.13.0",
